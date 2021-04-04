@@ -1,0 +1,336 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<head lang="en">
+	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+	<title>Template Documentation Template</title>
+	<!-- Framework CSS -->
+	<link rel="stylesheet" href="assets/blueprint-css/screen.css" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="assets/blueprint-css/print.css" type="text/css" media="print">
+	<!--[if lt IE 8]><link rel="stylesheet" href="assets/blueprint-css/ie.css" type="text/css" media="screen, projection"><![endif]-->
+	<link rel="stylesheet" href="assets/blueprint-css/plugins/fancy-type/screen.css" type="text/css" media="screen, projection">
+	<style type="text/css" media="screen">
+		p, table, hr, .box { margin-bottom:25px; }
+		.box p { margin-bottom:10px; }
+	</style>
+</head>
+
+
+<body>
+	<div class="container">
+	
+		<h3 class="center alt">&ldquo;Ultimate Author Box&rdquo; Documentation by &ldquo;AccessPress Themes&rdquo; v1.0.0</h3>
+		
+		<hr/>
+		
+		<h1 class="center">&ldquo;Ultimate Author Box&rdquo;</h1>
+		
+		<div class="borderTop">
+			<div class="span-6 colborder info prepend-1">
+				<p class="prepend-top">
+					<strong>
+					Created: 3/7/2017<br/>
+					By: AccessPress Themes<br>
+					Email: <a href="mailto:support@accesspressthemes.com">support@accesspressthemes.com</a>
+					</strong>
+				</p>
+			</div><!-- end div .span-6 -->		
+	
+			<div class="span-12 last">
+				<p class="prepend-top append-0">Thank you for purchasing our plugin. If you have any questions that are beyond the scope of this help file, please feel free to email via my user page contact form <a href="http://codecanyon.net/user/AccessKeys">here</a>. Thanks so much!</p>
+			</div>
+		</div><!-- end div .borderTop -->
+		
+		<hr>
+		
+		<h2 id="toc" class="alt">Table of Contents</h2>
+		<ol class="alpha">
+            <li><a href="#installingInstructions">Installing Instructions</a></li>
+			<li><a href="#generalSettings">General Settings</a></li>
+			<li><a href="#formSettings">Profile Settings</a></li>
+			<li><a href="#usingShortcode">Using Shortcode</a></li>
+		</ol>
+		
+		<hr>
+		<h3 id="installingInstructions"><strong>A) Installing Instructions</strong> - <a href="#toc">top</a></h3>
+		
+		<ol>
+        	<li>Unzip umtilate-author-box.zip</li>
+        	<li>Upload all the files to the /wp-content/plugins/ultimat-author-box</li>
+        	<li>Activate the plugin through the 'Plugins' menu in WordPress.</li>
+        	<li>For customizing the plugin's settings, click on Ultimat Author Box option menu in Wordpress left admin menu.</li>
+        	<li>To display the author box in the frontend,please use [ultimate_author_box] shortcode wherever necessary.</li>
+        </ol>
+		<p>
+          Once you have successfully installed the plugin, check on the left admin panel for Ultimate Author Box. Clicking on it will lead you to the Author Box General Settings.
+        </p>
+		<hr/>
+        
+		<h3 id="generalSettings"><strong>B) General Settings</strong> - <a href="#toc">top</a></h3>
+		<p>
+		
+		<h2>General Settings</h2>
+In General Setting, you can control where and how Author Box appears in the frontend.
+<ul>
+ 	<li><strong>Disable Ultimate Author Box:</strong> This will disable the Author Box completely, even shortcode will not work.</li>
+ 	<li><strong>Choose place to show Author Box:</strong> This options allows you to append/add author box to your post/pages/custom post type. If you have custom post types and want to show the Author Box, a list of registered custom post types should appear and you can check the custom post types.</li>
+ 	<li><strong>Show Author Box at:</strong> Choose the positions where you want the Author Box to appear. The available positions are top/bottom or none.</li>
+ 	<li><strong>Hide Author Box if Author Biographical Info is empty:</strong> Sometimes if you have many authors, some people may not have filled their profile Biographical information in their Profile page. In such case, enable this feature to not show Author box for respective users.</li>
+ 	<li><strong>Show Default Biographical Info if empty:</strong> Sometimes if you have many authors, some people may not have filled their profile Biographical information in their Profile page. In such case, set a default message.</li>
+ 	<li><strong>Show Author Box in Small Screen Device:</strong> Set this to not show Author Box in Screen less than</li>
+ 	<li><strong>Frontend link target options:</strong> Set this so that all links in the Author Box open in either a new page or the same page.</li>
+</ul>
+<h2>Permission Settings</h2>
+In Permission Settings, you can select which Registered User Roles can have access to the Author Box settings in their Profile Page (Dashboard-&gt; Users-&gt; Your Profile). Some User roles may not have a Profile Page by default; in such cases the author box for those users cannot be set. <p>Please check WordPress Roles and Capabilities <a href="https://codex.wordpress.org/Roles_and_Capabilities">https://codex.wordpress.org/Roles_and_Capabilities</a> to check your User accessibility.</p>
+<h2>Twitter Feeds Settings</h2>
+For convenience and since Twitter allows this, we have made this feature so that the Admin can set a Twitter App once and other users can show their twitter feed by just using their Username.
+If you are a not the admin and your twitter feed do not work, please contact your site admin to confirm that they have set the Twitter App.
+<h3>Steps to configure Twitter:</h3>
+<ul>
+ 	<li>First you need to go to <a href="https://apps.twitter.com/" target="_blank">https://apps.twitter.com/</a></li>
+ 	<li>You need to login to Twitter if you are not already logged in.</li>
+ 	<li>Click on Create New App</li>
+ 	<li>You will need to fill a Create an Application form where you need to specify the application Name, Description, Website, a callback URL(optional) and agree to the Developer Agreement. Once you have filled all the form fields click on create your Twitter Application.</li>
+ 	<li>Congratulation you have created a Twitter App! To get your Consumer Key(API Key) and Consumer Secret(API Secret), go to the Keys and Access Tokens Tab.</li>
+ 	<li>Check the Application setting to get your Consumer Key(API Key) and Consumer Secret(API Secret).</li>
+ 	<li>Look for Create my Access Token button to generate your Access token and Access token secret. Click on the button to view your Access token and Access token secret.</li>
+ 	<li>And you are done! Now you can use API Key, API Secret, Access token and Access token secret. Unlink Facebook, same twitter keys can be used for multiple sites.</li>
+</ul>
+<h2>Layout Settings</h2>
+Set how your Author Box appears in the frontend.
+<ul>
+ 	<li><strong>Select Template:</strong> Choose a Template to represent the Author Box according to your preference. We provide you with 15+ ready to go templates to select from or select the Custom Template Option.
+This is a general template setting which can be overwritten by Template setting from the individual User Profile Page (Dashboard-&gt; Users-&gt; Your Profile).</li>
+ 	<li><strong>Enable custom CSS:</strong> Use this to enable the Custom CSS Section.</li>
+ 	<li><strong>Custom CSS Section:</strong> Enter custom CSS code here to custom modify our templates in the frontend.</li>
+</ul>
+<h2>Custom Settings</h2>
+If you have selected Select Template as Custom Template, you can choose from a set of the pre-available templates and choose to modify its, primary, secondary and tertiary color and background image according to the Template. All custom options may not appear in all templates.
+
+<h2>Save Changes</h2> Click on save changes to save your settings.
+
+<h2>Restore Default Settings</h2>  Revert all setting to its initial installed settings.
+
+The Default Settings are:
+<table>
+<tbody>
+<tr>
+<td width="297">Option</td>
+<td width="293">Status</td>
+</tr>
+<tr>
+<td width="297">Disable Ultimate Author Box</td>
+<td width="293">False</td>
+</tr>
+<tr>
+<td width="297">Choose place to show Author Box</td>
+<td width="293">Post/Page/Custom Post Type</td>
+</tr>
+<tr>
+<td width="297">Show Author Box at</td>
+<td width="293">Bottom of Posts</td>
+</tr>
+<tr>
+<td width="297">Hide Author Box if Author Biographical Info is empty</td>
+<td width="293">False</td>
+</tr>
+<tr>
+<td width="297">Show Default Biographical Info if empty</td>
+<td width="293">True</td>
+</tr>
+<tr>
+<td width="297">Frontend link target options</td>
+<td width="293">New Page</td>
+</tr>
+<tr>
+<td width="297">Permission Settings</td>
+<td width="293">All Enabled</td>
+</tr>
+<tr>
+<td width="297">Consumer Key (API Key)</td>
+<td width="293">NULL</td>
+</tr>
+<tr>
+<td width="297">Consumer Secret (API Secret)</td>
+<td width="293">NULL</td>
+</tr>
+<tr>
+<td width="297">Access Token</td>
+<td width="293">NULL</td>
+</tr>
+<tr>
+<td width="297">Access Token Secret</td>
+<td width="293">NULL</td>
+</tr>
+<tr>
+<td width="297">Cache Period</td>
+<td width="293">1</td>
+</tr>
+<tr>
+<td width="297">Select Template</td>
+<td width="293">Template 1</td>
+</tr>
+<tr>
+<td width="297">Enable Custom CSS Section</td>
+<td width="293">True</td>
+</tr>
+<tr>
+<td width="297">Custom CSS</td>
+<td width="293">Empty</td>
+</tr>
+<tr>
+<td width="297"></td>
+<td width="293"></td>
+</tr>
+<tr>
+<td width="297"></td>
+<td width="293"></td>
+</tr>
+</tbody>
+</table>
+
+
+<strong>Go to Profile Settings:</strong> Once you are gone with General settings, click on Go to Profile Settings to begin editing your individual User Profiles.
+		<hr/>
+
+		<h3 id="formSettings"><strong>B) Profile Settings</strong> - <a href="#toc">top</a></h3>
+		<h1>Profile Settings</h1>
+<p>After setting your General Settings, the next thing is the Profile Settings. To set your Profile settings go to Dashboard-&gt; Users-&gt; Your Profile.</p>
+
+<p>If you are the admin, you can go to Dashboard-&gt; Users-&gt; All Users-&gt; Select a User and choose to edit any of your User profile.</p>
+
+<p>The default user information such as Display name publicly as, Email, Website, Biographical Info, Profile Picture(Gravatar Image) provided by WordPress will be used by the plugin as name, email, website, description and default image. For additional settings you can configure Ultimate Author Box Profile Settings.</p>
+
+<p>If you are not the admin and you do not have Ultimate Author Box Profile Settings, please contact your admin and ask them to enable Ultimate Author Box Profile Settings in your profile page. (If you are the admin, check Permission Settings).</p>
+
+<p>If you have the Ultimate Author Box Profile Settings you should see an Author Details Tab there. This is a Default tab and cannot be deleted.</p>
+<h2>Author Details tab:</h2>
+<ul>
+ 	<li><strong>Frontend Tab Title:</strong> This content will replace the string ‘Author Details’ in the Frontend tab title and act as Author Detail Tab content header in template 4,5,6,10,12,14,16.</li>
+ 	<li><strong>Profile Image Settings</strong>:
+<ul>
+ 	<li>Choose Image Type: You can use your Profile image as the default Gravatar Image or use image from Social Profile such as Facebook, Twitter, Instagram or Upload an image from the Media Library. By default your profile image is your Gravatar image. If you have made any mistake with your image settings then your image will revert back to your Gravatar image.
+Getting Social Profile Images:
+<ul>
+ 	<li><strong>Facebook:</strong> To display your Facebook Profile image, you will need your Facebook User ID. To get your User ID go to http://findmyfbid.com/ paste your Facebook Profile URL and click on Find Numeric ID.</li>
+ 	<li><strong>Instagram:</strong> To get your Instagram Image ID, Please open any image on Instagram you want in the single preview. If your image URL is https://www.instagram.com/p/7FfbBpSOaC/ then 7FfbBpSOaC is your Instagram Image ID</li>
+ 	<li><strong>Twitter: </strong>To get your Twitter Username, Please open your twitter profile. If your profile URL is https://twitter.com/apthemes then apthemes is your Twitter username.</li>
+</ul>
+</li>
+ 	<li><strong>Choose Image Shape:</strong> You can set your Profile image to be either round or boxed. This setting is applicable for all templates.</li>
+</ul>
+</li>
+ 	<li><strong>Company Information:</strong> You can enter your workplace and designation information here. If you leave any field blank, the respective field will not appear in the frontend.
+<ul>
+ 	<li><strong>Company Name:</strong> Enter your work place name here.</li>
+ 	<li><strong>Company URL:</strong> Enter your Company Website link here.</li>
+ 	<li><strong>Designation:</strong> Enter your Designation link here.</li>
+ 	<li><strong>Separator:</strong> Enter a separator to separate your Designation and Company name. Designation [separator] Company Name. Example, Plugin Developer at AccessPress</li>
+ 	<li><strong>Phone Number:</strong> Enter a Phone number</li>
+ </ul>
+ 	<li><strong>Social Media Icons:</strong> The plugin includes 20+ social icons. These include Instagram, Pin terest, YouTube, Facebook, Google Plus, Twitter, Tumblr, Reddit, Linkedin, Flickr, Vine, Meetup, Github, Soundcloud, Steam, Whatsapp, WordPress, Telegram, Spotify. You can assign the respective brand Profile URL to the URL option which will lead you to that specific URL. You can leave the URL field empty to not show that icon in the frontend. The icons settings are sortable i.e. you can drag and drop to position their order.</li>
+</ul>
+</li>
+</ul>
+<h1>Adding a New Tab</h1>
+<p>You can click on the + button to add new tab. A pop-up should appear with Select Tab type where you can select a variation on 9 tabs. And Tab name. The Tab name you assign will also be the Tab header of your backend as well as your frontend. There is no option to edit this header. So, if you need to change the header label you will have to delete the tab and create a new one.</p>
+
+<p>You can programmatically add unlimited number of tabs and repetitive tabs but design wise we recommend you to use at most 5 tabs. There are 3 types of tabs. These include Default tabs, Feed tabs and Custom Tabs. Default tabs include a Author post list tab, Company detail description tab, a contact form tab. The Feed tab includes Twitter Feed, Facebook Feed and RSS feed. Custom Tab includes Shortcode and WYSIWYG Editor.</p>
+<h2>Default tab</h2>
+<h3>Author Posts</h3>
+<ul>
+ 	<li><strong>Frontend Tab Title:</strong> This will be the Tab title in the frontend.</li>
+ 	<li><strong>Number of Posts:</strong> You can set the number of post to display in the frontend here. Design wise we recommend you to not use more than three posts.</li>
+ 	<li><strong>Select Post Type:</strong> You can choose between Recent Posts and Selective posts. Recent post will fetch the latest post by the author and Selective post will allow you to select the post you want to appear in the frontend.</li>
+</ul>
+<h3>Company Description</h3>
+<ul>
+ 	<li><strong>Upload Custom Image:</strong> Upload an image from the Image Library which will act as a Company logo representing your brand.</li>
+ 	<li><strong>Company Detail Description:</strong> Enter your company description with the CK Editor.</li>
+</ul>
+<h3>Contact form</h3>
+The plugin allow you to add contact form as one of the tabs. You can use a default contact form provided by the plugin or use a Shortcode to add external Contact form.
+<ul>
+ 	<li><strong>Default Contact form:</strong> The default contact form is a simple contact form. All the fields expect Subject is a required field in the frontend. If you do not enter a label of a field that field will not appear in the frontend. The available fields are:
+<ul>
+ 	<li><strong>Name Label:</strong> Enter name label</li>
+ 	<li><strong>Email Label:</strong> Enter email label</li>
+ 	<li><strong>Subject Label:</strong> Enter subject label</li>
+ 	<li><strong>Message Label:</strong> Enter Message label</li>
+ 	<li><strong>Success Message:</strong> Enter Subject Message</li>
+ 	<li><strong>Send To Email:</strong> Enter destination/receiver email address</li>
+</ul>
+</li>
+ 	<li><strong>External Contact Form:</strong> You can use a Shortcode of any external contact form here.</li>
+</ul>
+<h2>Feeds</h2>
+The Author Box Plugin can fetch Twitter feeds, Facebook feeds and RSS feeds.
+<h3>Twitter Feeds</h3>
+To use the Twitter feeds simply put your Twitter Username and Number of Feeds. Contact your Admin to know if they have set up Twitter application or not.
+<h3>RSS Feeds</h3>
+<ul>
+ 	<li><strong>RSS URL :</strong> Enter the RSS URL where you want to fetch the RSS feeds from</li>
+ 	<li><strong>Link Target Options:</strong> Set to link read more link to open in new page or same page.</li>
+ 	<li><strong>Number of RSS Feeds:</strong> Set the Number of feed to display in the frontend.</li>
+</ul>
+<h3>Facebook Feeds</h3>
+To set the Facebook Feeds you need to follow the following steps.
+<ul>
+ 	<li>First you need to go to <a href="https://developers.facebook.com/" target="_blank">https://developers.facebook.com/</a></li>
+ 	<li>You need to login to Facebook if you are not already logged in.</li>
+ 	<li>Go My App and Add a New App</li>
+ 	<li>A pop-up should appear asking for Display Name, Contact email, a category. Fill the fields accordingly and click on Create App ID.</li>
+ 	<li>Congratulation you have created a Facebook App! Now, you need to configure it before you can use it.</li>
+ 	<li>You should now be able to see your App Dashboard. On the left side, you have a navigation panel.</li>
+ 	<li>Go to Settings-&gt; Basic and choose to Add Platform.</li>
+ 	<li>Choose Website.</li>
+ 	<li>Enter your site URL and Save Changes. Facebook app is site specific so an app can be used only for one website. If you want to use this app for a different site, just change site URL.</li>
+ 	<li>The next thing is to make this app Public. To do this, check your left panel for App Review. You will see Make [Your App Name] Public. Slider the button to enable it.</li>
+ 	<li>And you are done! You can check for your App ID and App Secret from your Dashboard. You may need to enter your Facebook password to View your App Secret.</li>
+ 	<li>Now you can use your Facebook ID, App ID and App Secret on your respective Facebook related plugin.</li>
+</ul>
+Set the APP ID, APP secret and set the Number of feeds. After this you will need to Save the Page. If you have set APP ID and APP secret properly, you should see the Fetch Facebook Feeds. Click on it to fetch new Facebook feeds. If you successfully fetch the feed a message should appear “Facebook Feeds Fetched Successfully!”. Save the page again to save the new posts.
+
+
+<h2>Custom Tabs</h2>
+<h3>Shortcode tab</h3>
+In this tab you can place your Shortcode and it will appear in the frontend. The tab name fields will appear as the tab title in the frontend.
+<h3>WYSIWYG Editor</h3>
+Use the CK editor to place custom content into your tab. The tab name fields will appear as the tab title in the frontend.
+<h3>Widgets Tab</h3>
+You can add one widget per tab. Click on Select Widget. Select a Widget. Click on Edit to edit the Widget settings. Click on save to save the widget settings. Click on Update profile file to save the settings.
+<h2>Profile Customizer</h2>
+Click on the Profile Customize to add individual theme to your author profile.
+
+Click on Enable Personal Template to enable your Personal Template.
+
+Select one of the many Default Templates or Select Custom Template.
+
+If you select Custom Template, select one of the Default Template and choose the Primary, Secondary, Tertiary color or Background image.
+<h2>Widgets</h2>
+The Author box plugin comes with two different plugins.
+<ul>
+ 	<li><strong>Author Box Widget:</strong> Author Box width shows your single author with Author Details and Social Icons. You can select one of two templates. You can use Auto Detect to auto select the respective post author.</li>
+ 	<li><strong>Author List Widget:</strong> This widget lists all your registered authors. You can list the authors as Slider, Grid or List.</li>
+</ul>
+<h2>Page Meta Settings</h2>
+If you check your Post Editor you should be able to see the Ultimate Author Box Options meta box. You can use this to disable Author box per post and choose a position to place the Author Box in that Post.
+		
+		<hr>
+				
+		<h3 id="usingShortcode"><strong>E) Using Shortcode</strong> - <a href="#toc">top</a></h3>
+		
+		<p>
+You can use Shortcode to place the Author box between posts or page.
+</p>
+<h3>Shortcode structure</h3>
+<p><strong>Basic Structure</strong></p>
+<p><code>[ultimate_author_box]</code></p>
+<p><strong>Shortcode with parameters</strong></p>
+<p>You can pass two parameters to the Shortcode, user_id and template.</p>
+<p><code>[ultimate_author_box user_id="1" template='uab-template-1']</code></p>
+<p>You cannot use custom template with shortcode.</p>
+		
+		<hr class="space">
+		<blockquote>Please visit <a href="https://accesspressthemes.com/documentation/ultimate-author-box/" target="_blank">https://accesspressthemes.com/documentation/ultimate-author-box/</a> for more detail documentation.</blockquote>
+	</div><!-- end div .container -->
+</body>
+</html>

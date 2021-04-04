@@ -1,0 +1,802 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: AccessPress Instagram Feed Pro\n"
+"POT-Creation-Date: 2015-12-29 18:17+0545\n"
+"PO-Revision-Date: 2015-12-29 18:17+0545\n"
+"Last-Translator: \n"
+"Language-Team: AccessPress Themes <support@accesspressthemes.com>\n"
+"Language: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: ..\n"
+
+#: ../accesspress-instagram-feed-pro.php:143
+msgid "AP Instagram Feed Pro"
+msgstr ""
+
+#: ../accesspress-instagram-feed-pro.php:144
+msgid "Instagram Feeds"
+msgstr ""
+
+#: ../accesspress-instagram-feed-pro.php:145
+msgid "Add New Feed"
+msgstr ""
+
+#: ../accesspress-instagram-feed-pro.php:146
+#: ../inc/backend/boards/instagram-settings.php:56
+msgid "Instagram Settings"
+msgstr ""
+
+#: ../accesspress-instagram-feed-pro.php:147
+msgid "How to use"
+msgstr ""
+
+#: ../accesspress-instagram-feed-pro.php:148
+msgid "About"
+msgstr ""
+
+#: ../inc/backend/copy-feed-settings.php:41
+msgid "Feed copied Successfully."
+msgstr ""
+
+#: ../inc/backend/copy-feed-settings.php:46
+msgid "Something went wrong."
+msgstr ""
+
+#: ../inc/backend/delete-feed-settings.php:7
+msgid "Feed removed successfully."
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:12
+msgid "Edit Instagram Feed Settings"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:34 ../inc/backend/boards/add_new_feed.php:55
+msgid "Feed Name"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:40 ../inc/backend/boards/add_new_feed.php:61
+msgid "Feed type"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:53 ../inc/backend/boards/add_new_feed.php:73
+#: ../inc/backend/boards/display-settings.php:38
+msgid "Username"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:56 ../inc/backend/edit-feed.php:65
+#: ../inc/backend/boards/add_new_feed.php:76
+#: ../inc/backend/boards/add_new_feed.php:85
+#: ../inc/backend/boards/display-settings.php:41
+#: ../inc/backend/boards/display-settings.php:51
+msgid "Please enter the username of a person you want to display the feeds."
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:62 ../inc/backend/boards/add_new_feed.php:82
+#: ../inc/backend/boards/display-settings.php:48
+msgid "Tag"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:71 ../inc/backend/boards/add_new_feed.php:91
+#: ../inc/backend/boards/display-settings.php:57
+msgid "Image size"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:83 ../inc/backend/boards/add_new_feed.php:102
+msgid "Show instagram link"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:89 ../inc/backend/boards/add_new_feed.php:107
+msgid "Show user image"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:95 ../inc/backend/boards/add_new_feed.php:112
+msgid "Show username"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:101 ../inc/backend/boards/add_new_feed.php:117
+msgid "Show image Like count"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:107 ../inc/backend/boards/add_new_feed.php:122
+msgid "Show image comment Count"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:113 ../inc/backend/boards/add_new_feed.php:128
+msgid "Counter Display Formats"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:116 ../inc/backend/boards/add_new_feed.php:131
+msgid "numbers only(1200)"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:117 ../inc/backend/boards/add_new_feed.php:132
+msgid "1,200"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:118 ../inc/backend/boards/add_new_feed.php:133
+msgid "1K"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:120 ../inc/backend/boards/add_new_feed.php:135
+msgid "Please select the number format you want to use."
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:126 ../inc/backend/boards/add_new_feed.php:142
+msgid "Enable lightbox"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:133 ../inc/backend/boards/add_new_feed.php:148
+#: ../inc/backend/boards/display-settings.php:68
+msgid "Lightbox layout settings"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:150 ../inc/backend/boards/add_new_feed.php:163
+#: ../inc/backend/boards/display-settings.php:79
+msgid "No of Images to show "
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:153 ../inc/backend/boards/add_new_feed.php:166
+#: ../inc/backend/boards/display-settings.php:82
+msgid "Please enter the number of images to display."
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:159 ../inc/backend/boards/add_new_feed.php:171
+#: ../inc/backend/boards/display-settings.php:87
+msgid "Theme accent color "
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:162
+#: ../inc/backend/boards/display-settings.php:90
+msgid "Please select the color of theme."
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:168 ../inc/backend/boards/add_new_feed.php:179
+msgid "Hover image text color"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:171 ../inc/backend/boards/add_new_feed.php:182
+msgid ""
+"Please select hover image text color. If not selected the default color will "
+"be used."
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:183 ../inc/backend/boards/add_new_feed.php:192
+#: ../inc/backend/boards/display-settings.php:98
+msgid "Choose Instagram Themes Layout"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:188 ../inc/backend/boards/add_new_feed.php:198
+#: ../inc/backend/boards/display-settings.php:114
+msgid "Grid layout"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:194 ../inc/backend/boards/add_new_feed.php:203
+msgid "Masonry layout"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:200 ../inc/backend/boards/add_new_feed.php:208
+msgid "Instagram layout"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:206 ../inc/backend/boards/add_new_feed.php:213
+msgid "Round Image"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:212 ../inc/backend/boards/add_new_feed.php:219
+msgid "Grid rotator"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:218 ../inc/backend/boards/add_new_feed.php:225
+msgid "Owl Slider Layout"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:224 ../inc/backend/boards/add_new_feed.php:230
+msgid "Nivo Slider"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:230 ../inc/backend/boards/add_new_feed.php:235
+msgid "Jcarousel Slider"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:236 ../inc/backend/boards/add_new_feed.php:241
+msgid "Slider pro Slider"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:243 ../inc/backend/boards/add_new_feed.php:247
+msgid "Thumbnail Scroller Slider"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:254 ../inc/backend/boards/add_new_feed.php:258
+msgid "Grid layout settings"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:256 ../inc/backend/edit-feed.php:516
+#: ../inc/backend/edit-feed.php:1054 ../inc/backend/edit-feed.php:1330
+#: ../inc/backend/boards/add_new_feed.php:260
+#: ../inc/backend/boards/add_new_feed.php:496
+#: ../inc/backend/boards/add_new_feed.php:989
+#: ../inc/backend/boards/add_new_feed.php:1242
+msgid "No of columns"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:268 ../inc/backend/edit-feed.php:528
+#: ../inc/backend/boards/add_new_feed.php:271
+#: ../inc/backend/boards/add_new_feed.php:507
+msgid "Hover animation effect"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:285 ../inc/backend/edit-feed.php:575
+#: ../inc/backend/edit-feed.php:806 ../inc/backend/edit-feed.php:1097
+#: ../inc/backend/boards/add_new_feed.php:287
+#: ../inc/backend/boards/add_new_feed.php:554
+#: ../inc/backend/boards/add_new_feed.php:764
+#: ../inc/backend/boards/add_new_feed.php:1032
+msgid "Loading Effects"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:412 ../inc/backend/edit-feed.php:703
+#: ../inc/backend/edit-feed.php:951 ../inc/backend/edit-feed.php:1225
+#: ../inc/backend/boards/add_new_feed.php:402
+#: ../inc/backend/boards/add_new_feed.php:669
+#: ../inc/backend/boards/add_new_feed.php:895
+#: ../inc/backend/boards/add_new_feed.php:1148
+msgid "Show load more button"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:414 ../inc/backend/edit-feed.php:705
+#: ../inc/backend/edit-feed.php:933 ../inc/backend/edit-feed.php:939
+#: ../inc/backend/edit-feed.php:945 ../inc/backend/edit-feed.php:953
+#: ../inc/backend/edit-feed.php:1227 ../inc/backend/edit-feed.php:1360
+#: ../inc/backend/edit-feed.php:1399 ../inc/backend/edit-feed.php:1405
+#: ../inc/backend/boards/add_new_feed.php:404
+#: ../inc/backend/boards/add_new_feed.php:671
+#: ../inc/backend/boards/add_new_feed.php:880
+#: ../inc/backend/boards/add_new_feed.php:885
+#: ../inc/backend/boards/add_new_feed.php:890
+#: ../inc/backend/boards/add_new_feed.php:897
+#: ../inc/backend/boards/add_new_feed.php:1150
+#: ../inc/backend/boards/add_new_feed.php:1271
+#: ../inc/backend/boards/add_new_feed.php:1310
+#: ../inc/backend/boards/add_new_feed.php:1315
+#: ../inc/backend/boards/display-settings.php:8
+#: ../inc/backend/boards/display-settings.php:17
+msgid "Show/Hide"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:422 ../inc/backend/edit-feed.php:713
+#: ../inc/backend/edit-feed.php:961 ../inc/backend/edit-feed.php:1235
+#: ../inc/backend/boards/add_new_feed.php:411
+#: ../inc/backend/boards/add_new_feed.php:678
+#: ../inc/backend/boards/add_new_feed.php:904
+#: ../inc/backend/boards/add_new_feed.php:1157
+msgid "Load more button position"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:432 ../inc/backend/edit-feed.php:723
+#: ../inc/backend/edit-feed.php:971 ../inc/backend/edit-feed.php:1245
+#: ../inc/backend/boards/add_new_feed.php:420
+#: ../inc/backend/boards/add_new_feed.php:687
+#: ../inc/backend/boards/add_new_feed.php:913
+#: ../inc/backend/boards/add_new_feed.php:1166
+msgid "Load more button text"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:435 ../inc/backend/edit-feed.php:726
+#: ../inc/backend/edit-feed.php:974 ../inc/backend/edit-feed.php:1248
+#: ../inc/backend/boards/add_new_feed.php:423
+#: ../inc/backend/boards/add_new_feed.php:690
+#: ../inc/backend/boards/add_new_feed.php:916
+#: ../inc/backend/boards/add_new_feed.php:1169
+msgid "Please enter the load more button text. Default: Load more"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:441 ../inc/backend/edit-feed.php:732
+#: ../inc/backend/edit-feed.php:980 ../inc/backend/edit-feed.php:1254
+#: ../inc/backend/boards/add_new_feed.php:428
+#: ../inc/backend/boards/add_new_feed.php:695
+#: ../inc/backend/boards/add_new_feed.php:921
+#: ../inc/backend/boards/add_new_feed.php:1174
+msgid "Load more button text color"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:444 ../inc/backend/edit-feed.php:735
+#: ../inc/backend/edit-feed.php:983 ../inc/backend/edit-feed.php:1257
+#: ../inc/backend/boards/add_new_feed.php:431
+#: ../inc/backend/boards/add_new_feed.php:698
+#: ../inc/backend/boards/add_new_feed.php:924
+#: ../inc/backend/boards/add_new_feed.php:1177
+msgid ""
+"Please select the load more button text color. If not selected the default "
+"color will appear."
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:450 ../inc/backend/edit-feed.php:741
+#: ../inc/backend/edit-feed.php:989 ../inc/backend/edit-feed.php:1263
+#: ../inc/backend/boards/add_new_feed.php:437
+#: ../inc/backend/boards/add_new_feed.php:704
+#: ../inc/backend/boards/add_new_feed.php:930
+#: ../inc/backend/boards/add_new_feed.php:1183
+msgid "Load more button background color"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:453 ../inc/backend/edit-feed.php:744
+#: ../inc/backend/edit-feed.php:992 ../inc/backend/edit-feed.php:1266
+#: ../inc/backend/boards/add_new_feed.php:440
+#: ../inc/backend/boards/add_new_feed.php:707
+#: ../inc/backend/boards/add_new_feed.php:933
+#: ../inc/backend/boards/add_new_feed.php:1186
+msgid ""
+"Please select the load more button background color. If not selected the "
+"default color will appear."
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:459 ../inc/backend/edit-feed.php:750
+#: ../inc/backend/edit-feed.php:998 ../inc/backend/edit-feed.php:1272
+#: ../inc/backend/boards/add_new_feed.php:445
+#: ../inc/backend/boards/add_new_feed.php:712
+#: ../inc/backend/boards/add_new_feed.php:938
+#: ../inc/backend/boards/add_new_feed.php:1191
+msgid "Load more button border color"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:462 ../inc/backend/edit-feed.php:753
+#: ../inc/backend/edit-feed.php:1001 ../inc/backend/edit-feed.php:1275
+#: ../inc/backend/boards/add_new_feed.php:448
+#: ../inc/backend/boards/add_new_feed.php:715
+#: ../inc/backend/boards/add_new_feed.php:941
+#: ../inc/backend/boards/add_new_feed.php:1194
+msgid ""
+"Please select the load more button border color. If not selected the default "
+"color will appear."
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:468 ../inc/backend/edit-feed.php:759
+#: ../inc/backend/edit-feed.php:1007 ../inc/backend/edit-feed.php:1281
+#: ../inc/backend/boards/add_new_feed.php:453
+#: ../inc/backend/boards/add_new_feed.php:720
+#: ../inc/backend/boards/add_new_feed.php:946
+#: ../inc/backend/boards/add_new_feed.php:1199
+msgid "Load more button hover text color"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:471 ../inc/backend/edit-feed.php:762
+#: ../inc/backend/edit-feed.php:1010 ../inc/backend/edit-feed.php:1284
+#: ../inc/backend/boards/add_new_feed.php:456
+#: ../inc/backend/boards/add_new_feed.php:723
+#: ../inc/backend/boards/add_new_feed.php:949
+#: ../inc/backend/boards/add_new_feed.php:1202
+msgid ""
+"Please select the load more button hover text color. If not selected the "
+"default color will appear."
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:477 ../inc/backend/edit-feed.php:768
+#: ../inc/backend/edit-feed.php:1016 ../inc/backend/edit-feed.php:1290
+#: ../inc/backend/boards/add_new_feed.php:461
+#: ../inc/backend/boards/add_new_feed.php:728
+#: ../inc/backend/boards/add_new_feed.php:954
+#: ../inc/backend/boards/add_new_feed.php:1207
+msgid "Load more button hover background color"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:480 ../inc/backend/edit-feed.php:771
+#: ../inc/backend/edit-feed.php:1019 ../inc/backend/edit-feed.php:1293
+#: ../inc/backend/boards/add_new_feed.php:464
+#: ../inc/backend/boards/add_new_feed.php:731
+#: ../inc/backend/boards/add_new_feed.php:957
+#: ../inc/backend/boards/add_new_feed.php:1210
+msgid ""
+"Please select the load more button hover background color. If not selected "
+"the default color will appear."
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:486 ../inc/backend/edit-feed.php:777
+#: ../inc/backend/edit-feed.php:1025 ../inc/backend/edit-feed.php:1299
+#: ../inc/backend/boards/add_new_feed.php:469
+#: ../inc/backend/boards/add_new_feed.php:736
+#: ../inc/backend/boards/add_new_feed.php:962
+#: ../inc/backend/boards/add_new_feed.php:1215
+msgid "Load more button hover border color"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:489 ../inc/backend/edit-feed.php:780
+#: ../inc/backend/edit-feed.php:1028 ../inc/backend/edit-feed.php:1302
+#: ../inc/backend/boards/add_new_feed.php:472
+#: ../inc/backend/boards/add_new_feed.php:739
+#: ../inc/backend/boards/add_new_feed.php:965
+#: ../inc/backend/boards/add_new_feed.php:1218
+msgid ""
+"Please select the load more button hover border color. If not selected the "
+"default color will appear."
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:496 ../inc/backend/edit-feed.php:787
+#: ../inc/backend/edit-feed.php:1035 ../inc/backend/edit-feed.php:1309
+#: ../inc/backend/boards/add_new_feed.php:478
+#: ../inc/backend/boards/add_new_feed.php:745
+#: ../inc/backend/boards/add_new_feed.php:971
+#: ../inc/backend/boards/add_new_feed.php:1224
+msgid "Load more button icon selection"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:514 ../inc/backend/boards/add_new_feed.php:494
+msgid "Masonary layout settings"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:543 ../inc/backend/boards/add_new_feed.php:522
+msgid "Background color"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:546 ../inc/backend/boards/add_new_feed.php:525
+msgid ""
+"Please select the background color. If not selected default color will "
+"appear."
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:553 ../inc/backend/boards/add_new_feed.php:532
+msgid "Border color"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:556 ../inc/backend/boards/add_new_feed.php:535
+msgid ""
+"Please enter the border color. If not selected default color will appear."
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:563 ../inc/backend/boards/add_new_feed.php:542
+msgid "Border width"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:566 ../inc/backend/boards/add_new_feed.php:545
+msgid "Please enter the border width."
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:801 ../inc/backend/boards/add_new_feed.php:759
+msgid "Instagram layout settings"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:932 ../inc/backend/edit-feed.php:1398
+#: ../inc/backend/boards/add_new_feed.php:879
+#: ../inc/backend/boards/add_new_feed.php:1309
+msgid "Show time ago"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:938 ../inc/backend/boards/add_new_feed.php:884
+msgid "Show comments"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:944 ../inc/backend/edit-feed.php:1359
+#: ../inc/backend/edit-feed.php:1404
+#: ../inc/backend/boards/add_new_feed.php:889
+#: ../inc/backend/boards/add_new_feed.php:1270
+#: ../inc/backend/boards/add_new_feed.php:1314
+msgid "Show image caption"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:1050
+#: ../inc/backend/boards/add_new_feed.php:985
+msgid "Round Image settings"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:1065
+#: ../inc/backend/boards/add_new_feed.php:1000
+msgid "Hover animation effects"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:1078
+#: ../inc/backend/boards/add_new_feed.php:1013
+msgid "Round image hover border width"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:1081
+#: ../inc/backend/boards/add_new_feed.php:1016
+msgid "Please enter the hover border width."
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:1086
+#: ../inc/backend/boards/add_new_feed.php:1021
+msgid "Round image hover border color"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:1089
+#: ../inc/backend/boards/add_new_feed.php:1024
+msgid "Please select the hover border color."
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:1327
+#: ../inc/backend/boards/add_new_feed.php:1239
+msgid "Grid rotator settings"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:1335
+#: ../inc/backend/boards/add_new_feed.php:1247
+msgid "No of rows"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:1343
+#: ../inc/backend/boards/add_new_feed.php:1255
+msgid "Owl Slider Layout settings"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:1345 ../inc/backend/edit-feed.php:1369
+#: ../inc/backend/edit-feed.php:1386
+#: ../inc/backend/boards/add_new_feed.php:1257
+#: ../inc/backend/boards/add_new_feed.php:1280
+#: ../inc/backend/boards/add_new_feed.php:1297
+msgid "Next/previous color"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:1348
+#: ../inc/backend/boards/add_new_feed.php:1260
+msgid "Please select the next/previous icon color."
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:1356
+#: ../inc/backend/boards/add_new_feed.php:1268
+msgid "Nivo Slider settings"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:1364
+#: ../inc/backend/boards/add_new_feed.php:1275
+msgid "Image caption background color"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:1377
+#: ../inc/backend/boards/add_new_feed.php:1288
+msgid "Jcarousel Slider settings"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:1378 ../inc/backend/edit-feed.php:1423
+#: ../inc/backend/boards/add_new_feed.php:1289
+#: ../inc/backend/boards/add_new_feed.php:1331
+msgid "No other settings required for this layout."
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:1384
+#: ../inc/backend/boards/add_new_feed.php:1295
+msgid "Slider 3 layout settings"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:1394
+#: ../inc/backend/boards/add_new_feed.php:1305
+msgid "Slider pro Slider settings"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:1410
+#: ../inc/backend/boards/add_new_feed.php:1319
+msgid "Slider navigation color"
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:1413
+#: ../inc/backend/boards/add_new_feed.php:1322
+msgid "Please choose the navigation color."
+msgstr ""
+
+#: ../inc/backend/edit-feed.php:1422
+#: ../inc/backend/boards/add_new_feed.php:1330
+msgid "Thumbnail Scroller Slider settings"
+msgstr ""
+
+#: ../inc/backend/main-page-new.php:19 ../inc/backend/main-page-new.php:31
+msgid "Title"
+msgstr ""
+
+#: ../inc/backend/main-page-new.php:22 ../inc/backend/main-page-new.php:32
+msgid "Shortcode"
+msgstr ""
+
+#: ../inc/backend/main-page-new.php:25 ../inc/backend/main-page-new.php:34
+msgid "Template Shortcode"
+msgstr ""
+
+#: ../inc/backend/main-page-new.php:58
+msgid "Are you sure you want to copy this Feed ?"
+msgstr ""
+
+#: ../inc/backend/main-page-new.php:59
+msgid "Are you sure you want to delete this Feed?"
+msgstr ""
+
+#: ../inc/backend/main-page-new.php:70
+msgid "No Feeds available yet"
+msgstr ""
+
+#: ../inc/backend/save-edit-feed.php:40
+#: ../inc/backend/save-instagram-settings.php:19
+#: ../inc/backend/save-new-feed.php:38 ../inc/backend/save-settings.php:38
+msgid "Settings Saved Successfully"
+msgstr ""
+
+#: ../inc/backend/save-edit-feed.php:45 ../inc/backend/save-new-feed.php:43
+msgid "Something went wrong"
+msgstr ""
+
+#: ../inc/backend/widgetside.php:14
+msgid "AP : User follow widget"
+msgstr ""
+
+#: ../inc/backend/widgetside.php:15
+msgid "AccessPress Instagram Follow widget"
+msgstr ""
+
+#: ../inc/backend/widgetside.php:155 ../inc/backend/widget_integration.php:54
+msgid "Title:"
+msgstr ""
+
+#: ../inc/backend/widgetside.php:160
+msgid "Number of Image:"
+msgstr ""
+
+#: ../inc/backend/widgetside.php:170
+msgid "Display Instagram Post :"
+msgstr ""
+
+#: ../inc/backend/widgetside.php:175
+msgid "Display Followers :"
+msgstr ""
+
+#: ../inc/backend/widgetside.php:180
+msgid "Display Instagram Following :"
+msgstr ""
+
+#: ../inc/backend/widgetside.php:185
+msgid "Display Instagram Follow Button :"
+msgstr ""
+
+#: ../inc/backend/widget_integration.php:14
+msgid "AP : Instagram Feeds"
+msgstr ""
+
+#: ../inc/backend/widget_integration.php:15
+msgid "AccessPress Instagram Feeds"
+msgstr ""
+
+#: ../inc/backend/widget_integration.php:59
+msgid "Feed Name :"
+msgstr ""
+
+#: ../inc/backend/boards/about-new.php:16
+#: ../inc/backend/boards/add_new_feed.php:14
+#: ../inc/backend/boards/header.php:16
+#: ../inc/backend/boards/how-to-use-new.php:18
+#: ../inc/backend/boards/instagram-settings.php:18
+msgid "Follow us for new updates"
+msgstr ""
+
+#: ../inc/backend/boards/about-new.php:33
+#: ../inc/backend/boards/add_new_feed.php:30
+#: ../inc/backend/boards/how-to-use-new.php:35
+msgid "AccessPress Instagram Feed"
+msgstr ""
+
+#: ../inc/backend/boards/add_new_feed.php:174
+msgid ""
+"Please select the color of theme. If not selected the default color will be "
+"used."
+msgstr ""
+
+#: ../inc/backend/boards/add_new_feed.php:509
+msgid "Top to Bottom"
+msgstr ""
+
+#: ../inc/backend/boards/add_new_feed.php:510
+msgid "Bottom to Top"
+msgstr ""
+
+#: ../inc/backend/boards/add_new_feed.php:511
+msgid "Left to Right"
+msgstr ""
+
+#: ../inc/backend/boards/add_new_feed.php:512
+msgid "Right to Left"
+msgstr ""
+
+#: ../inc/backend/boards/add_new_feed.php:513
+msgid "Image zoom in"
+msgstr ""
+
+#: ../inc/backend/boards/add_new_feed.php:514
+msgid "Image text hover in"
+msgstr ""
+
+#: ../inc/backend/boards/add_new_feed.php:515
+msgid "Image rotate"
+msgstr ""
+
+#: ../inc/backend/boards/add_new_feed.php:516
+msgid "Image zoomout"
+msgstr ""
+
+#: ../inc/backend/boards/display-settings.php:7
+msgid "Image Like"
+msgstr ""
+
+#: ../inc/backend/boards/display-settings.php:16
+msgid "Comment Count"
+msgstr ""
+
+#: ../inc/backend/boards/display-settings.php:25
+msgid "Feed type:"
+msgstr ""
+
+#: ../inc/backend/boards/display-settings.php:101
+msgid "Mosaic layout"
+msgstr ""
+
+#: ../inc/backend/boards/display-settings.php:105
+msgid "Mosaic LightBox Layout"
+msgstr ""
+
+#: ../inc/backend/boards/display-settings.php:109
+msgid "Slider Layout"
+msgstr ""
+
+#: ../inc/backend/boards/header.php:33
+#: ../inc/backend/boards/instagram-settings.php:35
+msgid "AccessPress Instagram Feed Pro"
+msgstr ""
+
+#: ../inc/backend/boards/instagram-profiles.php:5
+msgid "Instagram Feed"
+msgstr ""
+
+#: ../inc/backend/boards/instagram-profiles.php:8
+#: ../inc/backend/boards/instagram-settings.php:59
+msgid "Instagram Username"
+msgstr ""
+
+#: ../inc/backend/boards/instagram-profiles.php:11
+#: ../inc/backend/boards/instagram-settings.php:62
+msgid "Please enter the instagram username"
+msgstr ""
+
+#: ../inc/backend/boards/instagram-profiles.php:15
+#: ../inc/backend/boards/instagram-settings.php:66
+msgid "Instagram User ID"
+msgstr ""
+
+#: ../inc/backend/boards/instagram-profiles.php:18
+#: ../inc/backend/boards/instagram-settings.php:69
+msgid ""
+"Please enter the instagram user ID.You can get this information from <a href="
+"\"http://www.pinceladasdaweb.com.br/instagram/access-token/\" target=\"_blank"
+"\">http://www.pinceladasdaweb.com.br/instagram/access-token/</a>"
+msgstr ""
+
+#: ../inc/backend/boards/instagram-profiles.php:22
+#: ../inc/backend/boards/instagram-settings.php:73
+msgid "Instagram Access Token"
+msgstr ""
+
+#: ../inc/backend/boards/instagram-profiles.php:25
+#: ../inc/backend/boards/instagram-settings.php:76
+msgid ""
+"Please enter the instagram Access Token.You can get this information from <a "
+"href=\"http://www.pinceladasdaweb.com.br/instagram/access-token/\" target="
+"\"_blank\">http://www.pinceladasdaweb.com.br/instagram/access-token/</a>"
+msgstr ""
+
+#: ../inc/frontend/feed-ajax.php:150 ../inc/frontend/feed-ajax.php:152
+#: ../inc/frontend/feed-ajax.php:528 ../inc/frontend/feed-ajax.php:530
+#: ../inc/frontend/grid_layout.php:78 ../inc/frontend/grid_layout.php:80
+#: ../inc/frontend/instagram-feed-pro.php:133
+#: ../inc/frontend/instagram-feed-pro.php:144
+#: ../inc/frontend/instagram-layout.php:86
+#: ../inc/frontend/instagram-layout.php:88
+#: ../inc/frontend/masonry-layout.php:79 ../inc/frontend/masonry-layout.php:81
+#: ../inc/frontend/round-image-layout.php:127
+#: ../inc/frontend/round-image-layout.php:129
+#: ../inc/frontend/slider-layout.php:57 ../inc/frontend/slider-layout.php:59
+#: ../inc/frontend/slider_2_layout.php:63
+#: ../inc/frontend/slider_2_layout.php:65
+#: ../inc/frontend/slider_4_layout.php:101
+#: ../inc/frontend/slider_4_layout.php:103
+#: ../inc/frontend/slider_5_layout.php:65
+#: ../inc/frontend/slider_5_layout.php:67
+msgid "View on Instagram"
+msgstr ""

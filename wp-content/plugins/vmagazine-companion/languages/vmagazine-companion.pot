@@ -1,0 +1,1294 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Vmagazine Companion\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-01-21 10:01+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/"
+
+#: widgets/widget-functions.php:27
+msgid "--Select Category--"
+msgstr ""
+
+#: vmagazine-post-metabox.php:117
+msgid "0.5 Stars"
+msgstr ""
+
+#: widgets/widget-functions.php:46
+msgid "1 Column"
+msgstr ""
+
+#: vmagazine-post-metabox.php:116
+msgid "1 Stars"
+msgstr ""
+
+#: vmagazine-post-metabox.php:115
+msgid "1.5 Stars"
+msgstr ""
+
+#: widgets/widget-functions.php:47
+msgid "2 Columns"
+msgstr ""
+
+#: vmagazine-post-metabox.php:114
+msgid "2 Stars"
+msgstr ""
+
+#: vmagazine-post-metabox.php:113
+msgid "2.5 Stars"
+msgstr ""
+
+#: widgets/widget-functions.php:48
+msgid "3 Columns"
+msgstr ""
+
+#: vmagazine-post-metabox.php:112
+msgid "3 Stars"
+msgstr ""
+
+#: vmagazine-post-metabox.php:111
+msgid "3.5 Stars"
+msgstr ""
+
+#: widgets/widget-functions.php:49
+msgid "4 Columns"
+msgstr ""
+
+#: vmagazine-post-metabox.php:110
+msgid "4 Stars"
+msgstr ""
+
+#: vmagazine-post-metabox.php:109
+msgid "4.5 Stars"
+msgstr ""
+
+#: vmagazine-post-metabox.php:108
+msgid "5 Stars"
+msgstr ""
+
+#: vmagazine-companion.php:89
+msgid "A special image for each user"
+msgstr ""
+
+#: widgets/vmagazine-fb-like.php:24
+msgid "A widget that shows Facebook Like Box"
+msgstr ""
+
+#: widgets/vmagazine-footer-info.php:25
+msgid "A widget that shows information"
+msgstr ""
+
+#: widgets/vmagazine-about-author.php:25
+msgid "A widget that shows information of a author"
+msgstr ""
+
+#: vmagazine-page-metabox.php:74
+msgid "About Metabox Options"
+msgstr ""
+
+#. Author of the plugin
+msgid "AccessPress Themes"
+msgstr ""
+
+#: widgets/vmagazine-media-player.php:21
+msgid "Add any media and to your website"
+msgstr ""
+
+#: vmagazine-post-metabox.php:419
+msgid "Add Images"
+msgstr ""
+
+#: vmagazine-post-metabox.php:297
+msgid "Add Percentage ratings for this post :"
+msgstr ""
+
+#: vmagazine-post-metabox.php:322
+msgid "Add Point ratings for this post :"
+msgstr ""
+
+#: vmagazine-post-metabox.php:293 vmagazine-post-metabox.php:318
+#: vmagazine-post-metabox.php:345
+msgid "Add rating category"
+msgstr ""
+
+#: vmagazine-post-metabox.php:265
+msgid "Add star ratings for this post :"
+msgstr ""
+
+#: widgets/vmagazine-categories-tab.php:70
+msgid "Additional Settings"
+msgstr ""
+
+#: vmagazine-companion.php:84
+msgid "Additional User Meta"
+msgstr ""
+
+#: widgets/widget-functions.php:100
+msgid "Administrator"
+msgstr ""
+
+#: widgets/vmagazine-medium-ad.php:52
+msgid "ADS Bottom Text"
+msgstr ""
+
+#: widgets/vmagazine-block-post-slider.php:66
+#: widgets/vmagazine-category-slider.php:70
+#: widgets/vmagazine-featured-slider.php:60
+#: widgets/vmagazine-fullwidth-slider.php:68 widgets/vmagazine-grid-list.php:70
+#: widgets/vmagazine-multiple-category-tabbed.php:65
+#: widgets/vmagazine-multiple-category.php:70
+#: widgets/vmagazine-post-column.php:69
+#: widgets/vmagazine-slider-tab-carousel.php:64
+#: widgets/vmagazine-timeline-posts.php:61
+msgid "Advanced Settings"
+msgstr ""
+
+#: widgets/widget-functions.php:86
+msgid "Ajax Loader"
+msgstr ""
+
+#: vmagazine-post-metabox.php:381
+msgid "Audio Format"
+msgstr ""
+
+#: widgets/widget-functions.php:98
+msgid "Author"
+msgstr ""
+
+#: widgets/vmagazine-about-author.php:49
+msgid "Author Image"
+msgstr ""
+
+#: widgets/vmagazine-about-author.php:44
+msgid "Author Title"
+msgstr ""
+
+#: vmagazine-post-metabox.php:195 widgets/vmagazine-multiple-category.php:53
+msgid "Available Layouts"
+msgstr ""
+
+#: vmagazine-page-metabox.php:84 vmagazine-post-metabox.php:161
+msgid "Available Sidebars"
+msgstr ""
+
+#: widgets/vmagazine-category-slider.php:144
+msgid "Background Image"
+msgstr ""
+
+#: widgets/vmagazine-medium-ad.php:47
+msgid "Banner Image"
+msgstr ""
+
+#: widgets/vmagazine-medium-ad.php:41
+msgid "Banner Title"
+msgstr ""
+
+#: widgets/vmagazine-medium-ad.php:57
+msgid "Banner Url"
+msgstr ""
+
+#: vmagazine-companion.php:138
+msgid "Behance"
+msgstr ""
+
+#: widgets/vmagazine-post-column.php:52
+msgid "Block Column Layouts"
+msgstr ""
+
+#: widgets/vmagazine-fullwidth-slider.php:79
+msgid "Block Display Type"
+msgstr ""
+
+#: widgets/vmagazine-fullwidth-slider.php:52 widgets/vmagazine-grid-list.php:53
+#: widgets/vmagazine-posts-carousel.php:43
+#: widgets/vmagazine-recent-posts.php:67
+msgid "Block Layouts"
+msgstr ""
+
+#: widgets/vmagazine-block-post-carousel(small).php:57
+#: widgets/vmagazine-category-slider.php:87 widgets/vmagazine-grid-list.php:87
+#: widgets/vmagazine-post-column.php:86 widgets/vmagazine-posts-carousel.php:60
+#: widgets/vmagazine-recent-posts.php:51
+#: widgets/vmagazine-timeline-posts.php:80
+#: widgets/vmagazine-top-trending-block.php:50
+msgid "Block posts: "
+msgstr ""
+
+#: widgets/vmagazine-block-post-carousel(small).php:51
+#: widgets/vmagazine-block-post-slider.php:78
+#: widgets/vmagazine-categories-tab.php:58
+#: widgets/vmagazine-category-slider.php:82
+#: widgets/vmagazine-featured-slider.php:72 widgets/vmagazine-grid-list.php:82
+#: widgets/vmagazine-multiple-category-tabbed.php:78
+#: widgets/vmagazine-multiple-category.php:82
+#: widgets/vmagazine-post-column.php:81 widgets/vmagazine-posts-carousel.php:55
+#: widgets/vmagazine-slider-tab-carousel.php:76
+#: widgets/vmagazine-slider-tab.php:50 widgets/vmagazine-timeline-posts.php:74
+#: widgets/vmagazine-video-playlist.php:42
+msgid "Block Title"
+msgstr ""
+
+#: vmagazine-post-metabox.php:47
+msgid "Both sidebars"
+msgstr ""
+
+#: widgets/vmagazine-block-post-carousel(small).php:65
+#: widgets/vmagazine-fullwidth-slider.php:87 widgets/vmagazine-grid-list.php:94
+#: widgets/vmagazine-post-column.php:93 widgets/vmagazine-posts-carousel.php:67
+#: widgets/vmagazine-recent-posts.php:59
+#: widgets/vmagazine-top-trending-block.php:58
+msgid "Category for Block Posts"
+msgstr ""
+
+#: widgets/vmagazine-featured-slider.php:135
+msgid "Category for Featured Posts"
+msgstr ""
+
+#: widgets/vmagazine-featured-slider.php:91
+msgid "Category for Slider"
+msgstr ""
+
+#: widgets/vmagazine-multiple-category.php:54
+msgid "Choose layout from available options."
+msgstr ""
+
+#: widgets/vmagazine-fullwidth-slider.php:53 widgets/vmagazine-grid-list.php:54
+#: widgets/vmagazine-recent-posts.php:68
+msgid "Choose the block layout from available options."
+msgstr ""
+
+#: widgets/vmagazine-posts-carousel.php:44
+msgid "Choose the block layout."
+msgstr ""
+
+#: widgets/vmagazine-post-column.php:53
+msgid "Choose the column layout from available options."
+msgstr ""
+
+#: widgets/vmagazine-category-slider.php:55
+msgid "Choose the slider layout from available options."
+msgstr ""
+
+#: vmagazine-post-metabox.php:229
+msgid "Choose types of review from select box."
+msgstr ""
+
+#: widgets/widget-functions.php:97
+msgid "Contributor"
+msgstr ""
+
+#: vmagazine-post-metabox.php:365
+msgid "Currently standard format has been selected"
+msgstr ""
+
+#: vmagazine-page-metabox.php:31 vmagazine-post-metabox.php:32
+msgid "Default Sidebar"
+msgstr ""
+
+#: vmagazine-post-metabox.php:284 vmagazine-post-metabox.php:310
+#: vmagazine-post-metabox.php:337
+msgid "Delete"
+msgstr ""
+
+#: vmagazine-companion.php:139
+msgid "Delicious"
+msgstr ""
+
+#: widgets/vmagazine-about-author.php:54
+msgid "Description"
+msgstr ""
+
+#: vmagazine-companion.php:140
+msgid "Deviantart"
+msgstr ""
+
+#: vmagazine-companion.php:141
+msgid "Digg"
+msgstr ""
+
+#: widgets/vmagazine-flicker-stream.php:66
+msgid "Display"
+msgstr ""
+
+#: widgets/vmagazine-top-trending-block.php:26
+msgid "Display 4 news in square format"
+msgstr ""
+
+#: widgets/vmagazine-medium-ad.php:26
+msgid "Display ads in size of medium rectangle"
+msgstr ""
+
+#: widgets/vmagazine-categories-tab.php:26
+msgid "Display category post in tabbed."
+msgstr ""
+
+#: widgets/vmagazine-fullwidth-slider.php:26
+msgid "Display fullwidth slider with ."
+msgstr ""
+
+#: widgets/vmagazine-slider-tab-carousel.php:26
+#: widgets/vmagazine-slider-tab.php:26
+msgid "Display posts from selected category as slider in Tab."
+msgstr ""
+
+#: widgets/vmagazine-category-slider.php:26
+msgid "Display posts from selected category as slider."
+msgstr ""
+
+#: widgets/vmagazine-block-post-slider.php:26
+msgid "Display posts from selected category as tabbed slider."
+msgstr ""
+
+#: widgets/vmagazine-multiple-category-tabbed.php:26
+msgid "Display posts from selected category as tabbed sytles."
+msgstr ""
+
+#: widgets/vmagazine-timeline-posts.php:26
+msgid "Display posts from selected category as timeline list."
+msgstr ""
+
+#: widgets/vmagazine-multiple-category.php:26
+#: widgets/vmagazine-post-column.php:26 widgets/vmagazine-posts-carousel.php:26
+msgid "Display posts from selected category or latest."
+msgstr ""
+
+#: widgets/vmagazine-grid-list.php:26
+msgid "Display posts in grid or list format."
+msgstr ""
+
+#: widgets/vmagazine-block-post-carousel(small).php:27
+msgid "Display small carousel slider  ."
+msgstr ""
+
+#: widgets/vmagazine-flicker-stream.php:25
+msgid "Displays your Flickr photos."
+msgstr ""
+
+#: vmagazine-companion.php:142
+msgid "Dribbble"
+msgstr ""
+
+#: widgets/widget-functions.php:99
+msgid "Editor"
+msgstr ""
+
+#: widgets/vmagazine-flicker-stream.php:46
+msgid "eg: 150375770@N32"
+msgstr ""
+
+#: widgets/vmagazine-video-playlist.php:160
+msgid ""
+"Either this video has been removed or you don't have access to watch this "
+"video"
+msgstr ""
+
+#: widgets/vmagazine-footer-info.php:60
+msgid "Email"
+msgstr ""
+
+#: vmagazine-post-metabox.php:385
+msgid "Embed audio"
+msgstr ""
+
+#: vmagazine-post-metabox.php:382
+msgid "Embed audio url"
+msgstr ""
+
+#: vmagazine-post-metabox.php:396
+msgid "Embed gallery images."
+msgstr ""
+
+#: vmagazine-post-metabox.php:371
+msgid "Embed video url"
+msgstr ""
+
+#: vmagazine-post-metabox.php:439
+msgid "Enter ADS URL:"
+msgstr ""
+
+#: widgets/vmagazine-featured-slider.php:154
+msgid "Enter excerpts in number of letters Default: 150"
+msgstr ""
+
+#: widgets/vmagazine-category-slider.php:113
+msgid ""
+"Enter Excerpts in number of letters default: 180 &#40; exerpt will work on "
+"first layout only &#41;"
+msgstr ""
+
+#: widgets/vmagazine-multiple-category-tabbed.php:93
+msgid "Enter Excerpts in number of letters default: 200"
+msgstr ""
+
+#: widgets/vmagazine-multiple-category.php:101
+msgid ""
+"Enter excerpts in number of letters default: 200 &#40; this will only work "
+"on first layout &#41;"
+msgstr ""
+
+#: widgets/vmagazine-grid-list.php:126
+msgid ""
+"Enter excerpts in number of letters default: 200 &#40; this will only work "
+"on second and last layout &#41;"
+msgstr ""
+
+#: widgets/vmagazine-post-column.php:112
+msgid ""
+"Enter excerpts in number of letters or leave it blank to hide default: 180 "
+"&#40; this will work on first layout only &#41;"
+msgstr ""
+
+#: widgets/vmagazine-media-player.php:43
+msgid "Enter soundcloud url"
+msgstr ""
+
+#: widgets/vmagazine-categories-tab.php:167
+msgid "Enter View All Button Text"
+msgstr ""
+
+#: widgets/vmagazine-video-playlist.php:49
+msgid "Enter Youtube Video IDs"
+msgstr ""
+
+#: widgets/vmagazine-fb-like.php:74
+msgid "Events"
+msgstr ""
+
+#: widgets/vmagazine-category-slider.php:112
+#: widgets/vmagazine-grid-list.php:125
+#: widgets/vmagazine-multiple-category.php:100
+#: widgets/vmagazine-post-column.php:111
+msgid "Excerpt For Post Description"
+msgstr ""
+
+#: widgets/vmagazine-featured-slider.php:153
+#: widgets/vmagazine-multiple-category-tabbed.php:92
+msgid "Excerpt for post description"
+msgstr ""
+
+#: vmagazine-companion.php:143
+msgid "Facebook"
+msgstr ""
+
+#: widgets/vmagazine-fb-like.php:44
+msgid "Facebook Page URL"
+msgstr ""
+
+#: widgets/vmagazine-about-author.php:59
+msgid "Facebook URL"
+msgstr ""
+
+#: widgets/vmagazine-footer-info.php:55
+msgid "Fax"
+msgstr ""
+
+#: vmagazine-post-metabox.php:276 vmagazine-post-metabox.php:306
+#: vmagazine-post-metabox.php:333
+msgid "Feature Name:"
+msgstr ""
+
+#: widgets/vmagazine-featured-slider.php:128
+msgid "Featured Posts Display"
+msgstr ""
+
+#: widgets/vmagazine-featured-slider.php:114
+msgid "Featured Posts Section"
+msgstr ""
+
+#: widgets/vmagazine-video-playlist.php:111
+msgid "Fetching Video Title.."
+msgstr ""
+
+#: widgets/vmagazine-categories-tab.php:67
+msgid "First Tab"
+msgstr ""
+
+#: vmagazine-companion.php:144
+msgid "Flickr"
+msgstr ""
+
+#: widgets/vmagazine-flicker-stream.php:45
+msgid "Flickr ID"
+msgstr ""
+
+#: widgets/widget-functions.php:36
+msgid "From Latest Posts"
+msgstr ""
+
+#: widgets/widget-functions.php:38
+msgid "From Selected Category"
+msgstr ""
+
+#: vmagazine-post-metabox.php:395
+msgid "Gallery Format"
+msgstr ""
+
+#: widgets/vmagazine-block-post-slider.php:65
+#: widgets/vmagazine-category-slider.php:69
+#: widgets/vmagazine-featured-slider.php:59
+#: widgets/vmagazine-fullwidth-slider.php:67 widgets/vmagazine-grid-list.php:69
+#: widgets/vmagazine-multiple-category-tabbed.php:64
+#: widgets/vmagazine-multiple-category.php:69
+#: widgets/vmagazine-post-column.php:68
+#: widgets/vmagazine-slider-tab-carousel.php:63
+#: widgets/vmagazine-timeline-posts.php:60
+msgid "General"
+msgstr ""
+
+#: vmagazine-companion.php:145
+msgid "Github"
+msgstr ""
+
+#: vmagazine-companion.php:146
+msgid "Google+"
+msgstr ""
+
+#: widgets/widget-functions.php:77
+msgid "Grid Layout"
+msgstr ""
+
+#: widgets/widget-functions.php:79
+msgid "Grid Two Layout"
+msgstr ""
+
+#: widgets/vmagazine-flicker-stream.php:61
+msgid "Group"
+msgstr ""
+
+#: widgets/vmagazine-block-post-slider.php:115
+#: widgets/vmagazine-categories-tab.php:173
+#: widgets/vmagazine-category-slider.php:136
+#: widgets/vmagazine-featured-slider.php:178
+#: widgets/vmagazine-fullwidth-slider.php:118
+msgid "Hide/Show Meta"
+msgstr ""
+
+#: widgets/vmagazine-multiple-category-tabbed.php:116
+#: widgets/vmagazine-posts-carousel.php:87
+msgid "Hide/Show Meta Description"
+msgstr ""
+
+#: widgets/vmagazine-top-trending-block.php:74
+msgid "Hide/Show Post Meta"
+msgstr ""
+
+#: vmagazine-companion.php:147
+msgid "Html5"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "http://accesspressthemes.com/"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://accesspressthemes.com/wordpress-themes/vmagazine/"
+msgstr ""
+
+#: widgets/vmagazine-video-playlist.php:50
+msgid "Id must be seperated with comma Eg: fiTaCplx0RY,BRjMNGMOV4A"
+msgstr ""
+
+#: widgets/vmagazine-footer-info.php:40
+msgid "Info Title"
+msgstr ""
+
+#: vmagazine-companion.php:148
+msgid "Instagram"
+msgstr ""
+
+#: widgets/vmagazine-about-author.php:74
+msgid "Instagram URL"
+msgstr ""
+
+#: widgets/vmagazine-flicker-stream.php:69
+msgid "Latest"
+msgstr ""
+
+#: widgets/widget-functions.php:56 widgets/widget-functions.php:61
+#: widgets/widget-functions.php:68
+msgid "Layout 1"
+msgstr ""
+
+#: widgets/widget-functions.php:57 widgets/widget-functions.php:62
+#: widgets/widget-functions.php:69
+msgid "Layout 2"
+msgstr ""
+
+#: widgets/widget-functions.php:63 widgets/widget-functions.php:70
+msgid "Layout 3"
+msgstr ""
+
+#: widgets/vmagazine-block-post-carousel(small).php:44
+#: widgets/vmagazine-block-post-slider.php:54
+#: widgets/vmagazine-categories-tab.php:51
+#: widgets/vmagazine-featured-slider.php:49
+#: widgets/vmagazine-multiple-category-tabbed.php:53
+#: widgets/vmagazine-recent-posts.php:37
+#: widgets/vmagazine-slider-tab-carousel.php:52
+#: widgets/vmagazine-slider-tab.php:43 widgets/vmagazine-timeline-posts.php:50
+#: widgets/vmagazine-top-trending-block.php:43
+#: widgets/vmagazine-video-playlist.php:36
+msgid "Layout will be like this"
+msgstr ""
+
+#: vmagazine-page-metabox.php:41 vmagazine-post-metabox.php:42
+msgid "Left sidebar"
+msgstr ""
+
+#: vmagazine-companion.php:149
+msgid "Linkedin"
+msgstr ""
+
+#: widgets/widget-functions.php:78
+msgid "List Layout"
+msgstr ""
+
+#: widgets/vmagazine-video-playlist.php:117
+msgid "Loading.."
+msgstr ""
+
+#: vmagazine-companion.php:102 widgets/vmagazine-footer-info.php:45
+msgid "Location"
+msgstr ""
+
+#: widgets/vmagazine-fb-like.php:69
+msgid "Message"
+msgstr ""
+
+#: widgets/vmagazine-multiple-category-tabbed.php:85
+msgid "Multiple categories"
+msgstr ""
+
+#: widgets/widget-fields.php:237
+msgid "No file chosen"
+msgstr ""
+
+#: widgets/vmagazine-featured-slider.php:142
+msgid "No of posts"
+msgstr ""
+
+#: widgets/vmagazine-featured-slider.php:98
+msgid "No of slides"
+msgstr ""
+
+#: vmagazine-post-metabox.php:96
+msgid "No Review"
+msgstr ""
+
+#: vmagazine-page-metabox.php:46 vmagazine-post-metabox.php:52
+msgid "No sidebar Full width"
+msgstr ""
+
+#: widgets/vmagazine-multiple-category.php:94
+msgid "No. Of Posts"
+msgstr ""
+
+#: widgets/vmagazine-block-post-carousel(small).php:72
+#: widgets/vmagazine-block-post-slider.php:91
+#: widgets/vmagazine-categories-tab.php:160
+#: widgets/vmagazine-category-slider.php:101
+#: widgets/vmagazine-fullwidth-slider.php:95
+#: widgets/vmagazine-grid-list.php:101 widgets/vmagazine-post-column.php:100
+#: widgets/vmagazine-posts-carousel.php:74
+#: widgets/vmagazine-slider-tab-carousel.php:89
+#: widgets/vmagazine-slider-tab.php:63 widgets/vmagazine-timeline-posts.php:96
+msgid "No. of Posts"
+msgstr ""
+
+#: widgets/vmagazine-flicker-stream.php:51
+msgid "Number of Photos"
+msgstr ""
+
+#: widgets/vmagazine-block-post-carousel(small).php:78
+#: widgets/vmagazine-block-post-slider.php:97
+#: widgets/vmagazine-category-slider.php:107
+#: widgets/vmagazine-featured-slider.php:104
+#: widgets/vmagazine-featured-slider.php:148
+#: widgets/vmagazine-fullwidth-slider.php:101
+#: widgets/vmagazine-grid-list.php:107 widgets/vmagazine-post-column.php:106
+#: widgets/vmagazine-posts-carousel.php:80
+#: widgets/vmagazine-recent-posts.php:82
+#: widgets/vmagazine-timeline-posts.php:102
+#: widgets/vmagazine-top-trending-block.php:65
+msgid "Offset Value"
+msgstr ""
+
+#: widgets/vmagazine-medium-ad.php:62
+msgid "Open link in new tab"
+msgstr ""
+
+#: widgets/vmagazine-about-author.php:79
+msgid "Open Link on new tabs ?"
+msgstr ""
+
+#. $id
+#: vmagazine-page-metabox.php:17
+msgid "Page Options"
+msgstr ""
+
+#: widgets/vmagazine-grid-list.php:112
+msgid "Pagination Type"
+msgstr ""
+
+#: vmagazine-companion.php:150
+msgid "Paypal"
+msgstr ""
+
+#: vmagazine-post-metabox.php:308
+msgid "Percent: "
+msgstr ""
+
+#: vmagazine-post-metabox.php:98
+msgid "Percentage Review"
+msgstr ""
+
+#: widgets/vmagazine-footer-info.php:50
+msgid "Phone"
+msgstr ""
+
+#: vmagazine-companion.php:151
+msgid "Pinterest"
+msgstr ""
+
+#: widgets/vmagazine-about-author.php:69
+msgid "Pinterest URL"
+msgstr ""
+
+#: widgets/vmagazine-media-player.php:42
+msgid "Player Link"
+msgstr ""
+
+#: widgets/vmagazine-video-playlist.php:18
+msgid "Plays Youtube video in a playlist."
+msgstr ""
+
+#: vmagazine-post-metabox.php:376
+msgid ""
+"Please use youtube/vimeo video url ( https://www.youtube.com/watch?"
+"v=cXhXy6DIhDY )."
+msgstr ""
+
+#: vmagazine-post-metabox.php:99
+msgid "Point Review"
+msgstr ""
+
+#: vmagazine-post-metabox.php:335
+msgid "Points: "
+msgstr ""
+
+#: vmagazine-post-metabox.php:148 vmagazine-post-metabox.php:432
+msgid "Post ADS"
+msgstr ""
+
+#: vmagazine-post-metabox.php:147
+msgid "Post Format"
+msgstr ""
+
+#: vmagazine-post-metabox.php:69
+msgid "Post Layout (Default) "
+msgstr ""
+
+#: vmagazine-post-metabox.php:74
+msgid "Post Layout 1"
+msgstr ""
+
+#: vmagazine-post-metabox.php:80
+msgid "Post Layout 2"
+msgstr ""
+
+#: vmagazine-post-metabox.php:85
+msgid "Post Layout 3"
+msgstr ""
+
+#: vmagazine-post-metabox.php:145
+msgid "Post Layouts"
+msgstr ""
+
+#. $id
+#: vmagazine-post-metabox.php:18
+msgid "Post Options"
+msgstr ""
+
+#: vmagazine-post-metabox.php:146
+msgid "Post Review"
+msgstr ""
+
+#: widgets/vmagazine-categories-tab.php:183 widgets/vmagazine-grid-list.php:154
+#: widgets/vmagazine-multiple-category-tabbed.php:135
+#: widgets/vmagazine-multiple-category.php:134
+#: widgets/vmagazine-timeline-posts.php:127
+msgid "Post Seperator Border Color"
+msgstr ""
+
+#: widgets/vmagazine-recent-posts.php:76
+msgid "Posts Per Page"
+msgstr ""
+
+#: widgets/vmagazine-flicker-stream.php:70
+msgid "Random"
+msgstr ""
+
+#: widgets/widget-functions.php:37
+msgid "Random Posts"
+msgstr ""
+
+#: widgets/vmagazine-recent-posts.php:21
+msgid "Recent Posts"
+msgstr ""
+
+#: vmagazine-companion.php:152
+msgid "Reddit"
+msgstr ""
+
+#: widgets/widget-fields.php:246 widgets/widget-fields.php:257
+msgid "Remove"
+msgstr ""
+
+#: vmagazine-post-metabox.php:374 vmagazine-post-metabox.php:386
+msgid "Reset url"
+msgstr ""
+
+#: vmagazine-post-metabox.php:349
+msgid "Review description:"
+msgstr ""
+
+#: vmagazine-page-metabox.php:36 vmagazine-post-metabox.php:37
+msgid "Right sidebar"
+msgstr ""
+
+#: vmagazine-companion.php:153
+msgid "RSS"
+msgstr ""
+
+#: widgets/vmagazine-categories-tab.php:68
+msgid "Second Tab"
+msgstr ""
+
+#: vmagazine-page-metabox.php:85 vmagazine-post-metabox.php:162
+msgid ""
+"Select available sidebar which replaced sidebar layout from customizer "
+"settings."
+msgstr ""
+
+#: widgets/vmagazine-block-post-slider.php:84
+#: widgets/vmagazine-multiple-category.php:88
+#: widgets/vmagazine-slider-tab-carousel.php:82
+#: widgets/vmagazine-slider-tab.php:56
+msgid "Select categories"
+msgstr ""
+
+#: widgets/vmagazine-categories-tab.php:88
+msgid "Select Category for First Tab"
+msgstr ""
+
+#: widgets/vmagazine-timeline-posts.php:88
+msgid "Select Category for Lists"
+msgstr ""
+
+#: widgets/vmagazine-categories-tab.php:114
+msgid "Select Category for Second Tab"
+msgstr ""
+
+#: widgets/vmagazine-category-slider.php:94
+msgid "Select Category for Slider"
+msgstr ""
+
+#: widgets/vmagazine-categories-tab.php:140
+msgid "Select Category for Third Tab"
+msgstr ""
+
+#: widgets/widget-functions.php:45
+msgid "Select No.of Column"
+msgstr ""
+
+#: vmagazine-post-metabox.php:196
+msgid "Select post layout from available options."
+msgstr ""
+
+#: vmagazine-post-metabox.php:279
+msgid "Select rating"
+msgstr ""
+
+#: vmagazine-companion.php:154
+msgid "Share"
+msgstr ""
+
+#: widgets/vmagazine-fb-like.php:54
+msgid "Show Friend Faces"
+msgstr ""
+
+#: widgets/vmagazine-featured-slider.php:124
+msgid "Show or hide featured section below slider"
+msgstr ""
+
+#: widgets/vmagazine-block-post-slider.php:119
+#: widgets/vmagazine-categories-tab.php:177
+#: widgets/vmagazine-category-slider.php:140
+#: widgets/vmagazine-featured-slider.php:182
+#: widgets/vmagazine-fullwidth-slider.php:122
+#: widgets/vmagazine-grid-list.php:148
+#: widgets/vmagazine-multiple-category.php:129
+#: widgets/vmagazine-post-column.php:138
+#: widgets/vmagazine-slider-tab-carousel.php:111
+msgid "Show or hide post meta options like author name, post date etc"
+msgstr ""
+
+#: widgets/vmagazine-featured-slider.php:120
+msgid "Show/Hide Featured Section"
+msgstr ""
+
+#: widgets/vmagazine-grid-list.php:144
+#: widgets/vmagazine-multiple-category.php:125
+#: widgets/vmagazine-post-column.php:134
+#: widgets/vmagazine-slider-tab-carousel.php:107
+msgid "Show/Hide Meta"
+msgstr ""
+
+#: vmagazine-page-metabox.php:69 vmagazine-post-metabox.php:144
+msgid "Sidebars"
+msgstr ""
+
+#: vmagazine-page-metabox.php:77 vmagazine-post-metabox.php:154
+msgid "Sidebars is globally available to every post type you create."
+msgstr ""
+
+#: vmagazine-companion.php:155
+msgid "Skype"
+msgstr ""
+
+#: widgets/vmagazine-featured-slider.php:84
+msgid "Slider Display Type"
+msgstr ""
+
+#: widgets/vmagazine-category-slider.php:54
+msgid "Slider Layouts"
+msgstr ""
+
+#: widgets/vmagazine-featured-slider.php:79
+msgid "Slider Section"
+msgstr ""
+
+#: vmagazine-companion.php:156
+msgid "Soundcloud"
+msgstr ""
+
+#: vmagazine-companion.php:157
+msgid "Spotify"
+msgstr ""
+
+#: vmagazine-companion.php:158
+msgid "Stackexchange"
+msgstr ""
+
+#: vmagazine-companion.php:159
+msgid "Stackoverflow"
+msgstr ""
+
+#: vmagazine-post-metabox.php:364
+msgid "Standard Format"
+msgstr ""
+
+#: vmagazine-post-metabox.php:97
+msgid "Star Review"
+msgstr ""
+
+#: vmagazine-companion.php:160
+msgid "Steam"
+msgstr ""
+
+#: vmagazine-companion.php:161
+msgid "StumbleUpon"
+msgstr ""
+
+#: widgets/widget-functions.php:96
+msgid "Subscriber"
+msgstr ""
+
+#: widgets/vmagazine-block-post-slider.php:124
+#: widgets/vmagazine-multiple-category.php:154
+msgid "Tab Text Color"
+msgstr ""
+
+#: widgets/vmagazine-block-post-slider.php:129
+#: widgets/vmagazine-multiple-category.php:159
+msgid "Tab Text Color: Active"
+msgstr ""
+
+#: widgets/vmagazine-categories-tab.php:82
+#: widgets/vmagazine-categories-tab.php:108
+#: widgets/vmagazine-categories-tab.php:134
+msgid "Tab Title"
+msgstr ""
+
+#: widgets/vmagazine-categories-tab.php:188
+#: widgets/vmagazine-multiple-category-tabbed.php:125
+#: widgets/vmagazine-slider-tab-carousel.php:117
+msgid "Tabs Text Color"
+msgstr ""
+
+#: widgets/vmagazine-categories-tab.php:193
+#: widgets/vmagazine-multiple-category-tabbed.php:130
+#: widgets/vmagazine-slider-tab-carousel.php:122
+msgid "Tabs Text Color: Active"
+msgstr ""
+
+#: widgets/vmagazine-fb-like.php:59
+msgid "Tabs to render"
+msgstr ""
+
+#: widgets/vmagazine-categories-tab.php:69
+msgid "Third Tab"
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"This is a companion plugin for the theme Vmagazine. This plugin helps the "
+"theme to achieve some useful features and functionalities"
+msgstr ""
+
+#: widgets/vmagazine-fb-like.php:64
+msgid "Timeline"
+msgstr ""
+
+#: widgets/vmagazine-fb-like.php:39 widgets/vmagazine-flicker-stream.php:39
+#: widgets/vmagazine-media-player.php:36 widgets/vmagazine-recent-posts.php:45
+msgid "Title"
+msgstr ""
+
+#: vmagazine-companion.php:162
+msgid "Tumblr"
+msgstr ""
+
+#: vmagazine-companion.php:163
+msgid "Twitter"
+msgstr ""
+
+#: widgets/vmagazine-about-author.php:64
+msgid "Twitter URL"
+msgstr ""
+
+#: widgets/vmagazine-flicker-stream.php:57
+msgid "Type (user or group)"
+msgstr ""
+
+#: vmagazine-post-metabox.php:228
+msgid "Types of Review"
+msgstr ""
+
+#: widgets/widget-fields.php:251
+msgid "Upgrade your version of WordPress for full media support."
+msgstr ""
+
+#: widgets/widget-fields.php:242
+msgid "Upload"
+msgstr ""
+
+#: vmagazine-companion.php:97
+msgid "Upload an additional image for your user profile."
+msgstr ""
+
+#: vmagazine-companion.php:96 vmagazine-post-metabox.php:436
+msgid "Upload Image"
+msgstr ""
+
+#: widgets/vmagazine-fb-like.php:49
+msgid "Use Small Header"
+msgstr ""
+
+#: widgets/vmagazine-flicker-stream.php:60
+msgid "User"
+msgstr ""
+
+#: vmagazine-post-metabox.php:370
+msgid "Video Format"
+msgstr ""
+
+#: widgets/widget-functions.php:87
+msgid "View All Button"
+msgstr ""
+
+#: widgets/vmagazine-categories-tab.php:208
+#: widgets/vmagazine-featured-slider.php:197
+#: widgets/vmagazine-grid-list.php:169
+#: widgets/vmagazine-multiple-category-tabbed.php:150
+#: widgets/vmagazine-multiple-category.php:149
+#: widgets/vmagazine-post-column.php:153
+msgid "View All Button Border Color"
+msgstr ""
+
+#: widgets/vmagazine-category-slider.php:160
+msgid "View All Button Border Color: Hover"
+msgstr ""
+
+#: widgets/vmagazine-category-slider.php:119
+#: widgets/vmagazine-featured-slider.php:160
+#: widgets/vmagazine-grid-list.php:120
+#: widgets/vmagazine-multiple-category.php:107
+msgid "View All Button Text"
+msgstr ""
+
+#: widgets/vmagazine-categories-tab.php:198
+#: widgets/vmagazine-category-slider.php:150
+#: widgets/vmagazine-featured-slider.php:187
+#: widgets/vmagazine-grid-list.php:159
+#: widgets/vmagazine-multiple-category-tabbed.php:140
+#: widgets/vmagazine-multiple-category.php:139
+#: widgets/vmagazine-post-column.php:143
+msgid "View All Button Text Color"
+msgstr ""
+
+#: widgets/vmagazine-categories-tab.php:203
+#: widgets/vmagazine-category-slider.php:155
+#: widgets/vmagazine-featured-slider.php:192
+#: widgets/vmagazine-grid-list.php:164
+#: widgets/vmagazine-multiple-category-tabbed.php:145
+#: widgets/vmagazine-multiple-category.php:144
+#: widgets/vmagazine-post-column.php:148
+msgid "View All Button Text Color: Hover"
+msgstr ""
+
+#: widgets/vmagazine-multiple-category-tabbed.php:99
+#: widgets/vmagazine-post-column.php:118
+#: widgets/vmagazine-timeline-posts.php:109
+msgid "View All Text"
+msgstr ""
+
+#: widgets/widget-fields.php:272
+msgid "View File"
+msgstr ""
+
+#: vmagazine-companion.php:164
+msgid "Vimeo"
+msgstr ""
+
+#: vmagazine-companion.php:165
+msgid "VKontakte"
+msgstr ""
+
+#: widgets/vmagazine-about-author.php:24
+msgid "Vmagazine : About Author"
+msgstr ""
+
+#: widgets/vmagazine-medium-ad.php:28
+msgid "Vmagazine : Ads Uploader"
+msgstr ""
+
+#: widgets/vmagazine-block-post-slider.php:31
+msgid "Vmagazine : Block Post Slider"
+msgstr ""
+
+#: widgets/vmagazine-posts-carousel.php:28
+msgid "Vmagazine : Block Posts(Carousel)"
+msgstr ""
+
+#: widgets/vmagazine-post-column.php:31
+msgid "Vmagazine : Block Posts(Column)"
+msgstr ""
+
+#: widgets/vmagazine-categories-tab.php:31
+msgid "Vmagazine : Categories Tabbed"
+msgstr ""
+
+#: widgets/vmagazine-category-slider.php:31
+msgid "Vmagazine : Category Posts(Slider)"
+msgstr ""
+
+#: widgets/vmagazine-featured-slider.php:28
+msgid "Vmagazine : Featured Slider"
+msgstr ""
+
+#: widgets/vmagazine-flicker-stream.php:23
+msgid "Vmagazine : Flickr Stream"
+msgstr ""
+
+#: widgets/vmagazine-footer-info.php:24
+msgid "Vmagazine : Footer Info"
+msgstr ""
+
+#: widgets/vmagazine-grid-list.php:31
+msgid "Vmagazine : Grid/List Posts"
+msgstr ""
+
+#: widgets/vmagazine-multiple-category.php:31
+msgid "Vmagazine : Multiple Category Block"
+msgstr ""
+
+#: widgets/vmagazine-multiple-category-tabbed.php:31
+msgid "Vmagazine : Multiple Category Tabbed"
+msgstr ""
+
+#: widgets/vmagazine-slider-tab.php:28
+msgid "Vmagazine : Slider Tab"
+msgstr ""
+
+#: widgets/vmagazine-slider-tab-carousel.php:31
+msgid "Vmagazine : Slider Tab Carousel"
+msgstr ""
+
+#: widgets/vmagazine-timeline-posts.php:28
+msgid "Vmagazine : Timeline Posts"
+msgstr ""
+
+#: widgets/vmagazine-video-playlist.php:20
+msgid "Vmagazine : Youtube Video Playlists"
+msgstr ""
+
+#. Name of the plugin
+msgid "Vmagazine Companion"
+msgstr ""
+
+#: widgets/vmagazine-block-post-carousel(small).php:29
+msgid "Vmagazine: Carousel Slider(Small)"
+msgstr ""
+
+#: widgets/vmagazine-fullwidth-slider.php:31
+msgid "Vmagazine: Fullwidth slider"
+msgstr ""
+
+#: widgets/vmagazine-top-trending-block.php:28
+msgid "Vmagazine: Top Trending"
+msgstr ""
+
+#: widgets/vmagazine-timeline-posts.php:133
+msgid "Widget Background Color"
+msgstr ""
+
+#: widgets/widget-fields.php:216
+msgid "Widget Layout"
+msgstr ""
+
+#: widgets/vmagazine-about-author.php:39
+msgid "Widget Title"
+msgstr ""
+
+#: widgets/vmagazine-featured-slider.php:29
+msgid "Widget to control slider and featured posts section."
+msgstr ""
+
+#: vmagazine-companion.php:166
+msgid "Windows"
+msgstr ""
+
+#: vmagazine-companion.php:167
+msgid "Woordpress"
+msgstr ""
+
+#: vmagazine-companion.php:168
+msgid "Yahoo"
+msgstr ""
+
+#: vmagazine-companion.php:106
+msgid "Your location."
+msgstr ""
+
+#: vmagazine-companion.php:169
+msgid "Youtube"
+msgstr ""

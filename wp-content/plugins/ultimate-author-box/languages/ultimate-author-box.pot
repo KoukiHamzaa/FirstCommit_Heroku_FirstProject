@@ -1,0 +1,1252 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-03-10 10:03+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/"
+
+#: ultimate-author-box.php:170
+msgid "Only 1 widget allowed per tab"
+msgstr ""
+
+#: ultimate-author-box.php:171
+msgid "Saving Data."
+msgstr ""
+
+#: ultimate-author-box.php:172
+msgid "Saved Data."
+msgstr ""
+
+#: ultimate-author-box.php:220
+msgid "Settings"
+msgstr ""
+
+#: ultimate-author-box.php:221
+msgid "Support"
+msgstr ""
+
+#. Name of the plugin
+#: ultimate-author-box.php:233 ultimate-author-box.php:233
+msgid "Ultimate Author Box"
+msgstr ""
+
+#: ultimate-author-box.php:245 ultimate-author-box.php:245
+msgid "How to use"
+msgstr ""
+
+#: ultimate-author-box.php:256 ultimate-author-box.php:256
+msgid "About"
+msgstr ""
+
+#: ultimate-author-box.php:346
+msgid "uab_bottom"
+msgstr ""
+
+#: ultimate-author-box.php:349
+msgid "Sorry! The Author has not filled his profile."
+msgstr ""
+
+#: ultimate-author-box.php:674
+msgid ""
+"Note: The Ultimate Author Box is installed but you do not have the "
+"permission to configure it. Please contact the site Admin to have access to "
+"your AuthorBox."
+msgstr ""
+
+#: ultimate-author-box.php:689
+msgid ""
+"Hello there, \n"
+"\n"
+"You have received an email from your site. \n"
+"\n"
+"Details below: \n"
+"Name: #name \n"
+"Email: #email \n"
+"Phone: #phone\n"
+"Subject: #subject \n"
+"Message: #message \n"
+"\n"
+"Thank you!  "
+msgstr ""
+
+#: ultimate-author-box.php:799
+msgid "Show Author Box in this post"
+msgstr ""
+
+#: ultimate-author-box.php:801
+msgid "Yes"
+msgstr ""
+
+#: ultimate-author-box.php:802
+msgid "No"
+msgstr ""
+
+#: ultimate-author-box.php:804
+msgid "Author Box Position"
+msgstr ""
+
+#: ultimate-author-box.php:806
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:16
+msgid "Default"
+msgstr ""
+
+#: ultimate-author-box.php:807
+msgid "Top"
+msgstr ""
+
+#: ultimate-author-box.php:808
+msgid "Bottom"
+msgstr ""
+
+#: ultimate-author-box.php:968
+msgid "Ultimate Author Box Widget area"
+msgstr ""
+
+#: ultimate-author-box.php:969
+msgid "Do not manually edit this area."
+msgstr ""
+
+#: ultimate-author-box.php:1012
+#, php-format
+msgid "Failed to add %s to %d"
+msgstr ""
+
+#: ultimate-author-box.php:1042 inc/backend/ultimate-profile-settings.php:426
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:329
+msgid "Edit"
+msgstr ""
+
+#: ultimate-author-box.php:1146
+msgid "Delete"
+msgstr ""
+
+#: ultimate-author-box.php:1147
+msgid "Close"
+msgstr ""
+
+#: ultimate-author-box.php:1191
+#, php-format
+msgid "Deleted %s"
+msgstr ""
+
+#: ultimate-author-box.php:1193
+#, php-format
+msgid "Failed to delete %s"
+msgstr ""
+
+#: ultimate-author-box.php:1282
+#, php-format
+msgid "Saved %s"
+msgstr ""
+
+#: ultimate-author-box.php:1284
+#, php-format
+msgid "Failed to save %s"
+msgstr ""
+
+#: inc/backend/uap-settings.php:12
+msgid "Settings saved successfully"
+msgstr ""
+
+#: inc/backend/uap-settings.php:15
+msgid "Settings restored to default successfully"
+msgstr ""
+
+#: inc/backend/uap-settings.php:18
+msgid "Cache Cleared successfully"
+msgstr ""
+
+#: inc/backend/uap-settings.php:56 inc/backend/uap-settings.php:479
+#: inc/backend/ultimate-profile-settings.php:471
+msgid "Select Template"
+msgstr ""
+
+#: inc/backend/uap-settings.php:59 inc/backend/uap-settings.php:484
+#: inc/backend/ultimate-profile-settings.php:473
+#: inc/backend/ultimate-profile-settings.php:573
+#: inc/backend/uab-widgets/uab-author-box-widgets.php:68
+msgid "Template 1"
+msgstr ""
+
+#: inc/backend/uap-settings.php:60 inc/backend/uap-settings.php:485
+#: inc/backend/ultimate-profile-settings.php:474
+#: inc/backend/ultimate-profile-settings.php:574
+#: inc/backend/uab-widgets/uab-author-box-widgets.php:71
+msgid "Template 2"
+msgstr ""
+
+#: inc/backend/uap-settings.php:61 inc/backend/uap-settings.php:486
+#: inc/backend/ultimate-profile-settings.php:475
+#: inc/backend/ultimate-profile-settings.php:575
+msgid "Template 3"
+msgstr ""
+
+#: inc/backend/uap-settings.php:62 inc/backend/uap-settings.php:487
+#: inc/backend/ultimate-profile-settings.php:476
+#: inc/backend/ultimate-profile-settings.php:576
+msgid "Template 4"
+msgstr ""
+
+#: inc/backend/uap-settings.php:63 inc/backend/uap-settings.php:488
+#: inc/backend/ultimate-profile-settings.php:477
+#: inc/backend/ultimate-profile-settings.php:577
+msgid "Template 5"
+msgstr ""
+
+#: inc/backend/uap-settings.php:64 inc/backend/uap-settings.php:489
+#: inc/backend/ultimate-profile-settings.php:478
+#: inc/backend/ultimate-profile-settings.php:578
+msgid "Template 6"
+msgstr ""
+
+#: inc/backend/uap-settings.php:65 inc/backend/uap-settings.php:490
+#: inc/backend/ultimate-profile-settings.php:479
+#: inc/backend/ultimate-profile-settings.php:579
+msgid "Template 7"
+msgstr ""
+
+#: inc/backend/uap-settings.php:66 inc/backend/uap-settings.php:491
+#: inc/backend/ultimate-profile-settings.php:480
+#: inc/backend/ultimate-profile-settings.php:580
+msgid "Template 8"
+msgstr ""
+
+#: inc/backend/uap-settings.php:67 inc/backend/uap-settings.php:492
+#: inc/backend/ultimate-profile-settings.php:481
+#: inc/backend/ultimate-profile-settings.php:581
+msgid "Template 9"
+msgstr ""
+
+#: inc/backend/uap-settings.php:68 inc/backend/uap-settings.php:493
+#: inc/backend/ultimate-profile-settings.php:482
+#: inc/backend/ultimate-profile-settings.php:582
+msgid "Template 10"
+msgstr ""
+
+#: inc/backend/uap-settings.php:69 inc/backend/uap-settings.php:494
+#: inc/backend/ultimate-profile-settings.php:483
+#: inc/backend/ultimate-profile-settings.php:583
+msgid "Template 11"
+msgstr ""
+
+#: inc/backend/uap-settings.php:70 inc/backend/uap-settings.php:495
+#: inc/backend/ultimate-profile-settings.php:484
+#: inc/backend/ultimate-profile-settings.php:584
+msgid "Template 12"
+msgstr ""
+
+#: inc/backend/uap-settings.php:71 inc/backend/uap-settings.php:496
+#: inc/backend/ultimate-profile-settings.php:485
+#: inc/backend/ultimate-profile-settings.php:585
+msgid "Template 13"
+msgstr ""
+
+#: inc/backend/uap-settings.php:72 inc/backend/uap-settings.php:497
+#: inc/backend/ultimate-profile-settings.php:486
+#: inc/backend/ultimate-profile-settings.php:586
+msgid "Template 14"
+msgstr ""
+
+#: inc/backend/uap-settings.php:73 inc/backend/uap-settings.php:498
+#: inc/backend/ultimate-profile-settings.php:487
+#: inc/backend/ultimate-profile-settings.php:587
+msgid "Template 15"
+msgstr ""
+
+#: inc/backend/uap-settings.php:74 inc/backend/uap-settings.php:499
+#: inc/backend/ultimate-profile-settings.php:488
+#: inc/backend/ultimate-profile-settings.php:588
+msgid "Template 16"
+msgstr ""
+
+#: inc/backend/uap-settings.php:75 inc/backend/uap-settings.php:500
+#: inc/backend/ultimate-profile-settings.php:489
+#: inc/backend/ultimate-profile-settings.php:589
+msgid "Template 17"
+msgstr ""
+
+#: inc/backend/uap-settings.php:76 inc/backend/uap-settings.php:501
+#: inc/backend/ultimate-profile-settings.php:490
+#: inc/backend/ultimate-profile-settings.php:590
+msgid "Template 18"
+msgstr ""
+
+#: inc/backend/uap-settings.php:77 inc/backend/uap-settings.php:502
+#: inc/backend/ultimate-profile-settings.php:491
+#: inc/backend/ultimate-profile-settings.php:591
+msgid "Template 19"
+msgstr ""
+
+#: inc/backend/uap-settings.php:150
+#: inc/backend/ultimate-profile-settings.php:669
+msgid "Primary Color"
+msgstr ""
+
+#: inc/backend/uap-settings.php:176
+#: inc/backend/ultimate-profile-settings.php:673
+msgid "Secondary Color"
+msgstr ""
+
+#: inc/backend/uap-settings.php:184
+#: inc/backend/ultimate-profile-settings.php:677
+msgid "Tertiary Color"
+msgstr ""
+
+#: inc/backend/uap-settings.php:192
+#: inc/backend/ultimate-profile-settings.php:186
+#: inc/backend/ultimate-profile-settings.php:683
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:61
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:89
+msgid "Upload Custom Image"
+msgstr ""
+
+#: inc/backend/uap-settings.php:197
+#: inc/backend/ultimate-profile-settings.php:191
+#: inc/backend/ultimate-profile-settings.php:688
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:65
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:93
+msgid "Image Preview:"
+msgstr ""
+
+#: inc/backend/uap-settings.php:210
+msgid "Disable Ultimate Author Box"
+msgstr ""
+
+#: inc/backend/uap-settings.php:211
+msgid "Disable Author Box in frontend entirely"
+msgstr ""
+
+#: inc/backend/uap-settings.php:223
+msgid "Choose place to show Author Box"
+msgstr ""
+
+#: inc/backend/uap-settings.php:227
+msgid "Show in Posts"
+msgstr ""
+
+#: inc/backend/uap-settings.php:228
+msgid "Check to show Ultimate Author Box in Posts"
+msgstr ""
+
+#: inc/backend/uap-settings.php:242
+msgid "Show in Pages"
+msgstr ""
+
+#: inc/backend/uap-settings.php:243
+msgid "Check to show Ultimate Author Box in Pages"
+msgstr ""
+
+#: inc/backend/uap-settings.php:270
+msgid "Show in Custom Post Types"
+msgstr ""
+
+#: inc/backend/uap-settings.php:271
+msgid "Check to show Ultimate Author Box in Custom Post Type"
+msgstr ""
+
+#: inc/backend/uap-settings.php:305
+msgid "Show Author Box at"
+msgstr ""
+
+#: inc/backend/uap-settings.php:309
+msgid "Top of Posts"
+msgstr ""
+
+#: inc/backend/uap-settings.php:310
+msgid "Bottom of Posts"
+msgstr ""
+
+#: inc/backend/uap-settings.php:311
+msgid "None"
+msgstr ""
+
+#: inc/backend/uap-settings.php:317
+msgid "Hide Author Box if Author Biographical Info is empty"
+msgstr ""
+
+#: inc/backend/uap-settings.php:318
+msgid "Check to hide Author Box if Author Biographical Info is empty"
+msgstr ""
+
+#: inc/backend/uap-settings.php:333
+msgid "Show Default Biographical Info if empty"
+msgstr ""
+
+#: inc/backend/uap-settings.php:334
+msgid "Check to Show Default Biographical Info if empty"
+msgstr ""
+
+#: inc/backend/uap-settings.php:349
+msgid "Default Author Box Message"
+msgstr ""
+
+#: inc/backend/uap-settings.php:357
+msgid "Show Author Box in Small Screen Device"
+msgstr ""
+
+#: inc/backend/uap-settings.php:358
+msgid "Check to Show Author Box in Small Screen Device"
+msgstr ""
+
+#: inc/backend/uap-settings.php:372
+msgid "Frontend link target options "
+msgstr ""
+
+#: inc/backend/uap-settings.php:376
+#: inc/backend/ultimate-profile-settings.php:303
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:207
+msgid "New Page"
+msgstr ""
+
+#: inc/backend/uap-settings.php:377
+#: inc/backend/ultimate-profile-settings.php:304
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:208
+msgid "Same Page"
+msgstr ""
+
+#: inc/backend/uap-settings.php:392
+msgid "Choose user roles"
+msgstr ""
+
+#: inc/backend/uap-settings.php:393
+msgid "Select user roles for user fields access"
+msgstr ""
+
+#: inc/backend/uap-settings.php:423
+msgid "Consumer Key (API Key)"
+msgstr ""
+
+#: inc/backend/uap-settings.php:431
+msgid "Consumer Secret (API Secret)"
+msgstr ""
+
+#: inc/backend/uap-settings.php:439
+msgid "Access Token"
+msgstr ""
+
+#: inc/backend/uap-settings.php:447
+msgid "Access Token Secret"
+msgstr ""
+
+#: inc/backend/uap-settings.php:455
+msgid "Cache Period"
+msgstr ""
+
+#: inc/backend/uap-settings.php:463
+msgid "Delete Cache"
+msgstr ""
+
+#: inc/backend/uap-settings.php:483
+#: inc/backend/ultimate-profile-settings.php:472
+msgid "Default template"
+msgstr ""
+
+#: inc/backend/uap-settings.php:503
+#: inc/backend/ultimate-profile-settings.php:492
+msgid "Custom template"
+msgstr ""
+
+#: inc/backend/uap-settings.php:504
+#: inc/backend/ultimate-profile-settings.php:493
+msgid "Custom Template"
+msgstr ""
+
+#: inc/backend/uap-settings.php:581
+msgid "Enable Custom CSS Section"
+msgstr ""
+
+#: inc/backend/uap-settings.php:582
+msgid "Check to Enable Custom CSS Section"
+msgstr ""
+
+#: inc/backend/uap-settings.php:608
+msgid "Save Changes"
+msgstr ""
+
+#: inc/backend/uap-settings.php:609
+msgid "Are you sure you want to restore default settings?"
+msgstr ""
+
+#: inc/backend/uap-settings.php:609
+msgid "Restore Default Settings"
+msgstr ""
+
+#: inc/backend/uap-settings.php:610
+msgid "Go to Profile Settings"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:4
+msgid "Please fill your Author Box"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:18
+msgid "Ultimate Author Box Profile Settings"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:21
+msgid "Select New Tab Option"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:25
+#: inc/backend/ultimate-profile-settings.php:213
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:113
+msgid "Select Tab Type"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:27
+msgid "Default tabs"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:28
+msgid "Author posts"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:29
+msgid "Company description"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:30
+msgid "Contact Form"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:31
+msgid "Feeds tabs"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:32
+msgid "Twitter Feeds"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:33
+msgid "RSS Feeds"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:34
+msgid "Facebook Feeds"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:35
+msgid "Custom tabs"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:36
+#: inc/backend/ultimate-profile-settings.php:354
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:257
+msgid "Shortcode"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:37
+msgid "Widget"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:38
+msgid "WYSIWYG Editor"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:43
+msgid "Tab Name"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:44
+msgid "New tab"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:54
+#: inc/frontend/uap-shortcode.php:86 inc/frontend/uap-shortcode.php:90
+#: inc/frontend/uap-shortcode.php:91
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:5
+#: inc/frontend/frontend-default/components/uab-component-title.php:14
+msgid "Author Details"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:73
+msgid "+"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:73
+msgid "New Tab"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:74
+msgid "Template Settings"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:100
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:11
+msgid "Author Posts"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:105
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:4
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:16
+msgid "Frontend Tab Title"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:109
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:20
+msgid "Number of posts"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:113
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:24
+msgid "Select Post Type"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:115
+#: inc/frontend/uap-frontend-popup.php:21
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:26
+msgid "Latest Posts"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:116
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:27
+msgid "Selective Posts"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:120
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:32
+msgid "Posts to show"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:148
+#: inc/frontend/uap-frontend-popup.php:51
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:52
+#: inc/frontend/frontend-posts/uab-frontend-posts.php:140
+msgid "The User does not have any posts"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:153
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:57
+msgid "Show Post Excerpt"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:154
+msgid "Check to show post excerpt."
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:157
+#: inc/backend/ultimate-profile-settings.php:297
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:61
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:201
+msgid "Read More Text"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:161
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:65
+msgid "Show Post Image"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:162
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:66
+msgid "Check to show post image."
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:165
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:69
+msgid "Show Post Date"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:166
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:70
+msgid "Check to show post date."
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:169
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:73
+msgid "Show Post Category"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:170
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:74
+msgid "Check to show post category."
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:183
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:86
+msgid "Additional Company Information"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:197
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:98
+msgid "Company Detail Description"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:209
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:109
+msgid "Contact Form Settings"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:215
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:115
+msgid "Default Contact Form"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:216
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:116
+msgid "External Contact Form"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:221
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:155
+msgid "Contact Form Shortcode"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:227
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:121
+msgid "Contact Form Title"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:231
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:125
+msgid "Name Label"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:235
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:129
+msgid "Email Label"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:239
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:137
+msgid "Phone Label"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:243
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:133
+msgid "Subject Label"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:247
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:141
+msgid "Message Label"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:251
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:145
+msgid "Success Message"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:255
+msgid "Send to Email"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:268
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:168
+msgid ""
+"Note: The Admin has not configured the Twitter Settings. Please contact "
+"Admin to use Twitter Feeds."
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:271
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:171
+msgid "Twitter Settings"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:274
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:50
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:175
+msgid "Twitter Username"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:278
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:179
+msgid "Number of Twitter Feeds"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:289
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:193
+msgid "RSS Feed Settings"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:293
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:197
+msgid "RSS URL"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:301
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:205
+msgid "Link target options"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:308
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:212
+msgid "Number of RSS Feeds"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:322
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:227
+msgid "Facebook Feed Settings"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:326
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:231
+msgid "Facebook APP ID"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:330
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:235
+msgid "Facebook APP Secret"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:334
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:239
+msgid "Facebook Profile/Page ID"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:339
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:244
+msgid "Number of Facebook Feeds"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:371
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:271
+msgid "Add Widgets"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:374
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:274
+msgid "Lists Of Widgets"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:402
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:302
+msgid "Listed Widgets"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:467
+msgid "Enable Personal Template"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:571
+msgid "Select Custom Template"
+msgstr ""
+
+#: inc/frontend/uab-frontend-rssfeeds.php:41
+msgid "Invalid/Empty RSS URL"
+msgstr ""
+
+#: inc/frontend/uap-shortcode.php:209
+msgid "No Tab Selected"
+msgstr ""
+
+#. $this->print_array($total_posts);
+#: inc/backend/uab-backend-tabs/uab-facebook-fetch.php:169
+msgid "Facebook Feeds Fetched Successfully!"
+msgstr ""
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:9
+msgid "Profile Image Settings"
+msgstr ""
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:14
+msgid "Choose Image Type"
+msgstr ""
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:17
+msgid "Gravatar"
+msgstr ""
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:18
+msgid "Social Profile Image"
+msgstr ""
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:19
+msgid "Facebook"
+msgstr ""
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:20
+msgid "Instagram"
+msgstr ""
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:21
+msgid "Twitter"
+msgstr ""
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:22
+msgid "Custom Image"
+msgstr ""
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:23
+msgid "Upload Image"
+msgstr ""
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:29
+msgid "Facebook User ID"
+msgstr ""
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:33
+msgid " paste your Facebook Profile URL and click on Find Numeric ID."
+msgstr ""
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:40
+msgid "Instagram Image ID"
+msgstr ""
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:43
+msgid ""
+"To get your Instagram Image ID, Please open any image on Instagram you want "
+"in the single preview. If your image URL is https://www.instagram."
+"com/p/7FfbBpSOaC/ then 7FfbBpSOaC is your Instagram Image ID"
+msgstr ""
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:53
+msgid ""
+"To get your Twitter Username, Please open your twitter profile. If your "
+"profile URL is https://twitter.com/apthemes  then apthemes is your Twitter "
+"username."
+msgstr ""
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:74
+msgid "Choose Image Shape"
+msgstr ""
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:76
+msgid "Square"
+msgstr ""
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:77
+msgid "Circular"
+msgstr ""
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:84
+msgid "Company Information"
+msgstr ""
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:88
+msgid "Company Name"
+msgstr ""
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:92
+msgid "Company URL"
+msgstr ""
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:96
+msgid "Designation"
+msgstr ""
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:100
+msgid "Separator"
+msgstr ""
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:105
+msgid "Phone Number"
+msgstr ""
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:112
+msgid "Detail Biographical Info"
+msgstr ""
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:115
+msgid ""
+"This Description will be shown in a popup when you click on the Author Image"
+msgstr ""
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:133
+msgid "Social Media Icons"
+msgstr ""
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:144
+msgid "Enter link for social media icon"
+msgstr ""
+
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:58
+msgid "Check to show post Excerpt."
+msgstr ""
+
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:122
+msgid "Contact Me"
+msgstr ""
+
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:126
+msgid "Name"
+msgstr ""
+
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:130
+msgid "Email"
+msgstr ""
+
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:134
+msgid "Subject"
+msgstr ""
+
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:138
+msgid "Phone"
+msgstr ""
+
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:142
+msgid "Message"
+msgstr ""
+
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:146
+msgid "Your message has been sent successfully!!"
+msgstr ""
+
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:149
+msgid "Send To Email"
+msgstr ""
+
+#: inc/backend/uab-boards/uap-about.php:25
+msgid ""
+"AccessPress Themes is a venture of Access Keys - who has developed hundreds "
+"of Custom WordPress themes and plugins \n"
+"            \tfor its clients over the years. "
+msgstr ""
+
+#: inc/backend/uab-boards/uap-about.php:28
+msgid ""
+" - is an awesome way to represent your post authors. Add author box to your "
+"post to give identity to your post author. Add extra tabs with the authors "
+"posts, social feeds and custom content."
+msgstr ""
+
+#: inc/backend/uab-boards/uap-about.php:30
+msgid "Please visit our product page for more details here:"
+msgstr ""
+
+#: inc/backend/uab-boards/uap-about.php:35
+msgid "Please visit our demo page here:"
+msgstr ""
+
+#: inc/backend/uab-boards/uap-about.php:41
+msgid "Plugin documentation can be found here:"
+msgstr ""
+
+#: inc/backend/uab-boards/uap-about.php:53
+msgid "AccessPress Social Icons"
+msgstr ""
+
+#: inc/backend/uab-boards/uap-about.php:98
+msgid "Get in touch"
+msgstr ""
+
+#: inc/backend/uab-boards/uap-about.php:99
+msgid "If you have any question/feedback, please get in touch:"
+msgstr ""
+
+#: inc/backend/uab-boards/uap-about.php:111
+msgid "Get social"
+msgstr ""
+
+#: inc/backend/uab-boards/uap-about.php:112
+msgid ""
+"Get connected with us on social media. Facebook is the best place to find "
+"updates on our themes/plugins: "
+msgstr ""
+
+#: inc/backend/uab-widgets/uab-author-box-widgets.php:15
+msgid "Ultimate Author Box Author Widget"
+msgstr ""
+
+#. Base ID
+#: inc/backend/uab-widgets/uab-author-box-widgets.php:20
+msgid "Author Box Widget"
+msgstr ""
+
+#: inc/backend/uab-widgets/uab-author-box-widgets.php:33
+msgid "Author box"
+msgstr ""
+
+#: inc/backend/uab-widgets/uab-author-box-widgets.php:34
+#: inc/backend/uab-widgets/uab-author-list-widgets.php:36
+#: inc/backend/uab-widgets/uab-author-list-widgets.php:37
+#: inc/backend/uab-widgets/uab-author-list-widgets.php:70
+msgid "Post Count"
+msgstr ""
+
+#: inc/backend/uab-widgets/uab-author-box-widgets.php:40
+msgid "template-1"
+msgstr ""
+
+#: inc/backend/uab-widgets/uab-author-box-widgets.php:43
+#: inc/backend/uab-widgets/uab-author-list-widgets.php:42
+msgid "Widget Title:"
+msgstr ""
+
+#: inc/backend/uab-widgets/uab-author-box-widgets.php:47
+msgid "Choose Author"
+msgstr ""
+
+#: inc/backend/uab-widgets/uab-author-box-widgets.php:65
+#: inc/backend/uab-widgets/uab-author-list-widgets.php:46
+msgid "Display Type:"
+msgstr ""
+
+#: inc/backend/uab-widgets/uab-author-box-widgets.php:77
+msgid "Auto Detect Author"
+msgstr ""
+
+#: inc/backend/uab-widgets/uab-author-box-widgets.php:78
+msgid ""
+"Use this option to automatically detect author if this sidebar is used on "
+"single post template or author template"
+msgstr ""
+
+#: inc/backend/uab-widgets/uab-author-box-widgets.php:82
+msgid "Display Author Name"
+msgstr ""
+
+#: inc/backend/uab-widgets/uab-author-box-widgets.php:86
+msgid "Display Author Designation"
+msgstr ""
+
+#: inc/backend/uab-widgets/uab-author-box-widgets.php:90
+msgid "Display Author Description"
+msgstr ""
+
+#: inc/backend/uab-widgets/uab-author-box-widgets.php:94
+msgid "Display Social Icons"
+msgstr ""
+
+#: inc/backend/uab-widgets/uab-author-box-widgets.php:179
+#: inc/backend/uab-widgets/uab-author-box-widgets.php:296
+#: inc/frontend/frontend-default/components/uab-component-name.php:16
+#: inc/frontend/frontend-default/components/uab-component-name.php:38
+#: inc/frontend/frontend-default/components/uab-component-name.php:87
+msgid " at"
+msgstr ""
+
+#: inc/backend/uab-widgets/uab-author-list-widgets.php:15
+msgid "Ultimate Author Box Author List Widget"
+msgstr ""
+
+#. Base ID
+#: inc/backend/uab-widgets/uab-author-list-widgets.php:20
+msgid "Author List Widget"
+msgstr ""
+
+#: inc/backend/uab-widgets/uab-author-list-widgets.php:33
+msgid "Author List"
+msgstr ""
+
+#: inc/backend/uab-widgets/uab-author-list-widgets.php:34
+msgid "slider"
+msgstr ""
+
+#: inc/backend/uab-widgets/uab-author-list-widgets.php:35
+msgid "1"
+msgstr ""
+
+#: inc/backend/uab-widgets/uab-author-list-widgets.php:49
+msgid "Slider"
+msgstr ""
+
+#: inc/backend/uab-widgets/uab-author-list-widgets.php:52
+msgid "Sidebar Grid"
+msgstr ""
+
+#: inc/backend/uab-widgets/uab-author-list-widgets.php:55
+msgid "Full Grid"
+msgstr ""
+
+#: inc/backend/uab-widgets/uab-author-list-widgets.php:58
+msgid "List"
+msgstr ""
+
+#: inc/backend/uab-widgets/uab-author-list-widgets.php:63
+msgid "Author Number:"
+msgstr ""
+
+#: inc/backend/uab-widgets/uab-author-list-widgets.php:67
+msgid "Order By:"
+msgstr ""
+
+#: inc/backend/uab-widgets/uab-author-list-widgets.php:73
+msgid "Author Name"
+msgstr ""
+
+#: inc/backend/uab-widgets/uab-author-list-widgets.php:79
+msgid "Order:"
+msgstr ""
+
+#: inc/backend/uab-widgets/uab-author-list-widgets.php:82
+msgid "Ascending"
+msgstr ""
+
+#: inc/backend/uab-widgets/uab-author-list-widgets.php:85
+msgid "Descending"
+msgstr ""
+
+#: inc/backend/uab-widgets/uab-author-list-widgets.php:91
+msgid "Exclude Author:"
+msgstr ""
+
+#: inc/frontend/frontend-contact-form/uab-frontend-contact-form.php:45
+msgid "No shortcode placed."
+msgstr ""
+
+#: inc/frontend/frontend-posts/uab-frontend-posts.php:52
+msgid "Read more..."
+msgstr ""
+
+#: inc/frontend/frontend-default/components/uab-component-contact.php:10
+msgid "contact me"
+msgstr ""
+
+#: inc/frontend/frontend-default/components/uab-component-contact.php:22
+msgid "web"
+msgstr ""
+
+#: inc/frontend/frontend-default/components/uab-component-contact.php:48
+msgid "email"
+msgstr ""
+
+#: inc/frontend/frontend-default/components/uab-component-contact.php:66
+msgid "call"
+msgstr ""
+
+#: inc/frontend/frontend-default/components/uab-component-social.php:19
+msgid "follow me"
+msgstr ""
+
+#: inc/frontend/frontend-facebook-feeds/components/uab-facebook-date.php:11
+#: inc/frontend/frontend-twitter-feeds/components/uab-twitter-date.php:5
+msgid "ago"
+msgstr ""
+
+#: inc/frontend/frontend-posts/components/uab-post-author.php:5
+msgid "By"
+msgstr ""
+
+#: inc/frontend/frontend-twitter-feeds/components/uab-twitter-action.php:8
+msgid "Reply"
+msgstr ""
+
+#: inc/frontend/frontend-twitter-feeds/components/uab-twitter-action.php:18
+msgid "Retweet"
+msgstr ""
+
+#: inc/frontend/frontend-twitter-feeds/components/uab-twitter-action.php:28
+msgid "Favorite"
+msgstr ""
+
+#: inc/frontend/frontend-twitter-feeds/components/uab-twitter-follow.php:5
+msgid "Follow "
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"Ultimate Author Box is a plugin that allows you to add additional "
+"information about the author in your Post, Page Custom Post Type as a "
+"default option or through use of shortcode and widgets."
+msgstr ""
+
+#. URI of the plugin
+msgid "accesspressthemes.com/wordpress-plugins/ultimate-author-box"
+msgstr ""
+
+#. Author of the plugin
+msgid "AccessPress Themes"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "http://accesspressthemes.com"
+msgstr ""

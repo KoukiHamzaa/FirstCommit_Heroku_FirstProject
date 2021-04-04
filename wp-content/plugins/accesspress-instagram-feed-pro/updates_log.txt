@@ -1,0 +1,118 @@
+= 3.0.7 =
+* Issue Fixed: Couldnot get access token on clicking Get Access Token button on plugin main setting page issue fixed.
+* Added: On click Get Access Token, user id and instagram user name will automatically load on its input field. 
+
+= 3.0.6 =
+* Issue fixed: Undefined 'type' and 'permalink' error message shown for slider layout on error log resolved.
+* Issue Fixed: Profile image not showing issue fixed.
+* Issue Fixed: Filter Layout issue fixed.
+
+= 3.0.5 =
+ * Masonry layout package added for isotope issue shown on Avada theme.
+ * On default number of images set to 10 if left empty to resolve the issue of filter terms not matched error message shown.
+ * For video issue, shown only video screenshot image on list of layouts.
+
+= 3.0.4 =
+Issue fixed related with slow speed of the site.
+
+= 3.0.3 =
+added new feature - Feed type as Personal hash tag to get feeds of specific hash tag related with own account set from main plugin page.
+Few frontend CSS and JS refinement done.
+
+= 3.0.2=
+Enqueued Lineraicons js and css file on frontend.
+Error Message shown while activation issue fixed.
+Issue related with prettyphoto js script while loading full page issue resolved.
+Few Frontend CSS refinement done.
+
+= 3.0.1=
+* New Feature: Added Allow Feeds, Block feeds option field for hash tag.
+* Fixed Issue: Frontend CSS issue fixed and few refinement done.
+* Issue related with profile image if not displayed due to instagram changing URL link, then display default instagram logo image resolved.
+* Latest WordPress Version Compatibility Checked.
+
+= 3.0.0=
+*  New Feature: Supports Instagram Any User Timeline and Hash Tag
+*  New Feature: 9 New Advanced Instagram Feeds Templates - 5 Filter Layouts/ 2 Carousel Layouts/ 2 Grid Layouts
+* New Feature: 10+ New Hover Animations
+*  New Feature: Accesspress Custom Light box With Comment and Carousel Display Compatible
+* New Feature: Show Social Share Icons
+* New Feature: Backend Preview/Rebuild Cache/Duplicate Feeds Options Available for each feeds.
+* New Feature: Accesspress Custom Light box With show follow button.
+* New Feature: Many Customization Options Available for different old and new layouts.
+* Fixed Issue: Old hover animation issue fixed.
+* Fixed Issue: Tag feature has been deprecated by Instagram API so we have added new option as Hashtag as alternative solution to get instagram feeds using hash tag.
+* Fixed Issue: Round image filter image size issue fixed.
+
+= 2.2.1=
+* Added some promo content in the backend of the plugin
+* Few CSS Refinements
+
+= 2.2.0=
+* Filter link of Instagram post and added redirection feature for link type for masonry layouts.
+* Few CSS Refinements
+
+= 2.1.9 =
+* Done some frontend CSS refinements
+* Issue related with not displaying profile image in Grid Layout Fixed.
+
+= 2.1.8 =
+* Done the small CSS bug fixings for instagram settings.
+* Done the addition of next previous text insertion option for owl slider layout in 'Add new feed' page.
+* Removed the feed options of any user and my likes option from feed settings due to instagram API deprication.
+* Done the fixes for the issue appearing for the instagram feeds for user profile image for hashtag and replace of full name with username of users.
+
+= 2.1.7 =
+* Done the addition of next previous text insertion option for owl slider layout.
+* Done the number of columns selection options for desktop, tablet and mobile devices for grid layout, masonary layouts and round image layouts.
+* Done the post, followers, following, follow texts of widget; text translation ready.
+* Fixed the alpha color picker issue.
+
+= 2.1.6 =
+* Done the bug fixings for the mosiac layout issue for hide show options of username, comment count, user image.
+* Done the bug fixings for the height issue occuring for owl slider.
+* Done the bug fixings for the masonary layout issues in mobile devices.
+
+= 2.1.5 =
+* Done the bug fixings for the owl slider layout for the responsive devices.
+* Done the bug fixings for the jcarousel slider layout issue for the image size 'large' and 'medium'.
+* Done the bug fixigns for the thumbnail scroller slider layout issue for the image size 'large' and 'medium'.
+* Added filter option by username for user likes and hashtag feeds.
+* Added the depriciation notice for the custom thumbnail size images.
+* Updated the note section for the instagram settings for access token fetching and instagram user ID.
+* Updated the Owl Carousel slider to latest version 2.2.1
+
+= 2.1.4 =
+* Done the update of a plugin to add info for the deprication of custom thumbnail size images other than 150X150.
+* Done the update of the CSS for the owl and nivo slider to adjust the fixed height of images.
+
+= 2.1.3 =
+* Done the bug fixings for the display of the dump array for some layouts.
+* Added more square size images selection option(600X600 and 640X640 and 800X800) for the display of the images.
+* Display of the error message specific to the errors returned by Instagram API.
+
+= 2.1.2 =
+* Added an options to choose different size square images for thumbnail image selection.
+* Added option to disable the animation effects for the masonry layouts.
+* Added an option to make the username and tags clickable for image captions.
+* Added the cache enable option for the feeds.
+
+= 2.1.1 =
+* Fixed the image caption display issue for the accesspress ligtbox for all layouts.
+* Removed the continue; statement that is causing the error in some PHP versions.
+
+= 2.1.0 =
+* Added the features to sort the feeds data by likes counts, comments count and date.
+* Fixed the design issue for the load more issue appearing for the masonry layouts
+* Done the fixings for the loading of the required JS and CSS files for the used layouts only.
+* Fixed the instagram layout issue for the display of the loadmore option in the backend.
+* Fixed the comment display issue for the instagram layout.
+* Fixed the display of the full image caption for the accesspress lightbox.
+* Fixed the load more issues apparing for masonry layouts.
+* Fixed other minor bugs appearing for the display of the error messages.
+
+= 2.0.2 =
+* Fixed the error that is appearing by using profile widget only in the pages.
+
+= 2.0.1 =
+* Added the mosaic layout.

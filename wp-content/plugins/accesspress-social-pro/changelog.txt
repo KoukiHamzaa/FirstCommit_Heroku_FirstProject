@@ -1,0 +1,48 @@
+= 1.3.5 =
+* Fixed the restore default settings issue for both share and counter setion.
+
+= 1.3.4 =
+* Fixed the bug for the update message display issue
+
+= 1.3.3 =
+Share
+* Fixed the theme 4 issues appearing for some themes.
+* Added the various options for the widgets section.
+
+= 1.3.2 =
+counter
+* Removed undefined index icon_hover_color error during save settings.
+* Added option to hide/show fan/followers counts.
+* Frontend CSS correct done
+* Added option to make floating sidebar semi-transparent.
+* Added options to enable/disable floating sidebar in posts/pages
+
+share
+* Fixed the share issue for the floating sidebar for taxonomy and terms.
+* Addition of the Bit.ly API for the twitter url shortner feature.
+* Bug fixings for the facebook share count issue using transients.
+* Updated the delicious share URL
+* Added viber, sms and facebook messenger buttons for social share.
+* Added options to make floating sidebar semi-transparent.
+* Added option to fetch the share counts from HTTP url as well for HTTPS sites
+* Addition of do_action hooks to make users add more social networks if they need it. You can use add_action using these tags for 'apss_more_networks' in content and 'apss_more_networks_in_shortcodes' for shortcode.
+* Added option to make the share icons left/right/center aligned.
+* Added option to make the share icons - viber, facebook messenger, sms hide for non mobile devices. 
+
+= 1.3.1 =
+* Fixed the addition of the missing alt attribute to the ajax loader image.
+
+= 1.3.0 =
+* Done the bug fixing for the share counter not appearing for facebook. If counter is not working properly user should create a facebook APP and use facebook APP id and APP secret in the miscelleneous settings.
+
+= 1.2.9 =
+* Fixed the facebook API issue for the facebook share counts.
+* Fixed the facebook API issue for the facebook follower count with wordpress version 4.6
+
+= 1.2.8 =
+* Bug fixing for the facebook followers counter for the facebook APP API version 2.5 and above.
+* Changed "the_content" filter priority to make it compactible with "Advanced Ads" plugin.
+* Done the bug fixings for the popup shares for facebook and linkedin for different browsers.
+* Done the addition of 1 new theme for the social counter floating sidebar.
+* Added an option to display the total counter in social counter floating sidebar.
+* Fixed the languages folder name.

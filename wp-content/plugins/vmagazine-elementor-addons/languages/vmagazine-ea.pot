@@ -1,0 +1,657 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: VMagazine Elementor Addons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-05-03 06:43+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/"
+
+#: vmagazine-elementor-addons.php:104
+#, php-format
+msgid ""
+"%1$s\"VMagazine Elementor Addons\"%2$s requires %3$s\"Elementor\"%4$s plugin "
+"to be active. Please activate Elementor to continue."
+msgstr ""
+
+#: vmagazine-elementor-addons.php:113
+#, php-format
+msgid ""
+"%1$s\"VMagazine Elementor Addons\"%2$s requires %3$s\"Elementor\"%4$s plugin "
+"to be installed and activated. Please install Elementor to continue."
+msgstr ""
+
+#: vmagazine-elementor-addons.php:130
+msgid "+ to work properly. The plugins is deactivated for now."
+msgstr ""
+
+#. Author of the plugin
+msgid "AccessPress Themes"
+msgstr ""
+
+#: vmagazine-elementor-addons.php:105
+msgid "Activate Elementor"
+msgstr ""
+
+#: elements/grid-list.php:145
+msgid "AJAX Loader"
+msgstr ""
+
+#: elements/multiple-tab.php:158 includes/elementor-helper.php:151
+msgid "Ascending"
+msgstr ""
+
+#: includes/posts-group-control.php:61
+msgid "Author"
+msgstr ""
+
+#: elements/about-author.php:86
+msgid "Author Description"
+msgstr ""
+
+#: elements/about-author.php:78
+msgid "Author Image"
+msgstr ""
+
+#: elements/about-author.php:70
+msgid "Author Title"
+msgstr ""
+
+#: elements/about-author.php:186
+msgid "Author Title Color"
+msgstr ""
+
+#: elements/multiple-tab.php:111 includes/elementor-helper.php:89
+msgid "Authors"
+msgstr ""
+
+#: elements/grid-list.php:140
+msgid "Buton Type"
+msgstr ""
+
+#: elements/grid-list.php:153 elements/timeline-posts.php:70
+msgid "Button Text"
+msgstr ""
+
+#: elements/multiple-tab.php:89 elements/multiple-tab.php:99
+#: includes/elementor-helper.php:60 includes/elementor-helper.php:75
+msgid "Categories"
+msgstr ""
+
+#: elements/recent-posts.php:68
+msgid "Category"
+msgstr ""
+
+#: elements/recent-posts.php:209
+msgid "Category Color"
+msgstr ""
+
+#: elements/featured-slider.php:320 elements/recent-posts.php:273
+msgid "Content Padding"
+msgstr ""
+
+#: elements/recent-posts.php:80
+msgid "Date"
+msgstr ""
+
+#: elements/recent-posts.php:221
+msgid "Date Color"
+msgstr ""
+
+#: elements/multiple-tab.php:157 includes/elementor-helper.php:150
+msgid "Descending"
+msgstr ""
+
+#: elements/about-author.php:221
+msgid "Description Color"
+msgstr ""
+
+#: elements/featured-slider.php:104
+msgid "Display post lists below slider ?"
+msgstr ""
+
+#: elements/featured-slider.php:70
+msgid "Display post slider ?"
+msgstr ""
+
+#: elements/video-playlist.php:281
+msgid ""
+"Either this video has been removed or you don't have access to watch this "
+"video"
+msgstr ""
+
+#: elements/about-author.php:51 elements/block-post-carousel(small).php:51
+#: elements/block-post-carousel.php:51 elements/block-post-slider.php:51
+#: elements/category-slider.php:52 elements/fb-like.php:51
+#: elements/featured-slider.php:51 elements/grid-list.php:51
+#: elements/multiple-category-tabbed.php:51 elements/multiple-category.php:51
+#: elements/multiple-tab.php:47 elements/post-column.php:51
+#: elements/recent-posts.php:50 elements/slider-tab-carousel.php:51
+#: elements/slider-tab.php:51 elements/timeline-posts.php:51
+#: elements/top-trending-block.php:51 elements/video-playlist.php:44
+msgid "Element Title"
+msgstr ""
+
+#: elements/about-author.php:154 elements/block-post-carousel(small).php:124
+#: elements/block-post-carousel.php:157 elements/block-post-slider.php:82
+#: elements/category-slider.php:153 elements/fb-like.php:167
+#: elements/featured-slider.php:170 elements/grid-list.php:209
+#: elements/multiple-category-tabbed.php:103 elements/multiple-category.php:137
+#: elements/multiple-tab.php:213 elements/post-column.php:137
+#: elements/recent-posts.php:145 elements/slider-tab-carousel.php:102
+#: elements/slider-tab.php:91 elements/timeline-posts.php:101
+#: elements/top-trending-block.php:104 elements/video-playlist.php:87
+msgid "Element Title Color"
+msgstr ""
+
+#: includes/elementor-helper.php:295
+msgid "Enter Length for contents in letters or leave balnk to hide content"
+msgstr ""
+
+#: elements/grid-list.php:108
+msgid ""
+"Enter Length for first post contents in letters or leave balnk to hide "
+"content"
+msgstr ""
+
+#: elements/recent-posts.php:126 elements/slider-tab-carousel.php:83
+#: includes/elementor-helper.php:285
+msgid "Enter Length for title in letters or leave balnk to display full"
+msgstr ""
+
+#: elements/category-slider.php:121 elements/featured-slider.php:138
+#: elements/grid-list.php:154 elements/multiple-category-tabbed.php:71
+#: elements/multiple-category.php:105 elements/post-column.php:105
+#: elements/timeline-posts.php:71
+msgid "Enter text for view all button or leave it blank to hide"
+msgstr ""
+
+#: elements/fb-like.php:137
+msgid "Events"
+msgstr ""
+
+#: elements/multiple-tab.php:133 includes/elementor-helper.php:118
+msgid "Exclude Posts"
+msgstr ""
+
+#: elements/multiple-tab.php:142 includes/elementor-helper.php:133
+msgid "Exclude Products"
+msgstr ""
+
+#: elements/fb-like.php:70
+msgid "Facebook Page URL"
+msgstr ""
+
+#: elements/about-author.php:103
+msgid "Facebook URL"
+msgstr ""
+
+#: elements/video-playlist.php:232
+msgid "Fetching Video Title.."
+msgstr ""
+
+#: elements/grid-list.php:106
+msgid "First Post Content Length"
+msgstr ""
+
+#: elements/grid-list.php:118
+msgid "First Post Image Size"
+msgstr ""
+
+#: elements/about-author.php:145 elements/block-post-carousel(small).php:115
+#: elements/block-post-carousel.php:148 elements/block-post-slider.php:73
+#: elements/category-slider.php:144 elements/fb-like.php:158
+#: elements/featured-slider.php:161 elements/grid-list.php:200
+#: elements/multiple-category-tabbed.php:94 elements/multiple-category.php:128
+#: elements/multiple-tab.php:204 elements/post-column.php:128
+#: elements/recent-posts.php:136 elements/slider-tab-carousel.php:93
+#: elements/slider-tab.php:82 elements/timeline-posts.php:92
+#: elements/top-trending-block.php:95 elements/video-playlist.php:78
+msgid "General Styles"
+msgstr ""
+
+#: elements/multiple-tab.php:40
+msgid "Header"
+msgstr ""
+
+#: elements/recent-posts.php:72 elements/recent-posts.php:84
+msgid "Hide"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://accesspressthemes.com/"
+msgstr ""
+
+#: elements/video-playlist.php:64
+msgid "Id must be seperated with comma Eg: fiTaCplx0RY,BRjMNGMOV4A"
+msgstr ""
+
+#: elements/block-post-carousel.php:84 elements/block-post-carousel.php:98
+#: elements/category-slider.php:85 elements/category-slider.php:98
+#: elements/grid-list.php:86 elements/multiple-category.php:84
+#: elements/multiple-tab.php:56 elements/post-column.php:84
+#: elements/recent-posts.php:94
+msgid "Image Size"
+msgstr ""
+
+#: elements/about-author.php:127
+msgid "Instagram URL"
+msgstr ""
+
+#: vmagazine-elementor-addons.php:114
+msgid "Install Elementor"
+msgstr ""
+
+#: elements/block-post-carousel.php:69 elements/category-slider.php:70
+#: elements/grid-list.php:69 elements/multiple-category.php:69
+#: elements/post-column.php:69
+msgid "Layout"
+msgstr ""
+
+#: elements/block-post-carousel.php:73 elements/category-slider.php:74
+#: elements/fullwidth-slider.php:57 elements/grid-list.php:73
+#: elements/multiple-category.php:73 elements/post-column.php:73
+msgid "Layout One"
+msgstr ""
+
+#: elements/about-author.php:44 elements/block-post-carousel(small).php:44
+#: elements/block-post-carousel.php:44 elements/block-post-slider.php:44
+#: elements/category-slider.php:45 elements/fb-like.php:44
+#: elements/featured-slider.php:44 elements/fullwidth-slider.php:44
+#: elements/grid-list.php:44 elements/multiple-category-tabbed.php:44
+#: elements/multiple-category.php:44 elements/post-column.php:44
+#: elements/recent-posts.php:43 elements/slider-tab-carousel.php:44
+#: elements/slider-tab.php:44 elements/timeline-posts.php:44
+#: elements/top-trending-block.php:44 elements/video-playlist.php:37
+msgid "Layout Options"
+msgstr ""
+
+#: elements/block-post-carousel.php:74 elements/category-slider.php:75
+#: elements/fullwidth-slider.php:58 elements/grid-list.php:74
+#: elements/multiple-category.php:74 elements/post-column.php:74
+msgid "Layout Two"
+msgstr ""
+
+#: elements/block-post-carousel.php:300 elements/featured-slider.php:312
+#: elements/grid-list.php:341 elements/multiple-category-tabbed.php:246
+#: elements/multiple-category.php:268 elements/multiple-tab.php:337
+#: elements/post-column.php:280 elements/recent-posts.php:265
+#: elements/timeline-posts.php:227
+msgid "Leave blank for default value"
+msgstr ""
+
+#: elements/video-playlist.php:238
+msgid "Loading.."
+msgstr ""
+
+#: includes/posts-group-control.php:85
+msgid "Manual Selection"
+msgstr ""
+
+#: elements/fb-like.php:125
+msgid "Message"
+msgstr ""
+
+#: elements/block-post-carousel(small).php:83
+#: elements/block-post-carousel(small).php:95
+#: elements/block-post-carousel.php:124 elements/fb-like.php:92
+#: elements/fb-like.php:104 elements/fb-like.php:116 elements/fb-like.php:128
+#: elements/fb-like.php:140 elements/featured-slider.php:74
+#: elements/featured-slider.php:108 elements/grid-list.php:176
+#: elements/top-trending-block.php:72 includes/elementor-helper.php:209
+#: includes/elementor-helper.php:223 includes/elementor-helper.php:238
+#: includes/elementor-helper.php:253
+msgid "No"
+msgstr ""
+
+#: elements/multiple-tab.php:173 includes/elementor-helper.php:170
+msgid "Offset"
+msgstr ""
+
+#: elements/multiple-tab.php:154 includes/elementor-helper.php:147
+msgid "Order"
+msgstr ""
+
+#: elements/multiple-tab.php:165 includes/elementor-helper.php:160
+msgid "Order By"
+msgstr ""
+
+#: elements/about-author.php:119
+msgid "Pinterest URL"
+msgstr ""
+
+#: elements/timeline-posts.php:202
+msgid "Post Border Color"
+msgstr ""
+
+#: includes/elementor-helper.php:234
+msgid "Post Comment"
+msgstr ""
+
+#: elements/block-post-carousel.php:255 elements/category-slider.php:250
+#: elements/featured-slider.php:267 elements/grid-list.php:307
+#: elements/multiple-category-tabbed.php:201 elements/multiple-category.php:235
+#: elements/post-column.php:235
+msgid "Post Content Color"
+msgstr ""
+
+#: includes/elementor-helper.php:292
+msgid "Post Content Length"
+msgstr ""
+
+#: includes/elementor-helper.php:219
+msgid "Post Date"
+msgstr ""
+
+#: elements/block-post-carousel(small).php:201
+#: elements/fullwidth-slider.php:222
+msgid "Post Date Color"
+msgstr ""
+
+#: elements/recent-posts.php:116 elements/slider-tab-carousel.php:74
+#: includes/elementor-helper.php:275
+msgid "Post Excerpts"
+msgstr ""
+
+#: elements/featured-slider.php:117
+msgid "Post List Image Size"
+msgstr ""
+
+#: elements/featured-slider.php:103
+msgid "Post Lists"
+msgstr ""
+
+#: includes/elementor-helper.php:198 includes/elementor-helper.php:205
+msgid "Post Meta"
+msgstr ""
+
+#: elements/block-post-carousel.php:234 elements/block-post-slider.php:159
+#: elements/category-slider.php:229 elements/featured-slider.php:247
+#: elements/fullwidth-slider.php:146 elements/grid-list.php:286
+#: elements/multiple-category-tabbed.php:180 elements/multiple-category.php:214
+#: elements/multiple-tab.php:290 elements/post-column.php:214
+#: elements/slider-tab-carousel.php:179 elements/timeline-posts.php:178
+#: elements/top-trending-block.php:181
+msgid "Post Meta Color"
+msgstr ""
+
+#: elements/block-post-carousel.php:277 elements/featured-slider.php:289
+#: elements/multiple-category-tabbed.php:223 elements/multiple-tab.php:314
+#: elements/post-column.php:257 elements/recent-posts.php:242
+msgid "Post Seperator Color"
+msgstr ""
+
+#: elements/block-post-carousel(small).php:156
+#: elements/block-post-carousel.php:189 elements/block-post-slider.php:114
+#: elements/category-slider.php:184 elements/featured-slider.php:202
+#: elements/fullwidth-slider.php:101 elements/fullwidth-slider.php:177
+#: elements/grid-list.php:241 elements/multiple-category-tabbed.php:135
+#: elements/multiple-category.php:169 elements/multiple-tab.php:245
+#: elements/post-column.php:169 elements/recent-posts.php:177
+#: elements/slider-tab-carousel.php:134 elements/slider-tab.php:123
+#: elements/timeline-posts.php:133 elements/top-trending-block.php:136
+msgid "Post Title Color"
+msgstr ""
+
+#: elements/block-post-carousel(small).php:167
+#: elements/block-post-carousel.php:200 elements/block-post-slider.php:125
+#: elements/category-slider.php:195 elements/featured-slider.php:213
+#: elements/fullwidth-slider.php:112 elements/fullwidth-slider.php:188
+#: elements/grid-list.php:252 elements/multiple-category-tabbed.php:146
+#: elements/multiple-category.php:180 elements/multiple-tab.php:256
+#: elements/post-column.php:180 elements/slider-tab-carousel.php:145
+#: elements/slider-tab.php:134 elements/timeline-posts.php:144
+#: elements/top-trending-block.php:147
+msgid "Post Title Color: Hover"
+msgstr ""
+
+#: elements/multiple-tab.php:82 includes/elementor-helper.php:48
+msgid "Post Type"
+msgstr ""
+
+#: includes/elementor-helper.php:249
+msgid "Post View"
+msgstr ""
+
+#: elements/multiple-tab.php:180 includes/elementor-helper.php:179
+msgid "Posts To Show"
+msgstr ""
+
+#: includes/elementor-helper.php:41
+msgid "Query"
+msgstr ""
+
+#: includes/posts-group-control.php:49
+msgid "Search & Select"
+msgstr ""
+
+#: elements/recent-posts.php:71 elements/recent-posts.php:83
+msgid "Show"
+msgstr ""
+
+#: elements/fb-like.php:101
+msgid "Show Friend Faces"
+msgstr ""
+
+#: elements/block-post-carousel(small).php:79
+#: elements/block-post-carousel.php:120 elements/grid-list.php:172
+#: elements/top-trending-block.php:68
+msgid "Show Post Categories"
+msgstr ""
+
+#: elements/block-post-carousel(small).php:91
+msgid "Show Post Dates"
+msgstr ""
+
+#: elements/featured-slider.php:83 elements/fullwidth-slider.php:67
+msgid "Slider Image Size"
+msgstr ""
+
+#: elements/fullwidth-slider.php:53
+msgid "Slider Layout"
+msgstr ""
+
+#: elements/featured-slider.php:69
+msgid "Slider Posts"
+msgstr ""
+
+#: elements/fullwidth-slider.php:90
+msgid "Slider Styles"
+msgstr ""
+
+#: elements/fullwidth-slider.php:166
+msgid "Slider Thumb Styles"
+msgstr ""
+
+#: elements/about-author.php:232
+msgid "Social Icons Color"
+msgstr ""
+
+#: elements/about-author.php:244
+msgid "Social Icons Color: Hover"
+msgstr ""
+
+#: includes/posts-group-control.php:44
+msgid "Source"
+msgstr ""
+
+#: elements/block-post-carousel.php:288 elements/featured-slider.php:300
+#: elements/grid-list.php:329 elements/multiple-category-tabbed.php:234
+#: elements/multiple-category.php:256 elements/multiple-tab.php:325
+#: elements/post-column.php:268 elements/recent-posts.php:253
+#: elements/timeline-posts.php:215
+msgid "Space Between Posts"
+msgstr ""
+
+#: elements/multiple-tab.php:75 elements/multiple-tab.php:76
+msgid "Tab Title"
+msgstr ""
+
+#: elements/multiple-tab.php:121 includes/elementor-helper.php:101
+msgid "Tags"
+msgstr ""
+
+#. Description of the plugin
+msgid "The elementor elements for VMagazine theme"
+msgstr ""
+
+#: elements/fb-like.php:113
+msgid "Timeline"
+msgstr ""
+
+#: elements/recent-posts.php:123 elements/slider-tab-carousel.php:81
+#: includes/elementor-helper.php:282
+msgid "Title Length"
+msgstr ""
+
+#: elements/about-author.php:111
+msgid "Twitter URL"
+msgstr ""
+
+#: elements/about-author.php:167 elements/about-author.php:199
+#: elements/block-post-carousel(small).php:137
+#: elements/block-post-carousel(small).php:179
+#: elements/block-post-carousel.php:170 elements/block-post-carousel.php:212
+#: elements/block-post-slider.php:95 elements/block-post-slider.php:137
+#: elements/category-slider.php:165 elements/category-slider.php:207
+#: elements/fb-like.php:180 elements/featured-slider.php:183
+#: elements/featured-slider.php:225 elements/fullwidth-slider.php:124
+#: elements/fullwidth-slider.php:200 elements/grid-list.php:222
+#: elements/grid-list.php:264 elements/multiple-category-tabbed.php:116
+#: elements/multiple-category-tabbed.php:158 elements/multiple-category.php:150
+#: elements/multiple-category.php:192 elements/multiple-tab.php:226
+#: elements/multiple-tab.php:268 elements/post-column.php:150
+#: elements/post-column.php:192 elements/recent-posts.php:158
+#: elements/recent-posts.php:189 elements/slider-tab-carousel.php:115
+#: elements/slider-tab-carousel.php:157 elements/slider-tab.php:104
+#: elements/slider-tab.php:146 elements/timeline-posts.php:114
+#: elements/timeline-posts.php:156 elements/top-trending-block.php:117
+#: elements/top-trending-block.php:159 elements/video-playlist.php:100
+#: elements/video-playlist.php:132
+msgid "Typography"
+msgstr ""
+
+#: elements/fb-like.php:89
+msgid "Use Small Header"
+msgstr ""
+
+#: elements/video-playlist.php:63
+msgid "Video ID"
+msgstr ""
+
+#: elements/video-playlist.php:154
+msgid "Video Time Color"
+msgstr ""
+
+#: elements/video-playlist.php:119
+msgid "Video Title Color"
+msgstr ""
+
+#: elements/grid-list.php:144
+msgid "View All"
+msgstr ""
+
+#: elements/category-slider.php:120 elements/featured-slider.php:137
+#: elements/multiple-category-tabbed.php:70 elements/multiple-category.php:104
+#: elements/post-column.php:104
+msgid "View All Button Text"
+msgstr ""
+
+#. Name of the plugin
+msgid "VMagazine Elementor Addons"
+msgstr ""
+
+#: elements/recent-posts.php:15
+msgid "VMagazine Recent Posts"
+msgstr ""
+
+#: elements/about-author.php:15
+msgid "VMagazine: About Author"
+msgstr ""
+
+#: elements/block-post-slider.php:15
+msgid "VMagazine: Block Post Slider"
+msgstr ""
+
+#: elements/post-column.php:15
+msgid "VMagazine: Block Post(Column)"
+msgstr ""
+
+#: elements/block-post-carousel.php:15
+msgid "VMagazine: Block Posts(Carousel)"
+msgstr ""
+
+#: elements/block-post-carousel(small).php:15
+msgid "VMagazine: Carousel Slider(Small)"
+msgstr ""
+
+#: elements/category-slider.php:15
+msgid "VMagazine: Category Posts(Slider)"
+msgstr ""
+
+#: elements/fb-like.php:15
+msgid "VMagazine: Facebook Like"
+msgstr ""
+
+#: elements/featured-slider.php:15
+msgid "VMagazine: Featured Slider"
+msgstr ""
+
+#: elements/fullwidth-slider.php:15
+msgid "VMagazine: Fullwidth Slider"
+msgstr ""
+
+#: elements/grid-list.php:15
+msgid "VMagazine: Grid/List Posts"
+msgstr ""
+
+#: elements/multiple-category.php:15
+msgid "VMagazine: Multiple Category Block"
+msgstr ""
+
+#: elements/multiple-category-tabbed.php:15
+msgid "VMagazine: Multiple Category Tabbed"
+msgstr ""
+
+#: elements/multiple-tab.php:15
+msgid "VMagazine: Multiple Tabs"
+msgstr ""
+
+#: elements/slider-tab.php:15
+msgid "VMagazine: Slider Tab"
+msgstr ""
+
+#: elements/slider-tab-carousel.php:15
+msgid "VMagazine: Slider Tab Carousel"
+msgstr ""
+
+#: elements/timeline-posts.php:15
+msgid "VMagazine: Timeline Posts"
+msgstr ""
+
+#: elements/top-trending-block.php:15
+msgid "VMagazine: Top Trending"
+msgstr ""
+
+#: elements/video-playlist.php:15
+msgid "VMagazine: YouTube Video Playlists"
+msgstr ""
+
+#: elements/block-post-carousel(small).php:82
+#: elements/block-post-carousel(small).php:94
+#: elements/block-post-carousel.php:123 elements/fb-like.php:91
+#: elements/fb-like.php:103 elements/fb-like.php:115 elements/fb-like.php:127
+#: elements/fb-like.php:139 elements/featured-slider.php:73
+#: elements/featured-slider.php:107 elements/grid-list.php:175
+#: elements/top-trending-block.php:71 includes/elementor-helper.php:208
+#: includes/elementor-helper.php:222 includes/elementor-helper.php:237
+#: includes/elementor-helper.php:252
+msgid "Yes"
+msgstr ""

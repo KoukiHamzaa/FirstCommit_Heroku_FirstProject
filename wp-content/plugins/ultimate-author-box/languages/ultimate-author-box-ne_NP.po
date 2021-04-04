@@ -1,0 +1,1538 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Ultimate Author Box\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-03-10 11:16+0000\n"
+"PO-Revision-Date: 2017-03-10 11:19+0000\n"
+"Last-Translator: Quinn Wilkinson <sunil@access-keys.com>\n"
+"Language-Team: Nepali\n"
+"Language: ne-NP\n"
+"Plural-Forms: nplurals=2; plural=n != 1\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco - https://localise.biz/"
+
+#: ultimate-author-box.php:346
+msgid "uab_bottom"
+msgstr ""
+
+#: ultimate-author-box.php:1284
+#, php-format
+msgid "Failed to save %s"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:36
+#: inc/backend/ultimate-profile-settings.php:354
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:257
+msgid "Shortcode"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:73
+msgid "+"
+msgstr ""
+
+#: inc/backend/ultimate-profile-settings.php:371
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:271
+msgid "Add Widgets"
+msgstr ""
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:133
+msgid "Social Media Icons"
+msgstr "सामाजिक मिडिया प्रतीक"
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:144
+msgid "Enter link for social media icon"
+msgstr "सामाजिक मिडिया प्रतिमा लागि लिंक प्रविष्ट गर्नुहोस्"
+
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:58
+msgid "Check to show post Excerpt."
+msgstr ""
+"\n"
+"पोस्ट अंश देखाउन जाँच गर्नुहोस्।"
+
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:122
+msgid "Contact Me"
+msgstr ""
+"\n"
+"मलाई सम्पर्क गर्नुस्"
+
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:126
+msgid "Name"
+msgstr ""
+"\n"
+"नाम"
+
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:130
+msgid "Email"
+msgstr ""
+"\n"
+"इमेल"
+
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:134
+msgid "Subject"
+msgstr ""
+"\n"
+"विषय"
+
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:138
+msgid "Phone"
+msgstr ""
+"\n"
+"फोन"
+
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:142
+msgid "Message"
+msgstr ""
+"\n"
+"सन्देश"
+
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:146
+msgid "Your message has been sent successfully!!"
+msgstr ""
+"\n"
+"तपाईंको सन्देश सफलतापूर्वक पठाइएको छ !!"
+
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:149
+msgid "Send To Email"
+msgstr ""
+"\n"
+"इमेल पठाउनुहोस्"
+
+#: inc/backend/uab-boards/uap-about.php:25
+msgid ""
+"AccessPress Themes is a venture of Access Keys - who has developed hundreds "
+"of Custom WordPress themes and plugins \n"
+"            \tfor its clients over the years. "
+msgstr ""
+
+#: inc/backend/uab-boards/uap-about.php:28
+msgid ""
+" - is an awesome way to represent your post authors. Add author box to your "
+"post to give identity to your post author. Add extra tabs with the authors "
+"posts, social feeds and custom content."
+msgstr ""
+
+#: inc/backend/uab-boards/uap-about.php:30
+msgid "Please visit our product page for more details here:"
+msgstr ""
+
+#: inc/backend/uab-boards/uap-about.php:35
+msgid "Please visit our demo page here:"
+msgstr ""
+
+#: inc/backend/uab-boards/uap-about.php:41
+msgid "Plugin documentation can be found here:"
+msgstr ""
+
+#: inc/backend/uab-boards/uap-about.php:53
+msgid "AccessPress Social Icons"
+msgstr ""
+
+#: inc/backend/uab-boards/uap-about.php:98
+msgid "Get in touch"
+msgstr ""
+
+#: inc/backend/uab-boards/uap-about.php:99
+msgid "If you have any question/feedback, please get in touch:"
+msgstr ""
+
+#: inc/backend/uab-boards/uap-about.php:111
+msgid "Get social"
+msgstr ""
+
+#: inc/backend/uab-boards/uap-about.php:112
+msgid ""
+"Get connected with us on social media. Facebook is the best place to find "
+"updates on our themes/plugins: "
+msgstr ""
+
+#: inc/backend/uab-widgets/uab-author-box-widgets.php:15
+msgid "Ultimate Author Box Author Widget"
+msgstr ""
+"\n"
+"परम लेखक बक्स लेखक विजेट"
+
+#. Base ID
+#: inc/backend/uab-widgets/uab-author-box-widgets.php:20
+msgid "Author Box Widget"
+msgstr ""
+"\n"
+"बक्स विजेट लेखक"
+
+#: inc/backend/uab-widgets/uab-author-box-widgets.php:33
+msgid "Author box"
+msgstr ""
+"\n"
+"लेखक बक्स"
+
+#: inc/backend/uab-widgets/uab-author-box-widgets.php:34
+#: inc/backend/uab-widgets/uab-author-list-widgets.php:36
+#: inc/backend/uab-widgets/uab-author-list-widgets.php:37
+#: inc/backend/uab-widgets/uab-author-list-widgets.php:70
+msgid "Post Count"
+msgstr "गणना पोस्ट"
+
+#: inc/backend/uab-widgets/uab-author-box-widgets.php:40
+msgid "template-1"
+msgstr ""
+
+#: inc/backend/uab-widgets/uab-author-box-widgets.php:43
+#: inc/backend/uab-widgets/uab-author-list-widgets.php:42
+msgid "Widget Title:"
+msgstr "विजेट शीर्षक:"
+
+#: inc/backend/uab-widgets/uab-author-list-widgets.php:35
+msgid "1"
+msgstr ""
+
+#: inc/frontend/frontend-twitter-feeds/components/uab-twitter-action.php:18
+msgid "Retweet"
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"Ultimate Author Box is a plugin that allows you to add additional "
+"information about the author in your Post, Page Custom Post Type as a "
+"default option or through use of shortcode and widgets."
+msgstr ""
+
+#. URI of the plugin
+msgid "accesspressthemes.com/wordpress-plugins/ultimate-author-box"
+msgstr ""
+
+#. Author of the plugin
+msgid "AccessPress Themes"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "http://accesspressthemes.com"
+msgstr ""
+
+#: ultimate-author-box.php:170
+msgid "Only 1 widget allowed per tab"
+msgstr "केवल 1 विजेट प्रति ट्याब अनुमति"
+
+#: ultimate-author-box.php:171
+msgid "Saving Data."
+msgstr "डाटा सुरक्षित।"
+
+#: ultimate-author-box.php:172
+msgid "Saved Data."
+msgstr "बचत गरिएका डाटा।"
+
+#: ultimate-author-box.php:220
+msgid "Settings"
+msgstr "सेटिङ"
+
+#: ultimate-author-box.php:221
+msgid "Support"
+msgstr "समर्थन"
+
+#. Name of the plugin
+#: ultimate-author-box.php:233 ultimate-author-box.php:233
+msgid "Ultimate Author Box"
+msgstr "परम लेखक बक्स"
+
+#: ultimate-author-box.php:245 ultimate-author-box.php:245
+msgid "How to use"
+msgstr "कसरी प्रयोग गर्ने"
+
+#: ultimate-author-box.php:256 ultimate-author-box.php:256
+msgid "About"
+msgstr "बारेमा"
+
+#: ultimate-author-box.php:349
+msgid "Sorry! The Author has not filled his profile."
+msgstr "माफ गर्नुहोस्! लेखक आफ्नो प्रोफाइल भरिएको छैन।"
+
+#: ultimate-author-box.php:674
+msgid ""
+"Note: The Ultimate Author Box is installed but you do not have the "
+"permission to configure it. Please contact the site Admin to have access to "
+"your AuthorBox."
+msgstr ""
+"नोट: परम लेखक बक्स स्थापित छ तर तपाईं यसलाई कन्फिगर गर्न अनुमति छैन। कृपया "
+"आफ्नो AuthorBox पहुँच साइट व्यवस्थापक सम्पर्क गर्नुहोस्।"
+
+#: ultimate-author-box.php:689
+msgid ""
+"Hello there, \n"
+"\n"
+"You have received an email from your site. \n"
+"\n"
+"Details below: \n"
+"Name: #name \n"
+"Email: #email \n"
+"Phone: #phone\n"
+"Subject: #subject \n"
+"Message: #message \n"
+"\n"
+"Thank you!  "
+msgstr ""
+"नमस्ते त्यहाँ,\n"
+"\n"
+"तपाईं आफ्नो साइट बाट इमेल प्राप्त गर्नुभएको छ।\n"
+"\n"
+"विवरण तल:\n"
+"नाम: #name\n"
+"इमेल: #email\n"
+"फोन: #phone\n"
+"विषय: #subject\n"
+"सन्देश: #message\n"
+"\n"
+"धन्यवाद!"
+
+#: ultimate-author-box.php:799
+msgid "Show Author Box in this post"
+msgstr "यो पोस्ट मा लेखक बक्स शो"
+
+#: ultimate-author-box.php:801
+msgid "Yes"
+msgstr "हो"
+
+#: ultimate-author-box.php:802
+msgid "No"
+msgstr "कुनै"
+
+#: ultimate-author-box.php:804
+msgid "Author Box Position"
+msgstr "लेखक-मा भएको पेटी स्थिति"
+
+#: ultimate-author-box.php:806
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:16
+msgid "Default"
+msgstr "पूर्वनिर्धारित"
+
+#: ultimate-author-box.php:807
+msgid "Top"
+msgstr "टुप्पो"
+
+#: ultimate-author-box.php:808
+msgid "Bottom"
+msgstr "तल"
+
+#: ultimate-author-box.php:968
+msgid "Ultimate Author Box Widget area"
+msgstr "परम लेखक बक्स विजेट क्षेत्र"
+
+#: ultimate-author-box.php:969
+msgid "Do not manually edit this area."
+msgstr "म्यानुअल यो क्षेत्र सम्पादन नगर्नुहोस्।"
+
+#: ultimate-author-box.php:1012
+#, php-format
+msgid "Failed to add %s to %d"
+msgstr "%s मा %d थप्न असफल"
+
+#: ultimate-author-box.php:1042 inc/backend/ultimate-profile-settings.php:426
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:329
+msgid "Edit"
+msgstr ""
+"\n"
+"सम्पादन गर्नुहोस्"
+
+#: ultimate-author-box.php:1146
+msgid "Delete"
+msgstr "मेटाउन"
+
+#: ultimate-author-box.php:1147
+msgid "Close"
+msgstr "बन्द"
+
+#: ultimate-author-box.php:1191
+#, php-format
+msgid "Deleted %s"
+msgstr "मेटिएको %s"
+
+#: ultimate-author-box.php:1193
+#, php-format
+msgid "Failed to delete %s"
+msgstr ""
+"\n"
+"मेट्न असफल भयो %s"
+
+#: ultimate-author-box.php:1282
+#, php-format
+msgid "Saved %s"
+msgstr "सुरक्षित %s"
+
+#: inc/backend/uap-settings.php:12
+msgid "Settings saved successfully"
+msgstr ""
+"\n"
+"सेटिङ सफलतापूर्वक सुरक्षित"
+
+#: inc/backend/uap-settings.php:15
+msgid "Settings restored to default successfully"
+msgstr ""
+"\n"
+"सेटिङ सफलतापूर्वक पूर्वनिर्धारितमा पुनर्स्थापित"
+
+#: inc/backend/uap-settings.php:18
+msgid "Cache Cleared successfully"
+msgstr ""
+"\n"
+"क्यास सफलता पूर्वक खाली गरियो"
+
+#: inc/backend/uap-settings.php:56 inc/backend/uap-settings.php:479
+#: inc/backend/ultimate-profile-settings.php:471
+msgid "Select Template"
+msgstr ""
+"\n"
+"टेम्पलेट चयन"
+
+#: inc/backend/uap-settings.php:59 inc/backend/uap-settings.php:484
+#: inc/backend/ultimate-profile-settings.php:473
+#: inc/backend/ultimate-profile-settings.php:573
+#: inc/backend/uab-widgets/uab-author-box-widgets.php:68
+msgid "Template 1"
+msgstr "टेम्पलेट 1"
+
+#: inc/backend/uap-settings.php:60 inc/backend/uap-settings.php:485
+#: inc/backend/ultimate-profile-settings.php:474
+#: inc/backend/ultimate-profile-settings.php:574
+#: inc/backend/uab-widgets/uab-author-box-widgets.php:71
+msgid "Template 2"
+msgstr "टेम्पलेट 2"
+
+#: inc/backend/uap-settings.php:61 inc/backend/uap-settings.php:486
+#: inc/backend/ultimate-profile-settings.php:475
+#: inc/backend/ultimate-profile-settings.php:575
+msgid "Template 3"
+msgstr "टेम्पलेट 3"
+
+#: inc/backend/uap-settings.php:62 inc/backend/uap-settings.php:487
+#: inc/backend/ultimate-profile-settings.php:476
+#: inc/backend/ultimate-profile-settings.php:576
+msgid "Template 4"
+msgstr "टेम्पलेट 4"
+
+#: inc/backend/uap-settings.php:63 inc/backend/uap-settings.php:488
+#: inc/backend/ultimate-profile-settings.php:477
+#: inc/backend/ultimate-profile-settings.php:577
+msgid "Template 5"
+msgstr "टेम्पलेट 5"
+
+#: inc/backend/uap-settings.php:64 inc/backend/uap-settings.php:489
+#: inc/backend/ultimate-profile-settings.php:478
+#: inc/backend/ultimate-profile-settings.php:578
+msgid "Template 6"
+msgstr "टेम्पलेट 6"
+
+#: inc/backend/uap-settings.php:65 inc/backend/uap-settings.php:490
+#: inc/backend/ultimate-profile-settings.php:479
+#: inc/backend/ultimate-profile-settings.php:579
+msgid "Template 7"
+msgstr "टेम्पलेट 7"
+
+#: inc/backend/uap-settings.php:66 inc/backend/uap-settings.php:491
+#: inc/backend/ultimate-profile-settings.php:480
+#: inc/backend/ultimate-profile-settings.php:580
+msgid "Template 8"
+msgstr "टेम्पलेट 8"
+
+#: inc/backend/uap-settings.php:67 inc/backend/uap-settings.php:492
+#: inc/backend/ultimate-profile-settings.php:481
+#: inc/backend/ultimate-profile-settings.php:581
+msgid "Template 9"
+msgstr "टेम्पलेट 9"
+
+#: inc/backend/uap-settings.php:68 inc/backend/uap-settings.php:493
+#: inc/backend/ultimate-profile-settings.php:482
+#: inc/backend/ultimate-profile-settings.php:582
+msgid "Template 10"
+msgstr "टेम्पलेट 10"
+
+#: inc/backend/uap-settings.php:69 inc/backend/uap-settings.php:494
+#: inc/backend/ultimate-profile-settings.php:483
+#: inc/backend/ultimate-profile-settings.php:583
+msgid "Template 11"
+msgstr "टेम्पलेट 11"
+
+#: inc/backend/uap-settings.php:70 inc/backend/uap-settings.php:495
+#: inc/backend/ultimate-profile-settings.php:484
+#: inc/backend/ultimate-profile-settings.php:584
+msgid "Template 12"
+msgstr "टेम्पलेट 12"
+
+#: inc/backend/uap-settings.php:71 inc/backend/uap-settings.php:496
+#: inc/backend/ultimate-profile-settings.php:485
+#: inc/backend/ultimate-profile-settings.php:585
+msgid "Template 13"
+msgstr "टेम्पलेट 13"
+
+#: inc/backend/uap-settings.php:72 inc/backend/uap-settings.php:497
+#: inc/backend/ultimate-profile-settings.php:486
+#: inc/backend/ultimate-profile-settings.php:586
+msgid "Template 14"
+msgstr "टेम्पलेट 14"
+
+#: inc/backend/uap-settings.php:73 inc/backend/uap-settings.php:498
+#: inc/backend/ultimate-profile-settings.php:487
+#: inc/backend/ultimate-profile-settings.php:587
+msgid "Template 15"
+msgstr "टेम्पलेट 15"
+
+#: inc/backend/uap-settings.php:74 inc/backend/uap-settings.php:499
+#: inc/backend/ultimate-profile-settings.php:488
+#: inc/backend/ultimate-profile-settings.php:588
+msgid "Template 16"
+msgstr "टेम्पलेट 16"
+
+#: inc/backend/uap-settings.php:75 inc/backend/uap-settings.php:500
+#: inc/backend/ultimate-profile-settings.php:489
+#: inc/backend/ultimate-profile-settings.php:589
+msgid "Template 17"
+msgstr "टेम्पलेट 17"
+
+#: inc/backend/uap-settings.php:76 inc/backend/uap-settings.php:501
+#: inc/backend/ultimate-profile-settings.php:490
+#: inc/backend/ultimate-profile-settings.php:590
+msgid "Template 18"
+msgstr "टेम्पलेट 18"
+
+#: inc/backend/uap-settings.php:77 inc/backend/uap-settings.php:502
+#: inc/backend/ultimate-profile-settings.php:491
+#: inc/backend/ultimate-profile-settings.php:591
+msgid "Template 19"
+msgstr "टेम्पलेट 19"
+
+#: inc/backend/uap-settings.php:150
+#: inc/backend/ultimate-profile-settings.php:669
+msgid "Primary Color"
+msgstr ""
+"\n"
+"प्राथमिक रंग"
+
+#: inc/backend/uap-settings.php:176
+#: inc/backend/ultimate-profile-settings.php:673
+msgid "Secondary Color"
+msgstr ""
+"\n"
+"माध्यमिक रंग"
+
+#: inc/backend/uap-settings.php:184
+#: inc/backend/ultimate-profile-settings.php:677
+msgid "Tertiary Color"
+msgstr "Tertiary रंग"
+
+#: inc/backend/uap-settings.php:192
+#: inc/backend/ultimate-profile-settings.php:186
+#: inc/backend/ultimate-profile-settings.php:683
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:61
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:89
+msgid "Upload Custom Image"
+msgstr ""
+"\n"
+"अनुकूलन छवि अपलोड"
+
+#: inc/backend/uap-settings.php:197
+#: inc/backend/ultimate-profile-settings.php:191
+#: inc/backend/ultimate-profile-settings.php:688
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:65
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:93
+msgid "Image Preview:"
+msgstr ""
+"\n"
+"छवि पूर्वावलोकन:"
+
+#: inc/backend/uap-settings.php:210
+msgid "Disable Ultimate Author Box"
+msgstr ""
+"\n"
+"परम लेखक बक्स असक्षम"
+
+#: inc/backend/uap-settings.php:211
+msgid "Disable Author Box in frontend entirely"
+msgstr ""
+"\n"
+"फ्रन्टइन्ड अक्षम लेखक बक्स सम्पूर्ण"
+
+#: inc/backend/uap-settings.php:223
+msgid "Choose place to show Author Box"
+msgstr "लेखक-मा भएको पेटी देखाउन स्थान चयन"
+
+#: inc/backend/uap-settings.php:227
+msgid "Show in Posts"
+msgstr ""
+"\n"
+"पोस्टमा  देखाउन"
+
+#: inc/backend/uap-settings.php:228
+msgid "Check to show Ultimate Author Box in Posts"
+msgstr ""
+"\n"
+"मा पोस्ट परम लेखक बक्स देखाउन जाँच"
+
+#: inc/backend/uap-settings.php:242
+msgid "Show in Pages"
+msgstr ""
+"\n"
+"पन्ने देखाउनुहोस्"
+
+#: inc/backend/uap-settings.php:243
+msgid "Check to show Ultimate Author Box in Pages"
+msgstr ""
+"\n"
+"पन्ने मा परम लेखक बक्स देखाउन जाँच"
+
+#: inc/backend/uap-settings.php:270
+msgid "Show in Custom Post Types"
+msgstr ""
+"\n"
+"अनुकूलन पोस्ट प्रकार देखाउनुहोस्"
+
+#: inc/backend/uap-settings.php:271
+msgid "Check to show Ultimate Author Box in Custom Post Type"
+msgstr ""
+"\n"
+"अनुकूलन पोस्ट प्रकार परम लेखक बक्स देखाउन जाँच"
+
+#: inc/backend/uap-settings.php:305
+msgid "Show Author Box at"
+msgstr ""
+"\n"
+"लेखक-मा भएको पेटी शो मा"
+
+#: inc/backend/uap-settings.php:309
+msgid "Top of Posts"
+msgstr "पोस्ट को शीर्ष"
+
+#: inc/backend/uap-settings.php:310
+msgid "Bottom of Posts"
+msgstr ""
+"\n"
+"पोस्ट को तल"
+
+#: inc/backend/uap-settings.php:311
+msgid "None"
+msgstr "कुनै पनि"
+
+#: inc/backend/uap-settings.php:317
+msgid "Hide Author Box if Author Biographical Info is empty"
+msgstr ""
+"\n"
+"लेखक लुकाउनुहोस् बक्स यदि लेखक जीवनी जानकारी खाली छ"
+
+#: inc/backend/uap-settings.php:318
+msgid "Check to hide Author Box if Author Biographical Info is empty"
+msgstr ""
+"\n"
+"लेखक-मा भएको पेटी लुकाउन लेखक जीवनी जानकारी खाली छ भने जाँच"
+
+#: inc/backend/uap-settings.php:333
+msgid "Show Default Biographical Info if empty"
+msgstr ""
+"\n"
+"पूर्वनिर्धारित शो जीवनी जानकारी भने खाली"
+
+#: inc/backend/uap-settings.php:334
+msgid "Check to Show Default Biographical Info if empty"
+msgstr ""
+"\n"
+"पूर्वनिर्धारित जीवनी जानकारी भने खाली देखाउन जाँच"
+
+#: inc/backend/uap-settings.php:349
+msgid "Default Author Box Message"
+msgstr ""
+"\n"
+"पूर्वनिर्धारित लेखक बक्स सन्देश"
+
+#: inc/backend/uap-settings.php:357
+msgid "Show Author Box in Small Screen Device"
+msgstr "लघु पर्दा उपकरण मा लेखक बक्स शो"
+
+#: inc/backend/uap-settings.php:358
+msgid "Check to Show Author Box in Small Screen Device"
+msgstr ""
+"\n"
+"लघु पर्दा उपकरण मा लेखक बक्स देखाउन जाँच"
+
+#: inc/backend/uap-settings.php:372
+msgid "Frontend link target options "
+msgstr ""
+"\n"
+"फ्रन्टइन्ड लिंक लक्ष्य विकल्प"
+
+#: inc/backend/uap-settings.php:376
+#: inc/backend/ultimate-profile-settings.php:303
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:207
+msgid "New Page"
+msgstr ""
+"\n"
+"नयाँ पृष्ठ"
+
+#: inc/backend/uap-settings.php:377
+#: inc/backend/ultimate-profile-settings.php:304
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:208
+msgid "Same Page"
+msgstr "समान पृष्ठ"
+
+#: inc/backend/uap-settings.php:392
+msgid "Choose user roles"
+msgstr ""
+"\n"
+"प्रयोगकर्ता भूमिका चयन"
+
+#: inc/backend/uap-settings.php:393
+msgid "Select user roles for user fields access"
+msgstr ""
+"\n"
+"प्रयोगकर्ता क्षेत्रहरू पहुँचका लागि प्रयोगकर्ता भूमिका चयन"
+
+#: inc/backend/uap-settings.php:423
+msgid "Consumer Key (API Key)"
+msgstr ""
+"\n"
+"उपभोक्ता प्रमुख (एपीआई प्रमुख)"
+
+#: inc/backend/uap-settings.php:431
+msgid "Consumer Secret (API Secret)"
+msgstr ""
+"\n"
+"उपभोक्ता रहस्य (एपीआई रहस्य)"
+
+#: inc/backend/uap-settings.php:439
+msgid "Access Token"
+msgstr ""
+"\n"
+"पहुँच टोकन"
+
+#: inc/backend/uap-settings.php:447
+msgid "Access Token Secret"
+msgstr ""
+"\n"
+"पहुँच टोकन रहस्य"
+
+#: inc/backend/uap-settings.php:455
+msgid "Cache Period"
+msgstr ""
+"\n"
+"क्यास अवधि"
+
+#: inc/backend/uap-settings.php:463
+msgid "Delete Cache"
+msgstr "क्यास मेटाउन"
+
+#: inc/backend/uap-settings.php:483
+#: inc/backend/ultimate-profile-settings.php:472
+msgid "Default template"
+msgstr "पूर्वनिर्धारित टेम्पलेट"
+
+#: inc/backend/uap-settings.php:503
+#: inc/backend/ultimate-profile-settings.php:492
+msgid "Custom template"
+msgstr ""
+"\n"
+"अनुकूल टेम्प्लेट"
+
+#: inc/backend/uap-settings.php:504
+#: inc/backend/ultimate-profile-settings.php:493
+msgid "Custom Template"
+msgstr ""
+"\n"
+"अनुकूल टेम्प्लेट"
+
+#: inc/backend/uap-settings.php:581
+msgid "Enable Custom CSS Section"
+msgstr ""
+"\n"
+"अनुकूलन CSS धारा सक्षम"
+
+#: inc/backend/uap-settings.php:582
+msgid "Check to Enable Custom CSS Section"
+msgstr ""
+"\n"
+"अनुकूलन CSS धारा सक्षम गर्न जाँच"
+
+#: inc/backend/uap-settings.php:608
+msgid "Save Changes"
+msgstr ""
+"\n"
+"परिवर्तनहरू सुरक्षित गर्नुहोस"
+
+#: inc/backend/uap-settings.php:609
+msgid "Are you sure you want to restore default settings?"
+msgstr ""
+"\n"
+"तपाईं पूर्वनिर्धारित सेटिङहरू पुनःस्थापित गर्न चाहनुहुन्छ निश्चित हुनुहुन्छ?"
+
+#: inc/backend/uap-settings.php:609
+msgid "Restore Default Settings"
+msgstr ""
+"\n"
+"पूर्वनिर्धारित सेटिङहरू पुनर्स्थापना"
+
+#: inc/backend/uap-settings.php:610
+msgid "Go to Profile Settings"
+msgstr ""
+"\n"
+"सेटिङ प्रोफाइल जानुहोस्"
+
+#: inc/backend/ultimate-profile-settings.php:4
+msgid "Please fill your Author Box"
+msgstr ""
+"\n"
+"कृपया आफ्नो लेखक बक्स भर्न"
+
+#: inc/backend/ultimate-profile-settings.php:18
+msgid "Ultimate Author Box Profile Settings"
+msgstr ""
+"\n"
+"परम लेखक बक्स प्रोफाइल सेटिङ"
+
+#: inc/backend/ultimate-profile-settings.php:21
+msgid "Select New Tab Option"
+msgstr "नयाँ ट्याब विकल्प चयन गर्नुहोस्"
+
+#: inc/backend/ultimate-profile-settings.php:25
+#: inc/backend/ultimate-profile-settings.php:213
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:113
+msgid "Select Tab Type"
+msgstr ""
+"\n"
+"ट्याब प्रकार चयन गर्नुहोस्"
+
+#: inc/backend/ultimate-profile-settings.php:27
+msgid "Default tabs"
+msgstr ""
+"\n"
+"पूर्वनिर्धारित ट्याबहरू"
+
+#: inc/backend/ultimate-profile-settings.php:28
+msgid "Author posts"
+msgstr ""
+"\n"
+"लेखक पोस्ट"
+
+#: inc/backend/ultimate-profile-settings.php:29
+msgid "Company description"
+msgstr ""
+"\n"
+"कम्पनी विवरण"
+
+#: inc/backend/ultimate-profile-settings.php:30
+msgid "Contact Form"
+msgstr ""
+"\n"
+"सम्पर्क फारम"
+
+#: inc/backend/ultimate-profile-settings.php:31
+msgid "Feeds tabs"
+msgstr "ट्याबहरू फीड"
+
+#: inc/backend/ultimate-profile-settings.php:32
+msgid "Twitter Feeds"
+msgstr "ट्विटर फिड"
+
+#: inc/backend/ultimate-profile-settings.php:33
+msgid "RSS Feeds"
+msgstr ""
+"\n"
+"आरएसएस फिड"
+
+#: inc/backend/ultimate-profile-settings.php:34
+msgid "Facebook Feeds"
+msgstr "फेसबुक फिड"
+
+#: inc/backend/ultimate-profile-settings.php:35
+msgid "Custom tabs"
+msgstr ""
+"\n"
+"अनुकूलन ट्याबहरू"
+
+#: inc/backend/ultimate-profile-settings.php:37
+msgid "Widget"
+msgstr ""
+"\n"
+"विजेट"
+
+#: inc/backend/ultimate-profile-settings.php:38
+msgid "WYSIWYG Editor"
+msgstr ""
+"\n"
+"WYSIWYG सम्पादक"
+
+#: inc/backend/ultimate-profile-settings.php:43
+msgid "Tab Name"
+msgstr "ट्याब नाम"
+
+#: inc/backend/ultimate-profile-settings.php:44
+msgid "New tab"
+msgstr ""
+"\n"
+"नयाँ ट्याब"
+
+#: inc/backend/ultimate-profile-settings.php:54
+#: inc/frontend/uap-shortcode.php:86 inc/frontend/uap-shortcode.php:90
+#: inc/frontend/uap-shortcode.php:91
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:5
+#: inc/frontend/frontend-default/components/uab-component-title.php:14
+msgid "Author Details"
+msgstr ""
+"\n"
+"लेखक विवरण"
+
+#: inc/backend/ultimate-profile-settings.php:73
+msgid "New Tab"
+msgstr "नयाँ ट्याब"
+
+#: inc/backend/ultimate-profile-settings.php:74
+msgid "Template Settings"
+msgstr ""
+"\n"
+"टेम्पलेट सेटिङ"
+
+#: inc/backend/ultimate-profile-settings.php:100
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:11
+msgid "Author Posts"
+msgstr "लेखक पोस्ट"
+
+#: inc/backend/ultimate-profile-settings.php:105
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:4
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:16
+msgid "Frontend Tab Title"
+msgstr ""
+"\n"
+"फ्रन्टइन्ड ट्याब शीर्षक"
+
+#: inc/backend/ultimate-profile-settings.php:109
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:20
+msgid "Number of posts"
+msgstr ""
+"\n"
+"पोस्ट संख्या"
+
+#: inc/backend/ultimate-profile-settings.php:113
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:24
+msgid "Select Post Type"
+msgstr ""
+"\n"
+"पोस्ट प्रकार चयन गर्नुहोस्"
+
+#: inc/backend/ultimate-profile-settings.php:115
+#: inc/frontend/uap-frontend-popup.php:21
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:26
+msgid "Latest Posts"
+msgstr "नवीनतम पोस्ट"
+
+#: inc/backend/ultimate-profile-settings.php:116
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:27
+msgid "Selective Posts"
+msgstr "छनौट पोस्ट"
+
+#: inc/backend/ultimate-profile-settings.php:120
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:32
+msgid "Posts to show"
+msgstr ""
+"\n"
+"देखाउन पोस्ट"
+
+#: inc/backend/ultimate-profile-settings.php:148
+#: inc/frontend/uap-frontend-popup.php:51
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:52
+#: inc/frontend/frontend-posts/uab-frontend-posts.php:140
+msgid "The User does not have any posts"
+msgstr ""
+"\n"
+"प्रयोगकर्ता कुनै पनि पोष्ट छैन"
+
+#: inc/backend/ultimate-profile-settings.php:153
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:57
+msgid "Show Post Excerpt"
+msgstr ""
+"\n"
+"पोस्ट अंश शो"
+
+#: inc/backend/ultimate-profile-settings.php:154
+msgid "Check to show post excerpt."
+msgstr "पोस्ट अंश देखाउन जाँच गर्नुहोस्।"
+
+#: inc/backend/ultimate-profile-settings.php:157
+#: inc/backend/ultimate-profile-settings.php:297
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:61
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:201
+msgid "Read More Text"
+msgstr ""
+"\n"
+"थप पाठ पढ्नुहोस्"
+
+#: inc/backend/ultimate-profile-settings.php:161
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:65
+msgid "Show Post Image"
+msgstr ""
+"\n"
+"छवि पोस्ट शो"
+
+#: inc/backend/ultimate-profile-settings.php:162
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:66
+msgid "Check to show post image."
+msgstr ""
+"\n"
+"पोस्ट छवि देखाउन जाँच गर्नुहोस्।"
+
+#: inc/backend/ultimate-profile-settings.php:165
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:69
+msgid "Show Post Date"
+msgstr ""
+"\n"
+"पोस्ट शो तिथि"
+
+#: inc/backend/ultimate-profile-settings.php:166
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:70
+msgid "Check to show post date."
+msgstr ""
+"\n"
+"पोस्ट मिति देखाउन जाँच गर्नुहोस्।"
+
+#: inc/backend/ultimate-profile-settings.php:169
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:73
+msgid "Show Post Category"
+msgstr "Show Post Category"
+
+#: inc/backend/ultimate-profile-settings.php:170
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:74
+msgid "Check to show post category."
+msgstr "पोस्ट श्रेणी देखाउन जाँच गर्नुहोस्।"
+
+#: inc/backend/ultimate-profile-settings.php:183
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:86
+msgid "Additional Company Information"
+msgstr ""
+"\n"
+"थप कम्पनी सूचना"
+
+#: inc/backend/ultimate-profile-settings.php:197
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:98
+msgid "Company Detail Description"
+msgstr ""
+"\n"
+"कम्पनी विस्तृत विवरण"
+
+#: inc/backend/ultimate-profile-settings.php:209
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:109
+msgid "Contact Form Settings"
+msgstr ""
+"\n"
+"संपर्क फारम सेटिङहरू"
+
+#: inc/backend/ultimate-profile-settings.php:215
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:115
+msgid "Default Contact Form"
+msgstr "पूर्वनिर्धारित संपर्क फारम"
+
+#: inc/backend/ultimate-profile-settings.php:216
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:116
+msgid "External Contact Form"
+msgstr ""
+"\n"
+"बाहिरी संपर्क फारम"
+
+#: inc/backend/ultimate-profile-settings.php:221
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:155
+msgid "Contact Form Shortcode"
+msgstr "संपर्क फारम Shortcode"
+
+#: inc/backend/ultimate-profile-settings.php:227
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:121
+msgid "Contact Form Title"
+msgstr ""
+"\n"
+"संपर्क फारम शीर्षक"
+
+#: inc/backend/ultimate-profile-settings.php:231
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:125
+msgid "Name Label"
+msgstr ""
+"\n"
+"नाम लेबल"
+
+#: inc/backend/ultimate-profile-settings.php:235
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:129
+msgid "Email Label"
+msgstr "इमेल लेबल"
+
+#: inc/backend/ultimate-profile-settings.php:239
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:137
+msgid "Phone Label"
+msgstr "फोन लेबल"
+
+#: inc/backend/ultimate-profile-settings.php:243
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:133
+msgid "Subject Label"
+msgstr ""
+"\n"
+"विषय लेबल"
+
+#: inc/backend/ultimate-profile-settings.php:247
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:141
+msgid "Message Label"
+msgstr ""
+"\n"
+"सन्देश लेबल"
+
+#: inc/backend/ultimate-profile-settings.php:251
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:145
+msgid "Success Message"
+msgstr "सफलता सन्देश"
+
+#: inc/backend/ultimate-profile-settings.php:255
+msgid "Send to Email"
+msgstr ""
+"\n"
+"इमेल पठाउन"
+
+#: inc/backend/ultimate-profile-settings.php:268
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:168
+msgid ""
+"Note: The Admin has not configured the Twitter Settings. Please contact "
+"Admin to use Twitter Feeds."
+msgstr ""
+"\n"
+"नोट: व्यवस्थापक ट्वीटर सेटिङ कन्फिगर छैन। ट्विटर फिड प्रयोग गर्न व्यवस्थापक "
+"सम्पर्क गर्नुहोस्।"
+
+#: inc/backend/ultimate-profile-settings.php:271
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:171
+msgid "Twitter Settings"
+msgstr ""
+"\n"
+"ट्विटर सेटिङ"
+
+#: inc/backend/ultimate-profile-settings.php:274
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:50
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:175
+msgid "Twitter Username"
+msgstr ""
+"\n"
+"ट्विटर प्रयोगकर्ता नाम"
+
+#: inc/backend/ultimate-profile-settings.php:278
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:179
+msgid "Number of Twitter Feeds"
+msgstr ""
+"\n"
+"ट्विटर फिड संख्या"
+
+#: inc/backend/ultimate-profile-settings.php:289
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:193
+msgid "RSS Feed Settings"
+msgstr "RSS फीड सेटिङ"
+
+#: inc/backend/ultimate-profile-settings.php:293
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:197
+msgid "RSS URL"
+msgstr "आरएसएस URL"
+
+#: inc/backend/ultimate-profile-settings.php:301
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:205
+msgid "Link target options"
+msgstr ""
+"\n"
+"लिंक लक्ष्य विकल्प"
+
+#: inc/backend/ultimate-profile-settings.php:308
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:212
+msgid "Number of RSS Feeds"
+msgstr ""
+"\n"
+"आरएसएस फिड संख्या"
+
+#: inc/backend/ultimate-profile-settings.php:322
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:227
+msgid "Facebook Feed Settings"
+msgstr "फेसबुक फिड सेटिङ"
+
+#: inc/backend/ultimate-profile-settings.php:326
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:231
+msgid "Facebook APP ID"
+msgstr ""
+"\n"
+"फेसबुक अनुप्रयोग परिचय"
+
+#: inc/backend/ultimate-profile-settings.php:330
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:235
+msgid "Facebook APP Secret"
+msgstr "फेसबुक अनुप्रयोग रहस्य"
+
+#: inc/backend/ultimate-profile-settings.php:334
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:239
+msgid "Facebook Profile/Page ID"
+msgstr "फेसबुक प्रोफाइल / पेज आईडी"
+
+#: inc/backend/ultimate-profile-settings.php:339
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:244
+msgid "Number of Facebook Feeds"
+msgstr ""
+"\n"
+"फेसबुक फिड संख्या"
+
+#: inc/backend/ultimate-profile-settings.php:374
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:274
+msgid "Lists Of Widgets"
+msgstr ""
+"\n"
+"सूची विजेट"
+
+#: inc/backend/ultimate-profile-settings.php:402
+#: inc/backend/uab-backend-tabs/uap-skeleton-tab.php:302
+msgid "Listed Widgets"
+msgstr ""
+"\n"
+"सूचीबद्ध विजेट"
+
+#: inc/backend/ultimate-profile-settings.php:467
+msgid "Enable Personal Template"
+msgstr ""
+"\n"
+"व्यक्तिगत खाका सक्षम"
+
+#: inc/backend/ultimate-profile-settings.php:571
+msgid "Select Custom Template"
+msgstr ""
+"\n"
+"अनुकूलटेम्प्लेट चयन"
+
+#: inc/frontend/uab-frontend-rssfeeds.php:41
+msgid "Invalid/Empty RSS URL"
+msgstr ""
+"\n"
+"अवैध / खाली आरएसएस URL"
+
+#: inc/frontend/uap-shortcode.php:209
+msgid "No Tab Selected"
+msgstr "कुनै ट्याब चयन"
+
+#. $this->print_array($total_posts);
+#: inc/backend/uab-backend-tabs/uab-facebook-fetch.php:169
+msgid "Facebook Feeds Fetched Successfully!"
+msgstr ""
+"\n"
+"फेसबुक तानिएको सफलतापूर्वक फीड!"
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:9
+msgid "Profile Image Settings"
+msgstr ""
+"\n"
+"प्रोफाइल स्वतपरिक्रमणपृष्ठ"
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:14
+msgid "Choose Image Type"
+msgstr ""
+"\n"
+"छवि प्रकार चयन"
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:17
+msgid "Gravatar"
+msgstr ""
+"\n"
+"Gravatar"
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:18
+msgid "Social Profile Image"
+msgstr "सामाजिक प्रोफाइल छवि"
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:19
+msgid "Facebook"
+msgstr "फेसबुक"
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:20
+msgid "Instagram"
+msgstr ""
+"\n"
+"इन्स्टाग्राम"
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:21
+msgid "Twitter"
+msgstr "ट्विटर"
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:22
+msgid "Custom Image"
+msgstr ""
+"\n"
+"अनुकूलन छवि"
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:23
+msgid "Upload Image"
+msgstr ""
+"\n"
+"छवि अपलोड"
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:29
+msgid "Facebook User ID"
+msgstr "फेसबुक प्रयोगकर्ता आईडी"
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:33
+msgid " paste your Facebook Profile URL and click on Find Numeric ID."
+msgstr ""
+"\n"
+"आफ्नो Facebook प्रोफाइल URL पेस्ट र संख्यात्मक आईडी फेला मा क्लिक गर्नुहोस्।"
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:40
+msgid "Instagram Image ID"
+msgstr ""
+"\n"
+"इन्स्टाग्राम छवि आईडी"
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:43
+msgid ""
+"To get your Instagram Image ID, Please open any image on Instagram you want "
+"in the single preview. If your image URL is https://www.instagram."
+"com/p/7FfbBpSOaC/ then 7FfbBpSOaC is your Instagram Image ID"
+msgstr ""
+"\n"
+"आफ्नो इन्स्टाग्राम छवि आईडी प्राप्त गर्न, कृपया तपाईं एकल पूर्वावलोकन मा "
+"चाहनुहुन्छ इन्स्टाग्राम कुनै पनि छवि खोल्न। आफ्नो छवि URL https://www."
+"instagram.com/p/7FfbBpSOaC/ छ भने 7FfbBpSOaC आफ्नो इन्स्टाग्राम छवि आईडी छ"
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:53
+msgid ""
+"To get your Twitter Username, Please open your twitter profile. If your "
+"profile URL is https://twitter.com/apthemes  then apthemes is your Twitter "
+"username."
+msgstr ""
+"\n"
+"आफ्नो ट्विटर प्रयोगकर्ता नाम प्राप्त गर्न, कृपया आफ्नो ट्विटर प्रोफाइल "
+"खोल्न। आफ्नो प्रोफाइल URL apthemes त्यसपछि https://twitter.com/apthemes छ "
+"भने आफ्नो ट्विटर प्रयोगकर्ता नाम छ।"
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:74
+msgid "Choose Image Shape"
+msgstr ""
+"\n"
+"छवि आकृति चयन"
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:76
+msgid "Square"
+msgstr ""
+"\n"
+"वर्ग"
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:77
+msgid "Circular"
+msgstr ""
+"\n"
+"परिपत्र"
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:84
+msgid "Company Information"
+msgstr ""
+"\n"
+"कम्पनी सूचना"
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:88
+msgid "Company Name"
+msgstr "कम्पनी नाम"
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:92
+msgid "Company URL"
+msgstr "कम्पनी URL"
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:96
+msgid "Designation"
+msgstr ""
+"\n"
+"पद"
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:100
+msgid "Separator"
+msgstr "विभाजक"
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:105
+msgid "Phone Number"
+msgstr ""
+"\n"
+"फोन नम्बर"
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:112
+msgid "Detail Biographical Info"
+msgstr ""
+"\n"
+"विवरण जीवनी जानकारी"
+
+#: inc/backend/uab-backend-tabs/uap-defaut-tab.php:115
+msgid ""
+"This Description will be shown in a popup when you click on the Author Image"
+msgstr ""
+"\n"
+"आफ्नो विवरण पपअप मा देखाइने जब तपाईं लेखक छवि मा क्लिक"
+
+#: inc/backend/uab-widgets/uab-author-box-widgets.php:47
+msgid "Choose Author"
+msgstr ""
+"\n"
+"लेखक चयन"
+
+#: inc/backend/uab-widgets/uab-author-box-widgets.php:65
+#: inc/backend/uab-widgets/uab-author-list-widgets.php:46
+msgid "Display Type:"
+msgstr ""
+"प्रदर्शन प्रकार:\n"
+
+#: inc/backend/uab-widgets/uab-author-box-widgets.php:77
+msgid "Auto Detect Author"
+msgstr ""
+"\n"
+"स्वतः लेखक पत्ता"
+
+#: inc/backend/uab-widgets/uab-author-box-widgets.php:78
+msgid ""
+"Use this option to automatically detect author if this sidebar is used on "
+"single post template or author template"
+msgstr ""
+"\n"
+"यो साइडबार एकल पोस्ट खाका या लेखक टेम्पलेट मा प्रयोग गरिन्छ भने स्वतः लेखक "
+"पत्ता लगाउन यो विकल्प प्रयोग गर्नुहोस्"
+
+#: inc/backend/uab-widgets/uab-author-box-widgets.php:82
+msgid "Display Author Name"
+msgstr ""
+"\n"
+"प्रदर्शन लेखक नाम"
+
+#: inc/backend/uab-widgets/uab-author-box-widgets.php:86
+msgid "Display Author Designation"
+msgstr ""
+"\n"
+"प्रदर्शन लेखक पद"
+
+#: inc/backend/uab-widgets/uab-author-box-widgets.php:90
+msgid "Display Author Description"
+msgstr "प्रदर्शन लेखक विवरण"
+
+#: inc/backend/uab-widgets/uab-author-box-widgets.php:94
+msgid "Display Social Icons"
+msgstr "सामाजिक प्रतीक प्रदर्शन"
+
+#: inc/backend/uab-widgets/uab-author-box-widgets.php:179
+#: inc/backend/uab-widgets/uab-author-box-widgets.php:296
+#: inc/frontend/frontend-default/components/uab-component-name.php:16
+#: inc/frontend/frontend-default/components/uab-component-name.php:38
+#: inc/frontend/frontend-default/components/uab-component-name.php:87
+msgid " at"
+msgstr ""
+"\n"
+"मा"
+
+#: inc/backend/uab-widgets/uab-author-list-widgets.php:15
+msgid "Ultimate Author Box Author List Widget"
+msgstr ""
+"\n"
+"परम लेखक बक्स लेखक सूची विजेट"
+
+#. Base ID
+#: inc/backend/uab-widgets/uab-author-list-widgets.php:20
+msgid "Author List Widget"
+msgstr ""
+"\n"
+"लेखक सूची विजेट"
+
+#: inc/backend/uab-widgets/uab-author-list-widgets.php:33
+msgid "Author List"
+msgstr ""
+"\n"
+"लेखक सूची"
+
+#: inc/backend/uab-widgets/uab-author-list-widgets.php:34
+msgid "slider"
+msgstr "स्लाइडर"
+
+#: inc/backend/uab-widgets/uab-author-list-widgets.php:49
+msgid "Slider"
+msgstr ""
+"\n"
+"स्लाइडर"
+
+#: inc/backend/uab-widgets/uab-author-list-widgets.php:52
+msgid "Sidebar Grid"
+msgstr "साइडबार ग्रिड"
+
+#: inc/backend/uab-widgets/uab-author-list-widgets.php:55
+msgid "Full Grid"
+msgstr "पूर्ण ग्रिड"
+
+#: inc/backend/uab-widgets/uab-author-list-widgets.php:58
+msgid "List"
+msgstr "सूची"
+
+#: inc/backend/uab-widgets/uab-author-list-widgets.php:63
+msgid "Author Number:"
+msgstr ""
+"\n"
+"लेखक नम्बर:"
+
+#: inc/backend/uab-widgets/uab-author-list-widgets.php:67
+msgid "Order By:"
+msgstr "क्रम:"
+
+#: inc/backend/uab-widgets/uab-author-list-widgets.php:73
+msgid "Author Name"
+msgstr "लेखक नाम"
+
+#: inc/backend/uab-widgets/uab-author-list-widgets.php:79
+msgid "Order:"
+msgstr "आदेश:"
+
+#: inc/backend/uab-widgets/uab-author-list-widgets.php:82
+msgid "Ascending"
+msgstr "आरोही"
+
+#: inc/backend/uab-widgets/uab-author-list-widgets.php:85
+msgid "Descending"
+msgstr "घट्दो"
+
+#: inc/backend/uab-widgets/uab-author-list-widgets.php:91
+msgid "Exclude Author:"
+msgstr "लेखक बहिष्कृत:"
+
+#: inc/frontend/frontend-contact-form/uab-frontend-contact-form.php:45
+msgid "No shortcode placed."
+msgstr "कुनै shortcode राख्नुभयो।"
+
+#: inc/frontend/frontend-posts/uab-frontend-posts.php:52
+msgid "Read more..."
+msgstr ""
+"\n"
+"थप पढ्नुहोस्..."
+
+#: inc/frontend/frontend-default/components/uab-component-contact.php:10
+msgid "contact me"
+msgstr "मलाई सम्पर्क गर्नुस्"
+
+#: inc/frontend/frontend-default/components/uab-component-contact.php:22
+msgid "web"
+msgstr "वेब"
+
+#: inc/frontend/frontend-default/components/uab-component-contact.php:48
+msgid "email"
+msgstr "इमेल"
+
+#: inc/frontend/frontend-default/components/uab-component-contact.php:66
+msgid "call"
+msgstr "कल"
+
+#: inc/frontend/frontend-default/components/uab-component-social.php:19
+msgid "follow me"
+msgstr "मलाई पिछा गर्नुहोस्"
+
+#: inc/frontend/frontend-facebook-feeds/components/uab-facebook-date.php:11
+#: inc/frontend/frontend-twitter-feeds/components/uab-twitter-date.php:5
+msgid "ago"
+msgstr "पहिले"
+
+#: inc/frontend/frontend-posts/components/uab-post-author.php:5
+msgid "By"
+msgstr "द्वारा"
+
+#: inc/frontend/frontend-twitter-feeds/components/uab-twitter-action.php:8
+msgid "Reply"
+msgstr "जवाफ"
+
+#: inc/frontend/frontend-twitter-feeds/components/uab-twitter-action.php:28
+msgid "Favorite"
+msgstr "मनपर्ने"
+
+#: inc/frontend/frontend-twitter-feeds/components/uab-twitter-follow.php:5
+msgid "Follow "
+msgstr "पालना"

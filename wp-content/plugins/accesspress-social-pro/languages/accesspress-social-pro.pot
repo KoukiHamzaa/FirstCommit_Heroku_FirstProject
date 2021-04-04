@@ -1,0 +1,1618 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: AccessPress Social Pro\n"
+"POT-Creation-Date: 2015-09-10 12:37+0545\n"
+"PO-Revision-Date: 2015-09-10 12:38+0545\n"
+"Last-Translator: \n"
+"Language-Team: AccessPress Themes <support@accesspressthemes.com>\n"
+"Language: english\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: ..\n"
+
+#: ../accesspress-social-counter-pro.php:75
+msgid "AccessPress Social Pro"
+msgstr ""
+
+#: ../accesspress-social-counter-pro.php:76
+msgid "Social Counter Pro"
+msgstr ""
+
+#: ../accesspress-social-counter-pro.php:77
+msgid "Social Share Pro"
+msgstr ""
+
+#: ../accesspress-social-counter-pro.php:145
+msgid "Default Settings Restored Successfully"
+msgstr ""
+
+#: ../accesspress-social-counter-pro.php:231
+msgid "Cache Deleted Successfully"
+msgstr ""
+
+#: ../accesspress-social-share-pro.php:378
+msgid "Settings restored Successfully."
+msgstr ""
+
+#: ../accesspress-social-share-pro.php:668
+msgid "Cache cleared Successfully"
+msgstr ""
+
+#: ../accesspress-social-share-pro.php:753
+msgid "Hide share icons in content"
+msgstr ""
+
+#: ../accesspress-social-share-pro.php:754
+msgid "Hide share icons in widget"
+msgstr ""
+
+#: ../accesspress-social-share-pro.php:755
+msgid "Hide share icons in floating sidebar"
+msgstr ""
+
+#: ../accesspress-social-share-pro.php:756
+msgid "Hide social share popup"
+msgstr ""
+
+#: ../inc/counter/backend/save-settings.php:151
+msgid "Settings Saved Successfully"
+msgstr ""
+
+#: ../inc/counter/backend/settings.php:16
+msgid "Follow us for new updates"
+msgstr ""
+
+#: ../inc/counter/backend/settings.php:35 ../inc/counter/backend/widget.php:15
+msgid "AccessPress Social Counter Pro"
+msgstr ""
+
+#: ../inc/counter/backend/settings.php:38
+msgid ""
+"Note: If you have upgraded the plugin from <strong>FREE</strong> to "
+"<strong>PRO</strong> or find any unsual issues then please setup the plugin "
+"by restoring default settings once.If you find any trouble while setting up "
+"the plugin then please feel free to contact our customer support at <a href="
+"\"mailto:support@accesspressthemes.com?Subject=AccessPress%20Social%20Counter"
+"%20Pro\" target=\"_top\">support@accesspressthemes.com</a>."
+msgstr ""
+
+#: ../inc/counter/backend/settings.php:43 ../inc/counter/backend/widget.php:68
+#: ../inc/counter/backend/boards/floating-sidebar.php:92
+msgid "Social Profiles"
+msgstr ""
+
+#: ../inc/counter/backend/settings.php:44
+#: ../inc/share/backend/main-page.php:56
+msgid "Display Settings"
+msgstr ""
+
+#: ../inc/counter/backend/settings.php:45
+#: ../inc/share/backend/main-page.php:58
+msgid "Floating Sidebar Settings"
+msgstr ""
+
+#: ../inc/counter/backend/settings.php:46
+#: ../inc/share/backend/main-page.php:594
+msgid "Cache Settings"
+msgstr ""
+
+#: ../inc/counter/backend/settings.php:47
+msgid "How to use"
+msgstr ""
+
+#: ../inc/counter/backend/settings.php:48
+#: ../inc/share/backend/main-page.php:61
+msgid "About"
+msgstr ""
+
+#: ../inc/counter/backend/settings.php:110
+#: ../inc/share/backend/main-page.php:638
+msgid "Are you sure you want to restore default settings?"
+msgstr ""
+
+#: ../inc/counter/backend/settings.php:110
+msgid "Restore Default Settings"
+msgstr ""
+
+#: ../inc/counter/backend/settings.php:111
+msgid "Are you sure you want to delete cache?"
+msgstr ""
+
+#: ../inc/counter/backend/settings.php:111
+msgid "Delete Cache"
+msgstr ""
+
+#: ../inc/counter/backend/widget.php:16
+msgid "AccessPress Social Counter Pro Widget"
+msgstr ""
+
+#: ../inc/counter/backend/widget.php:63
+msgid "Title:"
+msgstr ""
+
+#: ../inc/counter/backend/widget.php:70
+msgid ""
+"Please enter comma separated profiles names.Profiles from plugin social "
+"profiles will be shown if kept blank"
+msgstr ""
+
+#: ../inc/counter/backend/widget.php:73
+msgid "Theme"
+msgstr ""
+
+#: ../inc/counter/backend/widget.php:86
+msgid "Animation"
+msgstr ""
+
+#: ../inc/counter/backend/widget.php:88
+msgid "Default"
+msgstr ""
+
+#: ../inc/counter/backend/widget.php:89
+msgid "No animation"
+msgstr ""
+
+#: ../inc/counter/backend/widget.php:101
+#: ../inc/counter/backend/boards/display-settings.php:67
+#: ../inc/counter/backend/boards/floating-sidebar.php:84
+msgid "Counter Format"
+msgstr ""
+
+#: ../inc/counter/backend/widget.php:103
+msgid "Choose Count Format"
+msgstr ""
+
+#: ../inc/counter/backend/boards/cache-settings.php:4
+msgid "Cache Period"
+msgstr ""
+
+#: ../inc/counter/backend/boards/cache-settings.php:7
+msgid ""
+"Please enter the time in hours in which the count should be updated.Default "
+"is 24 hours"
+msgstr ""
+
+#: ../inc/counter/backend/boards/display-settings.php:4
+msgid "Social Profile Order"
+msgstr ""
+
+#: ../inc/counter/backend/boards/display-settings.php:41
+#: ../inc/counter/frontend/floating-sidebar.php:214
+#: ../inc/counter/frontend/shortcode.php:248
+msgid "LinkedIn"
+msgstr ""
+
+#: ../inc/counter/backend/boards/display-settings.php:45
+#: ../inc/counter/backend/boards/social-profiles.php:610
+#: ../inc/counter/frontend/shortcode.php:261
+msgid "RSS"
+msgstr ""
+
+#: ../inc/counter/backend/boards/display-settings.php:53
+msgid "Icon Hover Animations"
+msgstr ""
+
+#: ../inc/counter/backend/boards/display-settings.php:56
+msgid "No Animation"
+msgstr ""
+
+#: ../inc/counter/backend/boards/display-settings.php:75
+msgid "Show Total Count"
+msgstr ""
+
+#: ../inc/counter/backend/boards/display-settings.php:79
+msgid "Check this if you want to show the total number of counts at the end."
+msgstr ""
+
+#: ../inc/counter/backend/boards/display-settings.php:84
+#: ../inc/counter/backend/boards/floating-sidebar.php:21
+msgid "Choose Theme"
+msgstr ""
+
+#: ../inc/counter/backend/boards/display-settings.php:89
+#: ../inc/share/backend/main-page.php:261
+#: ../inc/share/backend/main-page.php:428 ../inc/share/backend/widget.php:85
+msgid "Theme "
+msgstr ""
+
+#: ../inc/counter/backend/boards/floating-sidebar.php:3
+msgid "Enable Floating Sidebar"
+msgstr ""
+
+#: ../inc/counter/backend/boards/floating-sidebar.php:6
+msgid "Check if you want to show floating sidebar in the frontend"
+msgstr ""
+
+#: ../inc/counter/backend/boards/floating-sidebar.php:11
+msgid "Show sidebar in"
+msgstr ""
+
+#: ../inc/counter/backend/boards/floating-sidebar.php:14
+msgid "All pages"
+msgstr ""
+
+#: ../inc/counter/backend/boards/floating-sidebar.php:15
+msgid "Only on homepage"
+msgstr ""
+
+#: ../inc/counter/backend/boards/floating-sidebar.php:16
+msgid "Except homepage"
+msgstr ""
+
+#: ../inc/counter/backend/boards/floating-sidebar.php:24
+msgid "Theme 1"
+msgstr ""
+
+#: ../inc/counter/backend/boards/floating-sidebar.php:28
+msgid "Theme 2"
+msgstr ""
+
+#: ../inc/counter/backend/boards/floating-sidebar.php:32
+msgid "Theme 3"
+msgstr ""
+
+#: ../inc/counter/backend/boards/floating-sidebar.php:36
+msgid "Theme 4"
+msgstr ""
+
+#: ../inc/counter/backend/boards/floating-sidebar.php:40
+msgid "Theme 5"
+msgstr ""
+
+#: ../inc/counter/backend/boards/floating-sidebar.php:64
+msgid "Hover Background Color"
+msgstr ""
+
+#: ../inc/counter/backend/boards/floating-sidebar.php:67
+msgid ""
+"Please keep blank if you don't want to change the background color of icon "
+"on mouser hover."
+msgstr ""
+
+#: ../inc/counter/backend/boards/floating-sidebar.php:71
+msgid "Floating Sidebar Position"
+msgstr ""
+
+#: ../inc/counter/backend/boards/floating-sidebar.php:74
+msgid "Left Top"
+msgstr ""
+
+#: ../inc/counter/backend/boards/floating-sidebar.php:75
+msgid "Left Middle"
+msgstr ""
+
+#: ../inc/counter/backend/boards/floating-sidebar.php:76
+msgid "Left Bottom"
+msgstr ""
+
+#: ../inc/counter/backend/boards/floating-sidebar.php:77
+msgid "Right Top"
+msgstr ""
+
+#: ../inc/counter/backend/boards/floating-sidebar.php:78
+msgid "Right Middle"
+msgstr ""
+
+#: ../inc/counter/backend/boards/floating-sidebar.php:79
+msgid "Right Bottom"
+msgstr ""
+
+#: ../inc/counter/backend/boards/floating-sidebar.php:95
+msgid ""
+"Please enter the social profiles by separating with comma if you want to "
+"override the social profiles choosen from above social profiles section."
+"Please refer to About Section for the available social profiles."
+msgstr ""
+
+#: ../inc/counter/backend/boards/floating-sidebar.php:99
+msgid "Hide in mobile devices"
+msgstr ""
+
+#: ../inc/counter/backend/boards/floating-sidebar.php:103
+msgid "Check if you want to hide floating sidebar in the mobile devices."
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:5
+#: ../inc/counter/frontend/floating-sidebar.php:28
+#: ../inc/counter/frontend/shortcode.php:39
+msgid "Facebook"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:7
+#: ../inc/counter/backend/boards/social-profiles.php:36
+#: ../inc/counter/backend/boards/social-profiles.php:93
+#: ../inc/counter/backend/boards/social-profiles.php:128
+#: ../inc/counter/backend/boards/social-profiles.php:175
+#: ../inc/counter/backend/boards/social-profiles.php:210
+#: ../inc/counter/backend/boards/social-profiles.php:245
+#: ../inc/counter/backend/boards/social-profiles.php:273
+#: ../inc/counter/backend/boards/social-profiles.php:301
+#: ../inc/counter/backend/boards/social-profiles.php:329
+#: ../inc/counter/backend/boards/social-profiles.php:357
+#: ../inc/counter/backend/boards/social-profiles.php:385
+#: ../inc/counter/backend/boards/social-profiles.php:413
+#: ../inc/counter/backend/boards/social-profiles.php:448
+#: ../inc/counter/backend/boards/social-profiles.php:484
+#: ../inc/counter/backend/boards/social-profiles.php:512
+#: ../inc/counter/backend/boards/social-profiles.php:552
+#: ../inc/counter/backend/boards/social-profiles.php:612
+#: ../inc/counter/backend/boards/social-profiles.php:643
+#: ../inc/counter/backend/boards/social-profiles.php:653
+msgid "Display Counter"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:8
+#: ../inc/counter/backend/boards/social-profiles.php:37
+#: ../inc/counter/backend/boards/social-profiles.php:94
+#: ../inc/counter/backend/boards/social-profiles.php:129
+#: ../inc/counter/backend/boards/social-profiles.php:176
+#: ../inc/counter/backend/boards/social-profiles.php:211
+#: ../inc/counter/backend/boards/social-profiles.php:246
+#: ../inc/counter/backend/boards/social-profiles.php:274
+#: ../inc/counter/backend/boards/social-profiles.php:302
+#: ../inc/counter/backend/boards/social-profiles.php:330
+#: ../inc/counter/backend/boards/social-profiles.php:358
+#: ../inc/counter/backend/boards/social-profiles.php:386
+#: ../inc/counter/backend/boards/social-profiles.php:414
+#: ../inc/counter/backend/boards/social-profiles.php:449
+#: ../inc/counter/backend/boards/social-profiles.php:485
+#: ../inc/counter/backend/boards/social-profiles.php:513
+#: ../inc/counter/backend/boards/social-profiles.php:553
+#: ../inc/counter/backend/boards/social-profiles.php:613
+#: ../inc/counter/backend/boards/social-profiles.php:644
+#: ../inc/counter/backend/boards/social-profiles.php:654
+msgid "Show/Hide"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:12
+msgid "Facebook Page ID"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:15
+msgid ""
+"Please enter the page ID or page name.For example:If your page url is "
+"https://www.facebook.com/AccessPressThemes then your page ID is "
+"AccessPressThemes"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:21
+#: ../inc/counter/backend/boards/social-profiles.php:77
+#: ../inc/counter/backend/boards/social-profiles.php:113
+#: ../inc/counter/backend/boards/social-profiles.php:155
+#: ../inc/counter/backend/boards/social-profiles.php:195
+#: ../inc/counter/backend/boards/social-profiles.php:230
+#: ../inc/counter/backend/boards/social-profiles.php:258
+#: ../inc/counter/backend/boards/social-profiles.php:286
+#: ../inc/counter/backend/boards/social-profiles.php:314
+#: ../inc/counter/backend/boards/social-profiles.php:342
+#: ../inc/counter/backend/boards/social-profiles.php:370
+#: ../inc/counter/backend/boards/social-profiles.php:398
+#: ../inc/counter/backend/boards/social-profiles.php:433
+#: ../inc/counter/backend/boards/social-profiles.php:469
+#: ../inc/counter/backend/boards/social-profiles.php:498
+#: ../inc/counter/backend/boards/social-profiles.php:532
+msgid "Default Count"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:24
+#: ../inc/counter/backend/boards/social-profiles.php:80
+#: ../inc/counter/backend/boards/social-profiles.php:116
+#: ../inc/counter/backend/boards/social-profiles.php:158
+#: ../inc/counter/backend/boards/social-profiles.php:198
+#: ../inc/counter/backend/boards/social-profiles.php:233
+#: ../inc/counter/backend/boards/social-profiles.php:261
+#: ../inc/counter/backend/boards/social-profiles.php:289
+#: ../inc/counter/backend/boards/social-profiles.php:317
+#: ../inc/counter/backend/boards/social-profiles.php:345
+#: ../inc/counter/backend/boards/social-profiles.php:373
+#: ../inc/counter/backend/boards/social-profiles.php:401
+#: ../inc/counter/backend/boards/social-profiles.php:436
+#: ../inc/counter/backend/boards/social-profiles.php:472
+#: ../inc/counter/backend/boards/social-profiles.php:501
+#: ../inc/counter/backend/boards/social-profiles.php:535
+msgid ""
+"Please enter the default count to show instead of 0 when API's are not "
+"available."
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:34
+#: ../inc/counter/frontend/floating-sidebar.php:39
+#: ../inc/counter/frontend/shortcode.php:50
+msgid "Twitter"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:41
+msgid "Twitter Username"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:44
+msgid "Please enter the twitter username.For example:apthemes"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:48
+msgid "Twitter Consumer Key"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:51
+#: ../inc/counter/backend/boards/social-profiles.php:58
+#: ../inc/counter/backend/boards/social-profiles.php:65
+#: ../inc/counter/backend/boards/social-profiles.php:72
+msgid "Please create an app on Twitter through this link:"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:51
+#: ../inc/counter/backend/boards/social-profiles.php:58
+#: ../inc/counter/backend/boards/social-profiles.php:65
+#: ../inc/counter/backend/boards/social-profiles.php:72
+msgid " and get this information."
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:55
+msgid "Twitter Consumer Secret"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:62
+msgid "Twitter Access Token"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:69
+msgid "Twitter Access Token Secret"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:91
+#: ../inc/share/frontend/buddypress-share.php:78
+#: ../inc/share/frontend/content-filter.php:91
+#: ../inc/share/frontend/content-filter.php:94
+#: ../inc/share/frontend/floating_sidebar.php:128
+#: ../inc/share/frontend/floating_sidebar.php:131
+#: ../inc/share/frontend/popup_share.php:82
+#: ../inc/share/frontend/popup_share.php:85
+msgid "Google Plus"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:98
+msgid "Google Plus Page Name or Profile ID"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:101
+msgid ""
+"Please enter the page name or profile ID.For example:If your page url is "
+"https://plus.google.com/+BBCNews then your page name is +BBCNews"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:105
+msgid "Google API Key"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:108
+msgid ""
+"To get your API Key, first create a project/app in <a href=\"https://console."
+"developers.google.com/project\" target=\"_blank\">https://console.developers."
+"google.com/project</a> and then turn on Google+ API from \"APIs & auth >APIs "
+"inside your project.Then again go to \"APIs & auth > APIs > Credentials > "
+"Public API access\" and then click \"CREATE A NEW KEY\" button, select the "
+"\"Browser key\" option and click in the \"CREATE\" button, and then copy "
+"your API key and paste in above field."
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:126
+#: ../inc/counter/frontend/floating-sidebar.php:60
+#: ../inc/counter/frontend/shortcode.php:76
+msgid "Instagram"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:133
+msgid "Instagram Username"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:136
+msgid "Please enter the instagram username"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:140
+msgid "Instagram User ID"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:143
+msgid ""
+"Please enter the instagram user ID.You can get this information from <a href="
+"\"http://www.pinceladasdaweb.com.br/instagram/access-token/\" target=\"_blank"
+"\">http://www.pinceladasdaweb.com.br/instagram/access-token/</a>"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:147
+msgid "Instagram Access Token"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:150
+msgid ""
+"Please enter the instagram Access Token.You can get this information from <a "
+"href=\"http://www.pinceladasdaweb.com.br/instagram/access-token/\" target="
+"\"_blank\">http://www.pinceladasdaweb.com.br/instagram/access-token/</a>"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:170
+#: ../inc/counter/frontend/floating-sidebar.php:71
+#: ../inc/counter/frontend/shortcode.php:88
+msgid "Youtube"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:172
+msgid ""
+"Note: Youtube has recently deprecated its gdata API and updated its API to "
+"v3 which needs authentication and complicated mechanism to get the simple "
+"count.So we are working on the easier solution.Till then please use the "
+"default count for displaying the count in frontend."
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:180
+msgid "Youtube Username"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:183
+msgid "Please enter the youtube username.For example:accesspressthemes"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:187
+msgid "Youtube Channel URL"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:190
+msgid ""
+"Please enter the youtube channel URL.For example:https://www.youtube.com/"
+"user/accesspressthemes"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:208
+msgid "Sound Cloud"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:215
+msgid "SoundCloud Username"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:218
+msgid "Please enter the SoundCloud username.For example:bchettri"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:222
+msgid "SoundCloud Client ID"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:225
+msgid ""
+"Please enter the SoundCloud APP Client ID.You can get this information from "
+"<a href=\"http://soundcloud.com/you/apps/new\" target=\"_blank\">http://"
+"soundcloud.com/you/apps/new</a> after creating a new app"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:243
+msgid "Dribbble"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:250
+msgid "Dribbble Username"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:253
+msgid "Please enter your dribbble username.For example:Creativedash"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:271
+#: ../inc/counter/frontend/floating-sidebar.php:102
+#: ../inc/counter/frontend/shortcode.php:125
+msgid "Steam"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:278
+msgid "Steam Group Name"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:281
+msgid "Please enter your steam group name.For example:BadgesCollectors"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:299
+#: ../inc/counter/frontend/floating-sidebar.php:113
+#: ../inc/counter/frontend/shortcode.php:138
+msgid "Vimeo"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:306
+msgid "Vimeo Username"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:309
+msgid "Please enter your vimeo channel username.For example:documentaryfilm"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:327
+#: ../inc/counter/frontend/floating-sidebar.php:123
+#: ../inc/counter/frontend/shortcode.php:150
+msgid "Pinterest"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:334
+msgid "Pinterest Profile URL"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:337
+msgid ""
+"Please enter your pinterest profile url.For example:http://www.pinterest.com/"
+"froymejia"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:355
+#: ../inc/counter/frontend/floating-sidebar.php:135
+#: ../inc/counter/frontend/shortcode.php:163
+msgid "Forrst"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:362
+msgid "Forrst Username"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:365
+msgid "Please enter your forrst username.For example:Ranger"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:383
+#: ../inc/counter/frontend/floating-sidebar.php:147
+#: ../inc/counter/frontend/shortcode.php:176
+msgid "VK"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:390
+#: ../inc/counter/backend/boards/social-profiles.php:418
+msgid "Group ID"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:393
+msgid "Please enter your VK group ID.For example:applevk"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:411
+#: ../inc/counter/frontend/floating-sidebar.php:159
+#: ../inc/counter/frontend/shortcode.php:189
+msgid "Flickr"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:421
+msgid ""
+"Please enter your Flickr group ID.For example:44124373027@N01.To get your "
+"group ID please go to <a href=\"http://idgettr.com/\" target=\"_blank"
+"\">http://idgettr.com/</a>"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:425
+msgid "API Key"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:428
+msgid ""
+"Please enter your Flickr API Key.You can get this api key by creating a app "
+"from <a href=\"https://www.flickr.com/services/apps/create/apply/?\" target="
+"\"_blank\">https://www.flickr.com/services/apps/create/apply/?</a>."
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:446
+#: ../inc/counter/frontend/floating-sidebar.php:171
+#: ../inc/counter/frontend/shortcode.php:202
+msgid "Behance"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:453
+msgid "Behance Username"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:456
+msgid "Please enter your Behance Username.For example:matiascorea"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:461
+msgid "Behance API Key"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:464
+msgid ""
+"Please enter your Behance API Key.To get the API key please go to <a href="
+"\"https://www.behance.net/dev/register\" target=\"_blank\">https://www."
+"behance.net/dev/register</a> and register an app and get the API Key."
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:482
+#: ../inc/counter/frontend/floating-sidebar.php:183
+#: ../inc/counter/frontend/shortcode.php:215
+msgid "Github"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:489
+msgid "Github Username"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:492
+msgid "Please enter your Github Username.For example:SimonEast"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:510
+#: ../inc/counter/frontend/floating-sidebar.php:194
+#: ../inc/counter/frontend/shortcode.php:227
+msgid "Envato"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:517
+msgid "Envato Username"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:520
+msgid "Please enter your Envato Username.For example:AccessKeys"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:524
+msgid "Envato Profile URL"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:527
+msgid ""
+"Please enter your Envato Profile URL.For example:http://codecanyon.net/user/"
+"AccessKeys"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:545
+msgid "Linkedin"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:548
+msgid ""
+"Note: Linkedin needs authentication and complicated mechanism to get the "
+"followers count. So please use the static count for displaying the count in "
+"frontend."
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:558
+msgid "Linkedin profile URL"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:561
+msgid ""
+"Please enter the linkedin profile url. For example: https://www.linkedin.com/"
+"company/microsoft"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:567
+#: ../inc/counter/backend/boards/social-profiles.php:627
+msgid "Counts"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:570
+msgid "Please enter the static count you want to dispaly in the frontend."
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:577
+msgid "Counter type"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:587
+#: ../inc/counter/frontend/floating-sidebar.php:51
+#: ../inc/counter/frontend/floating-sidebar.php:61
+#: ../inc/counter/frontend/floating-sidebar.php:93
+#: ../inc/counter/frontend/floating-sidebar.php:136
+#: ../inc/counter/frontend/floating-sidebar.php:148
+#: ../inc/counter/frontend/floating-sidebar.php:184
+#: ../inc/counter/frontend/floating-sidebar.php:195
+#: ../inc/counter/frontend/floating-sidebar.php:205
+#: ../inc/counter/frontend/shortcode.php:51
+#: ../inc/counter/frontend/shortcode.php:63
+#: ../inc/counter/frontend/shortcode.php:77
+#: ../inc/counter/frontend/shortcode.php:103
+#: ../inc/counter/frontend/shortcode.php:115
+#: ../inc/counter/frontend/shortcode.php:164
+#: ../inc/counter/frontend/shortcode.php:177
+#: ../inc/counter/frontend/shortcode.php:228
+#: ../inc/counter/frontend/shortcode.php:239
+msgid "Followers"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:597
+#: ../inc/counter/frontend/floating-sidebar.php:208
+#: ../inc/counter/frontend/shortcode.php:242
+msgid "Connections"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:599
+msgid ""
+"Please select the option above to choose between followers or connections"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:618
+msgid "RSS url"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:621
+msgid ""
+"Please enter the rss feed url. For example: https://www.linkedin.com/company/"
+"microsoft"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:630
+msgid "Please enter the count value to show in frontend."
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:641
+#: ../inc/counter/frontend/floating-sidebar.php:240
+#: ../inc/counter/frontend/shortcode.php:275
+#: ../inc/share/backend/main-page.php:114
+msgid "Posts"
+msgstr ""
+
+#: ../inc/counter/backend/boards/social-profiles.php:651
+#: ../inc/counter/frontend/floating-sidebar.php:249
+#: ../inc/counter/frontend/shortcode.php:286
+msgid "Comments"
+msgstr ""
+
+#: ../inc/counter/frontend/floating-sidebar.php:29
+#: ../inc/counter/frontend/shortcode.php:40
+msgid "Fans"
+msgstr ""
+
+#: ../inc/counter/frontend/floating-sidebar.php:50
+msgid "google+"
+msgstr ""
+
+#: ../inc/counter/frontend/floating-sidebar.php:72
+#: ../inc/counter/frontend/floating-sidebar.php:114
+#: ../inc/counter/frontend/floating-sidebar.php:124
+#: ../inc/counter/frontend/floating-sidebar.php:228
+#: ../inc/counter/frontend/shortcode.php:89
+#: ../inc/counter/frontend/shortcode.php:139
+#: ../inc/counter/frontend/shortcode.php:151
+#: ../inc/counter/frontend/shortcode.php:262
+msgid "Subscribers"
+msgstr ""
+
+#: ../inc/counter/frontend/floating-sidebar.php:82
+#: ../inc/counter/frontend/shortcode.php:102
+msgid "Soundcloud"
+msgstr ""
+
+#: ../inc/counter/frontend/floating-sidebar.php:92
+#: ../inc/counter/frontend/shortcode.php:114
+msgid "dribble"
+msgstr ""
+
+#: ../inc/counter/frontend/floating-sidebar.php:103
+#: ../inc/counter/frontend/floating-sidebar.php:160
+#: ../inc/counter/frontend/floating-sidebar.php:172
+#: ../inc/counter/frontend/shortcode.php:126
+#: ../inc/counter/frontend/shortcode.php:190
+#: ../inc/counter/frontend/shortcode.php:203
+#: ../inc/counter/frontend/shortcode.php:216
+msgid "Members"
+msgstr ""
+
+#: ../inc/counter/frontend/floating-sidebar.php:206
+msgid "Follows"
+msgstr ""
+
+#: ../inc/counter/frontend/floating-sidebar.php:209
+#: ../inc/counter/frontend/shortcode.php:243
+msgid "Connect"
+msgstr ""
+
+#: ../inc/counter/frontend/floating-sidebar.php:227
+msgid "rss"
+msgstr ""
+
+#: ../inc/counter/frontend/floating-sidebar.php:231
+#: ../inc/counter/frontend/shortcode.php:265
+msgid "Subscribe"
+msgstr ""
+
+#: ../inc/counter/frontend/floating-sidebar.php:239
+#: ../inc/counter/frontend/shortcode.php:274
+msgid "Post"
+msgstr ""
+
+#: ../inc/counter/frontend/floating-sidebar.php:248
+#: ../inc/counter/frontend/shortcode.php:285
+msgid "Comment"
+msgstr ""
+
+#: ../inc/counter/frontend/shortcode.php:43
+#: ../inc/counter/frontend/shortcode.php:54
+#: ../inc/counter/frontend/shortcode.php:66
+#: ../inc/counter/frontend/shortcode.php:80
+#: ../inc/counter/frontend/shortcode.php:106
+#: ../inc/counter/frontend/shortcode.php:118
+#: ../inc/counter/frontend/shortcode.php:167
+#: ../inc/counter/frontend/shortcode.php:180
+#: ../inc/counter/frontend/shortcode.php:231
+msgid "follow"
+msgstr ""
+
+#: ../inc/counter/frontend/shortcode.php:62
+msgid "google"
+msgstr ""
+
+#: ../inc/counter/frontend/shortcode.php:93
+#: ../inc/counter/frontend/shortcode.php:129
+#: ../inc/counter/frontend/shortcode.php:142
+#: ../inc/counter/frontend/shortcode.php:154
+#: ../inc/counter/frontend/shortcode.php:193
+#: ../inc/counter/frontend/shortcode.php:206
+#: ../inc/counter/frontend/shortcode.php:219
+msgid "subscribe"
+msgstr ""
+
+#: ../inc/counter/frontend/shortcode.php:240
+msgid "Follow"
+msgstr ""
+
+#: ../inc/counter/frontend/shortcode.php:278
+msgid "edit"
+msgstr ""
+
+#: ../inc/counter/frontend/shortcode.php:289
+msgid "comment"
+msgstr ""
+
+#: ../inc/counter/frontend/shortcode.php:304
+msgid "Total"
+msgstr ""
+
+#: ../inc/counter/frontend/shortcode.php:308
+msgid "total"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:26 ../inc/share/backend/widget.php:15
+msgid "AccessPress Social Share Pro"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:54
+msgid "Social Networks"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:55
+msgid "Share Options"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:57
+#: ../inc/share/backend/main-page.php:268
+msgid "Popup Settings"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:59
+msgid "Miscellaneous"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:60
+msgid "How To Use"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:65
+#: ../inc/share/backend/main-page.php:320
+msgid "Social Media chooser:"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:66
+#: ../inc/share/backend/main-page.php:321
+msgid ""
+"Please choose the social media you want to display. Also you can order these "
+"social media's by drag and drop:"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:68
+#: ../inc/share/backend/main-page.php:323
+msgid "Select all"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:108
+msgid "Share options:"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:109
+msgid "Please choose the options where you want to display social share:"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:119
+msgid "Pages"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:125
+msgid "Front Page"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:130
+msgid "Archives"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:135
+msgid "Attachment pages"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:141
+msgid "Categories"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:146
+msgid "Other (search results, etc)"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:150
+msgid "Available Custom Post types:"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:166
+msgid "Available Taxonomies:"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:179
+msgid "Buddypress Settings: "
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:180
+msgid "Show the social share in buddypress activity and group pages? "
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:184
+msgid "Pinterest Pin It Button Settings:"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:185
+msgid "Please setup the options for pinterest hover images:"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:186
+msgid ""
+"You can disable the pinit hover button by adding the image attributes as "
+"data-pin-no-hover='true' or nopin='nopin'"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:187
+msgid "Enable the Pin It hover button over images? "
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:197
+msgid "Pin it hover Size:"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:212
+msgid "Pin it hover Shape:"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:230
+msgid "Display positions:"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:231
+msgid "Please choose the option where you want to display the social share:"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:236
+msgid "Below content"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:241
+msgid "Above content"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:246
+msgid "Both(Below content and Above content)"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:251
+msgid "Social icons sets"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:252
+msgid "Please choose any one out of available icon themes:"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:269
+msgid "Please enable these options for the popup of the soical share options."
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:270
+msgid "Enable popup on window load?"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:275
+#: ../inc/share/backend/main-page.php:302
+#: ../inc/share/backend/main-page.php:388
+#: ../inc/share/backend/main-page.php:410
+#: ../inc/share/backend/main-page.php:463
+#: ../inc/share/backend/main-page.php:474
+#: ../inc/share/backend/main-page.php:503
+#: ../inc/share/backend/main-page.php:514
+msgid "No"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:280
+#: ../inc/share/backend/main-page.php:307
+#: ../inc/share/backend/main-page.php:395
+#: ../inc/share/backend/main-page.php:417
+#: ../inc/share/backend/main-page.php:468
+#: ../inc/share/backend/main-page.php:475
+#: ../inc/share/backend/main-page.php:508
+#: ../inc/share/backend/main-page.php:515
+msgid "Yes"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:282
+msgid "Share text"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:295
+msgid "Floating options:"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:296
+msgid "Options for display of the floating options:"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:297
+msgid "Floating Social share enable?"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:379
+msgid "Show Hide/Show Button?"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:398
+msgid ""
+"Please select this options if you want to show the hide/show button in the "
+"floating sidebar."
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:403
+msgid "Disable Floating Social share in mobile devices?"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:421
+msgid "Theme selection:"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:433
+msgid "Floating positions:"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:438
+msgid "Left Middle(Vertical)"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:443
+msgid "Right Middle(Vertical)"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:448
+msgid "Bottom left(Horizontal)"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:453
+msgid "Bottom right(Horizontal)"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:458
+msgid "Share count enable?"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:473
+msgid "Total share count enable?"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:484
+msgid "Miscellaneous settings: "
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:485
+msgid "Please setup these additional settings:"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:487
+msgid "Share text:"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:489
+msgid ""
+"Please enter the share text to make it appear above social share icons. "
+"Leave blank if you dont want to use share text."
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:494
+msgid "Twitter username:"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:498
+msgid "Social share counter enable?"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:513
+msgid "Social share total counter enable?"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:518
+msgid "Counter Display Formats:"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:523
+msgid "numbers only(1200)"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:528
+msgid "1,200"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:533
+msgid "1K"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:537
+msgid "Social share link options:"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:542
+msgid "Open in same window"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:547
+msgid "Open in new window/Tab"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:551
+msgid "Social share text options:"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:552
+msgid "Short texts:"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:553
+msgid "Common short share text: "
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:556
+msgid "Twitter short share text: "
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:559
+msgid "Email short share text: "
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:562
+msgid "Print short share text: "
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:565
+#: ../inc/share/backend/main-page.php:590
+msgid ""
+"You can set the custom short share texts here. If you keep blank the default "
+"values will be loaded."
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:566
+msgid "Long texts:"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:567
+msgid "Common long share text: "
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:570
+msgid "Twitter long share text: "
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:573
+msgid "Email long share text: "
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:576
+msgid "Print long share text: "
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:579
+msgid ""
+"You can set the custom long share texts here. If you keep blank the default "
+"values will be loaded."
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:584
+msgid "Social Networks Custom Names:"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:595
+msgid "Cache Period:"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:603
+msgid ""
+"Please enter the time in hours in which the social share counter should be "
+"updated. Default is 24 hours"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:608
+msgid "Email Settings:"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:610
+msgid "Email subject:"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:614
+msgid "Email body:"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:629
+msgid "Save settings"
+msgstr ""
+
+#: ../inc/share/backend/main-page.php:639
+msgid "Are you sure you want to clear cache share counter?"
+msgstr ""
+
+#: ../inc/share/backend/save-settings.php:96
+msgid "Settings Saved Successfully."
+msgstr ""
+
+#: ../inc/share/backend/widget.php:16
+msgid "AccessPress Social Share Widget"
+msgstr ""
+
+#: ../inc/share/backend/widget.php:78
+msgid "Title: "
+msgstr ""
+
+#: ../inc/share/backend/widget.php:82
+msgid "Theme: "
+msgstr ""
+
+#: ../inc/share/backend/widget.php:98
+msgid "Counter Enable ?"
+msgstr ""
+
+#: ../inc/share/backend/widget.php:104
+msgid "Widget Background Color: "
+msgstr ""
+
+#: ../inc/share/backend/widget.php:470 ../inc/share/backend/widget.php:473
+#: ../inc/share/frontend/buddypress-share.php:33
+#: ../inc/share/frontend/buddypress-share.php:36
+#: ../inc/share/frontend/buddypress-share.php:58
+#: ../inc/share/frontend/buddypress-share.php:61
+#: ../inc/share/frontend/buddypress-share.php:78
+#: ../inc/share/frontend/buddypress-share.php:81
+#: ../inc/share/frontend/buddypress-share.php:98
+#: ../inc/share/frontend/buddypress-share.php:101
+#: ../inc/share/frontend/buddypress-share.php:120
+#: ../inc/share/frontend/buddypress-share.php:122
+#: ../inc/share/frontend/buddypress-share.php:140
+#: ../inc/share/frontend/buddypress-share.php:143
+#: ../inc/share/frontend/buddypress-share.php:159
+#: ../inc/share/frontend/buddypress-share.php:162
+#: ../inc/share/frontend/buddypress-share.php:181
+#: ../inc/share/frontend/buddypress-share.php:184
+#: ../inc/share/frontend/buddypress-share.php:202
+#: ../inc/share/frontend/buddypress-share.php:205
+#: ../inc/share/frontend/buddypress-share.php:220
+#: ../inc/share/frontend/buddypress-share.php:223
+#: ../inc/share/frontend/buddypress-share.php:239
+#: ../inc/share/frontend/buddypress-share.php:242
+#: ../inc/share/frontend/buddypress-share.php:259
+#: ../inc/share/frontend/buddypress-share.php:262
+#: ../inc/share/frontend/buddypress-share.php:279
+#: ../inc/share/frontend/buddypress-share.php:282
+#: ../inc/share/frontend/buddypress-share.php:296
+#: ../inc/share/frontend/buddypress-share.php:299
+#: ../inc/share/frontend/buddypress-share.php:316
+#: ../inc/share/frontend/buddypress-share.php:319
+#: ../inc/share/frontend/content-filter.php:46
+#: ../inc/share/frontend/content-filter.php:49
+#: ../inc/share/frontend/content-filter.php:71
+#: ../inc/share/frontend/content-filter.php:74
+#: ../inc/share/frontend/content-filter.php:91
+#: ../inc/share/frontend/content-filter.php:94
+#: ../inc/share/frontend/content-filter.php:111
+#: ../inc/share/frontend/content-filter.php:114
+#: ../inc/share/frontend/content-filter.php:133
+#: ../inc/share/frontend/content-filter.php:135
+#: ../inc/share/frontend/content-filter.php:153
+#: ../inc/share/frontend/content-filter.php:156
+#: ../inc/share/frontend/content-filter.php:172
+#: ../inc/share/frontend/content-filter.php:175
+#: ../inc/share/frontend/content-filter.php:194
+#: ../inc/share/frontend/content-filter.php:198
+#: ../inc/share/frontend/content-filter.php:216
+#: ../inc/share/frontend/content-filter.php:220
+#: ../inc/share/frontend/content-filter.php:235
+#: ../inc/share/frontend/content-filter.php:238
+#: ../inc/share/frontend/content-filter.php:254
+#: ../inc/share/frontend/content-filter.php:258
+#: ../inc/share/frontend/content-filter.php:275
+#: ../inc/share/frontend/content-filter.php:279
+#: ../inc/share/frontend/content-filter.php:296
+#: ../inc/share/frontend/content-filter.php:299
+#: ../inc/share/frontend/content-filter.php:314
+#: ../inc/share/frontend/content-filter.php:317
+#: ../inc/share/frontend/content-filter.php:335
+#: ../inc/share/frontend/content-filter.php:338
+#: ../inc/share/frontend/floating_sidebar.php:81
+#: ../inc/share/frontend/floating_sidebar.php:84
+#: ../inc/share/frontend/floating_sidebar.php:107
+#: ../inc/share/frontend/floating_sidebar.php:110
+#: ../inc/share/frontend/floating_sidebar.php:128
+#: ../inc/share/frontend/floating_sidebar.php:131
+#: ../inc/share/frontend/floating_sidebar.php:149
+#: ../inc/share/frontend/floating_sidebar.php:152
+#: ../inc/share/frontend/floating_sidebar.php:171
+#: ../inc/share/frontend/floating_sidebar.php:173
+#: ../inc/share/frontend/floating_sidebar.php:191
+#: ../inc/share/frontend/floating_sidebar.php:194
+#: ../inc/share/frontend/floating_sidebar.php:213
+#: ../inc/share/frontend/floating_sidebar.php:216
+#: ../inc/share/frontend/floating_sidebar.php:235
+#: ../inc/share/frontend/floating_sidebar.php:238
+#: ../inc/share/frontend/floating_sidebar.php:256
+#: ../inc/share/frontend/floating_sidebar.php:259
+#: ../inc/share/frontend/floating_sidebar.php:274
+#: ../inc/share/frontend/floating_sidebar.php:277
+#: ../inc/share/frontend/floating_sidebar.php:296
+#: ../inc/share/frontend/floating_sidebar.php:299
+#: ../inc/share/frontend/floating_sidebar.php:316
+#: ../inc/share/frontend/floating_sidebar.php:319
+#: ../inc/share/frontend/floating_sidebar.php:336
+#: ../inc/share/frontend/floating_sidebar.php:339
+#: ../inc/share/frontend/floating_sidebar.php:354
+#: ../inc/share/frontend/floating_sidebar.php:357
+#: ../inc/share/frontend/floating_sidebar.php:374
+#: ../inc/share/frontend/floating_sidebar.php:377
+#: ../inc/share/frontend/popup_share.php:36
+#: ../inc/share/frontend/popup_share.php:39
+#: ../inc/share/frontend/popup_share.php:61
+#: ../inc/share/frontend/popup_share.php:64
+#: ../inc/share/frontend/popup_share.php:82
+#: ../inc/share/frontend/popup_share.php:85
+#: ../inc/share/frontend/popup_share.php:102
+#: ../inc/share/frontend/popup_share.php:105
+#: ../inc/share/frontend/popup_share.php:123
+#: ../inc/share/frontend/popup_share.php:125
+#: ../inc/share/frontend/popup_share.php:143
+#: ../inc/share/frontend/popup_share.php:146
+#: ../inc/share/frontend/popup_share.php:165
+#: ../inc/share/frontend/popup_share.php:168
+#: ../inc/share/frontend/popup_share.php:187
+#: ../inc/share/frontend/popup_share.php:190
+#: ../inc/share/frontend/popup_share.php:209
+#: ../inc/share/frontend/popup_share.php:212
+#: ../inc/share/frontend/popup_share.php:228
+#: ../inc/share/frontend/popup_share.php:231
+#: ../inc/share/frontend/popup_share.php:247
+#: ../inc/share/frontend/popup_share.php:250
+#: ../inc/share/frontend/popup_share.php:268
+#: ../inc/share/frontend/popup_share.php:271
+#: ../inc/share/frontend/popup_share.php:288
+#: ../inc/share/frontend/popup_share.php:291
+#: ../inc/share/frontend/popup_share.php:306
+#: ../inc/share/frontend/popup_share.php:309
+#: ../inc/share/frontend/shortcode.php:364
+#: ../inc/share/frontend/shortcode.php:367
+msgid "Share on"
+msgstr ""
+
+#: ../inc/share/backend/widget.php:474
+#: ../inc/share/frontend/buddypress-share.php:37
+#: ../inc/share/frontend/buddypress-share.php:82
+#: ../inc/share/frontend/buddypress-share.php:102
+#: ../inc/share/frontend/buddypress-share.php:123
+#: ../inc/share/frontend/buddypress-share.php:144
+#: ../inc/share/frontend/buddypress-share.php:163
+#: ../inc/share/frontend/buddypress-share.php:185
+#: ../inc/share/frontend/buddypress-share.php:206
+#: ../inc/share/frontend/buddypress-share.php:224
+#: ../inc/share/frontend/buddypress-share.php:243
+#: ../inc/share/frontend/buddypress-share.php:263
+#: ../inc/share/frontend/buddypress-share.php:283
+#: ../inc/share/frontend/buddypress-share.php:300
+#: ../inc/share/frontend/buddypress-share.php:320
+#: ../inc/share/frontend/content-filter.php:50
+#: ../inc/share/frontend/content-filter.php:95
+#: ../inc/share/frontend/content-filter.php:115
+#: ../inc/share/frontend/content-filter.php:136
+#: ../inc/share/frontend/content-filter.php:157
+#: ../inc/share/frontend/content-filter.php:176
+#: ../inc/share/frontend/content-filter.php:199
+#: ../inc/share/frontend/content-filter.php:221
+#: ../inc/share/frontend/content-filter.php:239
+#: ../inc/share/frontend/content-filter.php:259
+#: ../inc/share/frontend/content-filter.php:280
+#: ../inc/share/frontend/content-filter.php:300
+#: ../inc/share/frontend/content-filter.php:318
+#: ../inc/share/frontend/content-filter.php:339
+#: ../inc/share/frontend/floating_sidebar.php:85
+#: ../inc/share/frontend/floating_sidebar.php:132
+#: ../inc/share/frontend/floating_sidebar.php:153
+#: ../inc/share/frontend/floating_sidebar.php:174
+#: ../inc/share/frontend/floating_sidebar.php:195
+#: ../inc/share/frontend/floating_sidebar.php:217
+#: ../inc/share/frontend/floating_sidebar.php:239
+#: ../inc/share/frontend/floating_sidebar.php:260
+#: ../inc/share/frontend/floating_sidebar.php:278
+#: ../inc/share/frontend/floating_sidebar.php:300
+#: ../inc/share/frontend/floating_sidebar.php:320
+#: ../inc/share/frontend/floating_sidebar.php:340
+#: ../inc/share/frontend/floating_sidebar.php:358
+#: ../inc/share/frontend/floating_sidebar.php:378
+#: ../inc/share/frontend/popup_share.php:40
+#: ../inc/share/frontend/popup_share.php:86
+#: ../inc/share/frontend/popup_share.php:101
+#: ../inc/share/frontend/popup_share.php:126
+#: ../inc/share/frontend/popup_share.php:147
+#: ../inc/share/frontend/popup_share.php:169
+#: ../inc/share/frontend/popup_share.php:191
+#: ../inc/share/frontend/popup_share.php:213
+#: ../inc/share/frontend/popup_share.php:232
+#: ../inc/share/frontend/popup_share.php:251
+#: ../inc/share/frontend/popup_share.php:272
+#: ../inc/share/frontend/popup_share.php:292
+#: ../inc/share/frontend/popup_share.php:310
+#: ../inc/share/frontend/shortcode.php:368
+msgid "Share"
+msgstr ""
+
+#: ../inc/share/frontend/buddypress-share.php:337
+#: ../inc/share/frontend/buddypress-share.php:340
+#: ../inc/share/frontend/content-filter.php:356
+#: ../inc/share/frontend/content-filter.php:359
+#: ../inc/share/frontend/floating_sidebar.php:395
+#: ../inc/share/frontend/floating_sidebar.php:398
+#: ../inc/share/frontend/popup_share.php:332
+#: ../inc/share/frontend/popup_share.php:335
+msgid "Send email"
+msgstr ""
+
+#: ../inc/share/frontend/buddypress-share.php:341
+#: ../inc/share/frontend/content-filter.php:360
+#: ../inc/share/frontend/floating_sidebar.php:399
+#: ../inc/share/frontend/popup_share.php:336
+msgid "Mail"
+msgstr ""
+
+#: ../inc/share/frontend/buddypress-share.php:352
+#: ../inc/share/frontend/buddypress-share.php:354
+#: ../inc/share/frontend/content-filter.php:371
+#: ../inc/share/frontend/content-filter.php:374
+#: ../inc/share/frontend/floating_sidebar.php:410
+#: ../inc/share/frontend/floating_sidebar.php:412
+#: ../inc/share/frontend/popup_share.php:347
+#: ../inc/share/frontend/popup_share.php:349
+msgid "Print this"
+msgstr ""
+
+#: ../inc/share/frontend/buddypress-share.php:355
+#: ../inc/share/frontend/content-filter.php:375
+#: ../inc/share/frontend/floating_sidebar.php:413
+#: ../inc/share/frontend/popup_share.php:350
+msgid "Print"
+msgstr ""
+
+#: ../inc/share/frontend/content-filter.php:75
+#: ../inc/share/frontend/floating_sidebar.php:111
+#: ../inc/share/frontend/popup_share.php:65
+msgid "Tweet"
+msgstr ""
+
+#: ../inc/share/frontend/content-filter.php:391
+#: ../inc/share/frontend/floating_sidebar.php:430
+#: ../inc/share/frontend/shortcode.php:419
+msgid " Total"
+msgstr ""
+
+#: ../inc/share/frontend/content-filter.php:392
+#: ../inc/share/frontend/floating_sidebar.php:431
+#: ../inc/share/frontend/shortcode.php:420
+msgid " Shares"
+msgstr ""
