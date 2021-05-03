@@ -8,7 +8,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
 
 
-if( ! class_exists( 'TIELABS_BUDDYPRESS' )){
+if( ! class_exists( 'TIELABS_BUDDYPRESS' ) ) {
 
 	class TIELABS_BUDDYPRESS{
 
@@ -54,8 +54,8 @@ if( ! class_exists( 'TIELABS_BUDDYPRESS' )){
 			add_action( 'bp_nouveau_enqueue_styles', array( $this, 'remove_default_buddypress_dependency' ), 20 );
 
 			// Covers args
-			add_filter( 'bp_before_xprofile_cover_image_settings_parse_args',  array( $this, 'cover_image_css' ), 1 );
-			add_filter( 'bp_before_groups_cover_image_settings_parse_args',    array( $this, 'cover_image_css' ), 1 );
+			add_filter( 'bp_before_members_cover_image_settings_parse_args', array( $this, 'cover_image_css' ), 1 );
+			add_filter( 'bp_before_groups_cover_image_settings_parse_args',  array( $this, 'cover_image_css' ), 1 );
 
 			// Notifications Menu Content
 			add_filter( 'TieLabs/BuddyPress/notifications', array( $this, 'get_notifications' ) );
@@ -197,11 +197,11 @@ if( ! class_exists( 'TIELABS_BUDDYPRESS' )){
 
 			if ( ! empty( $notifications ) ){
 				foreach ( (array) $notifications as $notification ){
-					$out_data .= '<li id="'. $notification->id .'" class="notifications-item"><a href="'. $notification->href .'"><span class="fa fa-bell"></span> '. $notification->content .'</a></li>';
+					$out_data .= '<li id="'. $notification->id .'" class="notifications-item"><a href="'. $notification->href .'"><span class="tie-icon-bell"></span> '. $notification->content .'</a></li>';
 				}
 			}
 			else {
-				$out_data .= '<li id="no-notifications" class="notifications-item"><a href="'. $menu_link .'"><span class="fa fa-bell-o"></span>  '. esc_html__( 'No new notifications', TIELABS_TEXTDOMAIN ) .'</a></li>';
+				$out_data .= '<li id="no-notifications" class="notifications-item"><a href="'. $menu_link .'"><span class="tie-icon-bell"></span>  '. esc_html__( 'No new notifications', TIELABS_TEXTDOMAIN ) .'</a></li>';
 			}
 
 			$out_data .= '</ul>';
@@ -238,15 +238,17 @@ if( ! class_exists( 'TIELABS_BUDDYPRESS' )){
 				return $logo_args;
 			}
 
-			$logo_args['logo_type']          = self::get_page_data( 'logo_setting'.$logo_suffix );
-			$logo_args['logo_img']           = self::get_page_data( 'logo'.$logo_suffix );
-			$logo_args['logo_retina']        = self::get_page_data( 'logo_retina'.$logo_suffix );
-			$logo_args['logo_width']         = self::get_page_data( 'logo_retina_width'.$logo_suffix );
-			$logo_args['logo_height']        = self::get_page_data( 'logo_retina_height'.$logo_suffix );
-			$logo_args['logo_margin_top']    = self::get_page_data( 'logo_margin'.$logo_suffix );
-			$logo_args['logo_margin_bottom'] = self::get_page_data( 'logo_margin_bottom'.$logo_suffix );
-			$logo_args['logo_title']         = self::get_page_data( 'logo_text', get_bloginfo() );
-			$logo_args['logo_url']           = self::get_page_data( 'logo_url'.$logo_suffix );
+			$logo_args['logo_type']            = self::get_page_data( 'logo_setting'.$logo_suffix );
+			$logo_args['logo_img']             = self::get_page_data( 'logo'.$logo_suffix );
+			$logo_args['logo_retina']          = self::get_page_data( 'logo_retina'.$logo_suffix );
+			$logo_args['logo_inverted']        = self::get_page_data( 'logo_inverted'.$logo_suffix );
+			$logo_args['logo_inverted_retina'] = self::get_page_data( 'logo_inverted_retina'.$logo_suffix );
+			$logo_args['logo_width']           = self::get_page_data( 'logo_retina_width'.$logo_suffix );
+			$logo_args['logo_height']          = self::get_page_data( 'logo_retina_height'.$logo_suffix );
+			$logo_args['logo_margin_top']      = self::get_page_data( 'logo_margin'.$logo_suffix );
+			$logo_args['logo_margin_bottom']   = self::get_page_data( 'logo_margin_bottom'.$logo_suffix );
+			$logo_args['logo_title']           = self::get_page_data( 'logo_text', get_bloginfo() );
+			$logo_args['logo_url']             = self::get_page_data( 'logo_url'.$logo_suffix );
 
 			return $logo_args;
 		}
@@ -313,7 +315,7 @@ if( ! class_exists( 'TIELABS_BUDDYPRESS' )){
 
 			if( self::current_page_id() ){
 
-				if( $value = get_post_meta( self::current_page_id(), $key, $single = true )){
+				if( $value = get_post_meta( self::current_page_id(), $key, $single = true ) ) {
 					return $value;
 				}
 			}

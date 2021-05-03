@@ -55,7 +55,7 @@ else{
 }
 
 // Default sidebar if there is no a custom sidebar
-if( empty( $sidebar ) || ( ! empty( $sidebar ) && ! TIELABS_HELPER::is_sidebar_registered( $sidebar ) )){
+if( empty( $sidebar ) || ( ! empty( $sidebar ) && ! TIELABS_HELPER::is_sidebar_registered( $sidebar ) ) ) {
 	 $sidebar = 'primary-widget-area';
 }
 

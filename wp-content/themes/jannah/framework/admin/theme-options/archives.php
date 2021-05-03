@@ -76,10 +76,34 @@ tie_build_theme_option(
 
 tie_build_theme_option(
 	array(
+		'name'   => esc_html__( 'Posts Excerpt', TIELABS_TEXTDOMAIN ),
+		'id'     => 'blog_excerpt',
+		'type'   => 'checkbox',
+		'toggle' => '#blog_excerpt_length-item',
+	));
+
+tie_build_theme_option(
+	array(
 		'name'    => esc_html__( 'Excerpt Length', TIELABS_TEXTDOMAIN ),
 		'id'      => 'blog_excerpt_length',
 		'type'    => 'number',
 		'default' => 20,
+	));
+
+tie_build_theme_option(
+	array(
+		'name'   => esc_html__( 'Read More Button', TIELABS_TEXTDOMAIN ),
+		'id'     => 'blog_read_more',
+		'type'   => 'checkbox',
+		'toggle' => '#blog_read_more_text-item',
+	));
+
+tie_build_theme_option(
+	array(
+		'name' => esc_html__( 'Custom Read More Button text', TIELABS_TEXTDOMAIN ),
+		'id'   => 'blog_read_more_text',
+		'type' => 'text',
+		'hint' => esc_html__( 'Leave it empty to use the default text.', TIELABS_TEXTDOMAIN ),
 	));
 
 tie_build_theme_option(
@@ -107,13 +131,6 @@ tie_build_theme_option(
 		'options' => $archives_layouts
 	));
 
-tie_build_theme_option(
-	array(
-		'name'    => esc_html__( 'Excerpt Length', TIELABS_TEXTDOMAIN ),
-		'id'      => 'category_excerpt_length',
-		'type'    => 'number',
-		'default' => 20,
-	));
 
 tie_build_theme_option(
 	array(
@@ -124,12 +141,43 @@ tie_build_theme_option(
 
 tie_build_theme_option(
 	array(
+		'name'   => esc_html__( 'Posts Excerpt', TIELABS_TEXTDOMAIN ),
+		'id'     => 'category_excerpt',
+		'type'   => 'checkbox',
+		'toggle' => '#category_excerpt_length-item',
+	));
+
+tie_build_theme_option(
+	array(
+		'name'    => esc_html__( 'Excerpt Length', TIELABS_TEXTDOMAIN ),
+		'id'      => 'category_excerpt_length',
+		'type'    => 'number',
+		'default' => 20,
+	));
+
+tie_build_theme_option(
+	array(
+		'name'   => esc_html__( 'Read More Button', TIELABS_TEXTDOMAIN ),
+		'id'     => 'category_read_more',
+		'type'   => 'checkbox',
+		'toggle' => '#category_read_more_text-item',
+	));
+
+tie_build_theme_option(
+	array(
+		'name' => esc_html__( 'Custom Read More Button text', TIELABS_TEXTDOMAIN ),
+		'id'   => 'category_read_more_text',
+		'type' => 'text',
+		'hint' => esc_html__( 'Leave it empty to use the default text.', TIELABS_TEXTDOMAIN ),
+	));
+
+tie_build_theme_option(
+	array(
 		'name'    => esc_html__( 'Pagination', TIELABS_TEXTDOMAIN ),
 		'id'      => 'category_pagination',
 		'type'    => 'radio',
 		'options' => $pagination_styles
 	));
-
 
 
 # Tag page settings
@@ -149,6 +197,21 @@ tie_build_theme_option(
 
 tie_build_theme_option(
 	array(
+		'name' => esc_html__( 'Tag Description', TIELABS_TEXTDOMAIN ),
+		'id'   => 'tag_desc',
+		'type' => 'checkbox',
+	));
+
+tie_build_theme_option(
+	array(
+		'name'   => esc_html__( 'Posts Excerpt', TIELABS_TEXTDOMAIN ),
+		'id'     => 'tag_excerpt',
+		'type'   => 'checkbox',
+		'toggle' => '#tag_excerpt_length-item',
+	));
+
+tie_build_theme_option(
+	array(
 		'name'    => esc_html__( 'Excerpt Length', TIELABS_TEXTDOMAIN ),
 		'id'      => 'tag_excerpt_length',
 		'type'    => 'number',
@@ -157,9 +220,18 @@ tie_build_theme_option(
 
 tie_build_theme_option(
 	array(
-		'name' => esc_html__( 'Tag Description', TIELABS_TEXTDOMAIN ),
-		'id'   => 'tag_desc',
-		'type' => 'checkbox',
+		'name'   => esc_html__( 'Read More Button', TIELABS_TEXTDOMAIN ),
+		'id'     => 'tag_read_more',
+		'type'   => 'checkbox',
+		'toggle' => '#tag_read_more_text-item',
+	));
+
+tie_build_theme_option(
+	array(
+		'name' => esc_html__( 'Custom Read More Button text', TIELABS_TEXTDOMAIN ),
+		'id'   => 'tag_read_more_text',
+		'type' => 'text',
+		'hint' => esc_html__( 'Leave it empty to use the default text.', TIELABS_TEXTDOMAIN ),
 	));
 
 tie_build_theme_option(
@@ -189,6 +261,21 @@ tie_build_theme_option(
 
 tie_build_theme_option(
 	array(
+		'name' => esc_html__( 'Author Bio', TIELABS_TEXTDOMAIN ),
+		'id'   => 'author_bio',
+		'type' => 'checkbox',
+	));
+
+tie_build_theme_option(
+	array(
+		'name'   => esc_html__( 'Posts Excerpt', TIELABS_TEXTDOMAIN ),
+		'id'     => 'author_excerpt',
+		'type'   => 'checkbox',
+		'toggle' => '#author_excerpt_length-item',
+	));
+
+tie_build_theme_option(
+	array(
 		'name'    => esc_html__( 'Excerpt Length', TIELABS_TEXTDOMAIN ),
 		'id'      => 'author_excerpt_length',
 		'type'    => 'number',
@@ -197,9 +284,18 @@ tie_build_theme_option(
 
 tie_build_theme_option(
 	array(
-		'name' => esc_html__( 'Author Bio', TIELABS_TEXTDOMAIN ),
-		'id'   => 'author_bio',
-		'type' => 'checkbox',
+		'name'   => esc_html__( 'Read More Button', TIELABS_TEXTDOMAIN ),
+		'id'     => 'author_read_more',
+		'type'   => 'checkbox',
+		'toggle' => '#author_read_more_text-item',
+	));
+
+tie_build_theme_option(
+	array(
+		'name' => esc_html__( 'Custom Read More Button text', TIELABS_TEXTDOMAIN ),
+		'id'   => 'author_read_more_text',
+		'type' => 'text',
+		'hint' => esc_html__( 'Leave it empty to use the default text.', TIELABS_TEXTDOMAIN ),
 	));
 
 tie_build_theme_option(
@@ -209,6 +305,7 @@ tie_build_theme_option(
 		'type'    => 'radio',
 		'options' => $pagination_styles
 	));
+
 
 
 
@@ -225,22 +322,6 @@ tie_build_theme_option(
 		'type'    => 'visual',
 		'columns' => 7,
 		'options' => $archives_layouts
-	));
-
-tie_build_theme_option(
-	array(
-		'name'    => esc_html__( 'Excerpt Length', TIELABS_TEXTDOMAIN ),
-		'id'      => 'search_excerpt_length',
-		'type'    => 'number',
-		'default' => 20,
-	));
-
-tie_build_theme_option(
-	array(
-		'name'    => esc_html__( 'Pagination', TIELABS_TEXTDOMAIN ),
-		'id'      => 'search_pagination',
-		'type'    => 'radio',
-		'options' => $pagination_styles
 	));
 
 tie_build_theme_option(
@@ -266,5 +347,45 @@ tie_build_theme_option(
 		'id'      => 'search_exclude_post_types',
 		'type'    => 'select-multiple',
 		'options' => $post_types,
+	));
+
+tie_build_theme_option(
+	array(
+		'name'   => esc_html__( 'Posts Excerpt', TIELABS_TEXTDOMAIN ),
+		'id'     => 'search_excerpt',
+		'type'   => 'checkbox',
+		'toggle' => '#search_excerpt_length-item',
+	));
+
+tie_build_theme_option(
+	array(
+		'name'    => esc_html__( 'Excerpt Length', TIELABS_TEXTDOMAIN ),
+		'id'      => 'search_excerpt_length',
+		'type'    => 'number',
+		'default' => 20,
+	));
+
+tie_build_theme_option(
+	array(
+		'name'   => esc_html__( 'Read More Button', TIELABS_TEXTDOMAIN ),
+		'id'     => 'search_read_more',
+		'type'   => 'checkbox',
+		'toggle' => '#search_read_more_text-item',
+	));
+
+tie_build_theme_option(
+	array(
+		'name' => esc_html__( 'Custom Read More Button text', TIELABS_TEXTDOMAIN ),
+		'id'   => 'search_read_more_text',
+		'type' => 'text',
+		'hint' => esc_html__( 'Leave it empty to use the default text.', TIELABS_TEXTDOMAIN ),
+	));
+
+tie_build_theme_option(
+	array(
+		'name'    => esc_html__( 'Pagination', TIELABS_TEXTDOMAIN ),
+		'id'      => 'search_pagination',
+		'type'    => 'radio',
+		'options' => $pagination_styles
 	));
 

@@ -8,7 +8,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
 
 
-if( ! class_exists( 'TIELABS_POSTVIEWS' )){
+if( ! class_exists( 'TIELABS_POSTVIEWS' ) ) {
 
 	class TIELABS_POSTVIEWS{
 
@@ -28,7 +28,7 @@ if( ! class_exists( 'TIELABS_POSTVIEWS' )){
 			add_action( 'manage_posts_custom_column',        array( $this, 'posts_custom_column_views' ), 5, 2 );
 			add_action( 'pre_get_posts',                     array( $this, 'sort_postviews' ) );
 
-			add_action( 'wp_head',                           array( $this, 'set_post_views' ) );
+			add_action( 'wp_footer',                         array( $this, 'set_post_views' ) );
 			add_action( 'amp_post_template_head',            array( $this, 'set_post_views' ) );
 
 			add_action( 'wp_enqueue_scripts',                array( $this, 'postview_cache_enqueue' ), 25 );
@@ -75,8 +75,8 @@ if( ! class_exists( 'TIELABS_POSTVIEWS' )){
 					$count = (int) tie_get_option( 'views_starter_number' );
 				}
 
-				$count++;
-				update_post_meta( $post_id, $count_key, (int)$count );
+				$new_count = $count + 1;
+				update_post_meta( $post_id, $count_key, $new_count );
 			}
 		}
 
@@ -106,8 +106,12 @@ if( ! class_exists( 'TIELABS_POSTVIEWS' )){
 					type : "GET",
 					url  : "'. esc_url( admin_url('admin-ajax.php') ) .'",
 					data : "postviews_id='. get_the_ID() .'&action=tie_postviews",
-					cache: !1
+					cache: !1,
+					success: function( data ){
+						jQuery("#single-post-meta").find(".meta-views").html( data );
+					}
 				});
+
 			';
 
 			TIELABS_HELPER::inline_script( 'tie-scripts', $cache_js );
@@ -163,11 +167,14 @@ if( ! class_exists( 'TIELABS_POSTVIEWS' )){
 						$count = (int) tie_get_option( 'views_starter_number' );
 					}
 
-					$count++;
-					update_post_meta( $post_id, $count_key, (int)$count );
-					echo esc_html( $count );
+					$new_count = $count + 1;
+					update_post_meta( $post_id, $count_key, $new_count );
+
+					$formated = apply_filters( 'TieLabs/post_views_number', number_format_i18n( (float)$new_count ) );
+					echo '<span class="tie-icon-fire" aria-hidden="true"></span> '. $formated .'</span>';
 				}
 			}
+
 			exit();
 		}
 
@@ -281,7 +288,7 @@ if( ! class_exists( 'TIELABS_POSTVIEWS' )){
 				return;
 			}
 
-			if( empty( $post_id )){
+			if( empty( $post_id ) ) {
 				$post_id = get_the_ID();
 			}
 
@@ -314,7 +321,7 @@ if( ! class_exists( 'TIELABS_POSTVIEWS' )){
 				}
 			}
 
-			$formated = apply_filters( 'TieLabs/post_views_number', number_format_i18n( $count ) );
+			$formated = apply_filters( 'TieLabs/post_views_number', number_format_i18n( (float)$count ) );
 
 			$output = '<span class="meta-views meta-item '. $views_class .'"><span class="tie-icon-fire" aria-hidden="true"></span> '.$formated.' '.$text.'</span>';
 

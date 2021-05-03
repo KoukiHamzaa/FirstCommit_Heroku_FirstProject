@@ -43,8 +43,8 @@ ul.tab-sortable {
 		padding: 5px 4%;
 		line-height: 1;
 
-		&:nth-child(2n+2) {
-			clear: right;
+		&:nth-child(2n+3) {
+			clear: left;
 		}
 
 		img{

@@ -73,10 +73,10 @@ a.post-tooltip {
 		top: 15px;
 		padding: 0;
 
-		.magazine2 &{
-			right: 0;
-			width: 100%;
-		}
+		//.magazine2 &{
+		//	right: 0;
+		//	width: 100%;
+		//}
 
 		@include breakpoint(max_min_sm){
 			@include center(x);
@@ -213,7 +213,7 @@ a.post-tooltip {
 
 			&:before {
 				margin-left: -25px;
-				font-family: "fontawesome";
+				font-family: tiefonticon;
 				float: left;
 			}
 		}
@@ -257,12 +257,12 @@ a.post-tooltip {
 	}
 
 	&.plus ul li:before {
-		content: "\f0fe";
+		content: "\f067";
 		color: #555;
 	}
 
 	&.minus ul li:before {
-		content: "\f146";
+		content: "\f068";
 		color: #555;
 	}
 
@@ -295,11 +295,20 @@ a.post-tooltip {
 .tie-shortcode-boxicon {
 	float: left;
 	margin-left: -50px;
+	width: 40px;
+	text-align: center;
 
 	&:before {
-		line-height: 30px;
-		height: 30px;
-		width: 30px;
+		font-family: tiefonticon !important;
+		speak: never;
+		font-style: normal;
+		font-weight: normal;
+		font-variant: normal;
+		text-transform: none;
+		line-height: 1;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+
 		@include font-size(30px);
 		margin: 0;
 	}
@@ -326,6 +335,7 @@ a.post-tooltip {
 	&.shadow {
 		border: $base-border;
 		box-shadow: 0 0 3px #eeeeee;
+		color: #222;
 
 		.box-inner-block {
 			padding: 0 !important;
@@ -338,7 +348,7 @@ a.post-tooltip {
 		color: darken(#d6f6ff, 70%);
 
 		.tie-shortcode-boxicon:before {
-			content: "\f05a";
+			content: "\f129";
 			color: #2CB4DA
 		}
 	}
@@ -349,7 +359,7 @@ a.post-tooltip {
 		color: darken(#e2f2cb, 70%);
 
 		.tie-shortcode-boxicon:before {
-			content: "\f05d";
+			content: "\f00c";
 			color: #8AB84D
 		}
 	}
@@ -393,7 +403,7 @@ a.post-tooltip {
 		color: darken(#fffddb, 70%);
 
 		.tie-shortcode-boxicon:before {
-			content: '\f15c';
+			content: '\f0f6';
 			color: #ECC21B;
 		}
 	}
@@ -402,88 +412,120 @@ a.post-tooltip {
 // Buttons Shortcode
 .shortc-button {
 	cursor: pointer;
-	padding: 11px 14px 9px;
+	padding: 10px 15px;
 	display: inline-block;
-	margin: 10px 0 0;
+	margin: 10px 5px 0 0;
 	font-weight: normal;
 	outline: none;
 	position: relative;
-	background: #DADADA;
-	border-color: #B4B4B4;
-	border-style: solid;
-	border-width: 0 0 1px;
-	color: #fff !important;
 	text-decoration: none !important;
 	font-size: 13px;
 	min-width: 80px;
-	line-height: 1.2em;
+	line-height: 1.5;
 	overflow: hidden;
 	text-align: center;
-	border-radius: 3px;
-	opacity: 0.9;
+	border-radius: 4px;
+	opacity: 0.85;
+	transition: all .5s;
+
+	.rtl &{
+		margin-right: 0;
+		margin-left: 5px;
+	}
+
+	&:not(.button){
+		color: #fff !important;
+	}
 
 	&:hover {
 		opacity: 1;
-	}
-
-	&:active {
-		top: 1px;
+		box-shadow: 0px 5px 10px -5px rgba(0,0,0,0.4);
 	}
 
 	&.red {
 		background-color: #B02B2C;
-  	border-color: #8B2121;
+
+		&:hover{
+			box-shadow: 0px 5px 10px -5px #B02B2C;
+		}
 	}
 
 	&.green {
-  	background-color: #83a846;
-  	border-color: #6F8F3B;
-  }
+		background-color: #83a846;
+
+		&:hover{
+			box-shadow: 0px 5px 10px -5px #83a846;
+		}
+	}
 
 	&.blue {
 		background-color: #7bb0e7;
-		border-color: #6693C2;
+
+		&:hover{
+			box-shadow: 0px 5px 10px -5px #7bb0e7;
+		}
 	}
 
 	&.orange {
 		background-color: #edae44;
-		border-color: #CA9336;
+
+		&:hover{
+			box-shadow: 0px 5px 10px -5px #edae44;
+		}
 	}
 
 	&.pink {
 		background-color: #d65799;
-		border-color: #BB4B85;
-  }
+
+		&:hover{
+			box-shadow: 0px 5px 10px -5px #d65799;
+		}
+	}
 
 	&.purple {
 		background-color: #745f7e;
-		border-color: #514358;
-  }
+
+		&:hover{
+			box-shadow: 0px 5px 10px -5px #745f7e;
+		}
+	}
 
 	&.black {
 		background-color: #2c2c2c;
-		border-color: #000;
-  }
+
+		&:hover{
+			box-shadow: 0px 5px 10px -5px #2c2c2c;
+		}
+	}
 
 	&.white {
-  	background-color: #fcfcfc;
-  	color: #666666 !important;
-  	border-color: #e1e1e1;
-  	border-width: 1px;
+		background-color: #fcfcfc;
+		color: #666666 !important;
+
+		&:hover{
+			box-shadow: 0px 5px 10px -5px #ccc;
+		}
 	}
 
 	&.gray {
-  	color: #333333 !important;
+		background: #DADADA;
+		color: #333333 !important;
+
+		&:hover{
+			box-shadow: 0px 5px 10px -5px #ccc;
+		}
 	}
 
 	&.medium {
-		padding: 15px 16px 12px;
+		padding: 13px 25px;
 		min-width: 90px;
+		font-size: 15px;
 	}
 
 	&.big {
-		padding: 18px 30px 15px;
+		padding: 15px 30px;
 		min-width: 140px;
+		font-size: 17px;
 	}
 }
 
@@ -533,6 +575,17 @@ a.post-tooltip {
 		}
 
 		span.fa{
+			font-family: 'tiefonticon' !important;
+			speak: never;
+			font-style: normal;
+			font-weight: normal;
+			font-variant: normal;
+			text-transform: none;
+			line-height: 1;
+			/* Better Font Rendering =========== */
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+
 			float: right;
 			font-size: 16px;
 			width: 16px;
@@ -540,7 +593,11 @@ a.post-tooltip {
 			text-align: center;
 			transform: rotate(0deg);
 			transition: transform 0.3s;
-		 	transform-origin: 50% 50%;
+			transform-origin: 50% 50%;
+
+			&:before{
+				content: "\f109" !important;
+			}
 
 			.rtl &{
 				float: left;

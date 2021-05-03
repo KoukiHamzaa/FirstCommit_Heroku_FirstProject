@@ -8,7 +8,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
 
 
-if( ! class_exists( 'TIELABS_EXTENSIONS' )){
+if( ! class_exists( 'TIELABS_EXTENSIONS' ) ) {
 
 	class TIELABS_EXTENSIONS{
 
@@ -28,6 +28,9 @@ if( ! class_exists( 'TIELABS_EXTENSIONS' )){
 
 			// Add the Post Index Module
 			add_action( 'TieLabs/before_single_post_title', array( $this, 'post_index' ) );
+
+			// Replace the old icon classes with the new classes of Font Awesome 5.0
+			add_action( 'tie/extensions/shortcodes/button/icon', array( $this, 'replace_icon_fa5' ) );
 		}
 
 
@@ -35,6 +38,10 @@ if( ! class_exists( 'TIELABS_EXTENSIONS' )){
 		 * Post Index Module
 		 */
 		function post_index(){
+
+			if( tie_get_option( 'autoload_posts' ) && is_singular( 'post' ) ){
+				return;
+			}
 
 			$post = get_post();
 
@@ -47,7 +54,7 @@ if( ! class_exists( 'TIELABS_EXTENSIONS' )){
 				echo '
 					<div id="story-index">
 						<div class="theiaStickySidebar">
-						<span id="story-index-icon" class="fa fa-list" aria-hidden="true"></span>
+						<span id="story-index-icon" class="tie-icon-list" aria-hidden="true"></span>
 							<div class="story-index-content">
 								<ul>';
 
@@ -109,6 +116,13 @@ if( ! class_exists( 'TIELABS_EXTENSIONS' )){
 			return $message;
 		}
 
+
+		/**
+		 * Replace the old icon classes with the new classes of Font Awesome 5.0
+		 */
+		function replace_icon_fa5( $icon ){
+			return tie_fa4_to_fa5_value_migration( $icon );
+		}
 	}
 
 

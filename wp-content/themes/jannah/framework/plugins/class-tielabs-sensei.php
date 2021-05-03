@@ -8,7 +8,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
 
 
-if( ! class_exists( 'TIELABS_SENSEI' )){
+if( ! class_exists( 'TIELABS_SENSEI' ) ) {
 
 	class TIELABS_SENSEI{
 

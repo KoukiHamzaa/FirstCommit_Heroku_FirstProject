@@ -8,7 +8,7 @@
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
 
-if( ! class_exists( 'TIELABS_HELPER' )){
+if( ! class_exists( 'TIELABS_HELPER' ) ) {
 
 	class TIELABS_HELPER {
 
@@ -69,7 +69,7 @@ if( ! class_exists( 'TIELABS_HELPER' )){
 		 */
 		public static function is_mobile_and_hidden( $option ){
 
-			if( tie_is_mobile() && tie_get_option( 'mobile_hide_' . $option )){
+			if( tie_is_mobile() && tie_get_option( 'mobile_hide_' . $option ) ) {
 				return true;
 			}
 
@@ -109,7 +109,7 @@ if( ! class_exists( 'TIELABS_HELPER' )){
 				extract( $args );
 			}
 
-			if( ! empty( $template_name )){
+			if( ! empty( $template_name ) ) {
 				$template_name = '-'.$template_name;
 			}
 
@@ -217,9 +217,10 @@ if( ! class_exists( 'TIELABS_HELPER' )){
 			   * Better WordPress Minify
 			   * Fast Velocity Minify
 			   * JS & CSS Script Optimizer
+			   * WP-Optimize
 			*/
 
-			if( TIELABS_BWPMINIFY_IS_ACTIVE || function_exists( 'fvm_download_and_cache' ) || class_exists( 'evScriptOptimizer' ) ){
+			if( TIELABS_BWPMINIFY_IS_ACTIVE || function_exists( 'fvm_download_and_cache' ) || class_exists( 'evScriptOptimizer' ) || class_exists( 'WP_Optimize_Minify_Front_End' ) ){
 				return true;
 			}
 
@@ -265,6 +266,22 @@ if( ! class_exists( 'TIELABS_HELPER' )){
 		}
 
 
+		/**
+		 * Replace SSL
+		 */
+		public static function replace_ssl( &$value, $key ){
+
+			$protocols = array( 'http://', 'https://' );
+			$site_url  = str_replace( $protocols, '', get_option('siteurl') );
+			$site_url_old = 'http://'.$site_url;
+
+			if( strpos( $value, $site_url_old ) !== false ){
+				$site_url_new = 'https://'.$site_url;
+				$value = str_replace( $site_url_old, $site_url_new, $value );
+			}
+		}
+
+
 	 /**
 	  * Check if current page buit by the page builder
 	  */
@@ -292,12 +309,12 @@ if( ! class_exists( 'TIELABS_HELPER' )){
 		public static function get_locale(){
 
 			// WPML
-			if( defined( 'ICL_LANGUAGE_CODE' )){
+			if( defined( 'ICL_LANGUAGE_CODE' ) ) {
 				return ICL_LANGUAGE_CODE;
 			}
 
 			// wpglobus
-			if( class_exists( 'WPGlobus' )){
+			if( class_exists( 'WPGlobus' ) ) {
 				return WPGlobus::Config()->language;
 			}
 
@@ -311,12 +328,19 @@ if( ! class_exists( 'TIELABS_HELPER' )){
 		 */
 		public static function notice_message( $message, $echo = true ){
 
-			if( empty( $message) ){
+			if( empty( $message ) || ( defined( 'REST_REQUEST' ) && REST_REQUEST ) ){
 				return;
 			}
 
-			echo'<span class="theme-notice">'. $message .'</span>';
+			$message = '<span class="theme-notice">'. $message .'</span>';
+
+			if( $echo ){
+				echo $message;
+			}
+
+			return $message;
 		}
+
 
 	}
 

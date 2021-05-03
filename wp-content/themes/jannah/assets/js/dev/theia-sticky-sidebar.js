@@ -287,7 +287,11 @@
 						}
 
 						// LazyLoad Images and other animations
-						tie_animate_element( o.sidebar );
+						if( ! o.sidebar.hasClass('is-alreay-loaded') ){
+							tie_animate_element( o.sidebar );
+							o.sidebar.addClass('is-alreay-loaded');
+						}
+
 					}
 
 					o.previousScrollTop = scrollTop;

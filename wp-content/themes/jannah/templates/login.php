@@ -8,11 +8,10 @@
  * will need to copy the new files to your child theme to maintain compatibility.
  *
  * @author 		TieLabs
- * @version   4.0.0
+ * @version   5.0.0
  */
 
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly
-
 
 
 $redirect     = apply_filters( 'TieLabs/Login/redirect', site_url() );
@@ -26,7 +25,7 @@ if ( is_user_logged_in() ){
 	// Add the Dashboared Link
 	if( current_user_can( 'manage_options' ) ){
 		$logged_in_links['dashboard'] = array(
-			'icon' => 'fa fa-cog',
+			'icon' => 'tie-icon-cog',
 			'link' => admin_url(),
 			'text' => esc_html__( 'Dashboard', TIELABS_TEXTDOMAIN ),
 		);
@@ -34,14 +33,14 @@ if ( is_user_logged_in() ){
 
 	// Profile Page
 	$logged_in_links['profile'] = array(
-		'icon' => 'fa fa-user',
+		'icon' => 'tie-icon-author',
 		'link' => get_edit_profile_url(),
 		'text' => esc_html__( 'Your Profile', TIELABS_TEXTDOMAIN ),
 	);
 
 	// LogOut
 	$logged_in_links['logout'] = array(
-		'icon' => 'fa fa-sign-out',
+		'icon' => 'tie-icon-sign-out',
 		'link' => wp_logout_url( $redirect ),
 		'text' => esc_html__( 'Log Out', TIELABS_TEXTDOMAIN ),
 	);
@@ -108,12 +107,16 @@ else{
 				<a class="forget-text" href="<?php echo wp_lostpassword_url( $redirect ) ?>"><?php esc_html_e( 'Forget?', TIELABS_TEXTDOMAIN ) ?></a>
 			</div>
 
-			<input type="hidden" name="redirect_to" value="<?php echo esc_attr( $_SERVER['REQUEST_URI'] ); ?>"/>
+			<input type="hidden" name="redirect_to" value="<?php echo esc_attr( apply_filters( 'TieLabs/Login/redirect_after', $_SERVER['REQUEST_URI'] ) ); ?>"/>
 			<label for="rememberme" class="rememberme">
 				<input id="rememberme" name="rememberme" type="checkbox" checked="checked" value="forever" /> <?php esc_html_e( 'Remember me', TIELABS_TEXTDOMAIN ) ?>
 			</label>
 
-			<?php do_action( 'login_form' ); ?>
+			<?php
+				if( ! TIELABS_JETPACK_IS_ACTIVE ){
+					do_action( 'login_form' );
+				}
+			?>
 
 			<?php do_action( 'TieLabs/Login/before_button' ); ?>
 

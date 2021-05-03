@@ -8,7 +8,7 @@
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
 
-if( ! class_exists( 'TIELABS_ADMIN_HELPER' )){
+if( ! class_exists( 'TIELABS_ADMIN_HELPER' ) ) {
 
 	class TIELABS_ADMIN_HELPER {
 
@@ -60,17 +60,108 @@ if( ! class_exists( 'TIELABS_ADMIN_HELPER' )){
 				$categories[] = esc_html__( '- Select a Category -', TIELABS_TEXTDOMAIN );
 			}
 
+			$max_number = apply_filters( 'TieLabs/get_categories/max_number', 500 );
+
+			$args = array(
+				'hide_empty' => false,
+				'number'     => $max_number
+			);
+
+			// Some websites have more than 5000 categories, which cause slowness
+			if ( get_option( 'tie_huge_categories_list' ) ){
+				$args['hide_empty'] = true;
+				$args['orderby']    = 'count';
+			}
+
 			// Query the categories
-			$get_categories = get_categories( 'hide_empty=0' );
+			$get_categories = get_categories( $args );
 
 			// Add the categories to the array
 			if( ! empty( $get_categories ) && is_array( $get_categories ) ){
+
 				foreach ( $get_categories as $category ){
 					$categories[ $category->cat_ID ] = $category->cat_name;
 				}
+
+				// Some websites have more than 5000 categories, which cause slowness
+				if( count( $get_categories ) > $max_number && ! $args['hide_empty'] ){
+					update_option( 'tie_huge_categories_list', count( $get_categories ), false );
+				}
+
 			}
 
 			return $categories;
+		}
+
+
+		/**
+		 * Get all taxonomies as array of slug and name
+		 */
+		public static function get_taxonomies( $label = false ){
+
+			$taxonomies = array();
+
+			// Default Label
+			if( ! empty( $label ) ){
+				$taxonomies[] = esc_html__( '- Select a Taxonomy -', TIELABS_TEXTDOMAIN );
+			}
+
+			// Query the taxonomies
+			$get_taxonomies = get_taxonomies( array(
+				'public'   => true,
+				'_builtin' => false
+			), 'objects' );
+
+			$exclude_list = apply_filters( 'TieLabs/exclude_taxonomies_list', array(
+				'product_shipping_class',
+				'topic-tag',
+				'product_tag',
+				'product_cat',
+			) );
+
+			foreach ( $exclude_list as $taxonomy ) {
+				if( isset( $get_taxonomies[ $taxonomy ] ) ){
+					unset( $get_taxonomies[ $taxonomy ] );
+				}
+			}
+
+			// Add the categories to the array
+			if( ! empty( $get_taxonomies ) && is_array( $get_taxonomies ) ){
+				foreach ( $get_taxonomies as $slug => $taxonomy ){
+					$taxonomies[ $slug ] = ! empty( $taxonomy->label ) ? $taxonomy->label .' ('.$slug.')' : $taxonomy->labels->name .' ('.$slug.')';
+				}
+			}
+
+			return $taxonomies;
+		}
+
+
+		/**
+		 * Get all terms of specfic taxonomy as array of ID and name
+		 */
+		public static function get_terms_by_taxonomy( $taxonomy = false, $label = false ){
+
+			$terms = array();
+
+			// Default Label
+			if( ! empty( $label ) ){
+				$terms[] = esc_html__( '- Select a Term -', TIELABS_TEXTDOMAIN );
+			}
+
+			// Query the categories
+			$get_terms = get_terms( array(
+				'taxonomy'   => $taxonomy,
+				'hide_empty' => false,
+			));
+
+			// Add the terms to the array
+			if( ! empty( $get_terms ) && is_array( $get_terms ) ){
+				foreach ( $get_terms as $term ){
+					$terms[ $term->term_id ] = $term->name;
+				}
+			}
+
+			return $terms;
 		}
 
 
@@ -116,7 +207,7 @@ if( ! class_exists( 'TIELABS_ADMIN_HELPER' )){
 			$sidebars_list = $wp_registered_sidebars;
 
 			$custom_sidebars = tie_get_option( 'sidebars' );
-			if( ! empty( $custom_sidebars ) && is_array( $custom_sidebars )){
+			if( ! empty( $custom_sidebars ) && is_array( $custom_sidebars ) ) {
 				foreach ( $custom_sidebars as $sidebar ){
 
 					// Remove sanitized custom sidebars titles from the sidebars array.
@@ -128,7 +219,7 @@ if( ! class_exists( 'TIELABS_ADMIN_HELPER' )){
 				}
 			}
 
-			if( ! empty( $sidebars_list ) && is_array( $sidebars_list )){
+			if( ! empty( $sidebars_list ) && is_array( $sidebars_list ) ) {
 				foreach( $sidebars_list as $name => $sidebar ){
 					$sidebars[ $name ] = $sidebar['name'];
 				}
@@ -161,11 +252,33 @@ if( ! class_exists( 'TIELABS_ADMIN_HELPER' )){
 			foreach ( $input as &$value ){
 
 				if( is_array( $value ) ){
-					$value = self::array_filter($value);
+					$value = self::array_filter( $value );
 				}
 			}
 
 			return array_filter( $input );
+		}
+
+
+		/**
+		 * Remove all settings with value -tie-101
+		 */
+		public static function clean_settings( $input ){
+
+			return $input;
+			/*
+			if( is_array( $input ) ){
+				foreach ( $input as &$value ){
+					$value = self::clean_settings( $value );
+				}
+			}
+
+			if ( $input == '-tie-101' ) {
+				$input = '';
+			}
+
+			return $input;
+			*/
 		}
 
 

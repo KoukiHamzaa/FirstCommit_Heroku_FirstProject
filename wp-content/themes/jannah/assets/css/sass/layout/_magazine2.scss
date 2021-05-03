@@ -20,10 +20,6 @@
 		}
 	}
 
-	.tie-popup-container .container-wrapper{
-		padding: 30px;
-	}
-
 	&.page .entry-content,
 	&.archive .wide-post-box .container-wrapper{
 		padding-top: 0;
@@ -32,6 +28,7 @@
 	// mag boxes
 	.mag-box,
 	.sidebar .container-wrapper,
+	.sidebar .tie-weather-widget,
 	.widget-content-only{
 		margin-bottom: 50px;
 
@@ -103,17 +100,17 @@
 		  background: #ffffff;
 		}
 
-		.dark-skin & .post-layout-8.one-column-no-sidebar .main-content {
+		.dark-skin &.post-layout-8.one-column-no-sidebar .main-content {
 		  background-color: $darker-bg;
 		}
 	}
 
-	.post-footer-on-bottom{
+	.share-buttons-bottom{
 		border: $primary-border;
 		padding: 15px;
 	}
 
-	.post-footer-on-top{
+	.share-buttons-top{
 		padding-right: 0;
 		padding-left: 0;
 
@@ -211,4 +208,11 @@
 		}
 	}
 
+	.has-custom-bg-color .container-wrapper{
+		padding: 30px;
+
+		@include breakpoint(max_min_sm){
+			padding: 15px;
+		}
+	}
 }

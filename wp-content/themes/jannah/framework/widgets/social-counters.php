@@ -1,6 +1,6 @@
 <?php
 
-if( ! class_exists( 'TIE_SOCIAL_COUNTER_WIDGET' )){
+if( ! class_exists( 'TIE_SOCIAL_COUNTER_WIDGET' ) ) {
 
 	/**
 	 * Widget API: TIE_SOCIAL_COUNTER_WIDGET class
@@ -45,27 +45,85 @@ if( ! class_exists( 'TIE_SOCIAL_COUNTER_WIDGET' )){
 				12 => 'solid-social-icons white-bg squared-four-cols',
 			);
 
-			if( ! empty( $instance['style'] ) && ! empty( $layouts[ $instance['style'] ] )){
+			if( ! empty( $instance['style'] ) && ! empty( $layouts[ $instance['style'] ] ) ) {
 				$class = $layouts[ $instance['style'] ];
 			}
 
 			# Arqam or Arqam Lite?
 			$is_installed = false;
 
-			if( function_exists( 'arq_counters_data' )){
+			if( function_exists( 'arq_counters_data' ) ) {
 				$arq_counters = arq_counters_data();
 				$class  .= ' Arqam';
 				$is_installed = true;
 			}
-			elseif( class_exists( 'ARQAM_LITE_COUNTERS' )){
+			elseif( class_exists( 'ARQAM_LITE_COUNTERS' ) ) {
 				$counters = new ARQAM_LITE_COUNTERS();
 				$arq_counters = $counters->counters_data();
 				$class .= ' Arqam-Lite';
 				$is_installed = true;
 			}
 
-			?>
 
+			// Get the total followers number
+			$total_position = ! empty( $instance['total_position'] ) ? $instance['total_position'] : 'before';
+			if( ! empty( $instance['total'] ) ){
+
+				$total = 0;
+				foreach ( $arq_counters as $social => $counter ){
+
+					if( ! empty( $counter['count'] ) ){
+
+						$count = str_replace( '+', '', $counter['count'] );
+						$count = str_replace( '.', '', $count );
+
+						if( strpos( $count, 'M' ) !== false ){
+							$count = str_replace( '٬', '.', $count );
+							$count = str_replace( ',', '.', $count );
+							$count = str_replace( 'M', '', $count ) * 1000000;
+						}
+						elseif( strpos( $count, 'k' ) !== false ){
+							$count = str_replace( '٬', '.', $count );
+							$count = str_replace( ',', '.', $count );
+							$count = str_replace( 'k', '', $count ) * 1000;
+						}
+
+						$count = str_replace( '٬', '', $count );
+						$count = str_replace( ',', '', $count );
+
+						$total += $count;
+					}
+				}
+
+				if( ! empty( $total ) && is_integer( $total ) ){
+					if( $total >= 1000000 ){
+						$total = round( ( $total/1000)/1000, 0) . 'M';
+					}
+					elseif( $total >= 100000){
+						$total = round( $total/1000, 0) . 'K';
+					}
+					else{
+						$total = number_format_i18n( $total );
+					}
+				}
+
+				$total   = apply_filters( 'TieLabs/Social_Counters/number', $total );
+				$before = ! empty( $instance['total_before'] ) ? $instance['total_before'] : '';
+				$after  = ! empty( $instance['total_after'] )  ? $instance['total_after']  : '';
+
+				$total = '
+					<div class="social-counter-total">
+						<span class="tie-icon-heart"></span>
+						<span class="counter-total-text">'. $before .' <strong>'. $total .'</strong> '. $after.'</span>
+					</div>
+				';
+			}
+
+
+			if( ! empty( $total ) && $total_position == 'before' ){
+				echo $total;
+			}
+			?>
 			<ul class="solid-social-icons <?php echo esc_attr( $class ) ?>">
 				<?php
 
@@ -84,12 +142,13 @@ if( ! class_exists( 'TIE_SOCIAL_COUNTER_WIDGET' )){
 							<li class="social-icons-item">
 								<a class="<?php echo esc_attr( $social ) ?>-social-icon" href="<?php echo esc_url( $counter['url'] ) ?>" rel="nofollow noopener" target="_blank">
 									<?php
-										$icon = str_replace( '<i', '<span', $counter['icon']);
+										$icon = str_replace( '<i', '<span', $counter['icon'] );
+										$icon = str_replace( 'fa fa-', 'tie-icon-', $icon ); // old version of Arqam Lite
 										echo str_replace( '</i', '</span', $icon );
 									?>
 									<span class="followers">
-										<span class="followers-num"><?php  echo ( $counter['count'] ) ?></span>
-										<span class="followers-name"><?php echo ( $counter['text'] ) ?></span>
+										<span class="followers-num"><?php  echo apply_filters( 'TieLabs/Social_Counters/number', $counter['count'] ) ?></span>
+										<span class="followers-name"><?php echo $counter['text'] ?></span>
 									</span>
 								</a>
 							</li>
@@ -103,6 +162,10 @@ if( ! class_exists( 'TIE_SOCIAL_COUNTER_WIDGET' )){
 			</ul>
 			<?php
 
+			if( ! empty( $total ) && $total_position == 'after' ){
+				echo $total;
+			}
+
 			echo ( $args['after_widget'] );
 		}
 
@@ -110,9 +173,14 @@ if( ! class_exists( 'TIE_SOCIAL_COUNTER_WIDGET' )){
 		 * Handles updating settings for widget instance.
 		 */
 		public function update( $new_instance, $old_instance ){
-			$instance          = $old_instance;
-			$instance['title'] = sanitize_text_field( $new_instance['title'] );
-			$instance['style'] = $new_instance['style'];
+			$instance                 = $old_instance;
+			$instance['title']        = sanitize_text_field( $new_instance['title'] );
+			$instance['style']        = $new_instance['style'];
+			$instance['total_before'] = $new_instance['total_before'];
+			$instance['total_after']  = $new_instance['total_after'];
+			$instance['total']        = ! empty( $new_instance['total'] ) ? 'true' : false;
+			$instance['total_position'] = $new_instance['total_position'];
+
 			return $instance;
 		}
 
@@ -123,7 +191,11 @@ if( ! class_exists( 'TIE_SOCIAL_COUNTER_WIDGET' )){
 			$defaults = array( 'title' => esc_html__( 'Follow Us', TIELABS_TEXTDOMAIN), 'style' => 1 );
 			$instance = wp_parse_args( (array) $instance, $defaults );
 
-			$title = isset( $instance['title'] ) ? $instance['title'] : '';
+			$title        = isset( $instance['title'] ) ? $instance['title'] : '';
+			$total_before = isset( $instance['total_before'] ) ? $instance['total_before'] : '';
+			$total_after  = isset( $instance['total_after'] )   ? $instance['total_after'] : '';
+			$total_position = isset( $instance['total_position'] )  ? $instance['total_position'] : 'before';
+			$total = isset( $instance['total'] ) ? $instance['total']  : '';
 			$style = isset( $instance['style'] ) ? $instance['style'] : 1;
 			?>
 
@@ -133,7 +205,6 @@ if( ! class_exists( 'TIE_SOCIAL_COUNTER_WIDGET' )){
 			</p>
 
 			<label><?php esc_html_e( 'Style', TIELABS_TEXTDOMAIN) ?></label>
-
 			<div class="tie-styles-list-widget">
 				<p>
 					<?php
@@ -146,6 +217,28 @@ if( ! class_exists( 'TIE_SOCIAL_COUNTER_WIDGET' )){
 					?>
 				</p>
 			</div>
+
+			<p>
+				<input id="<?php echo esc_attr( $this->get_field_id( 'total' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'total' ) ); ?>" value="true" <?php checked( $total, 'true' ); ?> type="checkbox" />
+				<label for="<?php echo esc_attr( $this->get_field_id( 'total' ) ); ?>"><?php esc_html_e( 'Show the total followers number?', TIELABS_TEXTDOMAIN) ?></label>
+			</p>
+
+			<p>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'total_before' ) ); ?>"><?php esc_html_e( 'Text before the total number', TIELABS_TEXTDOMAIN) ?></label>
+				<input id="<?php echo esc_attr( $this->get_field_id( 'total_before' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'total_before' ) ); ?>" value="<?php echo esc_attr( $total_before ); ?>" class="widefat" type="text" />
+			</p>
+
+			<p>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'total_after' ) ); ?>"><?php esc_html_e( 'Text after the total number', TIELABS_TEXTDOMAIN) ?></label>
+				<input id="<?php echo esc_attr( $this->get_field_id( 'total_after' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'total_after' ) ); ?>" value="<?php echo esc_attr( $total_after ); ?>" class="widefat" type="text" />
+			</p>
+
+			<p>
+				<label for="<?php echo esc_attr( $this->get_field_id('total_position') ); ?>"><?php esc_html_e( 'Position', TIELABS_TEXTDOMAIN ); ?></label><br />
+				<label><input name="<?php echo esc_attr( $this->get_field_name('total_position') ); ?>" type="radio" value="before" <?php checked( $total_position, 'before' ); ?> /> <?php esc_html_e('Before the counters.', TIELABS_TEXTDOMAIN); ?></label> <br />
+				<label><input name="<?php echo esc_attr( $this->get_field_name('total_position') ); ?>" type="radio" value="after" <?php checked( $total_position, 'after' ); ?> /> <?php esc_html_e('After the counters.', TIELABS_TEXTDOMAIN); ?></label>
+			</p>
+
 			<?php
 		}
 	}

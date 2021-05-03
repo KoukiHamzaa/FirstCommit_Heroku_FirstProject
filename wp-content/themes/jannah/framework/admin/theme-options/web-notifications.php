@@ -7,12 +7,25 @@
 			'type'  => 'tab-title',
 		));
 
-	?>
+	$lock_settings = 'block';
 
+	if( ! get_option( 'tie_token_'.TIELABS_THEME_ID ) ){
+
+		$lock_settings = 'none !important';
+
+		tie_build_theme_option(
+			array(
+				'text' => esc_html__( 'Verify your license to unlock this section.', TIELABS_TEXTDOMAIN ),
+				'type' => 'error',
+			));
+	}
+
+	echo '<div style="display:'. $lock_settings .'" >';
+?>
 
 	<div class="foxpush-intro">
 		<a href="<?php echo apply_filters( 'TieLabs/External/foxpush', '' ); ?>" target="_blank" class="navbar-brand smooth-scroll">
-			<object type="image/svg+xml" style="max-width: 380px;pointer-events: none;" data="<?php echo TIELABS_TEMPLATE_URL ?>/framework/admin/assets/images/foxpush.svg"></object>
+			<img loading="lazy" style="max-width: 380px;pointer-events: none;" src="<?php echo TIELABS_TEMPLATE_URL ?>/framework/admin/assets/images/foxpush.svg" />
 		</a>
 
 		<h3><?php esc_html_e( "Web Push notifications allow your users to opt-in to timely updates from your website. and allow you to effectively re-engage them with customized, engaging content whenever they are online, wherever they may be - even on their phones! It's easy to set up, and no technical skills are required.", TIELABS_TEXTDOMAIN ); ?></h3>
@@ -199,3 +212,6 @@
 
 	echo '</div> <!-- FoxPush Stats -->';
 	echo '</div><!-- foxpush-all-options -->';
+
+echo '</div>'; // Settings locked
+

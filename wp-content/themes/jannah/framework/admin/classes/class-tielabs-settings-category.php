@@ -8,7 +8,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
 
 
-if( ! class_exists( 'TIELABS_SETTINGS_CATEGORY' )){
+if( ! class_exists( 'TIELABS_SETTINGS_CATEGORY' ) ) {
 
 	class TIELABS_SETTINGS_CATEGORY{
 
@@ -57,6 +57,9 @@ if( ! class_exists( 'TIELABS_SETTINGS_CATEGORY' )){
 
 			$tie_cats_options = get_option( 'tie_cats_options' );
 			$category_data    = apply_filters( 'TieLabs/save_category', $_POST['tie_cat'] );
+
+			$category_data = TIELABS_ADMIN_HELPER::clean_settings( $category_data );
+			$category_data = TIELABS_ADMIN_HELPER::array_filter( $category_data );
 
 			$tie_cats_options[ $category_id ] = $category_data;
 			update_option( 'tie_cats_options', $tie_cats_options, 'yes' );
@@ -189,6 +192,21 @@ if( ! class_exists( 'TIELABS_SETTINGS_CATEGORY' )){
 		 */
 		function layout_settings( $current_settings, $category_id ){
 
+			// Post Order
+			$post_order = array(
+				''         => esc_html__( 'Default',              TIELABS_TEXTDOMAIN ),
+				'latest'   => esc_html__( 'Recent Posts',         TIELABS_TEXTDOMAIN ),
+				'rand'     => esc_html__( 'Random Posts',         TIELABS_TEXTDOMAIN ),
+				'modified' => esc_html__( 'Last Modified Posts',  TIELABS_TEXTDOMAIN ),
+				'popular'  => esc_html__( 'Most Commented posts', TIELABS_TEXTDOMAIN ),
+				'title'    => esc_html__( 'Alphabetically',       TIELABS_TEXTDOMAIN ),
+			);
+
+			if( tie_get_option( 'tie_post_views' ) ){
+				$post_order['views'] = esc_html__( 'Most Viewed posts', TIELABS_TEXTDOMAIN );
+			}
+
+			// ---
 			$settings = array(
 
 				array(
@@ -215,9 +233,36 @@ if( ! class_exists( 'TIELABS_SETTINGS_CATEGORY' )){
 				)),
 
 				array(
+					'name' => esc_html__( 'Posts Excerpt', TIELABS_TEXTDOMAIN ),
+					'id'   => 'category_excerpt',
+					'type' => 'select',
+					'options' => array(
+						''    => esc_html__( 'Default', TIELABS_TEXTDOMAIN ),
+						'yes' => esc_html__( 'Yes',     TIELABS_TEXTDOMAIN ),
+						'no'  => esc_html__( 'No',      TIELABS_TEXTDOMAIN ),
+					)),
+
+				array(
 					'name' => esc_html__( 'Excerpt Length', TIELABS_TEXTDOMAIN ),
 					'id'   => 'category_excerpt_length',
 					'type' => 'number',
+				),
+
+				array(
+					'name' => esc_html__( 'Read More Button', TIELABS_TEXTDOMAIN ),
+					'id'   => 'category_read_more',
+					'type' => 'select',
+					'options' => array(
+						''    => esc_html__( 'Default', TIELABS_TEXTDOMAIN ),
+						'yes' => esc_html__( 'Yes',     TIELABS_TEXTDOMAIN ),
+						'no'  => esc_html__( 'No',      TIELABS_TEXTDOMAIN ),
+					)),
+
+				array(
+					'name' => esc_html__( 'Custom Read More Button text', TIELABS_TEXTDOMAIN ),
+					'id'   => 'category_read_more_text',
+					'type' => 'text',
+					'hint' => esc_html__( 'Leave it empty to use the default text.', TIELABS_TEXTDOMAIN ),
 				),
 
 				array(
@@ -236,6 +281,18 @@ if( ! class_exists( 'TIELABS_SETTINGS_CATEGORY' )){
 					'name'  => esc_html__( 'Media Icon', TIELABS_TEXTDOMAIN ),
 					'id'    => 'category_media_overlay',
 					'type'  => 'checkbox',
+				),
+
+				array(
+					'title' => esc_html__( 'Sort Order', TIELABS_TEXTDOMAIN ),
+					'type'  => 'header',
+				),
+
+				array(
+					'name'    => esc_html__( 'Sort Order', TIELABS_TEXTDOMAIN ),
+					'id'      => 'posts_order',
+					'type'    => 'select',
+					'options' => apply_filters( 'TieLabs/Settings/Category/posts_order', $post_order )
 				),
 
 				array(
@@ -688,7 +745,7 @@ if( ! class_exists( 'TIELABS_SETTINGS_CATEGORY' )){
 				$rev_slider = new RevSlider();
 				$rev_slider = $rev_slider->getArrSlidersShort();
 
-				if( ! empty( $rev_slider ) && is_array( $rev_slider )){
+				if( ! empty( $rev_slider ) && is_array( $rev_slider ) ) {
 
 					$arrSliders = array( '' => esc_html__( 'Disable', TIELABS_TEXTDOMAIN ) );
 
@@ -796,7 +853,7 @@ if( ! class_exists( 'TIELABS_SETTINGS_CATEGORY' )){
 					'id'      => 'logo_setting',
 					'type'    => 'radio',
 					'toggle'  => array(
-						'logo'  => '#logo-item, #logo_retina-item, #logo_retina_width-item, #logo_retina_height-item',
+						'logo'  => '#logo-image-settings',
 						'title' => ''),
 					'options'	=> array(
 						'logo'  => esc_html__( 'Image', TIELABS_TEXTDOMAIN ),
@@ -804,34 +861,52 @@ if( ! class_exists( 'TIELABS_SETTINGS_CATEGORY' )){
 				)),
 
 				array(
+					'content' => '<div id="logo-image-settings" class="logo_setting-options">',
+					'type'    => 'html',
+				),
+
+				array(
 					'name'  => esc_html__( 'Logo Image', TIELABS_TEXTDOMAIN ),
 					'id'    => 'logo',
 					'type'  => 'upload',
-					'class' => 'logo_setting',
 				),
 
 				array(
 					'name'  => esc_html__( 'Logo Image (Retina Version @2x)', TIELABS_TEXTDOMAIN ),
 					'id'    => 'logo_retina',
 					'type'  => 'upload',
-					'class' => 'logo_setting',
 					'hint'	=> esc_html__( 'Please choose an image file for the retina version of the logo. It should be 2x the size of main logo.', TIELABS_TEXTDOMAIN ),
 				),
 
 				array(
-					'name'  => esc_html__( 'Standard Logo Width for Retina Logo', TIELABS_TEXTDOMAIN ),
-					'id'    => 'logo_retina_width',
-					'type'  => 'number',
-					'class' => 'logo_setting',
-					'hint'  => esc_html__( 'If retina logo is uploaded, please enter the standard logo (1x) version width, do not enter the retina logo width.', TIELABS_TEXTDOMAIN ),
+					'name'  => esc_html__( 'Logo Inverted Image', TIELABS_TEXTDOMAIN ),
+					'id'    => 'logo_inverted',
+					'type'  => 'upload',
+					'hint'	=> '<strong>'. esc_html__( 'Used if users are allowed to switch between Light and Dark skins.', TIELABS_TEXTDOMAIN ) .'</strong>',
 				),
 
 				array(
-					'name'  => esc_html__( 'Standard Logo Height for Retina Logo', TIELABS_TEXTDOMAIN ),
+					'name'  => esc_html__( 'Logo Inverted Image (Retina Version @2x)', TIELABS_TEXTDOMAIN ),
+					'id'    => 'logo_inverted_retina',
+					'type'  => 'upload',
+					'hint'	=> '<strong>'. esc_html__( 'Used if users are allowed to switch between Light and Dark skins.', TIELABS_TEXTDOMAIN ) .'</strong><br />'. esc_html__( 'Please choose an image file for the retina version of the logo. It should be 2x the size of main logo.', TIELABS_TEXTDOMAIN ),
+				),
+
+				array(
+					'name'  => esc_html__( 'Logo width', TIELABS_TEXTDOMAIN ),
+					'id'    => 'logo_retina_width',
+					'type'  => 'number',
+				),
+
+				array(
+					'name'  => esc_html__( 'Logo height', TIELABS_TEXTDOMAIN ),
 					'id'    => 'logo_retina_height',
 					'type'  => 'number',
-					'class' => 'logo_setting',
-					'hint'  => esc_html__( 'If retina logo is uploaded, please enter the standard logo (1x) version height, do not enter the retina logo height.', TIELABS_TEXTDOMAIN ),
+				),
+
+				array(
+					'content' => '</div>',
+					'type'    => 'html',
 				),
 
 				array(

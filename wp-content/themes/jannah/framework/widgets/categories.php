@@ -1,6 +1,6 @@
 <?php
 
-if( ! class_exists( 'TIE_CATEGORIES_WIDGET' )){
+if( ! class_exists( 'TIE_CATEGORIES_WIDGET' ) ) {
 
 	/**
 	 * Widget API: TIE_CATEGORIES_WIDGET class

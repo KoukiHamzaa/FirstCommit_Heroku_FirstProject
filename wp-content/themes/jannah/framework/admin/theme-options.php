@@ -12,35 +12,60 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
  */
 function tie_save_theme_options( $data, $refresh = 0 ){
 
-	if( ! empty( $data['tie_options'] )){
+	if( ! empty( $data['tie_options'] ) ) {
+
+		//
+		$new_settings = $data['tie_options'];
+
+		// DB option field name
+		$option_field = apply_filters( 'TieLabs/theme_options', '' );
+
+		// Get the Stored options
+		//$stored_settings = get_option( $option_field );
 
 		// Prepare the data
-		do_action( 'TieLabs/Options/before_update', $data['tie_options'] );
+		do_action( 'TieLabs/Options/before_update', $new_settings );
+
+		// To avoid reseting addons settings if they are disabled
+		//if( $stored_settings ){
+			//$new_settings = wp_parse_args( $new_settings, $stored_settings );
+		//}
 
 		// Remove all empty keys
-		$data['tie_options'] = TIELABS_ADMIN_HELPER::array_filter( $data['tie_options'] );
-		$data['tie_options'] = str_replace( 'tie-open-tag', '', $data['tie_options'] ); //issue in saving any code with meta tag on some servers
+		$new_settings = TIELABS_ADMIN_HELPER::clean_settings( $new_settings );
+		$new_settings = TIELABS_ADMIN_HELPER::array_filter( $new_settings );
+
+		foreach ( $new_settings as $key => $value ) {
+			if( ! is_array( $value ) ) {
+				$new_settings[ $key ] = str_replace( 'tie-open-tag', '', $value );
+			}
+		}
 
 		// Remove the Logo Text if it is the same as the site title
-		if( ! empty( $data['tie_options']['logo_text'] ) && $data['tie_options']['logo_text'] == get_bloginfo() ){
-			unset( $data['tie_options']['logo_text'] );
+		if( ! empty( $new_settings['logo_text'] ) && $new_settings['logo_text'] == get_bloginfo() ){
+			unset( $new_settings['logo_text'] );
+		}
+
+		// If the site uses SSL, make sure all site links are SSL
+		if( TIELABS_HELPER::is_ssl() ){
+			array_walk_recursive( $new_settings, array( 'TIELABS_HELPER', 'replace_ssl' ) );
 		}
 
 		// Save the settings
-		update_option( apply_filters( 'TieLabs/theme_options', '' ), $data['tie_options'] );
+		update_option( $option_field, $new_settings );
 
 		// WPML
-		if( ! empty( $data['tie_options']['breaking_custom'] ) && is_array( $data['tie_options']['breaking_custom'] )){
+		if( ! empty( $new_settings['breaking_custom'] ) && is_array( $new_settings['breaking_custom'] ) ) {
 			$count = 0;
 
-			foreach ( $data['tie_options']['breaking_custom'] as $custom_text ){
+			foreach ( $new_settings['breaking_custom'] as $custom_text ){
 				$count++;
 
-				if( ! empty( $custom_text['text'] )){
+				if( ! empty( $custom_text['text'] ) ) {
 					do_action( 'wpml_register_single_string', TIELABS_THEME_SLUG, 'Breaking News Custom Text #'.$count, $custom_text['text'] );
 				}
 
-				if( ! empty( $custom_text['link'] )){
+				if( ! empty( $custom_text['link'] ) ) {
 					do_action( 'wpml_register_single_string', TIELABS_THEME_SLUG, 'Breaking News Custom Link #'.$count, $custom_text['link'] );
 				}
 			}
@@ -65,10 +90,11 @@ function tie_save_theme_options( $data, $refresh = 0 ){
  */
 add_action( 'wp_ajax_tie_theme_data_save', 'tie_save_theme_options_ajax' );
 function tie_save_theme_options_ajax(){
-
 	check_ajax_referer( 'tie-theme-data', 'tie-security' );
 
-	tie_save_theme_options( stripslashes_deep( $_POST ), 1 );
+	if( current_user_can( 'manage_options' ) ){
+		tie_save_theme_options( stripslashes_deep( $_POST ), 1 );
+	}
 }
 
 
@@ -100,7 +126,7 @@ function tie_admin_menus(){
 		$capability = 'switch_themes',
 		$menu_slug  = 'tie-theme-options',
 		$function   = 'tie_show_theme_options',
-		$icon_url   = TIELABS_TEMPLATE_URL.'/framework/admin/assets/images/tie.png',
+		$icon_url   = tie_get_option( 'white_label_menu_icon', TIELABS_TEMPLATE_URL.'/framework/admin/assets/images/tie.png' ),
 		$position   = 99
 	);
 
@@ -178,6 +204,26 @@ function tie_admin_menus(){
 }
 
 
+/**
+ * Dark Skin
+ */
+add_Action( 'admin_head', 'tie_options_dark_skin' );
+function tie_options_dark_skin(){
+	if( TIELABS_ADMIN_HELPER::is_theme_options_page() ) {
+		?>
+		<script>
+			if( 'undefined' != typeof localStorage ){
+				var skin = localStorage.getItem('tie-backend-skin');
+				if( skin == 'dark' ){
+					var html = document.getElementsByTagName('html')[0].classList;
+					html.add('tie-darkskin');
+				}
+			}
+		</script>
+		<?php
+	}
+}
+
 
 /**
  * Get The Panel Options
@@ -185,7 +231,7 @@ function tie_admin_menus(){
 function tie_build_theme_option( $value ){
 	$data = false;
 
-	if( empty( $value['id'] )){
+	if( empty( $value['id'] ) ) {
 		$value['id'] = ' ';
 	}
 
@@ -262,10 +308,24 @@ function tie_show_theme_options(){
 	<div class="tie-panel">
 
 		<div class="tie-panel-tabs">
-			<a href="http://tielabs.com/" target="_blank" class="tie-logo">
-				<img class="tie-logo-normal" src="<?php echo TIELABS_TEMPLATE_URL .'/framework/admin/assets/images/tielabs-logo.png' ?>" alt="<?php esc_html_e( 'TieLabs', TIELABS_TEXTDOMAIN ) ?>" />
-				<img class="tie-logo-mini" src="<?php echo TIELABS_TEMPLATE_URL .'/framework/admin/assets/images/tielabs-logo-mini.png' ?>" alt="<?php esc_html_e( 'TieLabs', TIELABS_TEXTDOMAIN ) ?>" />
-			</a>
+
+			<?php
+
+				if( tie_get_option( 'white_label_options_logo' ) ){
+					echo '
+						<span class="tie-logo">
+							<img loading="lazy" class="tie-logo-normal" src="'. tie_get_option( 'white_label_options_logo' ) .'" alt="" />
+						</span>
+					';
+				}
+				else{ ?>
+					<a href="http://tielabs.com/" target="_blank" class="tie-logo">
+						<img loading="lazy" class="tie-logo-normal" src="<?php echo TIELABS_TEMPLATE_URL .'/framework/admin/assets/images/tielabs-logo.png' ?>" alt="<?php esc_html_e( 'TieLabs', TIELABS_TEXTDOMAIN ) ?>" />
+						<img loading="lazy" class="tie-logo-mini" src="<?php echo TIELABS_TEMPLATE_URL .'/framework/admin/assets/images/tielabs-logo-mini.png' ?>" alt="<?php esc_html_e( 'TieLabs', TIELABS_TEXTDOMAIN ) ?>" />
+					</a>
+					<?php
+				}
+			?>
 
 			<ul>
 				<?php
@@ -295,6 +355,19 @@ function tie_show_theme_options(){
 				<li class="tie-tabs tie-more tie-not-tab"><a target="_blank" href="<?php echo apply_filters( 'TieLabs/External/portfolio', '' ); ?>"><span class="dashicons-before dashicons-smiley tie-icon-menu"></span><?php esc_html_e( 'More Themes', TIELABS_TEXTDOMAIN ) ?></a></li>
 			</ul>
 			<div class="clear"></div>
+
+			<div id="tiepanel-darkskin-wrap">
+				<input id="tiepanel-darkskin" class="tie-js-switch" type="checkbox" value="true">
+				<span class="darkskin-label"><?php esc_html_e( 'Dark Skin', TIELABS_TEXTDOMAIN ) ?> <span class="tie-label-primary-bg"><?php esc_html_e( 'Beta', TIELABS_TEXTDOMAIN ) ?></span></span>
+				<script>
+					if( 'undefined' != typeof localStorage ){
+						var skin = localStorage.getItem('tie-backend-skin');
+						if( skin == 'dark' ){
+							document.getElementById('tiepanel-darkskin').setAttribute('checked', 'checked');
+						}
+					}
+				</script>
+			</div>
 		</div> <!-- .tie-panel-tabs -->
 
 		<div class="tie-panel-content">
@@ -330,7 +403,7 @@ function tie_show_theme_options(){
 
 				<div class="tie-footer">
 
-					<?php TIELABS_VERIFICATION::support_compact_notice(); ?>
+					<?php //TIELABS_VERIFICATION::support_compact_notice(); ?>
 
 					<?php do_action( 'TieLabs/save_button' ); ?>
 				</div>
@@ -345,7 +418,7 @@ function tie_show_theme_options(){
 	<?php
 
 	// HelpSout Beacon
-	if( get_option( 'tie_token_'.TIELABS_THEME_ID ) ){ ?>
+	if( get_option( 'tie_token_'.TIELABS_THEME_ID ) && ! tie_get_option( 'white_label_beacon' ) ){ ?>
 		<script type="text/javascript">!function(e,t,n){function a(){var e=t.getElementsByTagName("script")[0],n=t.createElement("script");n.type="text/javascript",n.async=!0,n.src="https://beacon-v2.helpscout.net",e.parentNode.insertBefore(n,e)}if(e.Beacon=n=function(t,n,a){e.Beacon.readyQueue.push({method:t,options:n,data:a})},n.readyQueue=[],"complete"===t.readyState)return a();e.attachEvent?e.attachEvent("onload",a):e.addEventListener("load",a,!1)}(window,document,window.Beacon||function(){});</script>
 		<script type="text/javascript">
 			window.Beacon('init', 'e9254113-3842-4968-97fa-13dee4551b96');
@@ -368,7 +441,6 @@ function tie_show_theme_options(){
 	}
 
 }
-
 
 
 /**
@@ -450,27 +522,44 @@ function tie_get_share_buttons_options( $share_position = '' ){
 
 	tie_build_theme_option(
 		array(
-			'name' => esc_html__( 'WhatsApp', TIELABS_TEXTDOMAIN ),
-			'id'   => 'share_whatsapp'.$position,
+			'name' => esc_html__( 'Messenger', TIELABS_TEXTDOMAIN ),
+			'id'   => 'share_messenger'.$position,
 			'type' => 'checkbox',
-			'hint' => ( $share_position != 'mobile' ) ? esc_html__( 'For Mobiles Only', TIELABS_TEXTDOMAIN ) : '',
 		));
 
-	tie_build_theme_option(
-		array(
-			'name' => esc_html__( 'Telegram', TIELABS_TEXTDOMAIN ),
-			'id'   => 'share_telegram'.$position,
-			'type' => 'checkbox',
-			'hint' => ( $share_position != 'mobile' ) ? esc_html__( 'For Mobiles Only', TIELABS_TEXTDOMAIN ) : '',
-		));
+	if( $share_position != 'sticky' ){
+		tie_build_theme_option(
+			array(
+				'name' => esc_html__( 'WhatsApp', TIELABS_TEXTDOMAIN ),
+				'id'   => 'share_whatsapp'.$position,
+				'type' => 'checkbox',
+				'hint' => ( $share_position != 'mobile' ) ? esc_html__( 'For Mobiles Only', TIELABS_TEXTDOMAIN ) : '',
+			));
 
-	tie_build_theme_option(
-		array(
-			'name' => esc_html__( 'Viber', TIELABS_TEXTDOMAIN ),
-			'id'   => 'share_viber'.$position,
-			'type' => 'checkbox',
-			'hint' => ( $share_position != 'mobile' ) ? esc_html__( 'For Mobiles Only', TIELABS_TEXTDOMAIN ) : '',
-		));
+		tie_build_theme_option(
+			array(
+				'name' => esc_html__( 'Telegram', TIELABS_TEXTDOMAIN ),
+				'id'   => 'share_telegram'.$position,
+				'type' => 'checkbox',
+				'hint' => ( $share_position != 'mobile' ) ? esc_html__( 'For Mobiles Only', TIELABS_TEXTDOMAIN ) : '',
+			));
+
+		tie_build_theme_option(
+			array(
+				'name' => esc_html__( 'Viber', TIELABS_TEXTDOMAIN ),
+				'id'   => 'share_viber'.$position,
+				'type' => 'checkbox',
+				'hint' => ( $share_position != 'mobile' ) ? esc_html__( 'For Mobiles Only', TIELABS_TEXTDOMAIN ) : '',
+			));
+
+		tie_build_theme_option(
+			array(
+				'name' => esc_html__( 'Line', TIELABS_TEXTDOMAIN ),
+				'id'   => 'share_line'.$position,
+				'type' => 'checkbox',
+				'hint' => ( $share_position != 'mobile' ) ? esc_html__( 'For Mobiles Only', TIELABS_TEXTDOMAIN ) : '',
+			));
+	}
 
 	if( $share_position != 'mobile' ){
 		tie_build_theme_option(

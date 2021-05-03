@@ -8,12 +8,12 @@
  * will need to copy the new files to your child theme to maintain compatibility.
  *
  * @author   TieLabs
- * @version  4.0.0
+ * @version  5.0.0
  */
 
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
-if( is_category() && tie_get_category_option( 'featured_posts' )){
+if( is_category() && tie_get_category_option( 'featured_posts' ) ) {
 
 	// Category Settings
 	$slider           = tie_get_category_option( 'featured_posts_style' );
@@ -97,7 +97,7 @@ if( is_category() && tie_get_category_option( 'featured_posts' )){
 
 					TIELABS_HELPER::get_template_part('templates/featured');
 
-					if( $slider > 4 ) echo '</div>';
+					if( $slider > 4 || $slider == 'videos_list' ) echo '</div>';
 				?>
 
 			</div><!-- .section-item /-->

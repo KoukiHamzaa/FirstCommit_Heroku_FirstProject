@@ -8,7 +8,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
 
 
-if( ! class_exists( 'TIELABS_BBPRESS' )){
+if( ! class_exists( 'TIELABS_BBPRESS' ) ) {
 
 	class TIELABS_BBPRESS{
 
@@ -44,9 +44,9 @@ if( ! class_exists( 'TIELABS_BBPRESS' )){
 			wp_dequeue_style( 'bbp-default' );
 			wp_dequeue_style( 'bbp-default-rtl' );
 		}
-
 	}
 
 	// Instantiate the class
 	new TIELABS_BBPRESS();
 }
+

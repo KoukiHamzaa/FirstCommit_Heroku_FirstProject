@@ -18,8 +18,12 @@ get_header(); ?>
 				'excerpt_length' => tie_get_option( 'blog_excerpt_length' ),
 			));
 
+			do_action( 'TieLabs/before_frontpage_pagination' );
+
 			// Page navigation
 			TIELABS_PAGINATION::show( array( 'type' => tie_get_option( 'blog_pagination' ) ) );
+
+			do_action( 'TieLabs/after_frontpage_pagination' );
 
 		// If no content, include the "No posts found" template
 		else :

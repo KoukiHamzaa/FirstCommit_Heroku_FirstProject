@@ -63,30 +63,6 @@ body[class*="tie-theme-welcome"]{
 		padding: 2px;
 	}
 
-	.col{
-		background: #ffffff;
-		padding: 1.33em;
-		box-sizing: border-box;
-		box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
-		margin-bottom: 0;;
-
-		h3{
-			font-size: 1.2em;
-		}
-
-		p{
-			font-size: 16px;
-		}
-
-		*:first-child{
-			margin-top: 0;
-		}
-
-		*:last-child{
-			margin-bottom: 0;
-		}
-	}
-
 	.under-the-hood.three-col .col{
 		margin-bottom: 10px;
 
@@ -130,6 +106,8 @@ body[class*="tie-theme-welcome"]{
 	text-rendering: optimizeLegibility;
 	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,.2);
 	box-shadow: 0 1px 3px rgba(0,0,0,.2);
+
+	background: linear-gradient(135deg, #6d2df3, #9836e6 );
 
 	img{
 		width: 90px;

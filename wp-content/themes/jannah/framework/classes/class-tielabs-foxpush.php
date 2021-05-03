@@ -8,7 +8,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
 
 
-if( ! class_exists( 'TIELABS_FOXPUSH' )){
+if( ! class_exists( 'TIELABS_FOXPUSH' ) ) {
 
 	class TIELABS_FOXPUSH{
 
@@ -57,7 +57,7 @@ if( ! class_exists( 'TIELABS_FOXPUSH' )){
 				return false;
 			}
 
-			$foxpush_domain = str_replace( '.', '', $foxpush_domain );
+			$foxpush_domain = str_replace( '.', '', strtolower( $foxpush_domain ) );
 
 			$code = "
         var _foxpush = _foxpush || [];
@@ -97,7 +97,7 @@ if( ! class_exists( 'TIELABS_FOXPUSH' )){
 							'foxpush-get-campaigns',
 							esc_html__( 'Web Notification Campaigns', TIELABS_TEXTDOMAIN ),
 							array( $this, 'get_meta_box_content' ),
-							'post',
+							TIELABS_HELPER::get_supported_post_types(),
 							'side'
 						);
 					}
@@ -108,7 +108,7 @@ if( ! class_exists( 'TIELABS_FOXPUSH' )){
 					'foxpush-create-campaign',
 					esc_html__( 'Send a Web Notification', TIELABS_TEXTDOMAIN ),
 					array( $this, 'send_meta_box_content' ),
-					'post',
+					TIELABS_HELPER::get_supported_post_types(),
 					'side'
 				);
 			}
@@ -203,7 +203,7 @@ if( ! class_exists( 'TIELABS_FOXPUSH' )){
 
 				tie_build_theme_option(
 					array(
-						'text' => esc_html__( 'You need to validated your license to use this feature.', TIELABS_TEXTDOMAIN ),
+						'text' => esc_html__( 'Verify your license to use this feature.', TIELABS_TEXTDOMAIN ),
 						'type' => 'error',
 					));
 
@@ -296,7 +296,7 @@ if( ! class_exists( 'TIELABS_FOXPUSH' )){
 			}
 
 			// Get New data
-			if( empty( $data )){
+			if( empty( $data ) ) {
 
 				$args = array(
 					'headers'     => array(
@@ -315,13 +315,13 @@ if( ! class_exists( 'TIELABS_FOXPUSH' )){
 
 				# Store the new data
 				if( $type == 'stats' ){
-					if( ! empty( $request['total_subscribers'] )){
+					if( ! empty( $request['total_subscribers'] ) ) {
 						$data = $request;
 						set_transient( 'tie_foxpush_stats', $data, HOUR_IN_SECONDS );
 					}
 				}
 				else{
-					if( ! empty( $request['chart'] )){
+					if( ! empty( $request['chart'] ) ) {
 						$data = $request['chart'];
 						set_transient( 'tie_foxpush_chart', $data, HOUR_IN_SECONDS );
 					}

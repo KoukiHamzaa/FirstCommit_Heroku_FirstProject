@@ -8,15 +8,17 @@
  * will need to copy the new files to your child theme to maintain compatibility.
  *
  * @author   TieLabs
- * @version  4.5.0
+ * @version  5.0.0
  */
 
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
+
+$thumbnail_size = apply_filters( 'TieLabs/loop_thumbnail_size', TIELABS_THEME_SLUG.'-image-post', 'overlay' );
 ?>
 
 <div <?php tie_post_class( 'container-wrapper post-element' ); ?>>
-	<div style="<?php echo tie_thumb_src_bg( TIELABS_THEME_SLUG.'-image-post' ) ?>" class="slide">
+	<div style="<?php echo tie_thumb_src_bg( $thumbnail_size ) ?>" class="slide">
 		<a href="<?php the_permalink() ?>" class="all-over-thumb-link"><span class="screen-reader-text"><?php the_title(); ?></span></a>
 
 		<div class="thumb-overlay">

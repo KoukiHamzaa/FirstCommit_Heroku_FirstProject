@@ -8,7 +8,7 @@
  * will need to copy the new files to your child theme to maintain compatibility.
  *
  * @author   TieLabs
- * @version  4.0.0
+ * @version  5.0.0
  */
 
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly
@@ -42,7 +42,7 @@ if( ! tie_get_postdata( 'tie_hide_title' ) ){
 
 
 // Page Featured Image
-if( has_post_thumbnail() ){
+if( has_post_thumbnail() && ! tie_get_postdata( 'tie_hide_page_featured' ) ){
 
 	// Get the post thumbnail size
 	$size = ( tie_get_object_option( 'sidebar_pos', '', 'tie_sidebar_pos' ) == 'full' ) ? 'full' : TIELABS_THEME_SLUG.'-image-post';
@@ -54,12 +54,12 @@ if( has_post_thumbnail() ){
 
 				the_post_thumbnail( $size );
 
-				# Featured image caption
+				// Featured image caption
 				$thumb_caption = get_post( get_post_thumbnail_id() );
-				if( ! empty( $thumb_caption->post_excerpt )){
+				if( ! empty( $thumb_caption->post_excerpt ) ) {
 					echo '
 						<figcaption class="single-caption-text">
-							<span class="fa fa-camera" aria-hidden="true"></span> '.
+							<span class="tie-icon-camera" aria-hidden="true"></span> '.
 							$thumb_caption->post_excerpt .'
 						</figcaption>
 					';

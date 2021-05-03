@@ -8,6 +8,23 @@ tie_build_theme_option(
 		'type'  => 'tab-title',
 	));
 
+
+$lock_settings = 'block';
+
+if( ! get_option( 'tie_token_'.TIELABS_THEME_ID ) ){
+
+	$lock_settings = 'none !important';
+
+	tie_build_theme_option(
+		array(
+			'text' => esc_html__( 'Verify your license to unlock this section.', TIELABS_TEXTDOMAIN ),
+			'type' => 'error',
+		));
+}
+
+echo '<div style="display:'. $lock_settings .'" >';
+
+
 tie_build_theme_option(
 	array(
 		'title' => esc_html__( 'Styling Settings', TIELABS_TEXTDOMAIN ),
@@ -481,6 +498,13 @@ tie_build_theme_option(
 
 tie_build_theme_option(
 	array(
+		'name' => esc_html__( 'Background Color 2 (Gradient)', TIELABS_TEXTDOMAIN ),
+		'id'   => 'header_background_color_2',
+		'type' => 'color',
+	));
+
+tie_build_theme_option(
+	array(
 		'name' => esc_html__( 'Background Image', TIELABS_TEXTDOMAIN ),
 		'id'   => 'header_background_img',
 		'type' => 'background',
@@ -505,6 +529,13 @@ tie_build_theme_option(
 	array(
 		'name' => esc_html__( 'Background Color', TIELABS_TEXTDOMAIN ),
 		'id'   => 'main_nav_background',
+		'type' => 'color',
+	));
+
+tie_build_theme_option(
+	array(
+		'name' => esc_html__( 'Background Color 2 (Gradient)', TIELABS_TEXTDOMAIN ),
+		'id'   => 'main_nav_background_2',
 		'type' => 'color',
 	));
 
@@ -595,6 +626,13 @@ tie_build_theme_option(
 		'type' => 'color',
 	));
 
+tie_build_theme_option(
+	array(
+		'name' => esc_html__( 'Widgets head color', TIELABS_TEXTDOMAIN ),
+		'id'   => 'widgets_head_main_color',
+		'type' => 'color',
+	));
+
 
 # Footer
 tie_build_theme_option(
@@ -627,7 +665,14 @@ tie_build_theme_option(
 
 tie_build_theme_option(
 	array(
-		'name' => esc_html__( 'Widgets Title color', TIELABS_TEXTDOMAIN ),
+		'name' => esc_html__( 'Widgets head color', TIELABS_TEXTDOMAIN ),
+		'id'   => 'footer_widgets_head_color',
+		'type' => 'color',
+	));
+
+tie_build_theme_option(
+	array(
+		'name' => esc_html__( 'Widgets Title text color', TIELABS_TEXTDOMAIN ),
 		'id'   => 'footer_title_color',
 		'type' => 'color',
 	));
@@ -746,8 +791,8 @@ tie_build_theme_option(
 
 tie_build_theme_option(
 	array(
-		'title' =>	esc_html__( 'Mobile Menu', TIELABS_TEXTDOMAIN ),
-		'id'    => 'mobile-menu-styling',
+		'title' =>	esc_html__( 'Mobile Header', TIELABS_TEXTDOMAIN ),
+		'id'    => 'mobile-header-styling',
 		'type'  => 'header',
 	));
 
@@ -760,38 +805,30 @@ tie_build_theme_option(
 
 tie_build_theme_option(
 	array(
+		'name' => esc_html__( 'Mobile Header Background Color 2 (Gradient)', TIELABS_TEXTDOMAIN ),
+		'id'   => 'mobile_header_bg_color_2',
+		'type' => 'color',
+	));
+
+tie_build_theme_option(
+	array(
 		'name' => esc_html__( 'Mobile Header Background Image', TIELABS_TEXTDOMAIN ),
 		'id'   => 'mobile_header_bg_img',
 		'type' => 'background',
 	));
 
-
 tie_build_theme_option(
 	array(
-		'name' => esc_html__( 'Mobile Menu Icon', TIELABS_TEXTDOMAIN ),
+		'name' => esc_html__( 'Mobile Header Icons color', TIELABS_TEXTDOMAIN ),
 		'id'   => 'mobile_menu_icon_color',
 		'type' => 'color',
 	));
 
 tie_build_theme_option(
 	array(
-		'name' => esc_html__( 'links color', TIELABS_TEXTDOMAIN ),
-		'id'   => 'mobile_menu_text_color',
-		'type' => 'color',
-	));
-
-tie_build_theme_option(
-	array(
-		'name' => esc_html__( 'Social Icons color', TIELABS_TEXTDOMAIN ),
-		'id'   => 'mobile_menu_social_color',
-		'type' => 'color',
-	));
-
-tie_build_theme_option(
-	array(
-		'name' => esc_html__( 'Search Button color', TIELABS_TEXTDOMAIN ),
-		'id'   => 'mobile_menu_search_color',
-		'type' => 'color',
+		'title' =>	esc_html__( 'Mobile Menu', TIELABS_TEXTDOMAIN ),
+		'id'    => 'mobile-menu-styling',
+		'type'  => 'header',
 	));
 
 tie_build_theme_option(
@@ -845,6 +882,29 @@ tie_build_theme_option(
 
 tie_build_theme_option(
 	array(
+		'name' => esc_html__( 'links color', TIELABS_TEXTDOMAIN ),
+		'id'   => 'mobile_menu_text_color',
+		'type' => 'color',
+	));
+
+tie_build_theme_option(
+	array(
+		'name' => esc_html__( 'Social Icons color', TIELABS_TEXTDOMAIN ),
+		'id'   => 'mobile_menu_social_color',
+		'type' => 'color',
+	));
+
+/*
+tie_build_theme_option(
+	array(
+		'name' => esc_html__( 'Search Button color', TIELABS_TEXTDOMAIN ),
+		'id'   => 'mobile_menu_search_color',
+		'type' => 'color',
+	));
+*/
+
+tie_build_theme_option(
+	array(
 		'title' =>	esc_html__( 'Custom CSS', TIELABS_TEXTDOMAIN ),
 		'id'    => 'custom-css',
 		'type'  => 'header',
@@ -883,3 +943,6 @@ tie_build_theme_option(
 		'hint'  => sprintf( esc_html__( 'Use %s and it will be replaced with the primary color.', TIELABS_TEXTDOMAIN ), '<code>primary-color</code>' ),
 	));
 
+
+
+echo '</div>'; // Settings locked

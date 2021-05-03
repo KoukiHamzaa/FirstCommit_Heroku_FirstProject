@@ -4,7 +4,7 @@ Weather Widget developed By : Fouad Badawy | TieLabs
 Based On :  Awesome Weather Widget http://halgatewood.com/awesome-weather
 */
 
-if( ! class_exists( 'TIE_WEATHER_WIDGET' )){
+if( ! class_exists( 'TIE_WEATHER_WIDGET' ) ) {
 
 	add_action( 'widgets_init', 'tie_weather_widget_register' );
 	function tie_weather_widget_register(){
@@ -20,6 +20,7 @@ if( ! class_exists( 'TIE_WEATHER_WIDGET' )){
 		}
 
 		public function widget( $args, $instance ){
+
 			extract( $args );
 
 			$widget_title  = apply_filters( 'widget_title', empty( $instance['title'] ) ? '' : $instance['title'], $instance, $this->id_base );
@@ -30,15 +31,22 @@ if( ! class_exists( 'TIE_WEATHER_WIDGET' )){
 			$units         = ! empty( $instance['units'] )         ? $instance['units']         : false;
 			$forecast_days = ! empty( $instance['forecast_days'] ) ? $instance['forecast_days'] : false;
 			$animated      = ! empty( $instance['animated'] )      ? $instance['animated']      : false;
+			$bg_image      = ! empty( $instance['bg_image'] )      ? $instance['bg_image']      : false;
+			$user_location = ! empty( $instance['user_location'] ) ? $instance['user_location'] : false;
 
 			# Colors
 			$bg_color   = ! empty( $instance['bg_color'] )   ? $instance['bg_color']   : '';
+			$bg_color_2 = ! empty( $instance['bg_color_2'] ) ? $instance['bg_color_2'] : '';
 			$font_color = ! empty( $instance['font_color'] ) ? $instance['font_color'] : '';
 
 			echo ( str_replace( 'container-wrapper ', '', $before_widget ) );
 
+			$user_location_class = 'tie-weather-user-location';
+
 			if ( ! empty( $widget_title ) ){
 				echo ( $before_title . $widget_title . $after_title );
+
+				$user_location_class .= ' has-title';
 			}
 
 			$atts = array(
@@ -49,13 +57,21 @@ if( ! class_exists( 'TIE_WEATHER_WIDGET' )){
 				'animated'      => $animated
 			);
 
+			if( $user_location && tie_get_option( 'api_openweather' ) ){
+				if( isset( $_COOKIE['TieUserLocation'] ) ){
+					$atts['location']    = $_COOKIE['TieUserLocation'];
+					$atts['custom_name'] = false;
+					//$atts['avoid_cache'] = true;
+				}
+
+				echo '<span class="'. $user_location_class .'" data-options="'. str_replace( '"', '\'', wp_json_encode( $atts )) .'"><span class="tie-icon-gps"></span></span>';
+			}
 
 			new TIELABS_WEATHER( $atts );
 
-
 			$widget_id = '#'. $args['widget_id'];
 
-			if ( ! empty( $bg_color ) || ! empty( $font_color ) ){
+			if ( ! empty( $bg_color ) || ! empty( $bg_color_2 ) || ! empty( $font_color ) || ! empty( $bg_image ) ){
 
 				$out = "<style scoped type=\"text/css\">";
 
@@ -67,6 +83,7 @@ if( ! class_exists( 'TIE_WEATHER_WIDGET' )){
 						}
 					";
 				}
+
 				if ( ! empty( $bg_color ) ){
 					$out .= "
 						$widget_id{
@@ -75,6 +92,31 @@ if( ! class_exists( 'TIE_WEATHER_WIDGET' )){
 
 						$widget_id .icon-basecloud-bg:after{
 							color: $bg_color;
+						}
+					";
+				}
+
+				if( ! empty( $bg_image ) ){
+					$out .= "
+						$widget_id{
+							background-image: url( $bg_image );
+							background-repeat: no-repeat;
+							background-size: cover;
+						}
+
+						$widget_id .icon-basecloud-bg:after{
+							color: inherit;
+						}
+					";
+				}
+				elseif ( ! empty( $bg_color ) && ! empty( $bg_color_2 ) ){
+					$out .= "
+						$widget_id{
+							". TIELABS_STYLES::gradiant( $bg_color, $bg_color_2 ) ."
+						}
+
+						$widget_id .icon-basecloud-bg:after{
+							color: inherit;
 						}
 					";
 				}
@@ -95,7 +137,10 @@ if( ! class_exists( 'TIE_WEATHER_WIDGET' )){
 			$instance['forecast_days'] = strip_tags($new_instance['forecast_days']);
 			$instance['font_color']    = strip_tags($new_instance['font_color']);
 			$instance['bg_color']      = strip_tags($new_instance['bg_color']);
+			$instance['bg_color_2']    = strip_tags($new_instance['bg_color_2']);
 			$instance['animated']      = ! empty( $new_instance['animated'] ) ? 'true' : 0;
+			$instance['user_location'] = ! empty( $new_instance['user_location'] ) ? 'true' : 0;
+			$instance['bg_image']      = strip_tags($new_instance['bg_image']);
 
 			# Delete the Cached data
 			if( ! empty( $instance['location'] ) ){
@@ -117,7 +162,10 @@ if( ! class_exists( 'TIE_WEATHER_WIDGET' )){
 			$forecast_days = isset( $instance['forecast_days'] ) ? esc_attr( $instance['forecast_days'] ) : 5;
 			$font_color    = isset( $instance['font_color'] )    ? esc_attr( $instance['font_color'])     : '';
 			$bg_color      = isset( $instance['bg_color'] )      ? esc_attr( $instance['bg_color'])       : '';
+			$bg_color_2    = isset( $instance['bg_color_2'] )    ? esc_attr( $instance['bg_color_2'])     : '';
+			$bg_image      = isset( $instance['bg_image'] )      ? esc_attr( $instance['bg_image'])       : '';
 			$animated      = isset( $instance['animated'] )      ? esc_attr( $instance['animated'])       : '';
+			$user_location = isset( $instance['user_location'] ) ? esc_attr( $instance['user_location'])  : '';
 			$units         = ( isset( $instance['units'] ) AND strtoupper( $instance['units']) == 'C' ) ? 'C' : 'F';
 
 			$id = explode( '-', $this->get_field_id( 'widget_id' ));
@@ -126,7 +174,7 @@ if( ! class_exists( 'TIE_WEATHER_WIDGET' )){
 			$theme_color = tie_get_option( 'global_color', '#000000' );
 
 			if( ! tie_get_option( 'api_openweather' ) ){
-				echo '<p class="tie-message-hint">'. esc_html__( 'You need to set the Weather API Key in the theme options page > API Keys.', TIELABS_TEXTDOMAIN ) .'</p>';
+				echo '<p class="tie-message-hint">'. esc_html__( 'You need to set the Weather API Key in the theme options page > Integrations.', TIELABS_TEXTDOMAIN ) .'</p>';
 			}
 		?>
 
@@ -137,7 +185,7 @@ if( ! class_exists( 'TIE_WEATHER_WIDGET' )){
 
 		<p>
 			<label for="<?php echo esc_attr( $this->get_field_id('location') ); ?>">
-				<?php esc_html_e('Location', TIELABS_TEXTDOMAIN); ?> - <a href="<?php echo esc_url( 'http://openweathermap.org/find' ); ?>" target="_blank" rel="nofollow noopener"><?php esc_html_e('Find Your Location', TIELABS_TEXTDOMAIN); ?></a><br />
+				<strong><?php esc_html_e('Location', TIELABS_TEXTDOMAIN); ?></strong> - <a href="<?php echo esc_url( 'http://openweathermap.org/find' ); ?>" target="_blank" rel="nofollow noopener"><?php esc_html_e('Find Your Location', TIELABS_TEXTDOMAIN); ?></a><br />
 				<small><?php esc_html_e( '(i.e: London,UK or New York City)', TIELABS_TEXTDOMAIN ); ?></small>
 			</label>
 			<input class="widefat" style="margin-top: 4px;" id="<?php echo esc_attr( $this->get_field_id('location') ); ?>" name="<?php echo esc_attr( $this->get_field_name('location') ); ?>" type="text" value="<?php echo esc_attr( $location ); ?>" />
@@ -149,8 +197,6 @@ if( ! class_exists( 'TIE_WEATHER_WIDGET' )){
 			</label>
 			<input class="widefat" style="margin-top: 4px;" id="<?php echo esc_attr( $this->get_field_id('custom_name') ); ?>" name="<?php echo esc_attr( $this->get_field_name('custom_name') ); ?>" type="text" value="<?php echo esc_attr( $custom_name ); ?>" />
 		</p>
-
-
 
 		<p>
 			<label for="<?php echo esc_attr( $this->get_field_id('units') ); ?>"><?php esc_html_e('Units', TIELABS_TEXTDOMAIN); ?></label>  &nbsp;
@@ -170,6 +216,18 @@ if( ! class_exists( 'TIE_WEATHER_WIDGET' )){
 			</select>
 		</p>
 
+		<hr />
+		<br />
+		<strong><?php esc_html_e('Visitor\'s Location?', TIELABS_TEXTDOMAIN); ?><br /></strong>
+
+		<p>
+			<input id="<?php echo esc_attr( $this->get_field_id( 'user_location' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'user_location' ) ); ?>" value="true" <?php checked( $user_location, 'true' ) ?> type="checkbox" />
+			<label for="<?php echo esc_attr( $this->get_field_id( 'user_location' ) ); ?>"><?php esc_html_e( 'Allow visitors to view the weather in their location', TIELABS_TEXTDOMAIN) ?></label>
+		</p>
+
+		<hr />
+		<br />
+		<strong><?php esc_html_e('Style and Layout', TIELABS_TEXTDOMAIN); ?><br /></strong>
 		<p>
 			<input id="<?php echo esc_attr( $this->get_field_id( 'animated' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'animated' ) ); ?>" value="true" <?php checked( $animated, 'true' ) ?> type="checkbox" />
 			<label for="<?php echo esc_attr( $this->get_field_id( 'animated' ) ); ?>"><?php esc_html_e( 'Animated Icons?', TIELABS_TEXTDOMAIN) ?></label>
@@ -181,9 +239,21 @@ if( ! class_exists( 'TIE_WEATHER_WIDGET' )){
 		</div>
 
 		<div class="weather-color tie-custom-color-picker <?php echo esc_attr( $colors_class ) ?>">
+			<label for="<?php echo esc_attr( $this->get_field_id( 'bg_color_2' ) ); ?>" style="display:block;"><?php esc_html_e( 'Background Color 2 (Gradient)', TIELABS_TEXTDOMAIN ); ?></label>
+			<input data-palette="<?php echo esc_attr( $theme_color ); ?>, #9b59b6, #3498db, #2ecc71, #f1c40f, #34495e, #e74c3c" class="widefat tieColorSelector" id="<?php echo esc_attr( $this->get_field_id( 'bg_color_2' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'bg_color_2' ) ); ?>" type="text" value="<?php echo esc_attr( $bg_color_2 ) ?>" />
+		</div>
+
+		<div class="weather-color tie-custom-color-picker <?php echo esc_attr( $colors_class ) ?>">
 			<label for="<?php echo esc_attr( $this->get_field_id( 'font_color' ) ); ?>" style="display:block;"><?php esc_html_e( 'Text Color', TIELABS_TEXTDOMAIN ); ?></label>
 			<input data-palette="<?php echo esc_attr( $theme_color ); ?>, #9b59b6, #3498db, #2ecc71, #f1c40f, #34495e, #e74c3c" class="widefat tieColorSelector" id="<?php echo esc_attr( $this->get_field_id( 'font_color' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'font_color' ) ); ?>" type="text" value="<?php echo esc_attr( $font_color ) ?>" />
 		</div>
+
+		<p>
+			<label for="<?php echo esc_attr( $this->get_field_id('bg_image') ); ?>">
+				<?php esc_html_e('Background Image', TIELABS_TEXTDOMAIN); ?><br />
+			</label>
+			<input class="widefat" style="margin-top: 4px;" id="<?php echo esc_attr( $this->get_field_id('bg_image') ); ?>" name="<?php echo esc_attr( $this->get_field_name('bg_image') ); ?>" type="text" value="<?php echo esc_attr( $bg_image ); ?>" placeholder="https://" />
+		</p>
 
 		<?php
 		}

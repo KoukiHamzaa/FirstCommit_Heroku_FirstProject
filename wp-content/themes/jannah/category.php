@@ -13,7 +13,7 @@ get_header(); ?>
 		<?php
 
 		// Do not duplicate posts
-		if( ! empty( $GLOBALS['tie_do_not_duplicate'] ) && is_array( $GLOBALS['tie_do_not_duplicate'] )){
+		if( ! empty( $GLOBALS['tie_do_not_duplicate'] ) && is_array( $GLOBALS['tie_do_not_duplicate'] ) ) {
 
 			global $wp_query;
 			$args = array_merge( $wp_query->query_vars, array( 'post__not_in' => $GLOBALS['tie_do_not_duplicate'] ) );
@@ -32,7 +32,7 @@ get_header(); ?>
 
 					the_archive_title( '<h1 class="page-title">', '</h1>' );
 
-					if( tie_get_option( 'category_desc' )){
+					if( tie_get_option( 'category_desc' ) ) {
 						the_archive_description( '<div class="taxonomy-description entry">', '</div>' );
 					}
 
@@ -47,8 +47,23 @@ get_header(); ?>
 			$layout = tie_get_object_option( 'category_layout' ) ? tie_get_object_option( 'category_layout' ) : tie_get_option( 'category_layout' );
 			$layout = ! empty( $layout ) ? $layout : 'excerpt';
 
-			// Category Excerpt length
+			// Category Excerpt
+			$excerpt = tie_get_object_option( 'category_excerpt' ) ? tie_get_object_option( 'category_excerpt' ) : tie_get_option( 'category_excerpt' );
+
+			if( $excerpt == 'no' ){
+				$excerpt = false;
+			}
+
 			$excerpt_length = tie_get_object_option( 'category_excerpt_length' ) ? tie_get_object_option( 'category_excerpt_length' ) : tie_get_option( 'category_excerpt_length' );
+
+			// Category Read More
+			$read_more = tie_get_object_option( 'category_read_more' ) ? tie_get_object_option( 'category_read_more' ) : tie_get_option( 'category_read_more' );
+
+			if( $read_more == 'no' ){
+				$read_more = false;
+			}
+
+			$read_more_text = tie_get_object_option( 'category_read_more_text' ) ? tie_get_object_option( 'category_read_more_text' ) : tie_get_option( 'category_read_more_text' );
 
 			// Category Media Overlay
 			$media_overlay = tie_get_object_option( 'category_media_overlay' ) ? true : false;
@@ -56,7 +71,10 @@ get_header(); ?>
 			// Get the layout template part
 			TIELABS_HELPER::get_template_part( 'templates/archives', '', array(
 				'layout'          => $layout,
+				'excerpt'         => $excerpt,
 				'excerpt_length'  => $excerpt_length,
+				'read_more'       => $read_more,
+				'read_more_text'  => $read_more_text,
 				'media_overlay'   => $media_overlay,
 				'category_meta'   => apply_filters( 'TieLabs/Archive_Thumbnail/category_meta', false ),
 			));

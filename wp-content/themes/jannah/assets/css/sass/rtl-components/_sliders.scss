@@ -1,7 +1,7 @@
 // Sliders
 
 .slider-area{
-	.icon {
+	.tie-media-icon {
 		float: left;
 		margin: -9px 10px 0 -5px;
 	}
@@ -19,7 +19,7 @@
   float: left;
 }
 
-//.slider-area .post-cat-wrap,
+.slider-area .post-cat-wrap,
 .slick-slide,
 .fullwidth-slider-wrapper .tie-slick-dots li,
 .tie-slider-nav li,
@@ -67,7 +67,7 @@
 .grid-slider-wrapper .grid-item,
 .grid-4-big-first-half-second .grid-item:nth-child(3){
 	margin-right: 0;
-	margin-left: 1px;
+	margin-left: 4px;
 }
 
 .grid-2-big .grid-item:nth-child(2),
@@ -95,7 +95,7 @@
 		}
 
 		&:nth-child(4){
-			margin-left: 1px;
+			margin-left: 4px;
 			margin-right: 0;
 		}
 	}
@@ -105,14 +105,14 @@
 	.full-width{
 		.grid-5-slider{
 			.grid-item:nth-child(1){
-				margin-left: 1px;
+				margin-left: 4px;
 				margin-right: 0;
 			}
 		}
 
 		.grid-3-slides-half-first .grid-item:nth-child(2){
 			margin-right: 0;
-			margin-left: 1px;
+			margin-left: 4px;
 		}
 	}
 }
@@ -126,7 +126,7 @@
       }
 
       &:nth-child(even){
-        margin-left: 1px;
+        margin-left: 4px;
         margin-right: 0;
       }
 
@@ -139,7 +139,7 @@
   .grid-6-slides {
     .grid-item {
       &:nth-child(odd) {
-        margin-left: 1px;
+        margin-left: 4px;
         margin-right: 0;
       }
 

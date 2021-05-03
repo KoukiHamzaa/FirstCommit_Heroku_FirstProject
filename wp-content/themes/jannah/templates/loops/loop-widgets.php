@@ -8,14 +8,14 @@
  * will need to copy the new files to your child theme to maintain compatibility.
  *
  * @author   TieLabs
- * @version  4.0.0
+ * @version  5.0.0
  */
 
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
 ?>
 
-<li <?php tie_post_class( 'widget-post-list' ); ?>>
+<li <?php tie_post_class( 'widget-single-post-item widget-post-list' ); ?>>
 
 	<?php if ( has_post_thumbnail() ): ?>
 		<div class="post-widget-thumbnail">
@@ -34,7 +34,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 	<?php endif; ?>
 
 	<div class="post-widget-body <?php echo ! has_post_thumbnail() ? 'no-small-thumbs' : '' ?>">
-		<h3 class="post-title"><a href="<?php the_permalink(); ?>"><?php tie_the_title( $title_length ); ?></a></h3>
+		<a class="post-title the-subtitle" href="<?php the_permalink(); ?>"><?php tie_the_title( $title_length ); ?></a>
 
 		<div class="post-meta">
 			<?php

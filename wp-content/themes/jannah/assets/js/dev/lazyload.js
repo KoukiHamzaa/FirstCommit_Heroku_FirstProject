@@ -1,5 +1,3 @@
-
-
 /*! LazyLoad and ViewPort Checker */
 (function(root, factory) {
 	// AMD
@@ -242,30 +240,36 @@
 		if( tie.lazyload ){ // to be added
 
 			// Images ------
-			var nodes  = document.querySelectorAll('[data-src]');
-			var length = nodes.length;
-			var elem;
+			if ('loading' in HTMLImageElement.prototype) {
+				//console.log( 'Native LazyLoad' );
+			}
+			else {
 
-			// Loop through objects with data-emergence attribute
-			for (var i = 0; i < length; i++) {
-				elem = nodes[i];
+				var nodes  = document.querySelectorAll('[data-src]');
+				var length = nodes.length;
+				var elem;
 
-				// If element is visible
-				if (isVisible(elem)) {
+				// Loop through objects with data-emergence attribute
+				for (var i = 0; i < length; i++) {
+					elem = nodes[i];
 
-					elem.setAttribute('src', elem.getAttribute('data-src') );
-					elem.removeAttribute('data-src');
+					// If element is visible
+					if (isVisible(elem)) {
 
-					// Hack to repaint attribute in IE8
-					elem.className += ' lazy-done';
+						elem.setAttribute('src', elem.getAttribute('data-src') );
+						elem.removeAttribute('data-src');
 
-					// Callback for when element is visible
-					callback(elem, 'tie_img_visible');
+						// Hack to repaint attribute in IE8
+						//elem.className += ' lazy-done';
 
-					if( jQuery.fn.masonry ){
-						jQuery( '#masonry-grid' ).masonry( 'layout' );
+						// Callback for when element is visible
+						callback(elem, 'tie_img_visible');
+
+						if( jQuery.fn.masonry ){
+							jQuery( '#masonry-grid' ).masonry( 'layout' );
+						}
+
 					}
-
 				}
 			}
 
@@ -285,7 +289,7 @@
 					elem.removeAttribute('data-lazy-bg');
 
 					// Hack to repaint attribute in IE8
-					elem.className = elem.className;
+					//elem.className = elem.className;
 
 					// Callback for when element is visible
 					callback(elem, 'tie_bg_visible');
@@ -316,7 +320,7 @@
 					elem.removeAttribute('data-lazy-pie');
 
 					// Hack to repaint attribute in IE8
-					elem.className = elem.className;
+					//elem.className = elem.className;
 
 					// Callback for when element is visible
 					callback(elem, 'tie_pie_visible');
@@ -340,7 +344,7 @@
 					elem.removeAttribute('data-lazy-percent');
 
 					// Hack to repaint attribute in IE8
-					elem.className = elem.className;
+					//elem.className = elem.className;
 
 					// Callback for when element is visible
 					callback(elem, 'tie_rate_visible');

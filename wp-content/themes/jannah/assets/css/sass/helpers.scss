@@ -13,9 +13,9 @@ a.remove{
 	top: 0;
 	right: 0;
 	display: block;
-	speak: none;
+	speak: never;
 	-webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	-moz-osx-font-smoothing: grayscale;
 	width: 20px;
 	height: 20px;
 	display: block;
@@ -25,7 +25,7 @@ a.remove{
 
 	&:before{
 		content: "\e117";
-	  font-family: 'tiefonticon';
+		font-family: 'tiefonticon';
 		color: $danger_color;
 		transition: color 0.15s;
 	}
@@ -67,8 +67,8 @@ a.remove{
 		transition: 0.3s;
 		transform: scale(0.2);
 		opacity: 0;
-		top: 40px;
-		right: 40px;
+		top: 15px;
+		right: 15px;
 		z-index: 1;
 
 		.tie-popup-is-opend &{
@@ -85,31 +85,40 @@ a.remove{
 	clear: both;
 }
 
+.side-aside,
+.has-custom-scroll{
+	overflow-x: hidden;
+	scrollbar-width: thin;
+
+	&::-webkit-scrollbar {
+		width: 5px;
+	}
+	&::-webkit-scrollbar-track {
+		background: transparent;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		border-radius: 20px;
+		background:rgba( 0,0,0, 0.2);
+
+		.dark-skin &{
+			background:rgba( 0,0,0, 1);
+		}
+	}
+}
+
+#tie-body #foxpush_blocked_box{
+	display: none !important;
+}
+
 // PopUps ------------------------------------------------
 @import "components/_popup";
-
-// Font Awesome ------------------------------------------------
-// Font Awesome 4.7 by @davegandy - http://fontawesome.io - @fontawesome
-// License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
-@import "vendors/fontawesome";
-
 
 // TieFontIcon -------------------------------------------------
 @import "vendors/tiefonticon";
 
-
 // Woocommerce - buddypress - bbpress notices ------------------
 @import "vendors/wp-bp-bb-notices";
 
-
 // TirpAdvisor -------------------------------------------------
 @import "vendors/tripadvisor";
-
-
-// malihu jquery custom scrollbar plugin -----------------------
-// Plugin URI: http://manos.malihu.gr/jquery-custom-content-scroller
-@import "vendors/mcustomscrollbar";
-
-
-// iLightbox // This code added directly to skins files of the IlightBox
-//@import "vendors/ilightbox";

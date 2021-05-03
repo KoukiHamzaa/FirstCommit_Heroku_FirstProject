@@ -9,7 +9,7 @@
  */
 
 
- if( ! class_exists( 'TIELABS_BUILDER_WIDGETS' )){
+ if( ! class_exists( 'TIELABS_BUILDER_WIDGETS' ) ) {
 
  	class TIELABS_BUILDER_WIDGETS{
 
@@ -66,7 +66,7 @@
 					// Scripts
 					global $wp_scripts;
 
-					if( ! empty( $widgets_resources['scripts'] ) && is_array( $widgets_resources['scripts'] )){
+					if( ! empty( $widgets_resources['scripts'] ) && is_array( $widgets_resources['scripts'] ) ) {
 						foreach ( $widgets_resources['scripts'] as $script ){
 							if( ! in_array( $script['handle'], $wp_scripts->queue ) && $script['handle'] != 'admin-widgets' ){
 								wp_enqueue_script( $script['handle'], $script['src'], $script['deps'], $script['ver'] );
@@ -87,7 +87,7 @@
 					// Styles
 					global $wp_styles;
 
-					if( ! empty( $widgets_resources['styles'] ) && is_array( $widgets_resources['styles'] )){
+					if( ! empty( $widgets_resources['styles'] ) && is_array( $widgets_resources['styles'] ) ) {
 						foreach ( $widgets_resources['styles'] as $styles ){
 							if( ! in_array( $styles['handle'] , $wp_styles->queue ) ){
 								wp_enqueue_style( $styles['handle'], $styles['src'], $styles['deps'], $styles['ver'] );
@@ -155,7 +155,7 @@
 			unset($_POST['savewidgets'], $_POST['action']);
 
 			// save widgets order for all sidebars
-			if( is_array( $_POST['sidebars'] )){
+			if( is_array( $_POST['sidebars'] ) ) {
 				$sidebars = array();
 
 				foreach ( $_POST['sidebars'] as $key => $val ){
@@ -177,7 +177,7 @@
 					$sidebars[$key] = $sb;
 				}
 
-				if (! empty( $post_id )){
+				if (! empty( $post_id ) ) {
 					$this->_set_sidebars_widgets( $sidebars, $post_id );
 				}
 
@@ -281,7 +281,7 @@
 				die();
 			}
 
-			if ( ! empty( $_POST['add_new'] )){
+			if ( ! empty( $_POST['add_new'] ) ) {
 				die();
 			}
 
@@ -304,7 +304,7 @@
 		 *
 		 * Update the Widget settings
 		 */
-		function _set_sidebars_widgets( $_sidebars_widgets = array(), $post_id ){
+		function _set_sidebars_widgets( $_sidebars_widgets = array(), $post_id = false ){
 
       if ( empty( $post_id ) ) {
         return;
@@ -312,7 +312,7 @@
 
       $sidebars_widgets = get_option('sidebars_widgets');
 
-      if( is_array( $sidebars_widgets ) && isset( $sidebars_widgets['array_version'] )){
+      if( is_array( $sidebars_widgets ) && isset( $sidebars_widgets['array_version'] ) ) {
         unset($sidebars_widgets['array_version']);
       }
 
@@ -325,7 +325,7 @@
       // And register these custom sidebars.
       $custom_widgets = get_option( 'tie_sidebars_widgets', array() );
       $custom_widgets[ $post_id ] = $_sidebars_widgets;
-      update_option( 'tie_sidebars_widgets', $custom_widgets, false );
+      update_option( 'tie_sidebars_widgets', $custom_widgets, 'yes' );
 		}
 
 
@@ -338,7 +338,7 @@
       $custom_widgets   = get_option( 'tie_sidebars_widgets', array() );
       $sidebars_widgets = get_option( 'sidebars_widgets' );
 
-      if( ! empty( $custom_widgets[ $post_id ] ) && is_array( $custom_widgets[ $post_id ] )){
+      if( ! empty( $custom_widgets[ $post_id ] ) && is_array( $custom_widgets[ $post_id ] ) ) {
         foreach ( $custom_widgets[ $post_id ] as $section => $widgets ){
           unset( $sidebars_widgets[ $section ] );
         }
@@ -373,7 +373,7 @@
 
       // Post Sidebars
       $custom_widgets = get_option( 'tie_sidebars_widgets', array() );
-      if( ! empty( $custom_widgets[ $post_id ] ) && is_array( $custom_widgets[ $post_id ] )){
+      if( ! empty( $custom_widgets[ $post_id ] ) && is_array( $custom_widgets[ $post_id ] ) ) {
         foreach ( $custom_widgets[ $post_id ] as $section => $widgets ){
           if( ! in_array( $section, $sidebars_array ) ){
             unset( $custom_widgets[ $post_id ][ $section ] );

@@ -24,11 +24,24 @@
 	.tie-builder-content-area &{
 		margin-top: 15px !important;
 	}
+
+	ul{
+		list-style: disc;
+		list-style-position: inside;
+	}
 }
 
 #tie-import-data-notes{
 	max-width: 800px;
 	margin: 0 auto;
+
+	#theme_not_authorized{
+		margin-top: 60px;
+	}
+
+	.tie-notice-content{
+		background: #fffbe8;
+	}
 }
 
 .clear {

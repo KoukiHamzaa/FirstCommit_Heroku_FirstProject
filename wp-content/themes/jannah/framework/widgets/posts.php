@@ -1,6 +1,6 @@
 <?php
 
-if( ! class_exists( 'TIE_POSTS_LIST' )){
+if( ! class_exists( 'TIE_POSTS_LIST' ) ) {
 
 	/**
 	 * Widget API: TIE_Posts_List class
@@ -24,14 +24,15 @@ if( ! class_exists( 'TIE_POSTS_LIST' )){
 			// Query arguments
 			$no_of_posts   = ! empty( $instance['no_of_posts'] )   ? $instance['no_of_posts'] : 5;
 			$offset        = ! empty( $instance['offset'] )        ? $instance['offset']      : '';
+			$pagination    = ! empty( $instance['pagination'] )    ? $instance['pagination']  : false;
 			$posts_order   = ! empty( $instance['posts_order'] )   ? $instance['posts_order'] : 'latest';
-			$class         = ! empty( $instance['media_overlay'] ) ? 'media-overlay '         : '';
 			$cats_id       = ! empty( $instance['cats_id'] )       ? explode ( ',', $instance['cats_id'] ) : '';
-			$before_posts  = '<ul class="posts-list-items">';
+			$before_posts  = '<ul class="posts-list-items widget-posts-wrapper">';
 			$after_posts   = '</ul>';
 
+			$class = 'widget-posts-list-container';
+
 			$style_args = array();
-			$style_args['exclude_current'] = ! empty( $instance['exclude_current'] ) ? true : false;
 
 			// Return If this is a related posts and we are not in the post single page
 			if ( ! is_single() && strpos( $posts_order, 'related' ) !== false ){
@@ -55,10 +56,11 @@ if( ! class_exists( 'TIE_POSTS_LIST' )){
 				6  => 'posts-pictures-widget',
 				7  => 'posts-list-counter',
 				8  => 'posts-authors',
+				9  => 'posts-inverted',
 			);
 
-			if( ! empty( $instance['style'] ) && ! empty( $layouts[ $instance['style'] ] )){
-				$class .= $layouts[ $instance['style'] ];
+			if( ! empty( $instance['style'] ) && ! empty( $layouts[ $instance['style'] ] ) ) {
+				$class .= ' '.$layouts[ $instance['style'] ];
 
 				if( $instance['style'] == 2 ){
 					$style_args['style'] = 'timeline';
@@ -81,21 +83,43 @@ if( ! class_exists( 'TIE_POSTS_LIST' )){
 
 				elseif( $instance['style'] == 6 ){
 					$style_args['style'] = 'grid';
-					$before_posts = '<div class="tie-row">';
+					$before_posts = '<div class="tie-row widget-posts-wrapper">';
 					$after_posts  = '</div>';
 				}
 
 				elseif( $instance['style'] == 8 ){
 					$style_args['style'] = 'authors';
-					$before_posts  = '<ul class="posts-list-items recent-comments-widget">';
+					$before_posts  = '<ul class="posts-list-items recent-comments-widget widget-posts-wrapper">';
 				}
 			}
 
 			// Media Icon
-			if( isset( $instance['media_overlay'] ) ){
+			if( ! empty( $instance['media_overlay'] ) ){
 				$style_args['media_icon'] = true;
+				$class .= ' media-overlay';
 			}
 
+			// Exclude Current Post
+			if( ! empty( $instance['exclude_current'] ) && is_single() ){
+				$style_args['exclude_current'] = get_the_id();
+			}
+
+			// --
+			$data_attr = '';
+
+			if( $pagination ){
+
+				$style_pagination_args = $style_args;
+
+				if( $pagination == 'load-more' ){
+					if( $instance['style'] == 3 ){
+						$style_pagination_args['thumbnail_first'] = false;
+						$style_pagination_args['review_first']    = false;
+					}
+				}
+
+				$data_attr = ' data-current="1" data-query="'. str_replace( '"', '\'', wp_json_encode( $query_args ) ) .'" data-style="'. str_replace( '"', '\'', wp_json_encode( $style_pagination_args ) ) .'"';
+			}
 
 			// Print the widget
 			echo ( $args['before_widget'] );
@@ -104,13 +128,44 @@ if( ! class_exists( 'TIE_POSTS_LIST' )){
 				echo ( $args['before_title'] . $instance['title'] . $args['after_title'] );
 			}
 
-			echo '<div class="'. $class .'">';
+			echo '<div class="'. $class .'" '. $data_attr .'>';
 				echo ( $before_posts );
 
 					tie_widget_posts( $query_args, $style_args );
 
 				echo ( $after_posts );
 			echo "</div>";
+
+
+			if( $pagination ){
+				echo '<div class="widget-pagination-wrapper">';
+
+				if( $pagination == 'show-more' ){
+					echo '<a class="widget-pagination next-posts show-more-button" href="#" data-text="'. esc_html__( 'Show More', TIELABS_TEXTDOMAIN ) .'">'. esc_html__( 'Show More', TIELABS_TEXTDOMAIN ) .'</a>';
+				}
+				elseif( $pagination == 'load-more' ){
+					echo '<a class="widget-pagination next-posts show-more-button load-more-button" href="#" data-text="'. esc_html__( 'Load More', TIELABS_TEXTDOMAIN ) .'">'. esc_html__( 'Load More', TIELABS_TEXTDOMAIN ) .'</a>';
+				}
+				elseif( $pagination == 'next-prev' ){
+					echo '
+						<ul class="slider-arrow-nav">
+							<li>
+								<a class="widget-pagination prev-posts pagination-disabled" href="#">
+									<span class="tie-icon-angle-left" aria-hidden="true"></span>
+									<span class="screen-reader-text">'. esc_html__( 'Previous page', TIELABS_TEXTDOMAIN ) .'</span>
+								</a>
+							</li>
+							<li>
+								<a class="widget-pagination next-posts" href="#">
+									<span class="tie-icon-angle-right" aria-hidden="true"></span>
+									<span class="screen-reader-text">'. esc_html__( 'Next page', TIELABS_TEXTDOMAIN ) .'</span>
+								</a>
+							</li>
+						</ul>
+					';
+				}
+				echo '</div>';
+			}
 
 			echo ( $args['after_widget'] );
 		}
@@ -125,6 +180,7 @@ if( ! class_exists( 'TIE_POSTS_LIST' )){
 			$instance['title']           = sanitize_text_field( $new_instance['title'] );
 			$instance['no_of_posts']     = $new_instance['no_of_posts'];
 			$instance['posts_order']     = $new_instance['posts_order'];
+			$instance['pagination']      = $new_instance['pagination'];
 			$instance['offset']          = $new_instance['offset'];
 			$instance['media_overlay']   = ! empty( $new_instance['media_overlay'] )   ? 'true' : false;
 			$instance['exclude_current'] = ! empty( $new_instance['exclude_current'] ) ? 'true' : false;
@@ -132,6 +188,9 @@ if( ! class_exists( 'TIE_POSTS_LIST' )){
 
 			if( ! empty( $new_instance['cats_id'] ) && is_array( $new_instance['cats_id'] ) ){
 				$instance['cats_id'] = implode( ',', $new_instance['cats_id'] );
+			}
+			else{
+				$instance['cats_id'] = false;
 			}
 
 			return $instance;
@@ -149,11 +208,12 @@ if( ! class_exists( 'TIE_POSTS_LIST' )){
 			$offset          = ! empty( $instance['offset'] )          ? $instance['offset']      : '';
 			$posts_order     = ! empty( $instance['posts_order'] )     ? $instance['posts_order'] : 'latest';
 			$style           = ! empty( $instance['style'] )           ? $instance['style'] : 1;
+			$pagination      = ! empty( $instance['pagination'] )      ? $instance['pagination'] : '';
 			$media_overlay   = ! empty( $instance['media_overlay'] )   ? 'true' : '';
 			$exclude_current = ! empty( $instance['exclude_current'] ) ? 'true' : '';
 			$cats_id         = array();
 
-			if( ! empty( $instance['cats_id'] )){
+			if( ! empty( $instance['cats_id'] ) ) {
 				$cats_id = explode ( ',', $instance['cats_id'] );
 			}
 
@@ -182,7 +242,6 @@ if( ! class_exists( 'TIE_POSTS_LIST' )){
 			$post_order['related']['related-tag']    = esc_html__( 'Related Posts by Tags',       TIELABS_TEXTDOMAIN );
 			$post_order['related']['related-author'] = esc_html__( 'Related Posts by Author',     TIELABS_TEXTDOMAIN );
 
-
 			$post_order = apply_filters( 'TieLabs/Widget/Posts/post_order_args' ,$post_order );
 
 			// Style the Custom options
@@ -201,6 +260,14 @@ if( ! class_exists( 'TIE_POSTS_LIST' )){
 
 			// Get the Categories List
 			$categories = TIELABS_ADMIN_HELPER::get_categories();
+
+			// Pagination Options
+			$pagination_options =  array(
+				''          => esc_html__( 'Disable', TIELABS_TEXTDOMAIN ),
+				'show-more' => esc_html__( 'Show More', TIELABS_TEXTDOMAIN ),
+				'load-more' => esc_html__( 'Load More', TIELABS_TEXTDOMAIN ),
+				'next-prev' => esc_html__( 'Next/Previous Arrows', TIELABS_TEXTDOMAIN ),
+			);
 
 			?>
 
@@ -279,10 +346,10 @@ if( ! class_exists( 'TIE_POSTS_LIST' )){
 
 			<label><?php esc_html_e( 'Style', TIELABS_TEXTDOMAIN) ?></label>
 
-			<div class="tie-styles-list-widget">
+			<div class="tie-styles-list-widget tie-posts-list-widget">
 				<p>
 					<?php
-						for ( $i=1; $i < 9; $i++ ){ ?>
+						for ( $i=1; $i < 10; $i++ ){ ?>
 							<label class="tie-widget-options">
 								<input name="<?php echo esc_attr( $this->get_field_name( 'style' ) ); ?>" type="radio" value="<?php echo esc_attr( $i ) ?>" <?php echo checked( $style, $i ) ?>> <img src="<?php echo TIELABS_TEMPLATE_URL .'/framework/admin/assets/images/widgets/posts-'.$i.'.png'; ?>" />
 							</label>
@@ -291,6 +358,18 @@ if( ! class_exists( 'TIE_POSTS_LIST' )){
 					?>
 				</p>
 			</div>
+
+			<p>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'pagination' ) ); ?>"><?php esc_html_e( 'Pagination:', TIELABS_TEXTDOMAIN) ?></label>
+				<select id="<?php echo esc_attr( $this->get_field_id( 'pagination' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'pagination' ) ); ?>" class="widefat">
+					<?php
+						foreach( $pagination_options as $pagination_key => $pagination_text ){ ?>
+								<option value="<?php echo esc_attr( $pagination_key ) ?>" <?php selected( $pagination, $pagination_key ); ?>><?php echo esc_attr( $pagination_text ) ?></option>
+							<?php
+						}
+					?>
+				</select>
+			</p>
 		<?php
 		}
 	}

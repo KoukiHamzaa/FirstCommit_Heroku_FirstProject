@@ -58,7 +58,8 @@ function tie_save_page_builder( $post_id ){
 		return $post_id;
 	}
 
-	if ( isset( $_POST['tie_hidden_flag'] )){
+	if ( isset( $_POST['tie_hidden_flag'] ) ){
+
 		# Save the builder settings ---------
 		if ( ! empty( $_POST['tie_builder_active'] ) && $_POST['tie_builder_active'] == 'yes' ){
 			update_post_meta( $post_id, 'tie_builder_active', 'yes' );
@@ -69,6 +70,7 @@ function tie_save_page_builder( $post_id ){
 
 		if( ! empty( $_POST['tie_home_cats'] ) ){
 			$builder_data = apply_filters( 'TieLabs/save_block', $_POST['tie_home_cats'] );
+			$builder_data = TIELABS_ADMIN_HELPER::clean_settings( $builder_data );
 			$builder_data = TIELABS_ADMIN_HELPER::array_filter( $builder_data );
 
 			update_post_meta( $post_id, 'tie_page_builder', $builder_data );
@@ -116,17 +118,21 @@ function tie_get_builder_section( $section_number = false, $section = array() ){
 		'title_color'        => '',
 		'title_icon'         => '',
 		'sidebar_position'   => 'full',
+		'stretch_section'    => '',
 		'section_width'      => '',
 		'parallax'           => '',
 		'parallax_effect'    => '',
 		'background_img'     => '',
 		'background_video'   => '',
 		'background_color'   => '',
+		'background_color_inverted' => '',
 		'dark_skin'          => '',
 		'custom_class'       => '',
 		'sticky_sidebar'     => '',
 		'margin_top'         => '',
 		'margin_bottom'      => '',
+		'padding_top'        => '',
+		'padding_bottom'     => '',
 		'predefined_sidebar' => '',
 		'sidebar_id'         => '',
 		'section_id'         => 'tiepost-' . $post_id . '-' . 'section-'.rand(200, 3500),
@@ -233,18 +239,18 @@ function tie_get_builder_section( $section_number = false, $section = array() ){
 
 					tie_build_theme_option(
 						array(
-							'title' => esc_html__( 'Section Width', TIELABS_TEXTDOMAIN ),
+							'title' => esc_html__( 'Section Layout', TIELABS_TEXTDOMAIN ),
 							'type'  => 'header',
 						));
 
 					tie_page_builder_section_option(
 						$number = $section_number,
-						$value  = $section_settings['section_width'],
+						$value  = $section_settings['stretch_section'],
 						array(
-							'name'   => esc_html__( '100% Interior Content Width', TIELABS_TEXTDOMAIN ),
-							'id'     => 'section_width',
-							'type'   => 'checkbox',
-							'hint'   => esc_html__( 'Select if the interior content is contained to site width or 100% width.', TIELABS_TEXTDOMAIN ),
+							'name' => esc_html__( 'Stretch Section', TIELABS_TEXTDOMAIN ),
+							'id'   => 'stretch_section',
+							'type' => 'checkbox',
+							'hint' => esc_html__( 'Stretch the section to the full width of the page, supported if the site layout is Full-Width.', TIELABS_TEXTDOMAIN ),
 						));
 
 					tie_build_theme_option(
@@ -262,6 +268,11 @@ function tie_get_builder_section( $section_number = false, $section = array() ){
 							'prefix'  => 'section-' . $section_number,
 							'type'    => 'visual',
 							'class'   => 'tie-section-sidebar',
+							'toggle' => array(
+								'full'  => '',
+								'right' => "#section-$section_number-sticky_sidebar-item",
+								'left'  => "#section-$section_number-sticky_sidebar-item",
+							),
 							'options' => array(
 								'full'  => array( esc_html__( 'Without Sidebar', TIELABS_TEXTDOMAIN ) => 'sidebars/sidebar-full-width.png' ),
 								'right' => array( esc_html__( 'Sidebar Right', TIELABS_TEXTDOMAIN ) => 'sidebars/sidebar-right.png' ),
@@ -272,9 +283,10 @@ function tie_get_builder_section( $section_number = false, $section = array() ){
 						$number = $section_number,
 						$value  = $section_settings['sticky_sidebar'],
 						array(
-							'name'   => esc_html__( 'Sticky Sidebar', TIELABS_TEXTDOMAIN ),
-							'id'     => 'sticky_sidebar',
-							'type'   => 'checkbox',
+							'name'  => esc_html__( 'Sticky Sidebar', TIELABS_TEXTDOMAIN ),
+							'id'    => 'sticky_sidebar',
+							'type'  => 'checkbox',
+							'class' => "section-$section_number-sidebar_position",
 					));
 
 				echo '</div>';
@@ -289,10 +301,28 @@ function tie_get_builder_section( $section_number = false, $section = array() ){
 
 					tie_page_builder_section_option(
 						$number = $section_number,
+						$value  = $section_settings['section_width'],
+						array(
+							'name'   => esc_html__( 'Full Width Background Section', TIELABS_TEXTDOMAIN ),
+							'id'     => 'section_width',
+							'type'   => 'checkbox',
+						));
+
+					tie_page_builder_section_option(
+						$number = $section_number,
 						$value  = $section_settings['background_color'],
 						array(
 							'name' => esc_html__( 'Background Color', TIELABS_TEXTDOMAIN ),
 							'id'   => 'background_color',
+							'type' => 'color',
+						));
+
+					tie_page_builder_section_option(
+						$number = $section_number,
+						$value  = $section_settings['background_color_inverted'],
+						array(
+							'name' => esc_html__( 'Inverted Background Color', TIELABS_TEXTDOMAIN ),
+							'id'   => 'background_color_inverted',
 							'type' => 'color',
 						));
 
@@ -387,6 +417,24 @@ function tie_get_builder_section( $section_number = false, $section = array() ){
 
 					tie_page_builder_section_option(
 						$number = $section_number,
+						$value  = $section_settings['padding_top'],
+						array(
+							'name'   => esc_html__( 'Padding Top', TIELABS_TEXTDOMAIN ),
+							'id'     => 'padding_top',
+							'type'   => 'number',
+					));
+
+					tie_page_builder_section_option(
+						$number = $section_number,
+						$value  = $section_settings['padding_bottom'],
+						array(
+							'name'   => esc_html__( 'Padding Bottom', TIELABS_TEXTDOMAIN ),
+							'id'     => 'padding_bottom',
+							'type'   => 'number',
+					));
+
+					tie_page_builder_section_option(
+						$number = $section_number,
 						$value  = $section_settings['section_id'],
 						array(
 							'id'      => 'section_id',
@@ -414,7 +462,7 @@ function tie_get_builder_section( $section_number = false, $section = array() ){
 					<?php
 					$block_id = ! empty( $GLOBALS['tie_block_id'] ) ? $GLOBALS['tie_block_id'] : 1;
 
-					if(! empty( $section['blocks'] ) && is_array( $section['blocks'] )){
+					if(! empty( $section['blocks'] ) && is_array( $section['blocks'] ) ) {
 						foreach( $section['blocks'] as $block ){
 							tie_get_builder_blocks( $block_id, $section_number, $block );
 							$block_id++;
@@ -454,13 +502,13 @@ function tie_get_builder_section( $section_number = false, $section = array() ){
 			<script>
 				jQuery(document).ready(function(){
 					$AddedSection	= jQuery('#tie-section-<?php echo esc_js( $section_number ) ?>');
-					$AddedSection.find('input:checked').parent().addClass( 'selected' );
+					$AddedSection.find('input:checked').closest('li').addClass( 'selected' );
 					$AddedSection.find('.checkbox-select').click( function(event){
-						event.preventDefault();
+						//event.preventDefault();
 						$AddedSection.find('li').removeClass('selected');
-						$AddedSection.find(':radio').removeAttr('checked');
+						//$AddedSection.find(':radio').removeAttr('checked');
 						jQuery(this).parent().addClass('selected');
-						jQuery(this).parent().find(':radio').attr('checked','checked');
+						//jQuery(this).parent().find(':radio').attr('checked','checked');
 					});
 				});
 			</script>
@@ -519,7 +567,25 @@ add_action( 'wp_ajax_tie_get_builder_blocks', 'tie_get_builder_blocks' );
 function tie_get_builder_blocks( $block_id = false, $section_id = false , $block = array() ){
 
 	$block_class_name = '';
+
 	$categories = TIELABS_ADMIN_HELPER::get_categories();
+
+	$post_source_list = array(
+		'id'   => esc_html__( 'Categories', TIELABS_TEXTDOMAIN ), // Wonder why ID? this comes from Sahifa v 1.0 :)
+		'tags' => esc_html__( 'Tags',       TIELABS_TEXTDOMAIN ),
+	);
+
+	// Custom Post Type support
+	/*
+	$custom_taxonomies = TIELABS_ADMIN_HELPER::get_taxonomies();
+
+	$post_source_list = array_merge( array(
+			'id'   => esc_html__( 'Categories', TIELABS_TEXTDOMAIN ), // Wonder why ID? this comes from Sahifa v 1.0 :)
+			'tags' => esc_html__( 'Tags',       TIELABS_TEXTDOMAIN ),
+		),
+		$custom_taxonomies
+	);
+	*/
 
 	if( empty( $section_id ) && ! empty( $_REQUEST['section_id'] ) ){
 		$section_id = $_REQUEST['section_id'];
@@ -550,17 +616,15 @@ function tie_get_builder_blocks( $block_id = false, $section_id = false , $block
 
 	$builder_blocks_styles = tie_builder_blocks_styles();
 	$block_style           = $block['style'];
-	$style_data            = $builder_blocks_styles[ $block_style ];
 
-	if( ! empty( $style_data ) && is_array( $style_data ) ){
-		foreach ( $style_data as $style_block ){
+	if( ! empty( $builder_blocks_styles[ $block_style ] ) && is_array( $builder_blocks_styles[ $block_style ] ) ){
+		foreach ( $builder_blocks_styles[ $block_style ] as $style_block ){
 			foreach ( $style_block as $style_class_name => $style_image ){
 				$block_class_name .= $style_class_name.'-container';
 				$block_class_name .= ' '; // Avoid class names error
 			}
 		}
 	}
-
 
 	# Block head BG Color
 	$block_head_bg = $block_head_class = '';
@@ -605,53 +669,57 @@ function tie_get_builder_blocks( $block_id = false, $section_id = false , $block
 			<?php
 
 			$block = wp_parse_args( $block, array(
-				'style'            => 'default',
-				'cat'              => '',
-				'title'            => '',
-				'icon'             => '',
-				'order'            => 'latest',
-				'woo_cats'         => '',
-				'id'               => '',
-				'tags'             => '',
-				'exclude_posts'    => '',
-				'custom_slider'    => '',
-				'number'           => 5 ,
-				'offset'           => '',
-				'pagi'             => '',
-				'color'            => '',
-				'dark'             => '',
-				'title_length'     => '',
-				'excerpt'          => '',
-				'excerpt_length'   => '',
-				'read_more'        => '',
-				'thumb_first'      => '',
-				'thumb_small'      => '',
-				'thumb_all'        => '',
-				'more'             => '',
-				'post_meta'        => '',
-				'media_overlay'    => '',
-				'filters'          => '',
-				'custom_content'   => '',
-				'content_only'     => '',
-				'ad_img'           => '',
-				'ad_url'           => '',
-				'ad_alt'           => '',
-				'ad_target'        => '',
-				'ad_nofollow'      => '',
-				'ad_code'          => '',
-				'colored_mask'     => '',
-				'gradiant_overlay' => '',
-				'animate_auto'     => '',
-				'slider_speed'     => '',
-				'posts_category'   => '',
-				'posts_review'     => '',
-				'breaking_effect'  => '',
-				'breaking_arrows'  => '',
-				'lsslider'         => '',
-				'revslider'        => '',
-				'boxid'            => '',
+				'style'               => 'default',
+				'cat'                 => '',
+				'title'               => '',
+				'icon'                => '',
+				'order'               => 'latest',
+				'woo_cats'            => '',
+				'source'              => '',
+				'id'                  => '',
+				'tags'                => '',
+				'exclude_posts'       => '',
+				'custom_slider'       => '',
+				'number'              => 5 ,
+				'offset'              => '',
+				'pagi'                => '',
+				'color'               => '',
+				'bgcolor'             => '',
+				'sec_color'           => '',
+				'dark'                => '',
+				'title_length'        => '',
+				'excerpt'             => '',
+				'excerpt_length'      => '',
+				'read_more'           => '',
+				'read_more_text'      => '',
+				'thumb_first'         => '',
+				'thumb_small'         => '',
+				'thumb_all'           => '',
+				'more'                => '',
+				'post_meta'           => '',
+				'media_overlay'       => '',
+				'filters'             => '',
+				'custom_content'      => '',
+				'content_only'        => '',
+				'ad_img'              => '',
+				'ad_url'              => '',
+				'ad_alt'              => '',
+				'ad_target'           => '',
+				'ad_nofollow'         => '',
+				'ad_code'             => '',
+				'colored_mask'        => '',
+				'gradiant_overlay'    => '',
+				'animate_auto'        => '',
+				'slider_speed'        => '',
+				'posts_category'      => '',
+				'posts_review'        => '',
+				'breaking_effect'     => '',
+				'breaking_arrows'     => '',
+				'lsslider'            => '',
+				'revslider'           => '',
+				'boxid'               => '',
+				'background_position' => '',
 			));
-
 
 			tie_page_builder_option(
 				$block_id = $block_id,
@@ -668,6 +736,7 @@ function tie_get_builder_blocks( $block_id = false, $section_id = false , $block
 
 			<div class="tie-section-title tie-section-tabs blocks-settings-tabs">
 				<a href="#" data-target="basic-block-settings" class="active"><?php esc_html_e( 'General', TIELABS_TEXTDOMAIN ) ?></a>
+				<a href="#" data-target="styling-block-settings" class="block-settings-styling"><?php esc_html_e( 'Styling Settings',  TIELABS_TEXTDOMAIN ) ?></a>
 				<a href="#" data-target="advanced-block-settings" class="block-settings-advanced"><?php esc_html_e( 'Advanced Settings',  TIELABS_TEXTDOMAIN ) ?></a>
 			</div>
 
@@ -767,6 +836,32 @@ function tie_get_builder_blocks( $block_id = false, $section_id = false , $block
 						));
 				}
 
+				// Version 4 Compatability
+				if( empty( $block['source'] ) ) {
+					$block['source'] = ! empty( $block['tags'] ) ? 'tags' : 'id';
+				}
+
+				$block_id_prefix = 'block-'. $section_id .'-'. $block_id;
+				$source_main_class = $block_id_prefix .'-source-options';
+
+				$post_source_list_toggle = array();
+				foreach ( $post_source_list as $slug => $name ) {
+					$post_source_list_toggle[ $slug ] = '#'. $block_id_prefix .'-'. $slug .'-item';
+				}
+
+				tie_page_builder_option(
+					$block_id =	$block_id,
+					$section  = $section_id,
+					$value    =	$block['source'],
+					array(
+						'name'    => esc_html__( 'Posts Source', TIELABS_TEXTDOMAIN ),
+						'id'      => 'source',
+						'type'    => 'select',
+						'class'   => 'block-default-options block-source-item',
+						'options' => $post_source_list,
+						'toggle'  => $post_source_list_toggle,
+					));
+
 				tie_page_builder_option(
 					$block_id =	$block_id,
 					$section  = $section_id,
@@ -775,7 +870,7 @@ function tie_get_builder_blocks( $block_id = false, $section_id = false , $block
 						'name'    => esc_html__( 'Categories', TIELABS_TEXTDOMAIN ),
 						'id'      => 'id',
 						'type'    => 'select-multiple',
-						'class'   => 'block-default-options block-categories-item',
+						'class'   => 'block-default-options '. $source_main_class .' block-categories-item',
 						'options' => $categories,
 					));
 
@@ -784,12 +879,52 @@ function tie_get_builder_blocks( $block_id = false, $section_id = false , $block
 					$section  = $section_id,
 					$value    = $block['tags'],
 					array(
-						'name'   => esc_html__( 'Tags', TIELABS_TEXTDOMAIN ),
-						'id'     => 'tags',
-						'hint'   => esc_html__( 'Will overide the Categories option.', TIELABS_TEXTDOMAIN ),
-						'type'   => 'text',
-						'class'  => 'block-default-options block-tags-item',
+						'name'  => esc_html__( 'Tags', TIELABS_TEXTDOMAIN ),
+						'id'    => 'tags',
+						'type'  => 'text',
+						'class' => 'block-default-options '. $source_main_class .' block-tags-item',
 					));
+
+				// Custom Post Type support
+				/*
+				foreach( $custom_taxonomies as $slug => $name ){
+
+					if( empty( $block[ $slug ] ) ) {
+						$block[ $slug ] = array();
+					}
+
+					$custom_terms = TIELABS_ADMIN_HELPER::get_terms_by_taxonomy( $slug );
+
+					echo '<div id="'. $block_id_prefix .'-'. $slug .'-item" class="block-default-options '. $source_main_class .' block-'. $slug.'-item-options ">';
+
+					if( ! is_array( $custom_terms ) || empty( $custom_terms ) ){
+
+						tie_page_builder_option(
+							$block_id = $block_id,
+							$section  = $section_id,
+							$value    = false,
+							array(
+								'id'   => $slug .'-item-no-terms',
+								'text' => sprintf( esc_html__( 'No terms found for the %s taxonomy.', TIELABS_TEXTDOMAIN ), '<strong>'. $name .'</strong>' ),
+								'type' => 'message',
+							));
+					}
+					else{
+						tie_page_builder_option(
+							$block_id = $block_id,
+							$section  = $section_id,
+							$value    = $block[ $slug ],
+							array(
+								'name'    => $name,
+								'id'      => $slug,
+								'type'    => 'select-multiple',
+								'options' => $custom_terms,
+							));
+					}
+
+					echo '</div>';
+				}
+				*/
 
 				tie_page_builder_option(
 					$block_id = $block_id,
@@ -865,9 +1000,10 @@ function tie_get_builder_blocks( $block_id = false, $section_id = false , $block
 						'options' => array(
 								''          => esc_html__( 'Disable', TIELABS_TEXTDOMAIN ),
 								'numeric'   => esc_html__( 'Numeric', TIELABS_TEXTDOMAIN ),
-								'next-prev' => esc_html__( 'Next and Previous Arrows', TIELABS_TEXTDOMAIN ),
-								'show-more' => esc_html__( 'Show More', TIELABS_TEXTDOMAIN ),
-								'load-more' => esc_html__( 'Load More', TIELABS_TEXTDOMAIN ),
+								'show-more' => esc_html__( 'AJAX', TIELABS_TEXTDOMAIN ) .' - '. esc_html__( 'Show More', TIELABS_TEXTDOMAIN ),
+								'load-more' => esc_html__( 'AJAX', TIELABS_TEXTDOMAIN ) .' - '. esc_html__( 'Load More', TIELABS_TEXTDOMAIN ),
+								'next-prev-buttons' => esc_html__( 'AJAX', TIELABS_TEXTDOMAIN ) .' - '. esc_html__( 'Next/Previous Buttons', TIELABS_TEXTDOMAIN ),
+								'next-prev' => esc_html__( 'AJAX', TIELABS_TEXTDOMAIN ) .' - '. esc_html__( 'Next/Previous Arrows Beside Title', TIELABS_TEXTDOMAIN ),
 					)));
 
 				tie_page_builder_option(
@@ -891,6 +1027,12 @@ function tie_get_builder_blocks( $block_id = false, $section_id = false , $block
 						'id'     => 'custom_content',
 						'type'   => 'editor',
 						'class'  => 'block-custom-code-item',
+						'editor' => array(
+							'media_buttons' => true,
+							'quicktags'     => true,
+							'textarea_rows' => '15',
+							'editor_height' => '500px'
+						),
 					));
 
 				tie_page_builder_option(
@@ -970,7 +1112,7 @@ function tie_get_builder_blocks( $block_id = false, $section_id = false , $block
 						$value    = false,
 						array(
 							'id'     => 'videos_youtube_notice',
-							'text'   => esc_html__( 'You need to set the YouTube API Key in the theme options page > API Keys.', TIELABS_TEXTDOMAIN ),
+							'text'   => esc_html__( 'You need to set the YouTube API Key in the theme options page > Integrations.', TIELABS_TEXTDOMAIN ),
 							'type'   => 'error',
 							'class'  => 'block-video-list-group',
 						));
@@ -998,7 +1140,7 @@ function tie_get_builder_blocks( $block_id = false, $section_id = false , $block
 						$rev_slider = new RevSlider();
 						$rev_slider = $rev_slider->getArrSlidersShort();
 
-						if( ! empty( $rev_slider ) && is_array( $rev_slider )){
+						if( ! empty( $rev_slider ) && is_array( $rev_slider ) ) {
 
 							$arrSliders = array( '' => esc_html__( 'Choose Slider', TIELABS_TEXTDOMAIN ) );
 
@@ -1072,7 +1214,7 @@ function tie_get_builder_blocks( $block_id = false, $section_id = false , $block
 			echo '</div><!-- basic-block-settings -->';
 
 
-			echo '<div class="advanced-block-settings block-settings">';
+			echo '<div class="styling-block-settings block-settings">';
 
 				tie_page_builder_option(
 					$block_id = $block_id,
@@ -1085,6 +1227,81 @@ function tie_get_builder_blocks( $block_id = false, $section_id = false , $block
 						'hint'   => esc_html__( 'Without background, padding nor borders.', TIELABS_TEXTDOMAIN ),
 						'class'  => 'block-content-only-item',
 					));
+
+
+				tie_page_builder_option(
+					$block_id =	$block_id,
+					$section  = $section_id,
+					$value    =	$block['dark'],
+					array(
+						'name'   => esc_html__( 'Dark Skin', TIELABS_TEXTDOMAIN ),
+						'id'     => 'dark',
+						'type'   => 'checkbox',
+						'class'  => 'block-dark-item',
+					));
+
+				tie_page_builder_option(
+					$block_id = $block_id,
+					$section  = $section_id,
+					$value    = $block['color'],
+					array(
+						'name'        => esc_html__( 'Primary Color', TIELABS_TEXTDOMAIN ),
+						'id'          => 'color',
+						'type'        => 'color',
+						'color_class' => 'tieBlocksColor',
+						'class'       => 'block-color-item',
+					));
+
+				tie_page_builder_option(
+					$block_id = $block_id,
+					$section  = $section_id,
+					$value    = $block['bgcolor'],
+					array(
+						'name'        => esc_html__( 'Background Color', TIELABS_TEXTDOMAIN ),
+						'id'          => 'bgcolor',
+						'type'        => 'color',
+						'color_class' => 'tieBlocksColor',
+						'class'       => 'block-bgcolor-item',
+					));
+
+				tie_page_builder_option(
+					$block_id = $block_id,
+					$section  = $section_id,
+					$value    = $block['sec_color'],
+					array(
+						'name'        => esc_html__( 'Secondary Color', TIELABS_TEXTDOMAIN ),
+						'id'          => 'sec_color',
+						'type'        => 'color',
+						'color_class' => 'tieBlocksColor',
+						'class'       => 'block-sec-color-item',
+					));
+
+				tie_page_builder_option(
+					$block_id =	$block_id,
+					$section  = $section_id,
+					$value    =	$block['colored_mask'],
+					array(
+						'name'  => esc_html__( 'Colored Mask', TIELABS_TEXTDOMAIN ),
+						'id'    => 'colored_mask',
+						'class' => 'block-slider-options block-slider-colored-mask',
+						'type'  => 'checkbox',
+					));
+
+				tie_page_builder_option(
+					$block_id =	$block_id,
+					$section  = $section_id,
+					$value    =	$block['gradiant_overlay'],
+					array(
+						'name'  => esc_html__( 'Disable Gradient Overlay', TIELABS_TEXTDOMAIN ),
+						'id'    => 'gradiant_overlay',
+						'class' => 'block-slider-options block-slider-gradiant-overlay',
+						'type'  => 'checkbox',
+					));
+
+			echo '</div><!-- styling-block-settings -->';
+
+
+			echo '<div class="advanced-block-settings block-settings">';
 
 				tie_page_builder_option(
 					$block_id = $block_id,
@@ -1111,18 +1328,6 @@ function tie_get_builder_blocks( $block_id = false, $section_id = false , $block
 					));
 
 				tie_page_builder_option(
-					$block_id = $block_id,
-					$section  = $section_id,
-					$value    = $block['color'],
-					array(
-						'name'        => esc_html__( 'Color', TIELABS_TEXTDOMAIN ),
-						'id'          => 'color',
-						'type'        => 'color',
-						'color_class' => 'tieBlocksColor',
-						'class'       => 'block-color-item',
-					));
-
-				tie_page_builder_option(
 					$block_id =	$block_id,
 					$section  = $section_id,
 					$value    =	$block['title_length'],
@@ -1133,7 +1338,7 @@ function tie_get_builder_blocks( $block_id = false, $section_id = false , $block
 						'class'  => 'block-default-options block-title_length-item',
 					));
 
-				echo '<div class="excerpt-options featured-posts-options">';
+				echo '<div class="excerpt-options">';
 
 					tie_page_builder_option(
 						$block_id = $block_id,
@@ -1159,6 +1364,7 @@ function tie_get_builder_blocks( $block_id = false, $section_id = false , $block
 						));
 				echo '</div>';
 
+				echo '<div class="read-more-options">';
 
 				tie_page_builder_option(
 					$block_id = $block_id,
@@ -1168,19 +1374,23 @@ function tie_get_builder_blocks( $block_id = false, $section_id = false , $block
 						'name'   => esc_html__( 'Read More Button', TIELABS_TEXTDOMAIN ),
 						'id'     => 'read_more',
 						'type'   => 'checkbox',
+						'toggle' => '#block-'. $section_id .'-'. $block_id .'-read_more_text-item',
 						'class'  => 'block-default-options block-read_more-item',
 					));
 
 				tie_page_builder_option(
-					$block_id =	$block_id,
+					$block_id = $block_id,
 					$section  = $section_id,
-					$value    =	$block['dark'],
+					$value    = $block['read_more_text'],
 					array(
-						'name'   => esc_html__( 'Dark Skin', TIELABS_TEXTDOMAIN ),
-						'id'     => 'dark',
-						'type'   => 'checkbox',
-						'class'  => 'block-dark-item',
+						'name'  => esc_html__( 'Custom Read More Button text', TIELABS_TEXTDOMAIN ),
+						'id'    => 'read_more_text',
+						'type'  => 'text',
+						'class' => 'block-default-options block-read_more_text-item',
+						'hint'  => esc_html__( 'Leave it empty to use the default text.', TIELABS_TEXTDOMAIN ),
 					));
+
+				echo '</div>';
 
 				tie_page_builder_option(
 					$block_id = $block_id,
@@ -1229,6 +1439,31 @@ function tie_get_builder_blocks( $block_id = false, $section_id = false , $block
 				tie_page_builder_option(
 					$block_id =	$block_id,
 					$section  = $section_id,
+					$value    =	$block['background_position'],
+					array(
+						'name'    =>  esc_html__( 'Featured Image Position', TIELABS_TEXTDOMAIN ),
+						'id'      => 'background_position',
+						'class'   => 'block-slider-options block-slider-background_position',
+						'type'    => 'select',
+						'options' => array(
+							''            => esc_html__( 'Default',     TIELABS_TEXTDOMAIN ),
+							'left top'    => esc_html__( 'Left Top',    TIELABS_TEXTDOMAIN ),
+							'left center' => esc_html__( 'Left Center', TIELABS_TEXTDOMAIN ),
+							'left bottom' => esc_html__( 'Left Bottom', TIELABS_TEXTDOMAIN ),
+
+							'right top'    => esc_html__( 'Right Top',    TIELABS_TEXTDOMAIN ),
+							'right center' => esc_html__( 'Right Center', TIELABS_TEXTDOMAIN ),
+							'right bottom' => esc_html__( 'Right Bottom', TIELABS_TEXTDOMAIN ),
+
+							'center top'    => esc_html__( 'Center Top',    TIELABS_TEXTDOMAIN ),
+							'center center' => esc_html__( 'Center Center', TIELABS_TEXTDOMAIN ),
+							'center bottom' => esc_html__( 'Center Bottom', TIELABS_TEXTDOMAIN ),
+						),
+					));
+
+				tie_page_builder_option(
+					$block_id =	$block_id,
+					$section  = $section_id,
 					$value    =	$block['posts_category'],
 					array(
 						'name'  => esc_html__( 'Post Primary Category', TIELABS_TEXTDOMAIN ),
@@ -1250,28 +1485,6 @@ function tie_get_builder_blocks( $block_id = false, $section_id = false , $block
 							'type'  => 'checkbox',
 						));
 				}
-
-				tie_page_builder_option(
-					$block_id =	$block_id,
-					$section  = $section_id,
-					$value    =	$block['colored_mask'],
-					array(
-						'name'  => esc_html__( 'Colored Mask', TIELABS_TEXTDOMAIN ),
-						'id'    => 'colored_mask',
-						'class' => 'block-slider-options block-slider-colored-mask',
-						'type'  => 'checkbox',
-					));
-
-				tie_page_builder_option(
-					$block_id =	$block_id,
-					$section  = $section_id,
-					$value    =	$block['gradiant_overlay'],
-					array(
-						'name'  => esc_html__( 'Disable Gradient Overlay', TIELABS_TEXTDOMAIN ),
-						'id'    => 'gradiant_overlay',
-						'class' => 'block-slider-options block-slider-gradiant-overlay',
-						'type'  => 'checkbox',
-					));
 
 				tie_page_builder_option(
 					$block_id =	$block_id,
@@ -1357,13 +1570,13 @@ function tie_get_builder_blocks( $block_id = false, $section_id = false , $block
 					<script>
 						jQuery(document).ready(function(){
 							$AddedBlock	= jQuery('#listItem_<?php echo esc_js( $section_id .'-'. $block_id ) ?>');
-							$AddedBlock.find('input:checked').parent().addClass( 'selected' );
+							$AddedBlock.find('input:checked').closest('li').addClass( 'selected' );
 							$AddedBlock.find('.checkbox-select').click( function(event){
-								event.preventDefault();
+								//event.preventDefault();
 								$AddedBlock.find('li').removeClass('selected');
-								$AddedBlock.find(':radio').removeAttr('checked');
+								//$AddedBlock.find(':radio').removeAttr('checked');
 								jQuery(this).parent().addClass('selected');
-								jQuery(this).parent().find(':radio').attr('checked','checked');
+								//jQuery(this).parent().find(':radio').attr('checked','checked');
 							});
 						});
 					</script>
@@ -1549,7 +1762,6 @@ function tie_add_page_builder(){
 
 	<input type="hidden" id="tie_builder_active" name="tie_builder_active" value="<?php echo esc_attr( $builder_active ) ?>">
 
-
 	<div id="tie-page-builder" style="<?php echo esc_attr( $builder_style ) ?>">
 
 		<div class="tie-page-builder postbox">
@@ -1611,6 +1823,11 @@ function tie_add_page_builder(){
 /*-----------------------------------------------------------------------------------*/
 add_action( 'admin_init', 'tie_gutenberg_disable_notice' );
 function tie_gutenberg_disable_notice(){
+
+	if( wp_doing_ajax() ){
+		return;
+	}
+
 	if( ! empty( $_GET['post'] ) && tie_get_postdata( 'tie_builder_active', false, $_GET['post'] ) ){
 		remove_action( 'admin_enqueue_scripts', 'gutenberg_check_if_classic_needs_warning_about_blocks' );
 	}

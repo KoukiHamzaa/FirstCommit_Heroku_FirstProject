@@ -8,7 +8,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
 
 
-if( ! class_exists( 'TIELABS_MENU_LIMIT_DETECTOR' )){
+if( ! class_exists( 'TIELABS_MENU_LIMIT_DETECTOR' ) ) {
 
 	class TIELABS_MENU_LIMIT_DETECTOR{
 

@@ -10,7 +10,7 @@ function tie_widgets_init(){
 	add_filter( 'show_recent_comments_widget_style', '__return_false' );
 
 	// Widgets icon
-	$widget_icon = tie_get_option( 'widgets_icon' ) ? '<span class="widget-title-icon fa"></span>' : '';
+	$widget_icon = tie_get_option( 'widgets_icon' ) ? '<span class="widget-title-icon tie-icon"></span>' : '';
 
 	// Widget HTML markup
 	$before_widget = apply_filters( 'TieLabs/Widgets/before_widget', '<div id="%1$s" class="container-wrapper widget %2$s">' );
@@ -53,7 +53,7 @@ function tie_widgets_init(){
 
 	// Custom Sidebars
 	$sidebars = tie_get_option( 'sidebars' );
-	if( ! empty( $sidebars ) && is_array( $sidebars )){
+	if( ! empty( $sidebars ) && is_array( $sidebars ) ) {
 		foreach ($sidebars as $sidebar){
 			register_sidebar( array(
 				'id' 			      => sanitize_title($sidebar),
@@ -146,10 +146,16 @@ function tie_widgets_init(){
 
 	foreach ( $custom_widgets as $post_id => $sections ) {
 		$i = 1;
+
+		$name = 'Page: #' .$post_id;
+		if( is_admin() && ! wp_doing_ajax() ){
+			$name = get_the_title( $post_id ); // extra query each
+		}
+
 		if( ! empty( $sections ) && is_array( $sections ) ){
 			foreach ( $sections as $section => $widgets ) {
 				register_sidebar(array(
-					'name'          => get_the_title( $post_id ). ' - '. sprintf( esc_html__( 'Section #%s', TIELABS_TEXTDOMAIN ), $i ),
+					'name'          => $name . ' - '. sprintf( esc_html__( 'Section #%s', TIELABS_TEXTDOMAIN ), $i ),
 					'id'            => $section,
 					'before_widget' => $before_widget,
 					'after_widget'  => $after_widget,
@@ -168,7 +174,30 @@ function tie_widgets_init(){
 /**
  * Import the Default Widgets
  */
-$theme_widgets = array( 'ads', 'tabs', 'posts', 'login', 'about', 'flickr', 'author', 'social', 'slider', 'weather', 'youtube', 'twitter', 'facebook', 'text-html', 'instagram', 'newsletter', 'soundcloud', 'categories', 'comments-avatar', 'social-counters' );
+$theme_widgets = array(
+	'ads',
+	'tabs',
+	'posts',
+	'login',
+	'about',
+	'flickr',
+	'author',
+	'social',
+	'slider',
+	'weather',
+	'youtube',
+	'twitter',
+	'facebook',
+	'text-html',
+	'instagram',
+	'newsletter',
+	'soundcloud',
+	'categories',
+	'comments-avatar',
+	'social-counters',
+	'snapchat',
+	'tiktok',
+);
 $theme_widgets = apply_filters( 'TieLabs/Widgets/default_widgets', $theme_widgets );
 
 if( ! empty( $theme_widgets ) && is_array( $theme_widgets ) ){

@@ -7,9 +7,7 @@
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
 
-
-
-if( ! class_exists( 'TIELABS_WEATHER' )){
+if( ! class_exists( 'TIELABS_WEATHER' ) ) {
 
 	class TIELABS_WEATHER {
 
@@ -32,7 +30,7 @@ if( ! class_exists( 'TIELABS_WEATHER' )){
 		function __construct( $atts ) {
 
 			if( ! tie_get_option( 'api_openweather' ) ){
-				return TIELABS_HELPER::notice_message( esc_html__( 'You need to set the Weather API Key in the theme options page > API Keys.', TIELABS_TEXTDOMAIN ) );
+				return TIELABS_HELPER::notice_message( esc_html__( 'You need to set the Weather API Key in the theme options page > Integrations.', TIELABS_TEXTDOMAIN ) );
 			}
 
 			if( empty( $atts['location'] ) ){
@@ -48,6 +46,8 @@ if( ! class_exists( 'TIELABS_WEATHER' )){
 			$this->units_display  = $this->units == 'metric' ? '&#x2103;' : '&#x2109;';
 			$this->transient_name = 'tie_weather_' . $this->city_slug . '_' . strtolower( $this->units ) . '_' . $this->locale;
 			$this->days_to_show   = isset( $this->atts['forecast_days'] ) ? $this->atts['forecast_days'] : 5;
+
+			$this->avoid_cache    = isset( $this->atts['avoid_cache'] ) ? true : false;
 
 			// Get the Weather
 			$this->show();
@@ -78,9 +78,9 @@ if( ! class_exists( 'TIELABS_WEATHER' )){
 			$the_icon  = $this->weather_icon( $icon_slug );
 
 			// Today's weather data
-			$today_temp       = isset( $today->main->temp )     ? round( $today->main->temp )     : false;
-			$this->today_high = isset( $today->main->temp_max ) ? round( $today->main->temp_max ) : false;
-			$this->today_low 	= isset( $today->main->temp_min ) ? round( $today->main->temp_min ) : false;
+			$today_temp       = isset( $today->main->temp )     ? apply_filters( 'TieLabs/Weather/number', round( $today->main->temp ) )     : false;
+			$this->today_high = isset( $today->main->temp_max ) ? apply_filters( 'TieLabs/Weather/number', round( $today->main->temp_max ) ) : false;
+			$this->today_low 	= isset( $today->main->temp_min ) ? apply_filters( 'TieLabs/Weather/number', round( $today->main->temp_min ) ) : false;
 
 			// Get Forecast Data
 			$forecast_out = $this->forecast( $weather_data );
@@ -92,7 +92,7 @@ if( ! class_exists( 'TIELABS_WEATHER' )){
 
 					<div class="weather-icon-and-city">
 						<?php echo $the_icon; ?>
-						<div class="weather-name"><?php echo $city_name; ?></div>
+						<div class="weather-name the-subtitle"><?php echo $city_name; ?></div>
 						<div class="weather-desc"><?php echo $description ?></div>
 					</div>
 
@@ -113,12 +113,12 @@ if( ! class_exists( 'TIELABS_WEATHER' )){
 
 							<div class="weather_humidty">
 								<span aria-hidden="true" class="tie-icon-raindrop"></span>
-								<span class="screen-reader-text"><?php esc_html__( 'humidity:', TIELABS_TEXTDOMAIN ) ?></span> <?php echo $today->main->humidity ?>%
+								<span class="screen-reader-text"><?php esc_html__( 'humidity:', TIELABS_TEXTDOMAIN ) ?></span> <?php echo apply_filters( 'TieLabs/Weather/number', $today->main->humidity ) ?>%
 							</div>
 
 							<div class="weather_wind">
 								<span aria-hidden="true" class="tie-icon-wind"></span>
-								<span class="screen-reader-text"><?php esc_html__( 'wind:', TIELABS_TEXTDOMAIN ) ?></span> <?php echo $today->wind->speed .' '. $speed_text ?></div>
+								<span class="screen-reader-text"><?php esc_html__( 'wind:', TIELABS_TEXTDOMAIN ) ?></span> <?php echo apply_filters( 'TieLabs/Weather/number', $today->wind->speed ) .' '. $speed_text ?></div>
 						</div>
 					</div> <!-- /.weather-todays-stats -->
 
@@ -145,10 +145,10 @@ if( ! class_exists( 'TIELABS_WEATHER' )){
 
 						<div class="city-data">
 							<span><?php echo $city_name; ?></span>
-						  <span class="weather-current-temp">
-						  	<?php echo $today_temp ?>
-						  	<sup><?php echo $this->units_display; ?></sup>
-						  </span>
+							<span class="weather-current-temp">
+								<?php echo $today_temp ?>
+								<sup><?php echo $this->units_display; ?></sup>
+							</span>
 						</div><!-- .city-data -->
 
 					</div><!-- .weather-wrap -->
@@ -182,11 +182,11 @@ if( ! class_exists( 'TIELABS_WEATHER' )){
 				if( $today_date == $day_of_week ){
 
 					if( ! empty( $forecast->main->temp_max ) && $forecast->main->temp_max > $this->today_high ){
-						$this->today_high = round( $forecast->main->temp_max );
+						$this->today_high = apply_filters( 'TieLabs/Weather/number', round( $forecast->main->temp_max ) );
 					}
 
 					if( ! empty( $forecast->main->temp_min ) && $forecast->main->temp_min < $this->today_low ){
-						$this->today_low = round( $forecast->main->temp_min );
+						$this->today_low = apply_filters( 'TieLabs/Weather/number', round( $forecast->main->temp_min ) );
 					}
 				}
 
@@ -196,7 +196,7 @@ if( ! class_exists( 'TIELABS_WEATHER' )){
 					$forecast_days[ $day_of_week ] = array(
 						'utc'  => $forecast->dt,
 						'icon' => $forecast->weather[0]->icon,
-						'temp' => ! empty( $forecast->main->temp_max ) ? round( $forecast->main->temp_max ) : '',
+						'temp' => ! empty( $forecast->main->temp_max ) ? apply_filters( 'TieLabs/Weather/number', round( $forecast->main->temp_max ) ) : '',
 					);
 				}
 				else{
@@ -216,12 +216,13 @@ if( ! class_exists( 'TIELABS_WEATHER' )){
 			foreach( $forecast_days as $forecast_day ){
 
 				$forecast_icon = $this->weather_icon( $forecast_day['icon'] );
-				$the_day = date_i18n( 'D', $forecast_day['utc'] );
+				$the_day  = date_i18n( 'D', $forecast_day['utc'] );
+				$day_temp = apply_filters( 'TieLabs/Weather/number', $forecast_day['temp'] );
 
 				$forecast_out .= "
 					<div class=\"weather-forecast-day\">
 						{$forecast_icon}
-						<div class=\"weather-forecast-day-temp\">{$forecast_day['temp']}<sup>{$this->units_display}</sup></div>
+						<div class=\"weather-forecast-day-temp\">{$day_temp}<sup>{$this->units_display}</sup></div>
 						<div class=\"weather-forecast-day-abbr\">{$the_day}</div>
 					</div>
 				";
@@ -248,7 +249,7 @@ if( ! class_exists( 'TIELABS_WEATHER' )){
 			$locale = in_array( get_locale(), $available_locales ) ? get_locale() : 'en';
 
 			// Check for locale by first two digits
-			if( in_array( substr( get_locale(), 0, 2 ), $available_locales )){
+			if( in_array( substr( get_locale(), 0, 2 ), $available_locales ) ) {
 				$locale = substr( get_locale(), 0, 2 );
 			}
 
@@ -310,7 +311,7 @@ if( ! class_exists( 'TIELABS_WEATHER' )){
 					}
 				}
 
-				if( $weather_data['now'] && $weather_data['forecast'] ){
+				if( $weather_data['now'] && $weather_data['forecast'] && ! $this->avoid_cache ){
 					set_transient( $this->transient_name, $weather_data, 1 * HOUR_IN_SECONDS );
 				}
 			}
@@ -380,11 +381,11 @@ if( ! class_exists( 'TIELABS_WEATHER' )){
 			elseif( $icon == '02d' || $icon == '03d' || $icon == '04d' ){
 				$weather_icon = '
 					<div class="weather-icon">
-	          <div class="icon-cloud"></div>
-	          <div class="icon-cloud-behind"></div>
-	          <div class="icon-basecloud-bg"></div>
-	          <div class="icon-sun-animi"></div>
-	        </div>
+						<div class="icon-cloud"></div>
+						<div class="icon-cloud-behind"></div>
+						<div class="icon-basecloud-bg"></div>
+						<div class="icon-sun-animi"></div>
+					</div>
 				';
 			}
 			// Cloudy Night
@@ -416,74 +417,74 @@ if( ! class_exists( 'TIELABS_WEATHER' )){
 			elseif( $icon == '10d' ){
 				$weather_icon = '
 					<div class="weather-icon">
-	          <div class="basecloud"></div>
-	          <div class="icon-basecloud-bg"></div>
-	          <div class="animi-icons-wrap">
-	            <div class="icon-rainy-animi"></div>
-	            <div class="icon-rainy-animi-2"></div>
-	            <div class="icon-rainy-animi-4"></div>
-	            <div class="icon-rainy-animi-5"></div>
-	          </div>
-	          <div class="icon-sun-animi"></div>
-	        </div>
+						<div class="basecloud"></div>
+						<div class="icon-basecloud-bg"></div>
+						<div class="animi-icons-wrap">
+							<div class="icon-rainy-animi"></div>
+							<div class="icon-rainy-animi-2"></div>
+							<div class="icon-rainy-animi-4"></div>
+							<div class="icon-rainy-animi-5"></div>
+						</div>
+						<div class="icon-sun-animi"></div>
+					</div>
 				';
 			}
 			// Rainy Night
 			elseif( $icon == '10n' ){
 				$weather_icon = '
 					<div class="weather-icon">
-	          <div class="basecloud"></div>
-	          <div class="icon-basecloud-bg"></div>
-	          <div class="animi-icons-wrap">
-	            <div class="icon-rainy-animi"></div>
-	            <div class="icon-rainy-animi-2"></div>
-	            <div class="icon-rainy-animi-4"></div>
-	            <div class="icon-rainy-animi-5"></div>
-	          </div>
-	          <div class="icon-moon-animi"></div>
-	        </div>
+						<div class="basecloud"></div>
+						<div class="icon-basecloud-bg"></div>
+						<div class="animi-icons-wrap">
+							<div class="icon-rainy-animi"></div>
+							<div class="icon-rainy-animi-2"></div>
+							<div class="icon-rainy-animi-4"></div>
+							<div class="icon-rainy-animi-5"></div>
+						</div>
+						<div class="icon-moon-animi"></div>
+					</div>
 				';
 			}
 			// Thunder
 			elseif( $icon == '11d' || $icon == '11n'){
 				$weather_icon = '
 					<div class="weather-icon">
-	          <div class="basecloud"></div>
-	          <div class="animi-icons-wrap">
-	            <div class="icon-thunder-animi"></div>
-	          </div>
-	        </div>
+						<div class="basecloud"></div>
+						<div class="animi-icons-wrap">
+							<div class="icon-thunder-animi"></div>
+						</div>
+					</div>
 				';
 			}
 			// Snowing
 			elseif( $icon == '13d' || $icon == '13n' ){
 				$weather_icon = '
 					<div class="weather-icon weather-snowing">
-	          <div class="basecloud"></div>
-	          <div class="animi-icons-wrap">
-	            <div class="icon-windysnow-animi"></div>
-	            <div class="icon-windysnow-animi-2"></div>
-	          </div>
-	        </div>
+						<div class="basecloud"></div>
+						<div class="animi-icons-wrap">
+							<div class="icon-windysnow-animi"></div>
+							<div class="icon-windysnow-animi-2"></div>
+						</div>
+					</div>
 				';
 			}
 			// Mist
 			elseif( $icon == '50d'  || $icon == '50n' ){
 				$weather_icon = '
 					<div class="weather-icon">
-	          <div class="icon-mist"></div>
-	          <div class="icon-mist-animi"></div>
-	        </div>
+						<div class="icon-mist"></div>
+						<div class="icon-mist-animi"></div>
+					</div>
 				';
 			}
 			/// Default icon | Cloudy
 			else{
 				$weather_icon = '
 					<div class="weather-icon">
-		        <div class="icon-cloud"></div>
-		        <div class="icon-cloud-behind"></div>
-		        <div class="icon-basecloud-bg"></div>
-		      </div>
+						<div class="icon-cloud"></div>
+						<div class="icon-cloud-behind"></div>
+						<div class="icon-basecloud-bg"></div>
+					</div>
 				';
 			}
 
@@ -525,11 +526,49 @@ if( ! class_exists( 'TIELABS_WEATHER' )){
 		}
 
 
+		/**
+		 * Clear all expired weather cache
+		 */
+		public static function clear_expired_weather() {
+
+			// Run this twice daily
+			if( get_transient( 'tie_check_weather_daily' ) ){
+				return;
+			}
+
+			global $wpdb;
+
+			// get current PHP time, offset by a minute to avoid clashes with other tasks
+			$threshold = time() - MINUTE_IN_SECONDS;
+
+			// delete expired transients, using the paired timeout record to find them
+			$sql = "
+				delete from t1, t2
+				using {$wpdb->options} t1
+				join {$wpdb->options} t2 on t2.option_name = replace(t1.option_name, '_timeout', '')
+				where (t1.option_name like '\_transient\_timeout\_tie_weather_%' or t1.option_name like '\_site\_transient\_timeout\_tie_weather_%')
+				and t1.option_value < '$threshold'
+			";
+			$wpdb->query($sql);
+
+			// delete orphaned transient expirations
+			$sql = "
+				delete from {$wpdb->options}
+				where (
+						 option_name like '\_transient\_timeout\_tie_weather_%'
+					or option_name like '\_site\_transient\_timeout\_tie_weather_%'
+				)
+				and option_value < '$threshold'
+			";
+			$wpdb->query($sql);
+
+			// Run this twice daily
+			set_transient( 'tie_check_weather_daily', true, 12 * HOUR_IN_SECONDS );
+		}
+
 	}
 }
 
 
+add_action( 'admin_head', 'TIELABS_WEATHER::clear_expired_weather' );
 add_action( 'TieLabs/Options/before_update', 'TIELABS_WEATHER::clear_header_cache' );
-
-
-

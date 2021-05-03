@@ -26,7 +26,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 		do_action( 'TieLabs/before_the_article' );
 	?>
 
-	<article id="the-post" <?php tie_post_class( 'container-wrapper post-content' ); ?>>
+	<article id="the-post" <?php tie_post_class( 'container-wrapper post-content', false, false, true ); ?>>
 
 		<?php
 			/**

@@ -2,7 +2,7 @@
 // General Style -----------------------------------------------
 .tabs {
 	transition: opacity 0.3s;
-	max-height: 66px;
+	max-height: 75px;
 	width: 100%;
 	padding: 0;
 	border: $base-border;
@@ -90,6 +90,11 @@
 		text-overflow: ellipsis;
 		white-space: nowrap;
 		padding: 0 10px !important; // override magazine2 && blocks titles style #4
+
+		span{
+			font-size: 20px;
+			vertical-align: sub;
+		}
 	}
 
 	li:last-child a {
@@ -189,6 +194,8 @@
 		flex-grow: 1;
 
 		a{
+			padding-left: 10px;
+			padding-right: 10px;
 			border-width: 0 0 1px 0;
 		}
 
@@ -436,7 +443,6 @@
 
 	.tabs{
 		border-width: 1px;
-		max-height: 67px;
 	}
 
 	.dark-skin &{

@@ -26,8 +26,9 @@
 				'plugin'  => esc_html__( 'Third party post views plugin', TIELABS_TEXTDOMAIN ),
 			),
 			'toggle'  => array(
-				'theme'  => '#views_meta_field-item, #views_starter_number-item',
-				'plugin' => '#views_meta_field-item',
+				'jetpack' => 'none',
+				'theme'   => '#views_meta_field-item, #views_starter_number-item',
+				'plugin'  => '#views_meta_field-item',
 			)
 		));
 

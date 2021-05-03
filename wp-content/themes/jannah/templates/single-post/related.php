@@ -16,7 +16,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
 if( (( tie_get_option( 'related' ) && ! tie_get_postdata( 'tie_hide_related' )) || ( tie_get_postdata( 'tie_hide_related' ) == 'no' ) ) && is_singular( 'post' ) ):
 
-	// Check if the newsletter is hidden on mobiles
+	// Check if the related posts is hidden on mobiles
 	if( TIELABS_HELPER::is_mobile_and_hidden( 'related' ) ){
 		return;
 	}

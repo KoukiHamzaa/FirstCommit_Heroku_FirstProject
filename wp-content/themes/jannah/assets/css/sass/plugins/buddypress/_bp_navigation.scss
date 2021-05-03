@@ -116,7 +116,7 @@
 					display: inline-block;
 					min-width: 80px;
 
-					.count{ 
+					.count{
 						position: absolute;
 					}
 
@@ -264,7 +264,7 @@
 			font-size: 15px;
 
 			&:not(:last-child):after{
-				font-family: 'fontawesome';
+				font-family: tiefonticon;
 				content: '\f178';
 				margin: 0 10px;
 				color: $med-light-grey;

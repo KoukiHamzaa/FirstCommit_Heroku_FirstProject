@@ -178,7 +178,13 @@ function tie_ajax_archives(){
 				var theBlockList_li = theBlock.find( '.posts-items-'+currentPage ).hide();
 
 				// Animate the loaded items
-				theBlockList_li.addClass( 'tie-animate-slideInUp tie-animate-delay' ).show();
+				//theBlockList_li.addClass( 'tie-animate-slideInUp tie-animate-delay' ).show();
+
+				var $i = 0;
+				theBlockList_li.each(function(){
+					$i++;
+					jQuery(this).addClass( 'tie-animate-slideInUp' ).attr('style', 'animation-delay: 0.'+ $i +'s' ).show();
+				});
 
 				tie_animate_element( theBlockList_li );
 				isDuringAjax = false;

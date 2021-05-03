@@ -1,6 +1,6 @@
 <?php
 
-if( ! class_exists( 'TIE_FACEBOOK_WIDGET' )){
+if( ! class_exists( 'TIE_FACEBOOK_WIDGET' ) ) {
 
 	/**
 	 * Widget API: TIE_FACEBOOK_WIDGET class

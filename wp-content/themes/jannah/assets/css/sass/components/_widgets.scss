@@ -38,18 +38,20 @@
 	right: 0;
 	top: 1px;
 	color: #b9bec3;
+	font-size: 15px;
 
 	&:before {
 		content: "\f08d";
-	}
-
-	&.fa{
-		font-size: 15px;
 	}
 }
 
 .post-widget-body {
 	padding-left: 125px;
+
+	.posts-inverted &:not(.no-small-thumbs){
+		padding-left: 0;
+		padding-right: 125px;
+	}
 
 	.post-title {
 		@include font-size(14px);
@@ -63,7 +65,19 @@
 	margin-right: 15px;
 	position: relative;
 
+	.posts-inverted &{
+		float: right;
+		margin-left: 15px;
+		margin-right: 0;
+	}
+}
+
+.post-widget-thumbnail,
+.review-thumbnail{ // Taqyeem plugin default widget
 	img.tie-small-image{
+		width: 110px;
+	}
+	.tie-small-image img{
 		width: 110px;
 	}
 }
@@ -124,9 +138,46 @@
 .posts-list,
 .widget_pages,
 .widget_text,
-.text-html{
+.text-html,
+.tie-slider-widget{
 	.widget-title-icon:before {
 		content: "\f0f6";
+	}
+}
+
+.widget-posts-list-container{
+	position: relative;
+
+	&.is-loading{
+		opacity: 0.5;
+		transition: opacity 0.3s;
+	}
+}
+
+.widget-pagination-wrapper{
+	clear: both;
+	overflow: hidden;
+	margin-top: 15px !important;
+
+	.slider-arrow-nav{
+		display: flex;
+		float: none;
+		margin: 0;
+		justify-content: center;
+
+		li{
+			margin: 0;
+			padding: 0;
+		}
+
+		a{
+			width: 30px;
+			height: 30px;
+			line-height: 28px;
+		}
+	}
+	.widget-pagination{
+		margin-top: 0 !important;
 	}
 }
 
@@ -144,6 +195,10 @@
 		width: 100%;
 		margin-right: 0;
 		margin-bottom: 10px;
+
+		a{
+			min-height: 40px; // Fix post-cat-wrap issue if the post doesn't have a featured image
+		}
 	}
 
 	.post-widget-body{
@@ -154,7 +209,7 @@
 .posts-list-big-first li:first-child,
 .posts-list-bigs li{
 	.post-title{
-		@include font-size(20px);
+		@include font-size(18px);
 	}
 }
 
@@ -204,7 +259,7 @@
 .posts-list-counter{
 	counter-reset: post-widget-counter;
 
-	li{
+	li.widget-post-list{
 		&:before{
 			display: block;
 			width: 30px;
@@ -386,10 +441,6 @@
 				@include font-smoothing();
 				transition-duration: 0.3s;
 			}
-
-			.fa {
-				display: none;
-			}
 		}
 
 		h3 {
@@ -534,7 +585,7 @@
 			margin-bottom: 10px;
 		}
 
-		span.fa {
+		span.tie-social-icon {
 			margin-right: 5px;
 			@include font-size(16px);
 			line-height: 25px;
@@ -622,18 +673,20 @@ form {
 		overflow: auto;
 		position: relative;
 		width: 100%;
+		margin-top: 10px;
 	}
 }
 
 .search-field {
 	float: left;
 	width: 73%;
+	padding: 8px 15px;
 }
 
 .woocommerce-product-search [type="submit"],
 .search-submit[type="submit"] {
 	float: right;
-	padding: 7px;
+	padding: 10px 5px;
 	margin-left: 2%;
 	width: 25%;
 }
@@ -743,10 +796,6 @@ form {
 		li{
 		  list-style: none;
 		}
-
-		span.fa {
-			width: 15px;
-		}
 	}
 }
 
@@ -754,7 +803,7 @@ form {
 // Social Statistics--------------------------------------------
 .social-statistics-widget {
 	.widget-title-icon:before {
-		content: "\f087";
+		content: "\f164";
 	}
 
 	ul {
@@ -794,9 +843,7 @@ form {
 	}
 
 	a span{
-		&.fa,
-		&[class^="arqicon-"],
-		&[class*=" arqicon-"] {
+		&.counter-icon {
 			float: left;
 			color: #ffffff;
 			background-color: $dark-color;
@@ -804,7 +851,7 @@ form {
 			height: 30px;
 			line-height: 30px;
 			text-align: center;
-			@include font-size(15px);
+			@include font-size(18px);
 			border-radius: $base-border-radius;
 			transition: 0.3s;
 		}
@@ -830,6 +877,21 @@ form {
 	}
 }
 
+.social-counter-total{
+	margin-bottom: 15px;
+	font-size: 120%;
+	text-align: center;
+
+	ul + &{
+		margin-bottom: 0;
+		margin-top: 15px
+	}
+
+	.tie-icon-heart{
+		color: red;
+	}
+}
+
 // Two Columns
 .two-cols{
 	margin-left: -5px;
@@ -849,12 +911,18 @@ form {
 		&:nth-child(2n + 1){
 			clear: both;
 		}
+
+		@media (min-width: 1050px) {
+			&:nth-child(odd):last-child{
+	  		width: 100%;
+			}
+		}
 	}
 }
 
 .two-cols:not(.transparent-icons):not(.white-bg),
 .fullwidth-stats-icons:not(.transparent-icons):not(.white-bg){
-	a span.fa{
+	a span.counter-icon{
 		background: $dark-color!important;
 	}
 }
@@ -904,9 +972,7 @@ form {
 // Social Statistics: Transparent icons
 .transparent-icons {
 	li a {
-		span.fa,
-		[class^="arqicon-"],
-		[class*=" arqicon-"]{
+		span.counter-icon{
 			background-color: transparent;
 		}
 	}
@@ -939,10 +1005,11 @@ form {
 	.social-icons-item {
 		a {
 			span {
-				&.fa,
-				&[class^="arqicon-"],
-				&[class*=" arqicon-"] {
+				&.counter-icon{
 					border-radius: 50%;
+					width: 35px;
+					height: 35px;
+					line-height: 35px;
 				}
 			}
 		}
@@ -984,12 +1051,10 @@ form {
 		a {
 			padding: 0;
 
-			span.fa,
-			[class^="arqicon-"],
-			[class*=" arqicon-"] {
-				line-height: 50px;
-				height: 50px;
-				@include font-size(20px);
+			span.counter-icon{
+				line-height: 60px;
+				height: 60px;
+				@include font-size(25px);
 				width: 100%;
 				text-align: center;
 				background-color: transparent;
@@ -1017,9 +1082,7 @@ form {
 		a{
 			border-radius: 0;
 
-			span.fa,
-			[class^="arqicon-"],
-			[class*=" arqicon-"] {
+			span.counter-icon {
 				padding-top: 5px;
 			}
 		}
@@ -1068,17 +1131,15 @@ form {
 				position: relative;
 				z-index: 2;
 
-				&.fa,
-				&[class^="arqicon-"],
-				&[class*=" arqicon-"] {
+				&.counter-icon{
 					color: #ffffff !important;
 					width: 70px;
-				    height: 70px;
-				    line-height: 70px;
-				    font-size: 20px;
-				    position: relative;
-				    left: 50%;
-				    margin-left: -35px;
+					height: 70px;
+					line-height: 70px;
+					font-size: 25px;
+					position: relative;
+					left: 50%;
+					margin-left: -35px;
 				}
 			}
 		}
@@ -1117,9 +1178,7 @@ form {
 				border: 0!important;
 				padding-top: 0;
 
-				.fa,
-				[class^="arqicon-"],
-				[class*=" arqicon-"] {
+				.counter-icon {
 					position: relative;
 					left: 50%;
 					width: 54px;
@@ -1262,11 +1321,6 @@ form {
 
 // Arqam Plugin -----------------------
 .social-icons-item{
-	.arqicon-envato{
-		background-size: 14px 17px;
-		background-position: center;
-	}
-
 	.arqicon-goodreads{
 		line-height: 2.5 !important;
 
@@ -1370,76 +1424,80 @@ form {
 
 }
 
-// Instagram Widget---------------------------------------------
-.widget_tie-instagram-theme {
+// TikTok Widget ------------------------------
+.widget_tie-tiktok-theme {
 	.widget-title-icon:before {
-		content: "\f16d";
+		content: "\e90b";
 	}
 
-	.tie-insta-photos{
-		margin: 0 -2px;
-	}
+	.tiktok-feed-feed{
+		.tiktok-feed-list{
+			.tiktok-feed-item {
+				padding: 5px !important;
 
-	.tie-insta-post{
-		padding: 0 2px 4px !important;
-	}
+				.tiktok-feed-video-mask-content,
+				.tiktok-feed-icon{
+					> span{
+						font-weight: 400 !important;
+						font-size: 12px !important;
+					}
+				}
+			}
+		}
 
-	.button{
-		margin-top: 10px;
+		.tiktok-feed-actions{
+			margin-bottom: 0;
+			margin-right: -5px;
+			margin-left: -5px;
+
+			.tiktok-feed-button{
+				width: 100%;
+				margin: 0;
+
+				&:hover{
+					box-shadow: 0px 9px 20px -5px #ff5374;
+				}
+			}
+		}
 	}
 }
 
-.tie-insta-header{
-	margin-bottom: 15px;
-}
-
-.tie-insta-avatar {
+.tie-tiktok-avatar {
 	a{
 		width: 70px;
 		height: 70px;
 		display: block;
 		position: relative;
 		float: left;
-    margin-right: 20px;
-
-		&:before{
-			content: '';
-			position: absolute;
-			width: calc(100% + 6px);
-			height: calc(100% + 6px);
-			left: -3px;
-			top: -3px;
-			border-radius: 50%;
-			background: #d6249f;
-  		background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
-		}
-
-		&:after{
-			position: absolute;
-			content: '';
-			width: calc(100% + 4px);
-			height: calc(100% + 4px);
-			left: -2px;
-			top: -2px;
-			border-radius: 50%;
-			background: #fff;
-		}
+    margin-right: 15px;
 	}
 
 	img{
 		border-radius: 50%;
-		position: relative;
-		z-index: 2;
 	}
 }
 
-.tie-insta-info{
-	font-size: 1.3em;
-	font-weight: 300;
-	margin-bottom: 5px;
+.tie-tiktok-username{
+	display: block;
+	font-size: 1.4em;
 }
 
-.tie-insta-counts{
+.tie-tiktok-verified{
+	background-color: #20d5ec;
+	color: #fff;
+	border-radius: 50%;
+	font-size: 12px;
+	padding: 4px;
+	margin: 0 5px;
+}
+
+.tie-tiktok-desc{
+	margin-top: 8px;
+}
+
+.tie-tiktok-counts{
+	padding: 10px 0;
+
 	li{
 		display: inline-block;
 		padding: 0 10px 0 0;
@@ -1455,9 +1513,106 @@ form {
 	}
 }
 
-.tie-insta-desc{
-	margin-top: 20px;
+
+// Instagram Widget---------------------------------------------
+.widget_tie-instagram-theme {
+	.widget-title-icon:before {
+		content: "\f16d";
+	}
+
+	.tie-insta-photos{
+		margin: 0 -2px;
+		clear: both;
+	}
+
+	.tie-insta-post{
+		padding: 0 2px 4px !important;
+	}
+
+	.button{
+		padding-top: 12px;
+		padding-bottom: 12px;
+		font-size: 14px;
+		font-weight: bold;
+		margin-top: 10px;
+		background: #da2e7d;
+		background: linear-gradient(29.61deg, #f38334 0%, #da2e7d 50.39%, #6b54c6 100%);
+		transition: all 0.25s;
+
+		&:hover{
+			margin-top: 8px;
+			margin-bottom: 2px;
+			box-shadow: 0px 9px 20px -5px #6b54c6;
+			background: linear-gradient(150deg, #f38334 0%, #da2e7d 50.39%, #6b54c6 100%);
+		}
+
+		.tie-icon-instagram{
+			font-size: 12pt;
+			vertical-align: text-bottom;
+		}
+	}
 }
+
+.tie-insta-header{
+	margin-bottom: 15px;
+}
+
+.tie-insta-avatar {
+	a{
+		width: 70px;
+		height: 70px;
+		display: block;
+		position: relative;
+		float: left;
+    margin-right: 15px;
+    margin-bottom: 15px;
+
+    &:before{
+			content: '';
+			position: absolute;
+			width: calc(100% + 6px);
+			height: calc(100% + 6px);
+			left: -3px;
+			top: -3px;
+			border-radius: 50%;
+			background: #d6249f;
+  		background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+		}
+
+		&:after{
+			position: absolute;
+			content: '';
+			width: calc(100% + 3px);
+			height: calc(100% + 3px);
+			left: -2px;
+			top: -2px;
+			border-radius: 50%;
+			background: #fff;
+
+			.dark-skin &{
+				background: $dark-bg;
+			}
+		}
+	}
+
+	img{
+		border-radius: 50%;
+		position: relative;
+		z-index: 2;
+		transition: all 0.25s;
+
+    &:hover{
+			box-shadow: 0px 0px 15px 0 #6b54c6;
+    }
+	}
+}
+
+.tie-insta-info{
+	font-size: 1.3em;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
 
 // Tags Widget--------------------------------------------------
 .widget_tag_cloud,
@@ -1528,7 +1683,7 @@ form {
 		.tagcloud {
 			a{
 				background: rgba(0, 0, 0, 0.2);
-				border-radius: 0 !important;
+				border-radius: 0;
 		    @include font-size(20px !important);
 		    font-weight: 600;
 		    margin: 0 2px 6px 2px;
@@ -1630,18 +1785,19 @@ li.widget-post-list,
 // Image
 .widget_media_image{
 	.widget-title-icon:before {
-		content: "\f1c5";
+		content: "\f030";
 	}
 
 	img{
 		margin: 0 auto;
+		display: block;
 	}
 }
 
 // Audio
 .widget_media_audio{
 	.widget-title-icon:before {
-		content: "\f130";
+		content: "\f025";
 	}
 }
 
@@ -1697,8 +1853,8 @@ li.widget-post-list,
 .widget_rss li a,
 .widget_display_stats dt{ // Fourms Statistics Widget
 	&:before {
-		content: "\f105";
-		font-family: 'fontawesome';
+		content: "\f106";
+		font-family: 'tiefonticon';
 		color: #2c2f34;
 		font-size: 13px;
 		display: inline-block;
@@ -1822,14 +1978,15 @@ div.tie-widget-categories .children li{ // override the rtl padding
 
 	thead th{
 		text-align: center;
+		border: none;
 	}
 
 	tbody {
 		color: #aaa;
 
 		td {
-			background: rgba(0,0,0,0.04);
-			padding: 8px 0;
+			border: none;
+			padding: 10px;
 			text-align: center;
 		}
 
@@ -1860,9 +2017,24 @@ div.tie-widget-categories .children li{ // override the rtl padding
 		color: $bright;
 		border-width: 0;
 		padding: 0;
+		position: relative;
+		overflow: hidden;
 
 		.icon-basecloud-bg:after{
 			color: $brand-color;
+		}
+
+		.user-weather-error{
+			position: absolute;
+			width: 100%;
+			top: 0;
+
+			.theme-notice{
+				background: rgba( 255, 0, 0, 0.5 );
+				color: #fff !important;
+				text-align: center;
+				padding: 0;
+			}
 		}
 	}
 
@@ -1902,6 +2074,32 @@ div.tie-widget-categories .children li{ // override the rtl padding
 		&:after{
 			font-family: "tiefonticon";
 		}
+	}
+}
+
+.tie-weather-user-location{
+	position: absolute;
+	font-size: 22px;
+	display: block;
+	top: 10px;
+	right: 10px;
+
+	&.has-title{
+		top: 20px;
+		right: 20px;
+	}
+
+	&:not(.is-loading){
+		cursor: pointer;
+	}
+
+	.tie-icon-gps:not(:hover){
+		opacity: 0.5;
+	}
+
+	.tie-icon-spinner{
+		animation: tie-spin 1s infinite linear;
+		opacity: 0.5;
 	}
 }
 
@@ -1983,12 +2181,10 @@ div.tie-widget-categories .children li{ // override the rtl padding
 
 .weather-forecast {
 	clear: both;
-	padding: 20px 20px 0;
+	padding: 20px 10px;
 	overflow: hidden;
-
-	@include breakpoint_min_max($screen-desktop, 1120px){
-		padding: 20px 0 0;
-	}
+  margin: 20px 0 -20px;
+  //background: rgba(0,0,0,.05);
 }
 
 .small-weather-icons{
@@ -2416,8 +2612,8 @@ div.tie-widget-categories .children li{ // override the rtl padding
 .icon-moon-animi:before {
 	content: "\f10d";
 	position: absolute;
-	right: -0.25em;
-	font-size: 0.4em;
+	right: -0.3em;
+	font-size: 0.35em;
 	top: 0.2em;
 
 	.is-animated & {
@@ -2457,9 +2653,9 @@ div.tie-widget-categories .children li{ // override the rtl padding
 	content: "\f113";
 	position: absolute;
 	color: rgb(255, 165, 0);
-  right: -0.2em;
+  right: -0.3em;
   top: 0.07em;
-  font-size: 0.6em;
+  font-size: 0.4em;
 
 	.is-animated & {
 		animation: tie-spin 8s infinite linear;
@@ -2903,11 +3099,11 @@ $lines-to-show: 2;
 			font-size: 15px;
 			position: absolute;
 			left: 12px;
-			top: 12px;
+			top: 10px;
 			color: rgba(0, 0, 0, 0.2);
 			@include font-size(18px);
 			content: "\f0e0";
-			font-family: "fontawesome"
+			font-family: tiefonticon;
 		}
 	}
 
@@ -2950,8 +3146,8 @@ $lines-to-show: 2;
 		.social-link {
 			width: 40px;
 			height: 40px;
-			line-height: 38px;
-			@include font-size(15px);
+			line-height: 40px;
+			@include font-size(18px);
 		}
 	}
 
@@ -2994,7 +3190,6 @@ $lines-to-show: 2;
 		display: block;
 		margin-right: auto;
 		margin-left: auto;
-		width: auto;
 		height: auto;
 	}
 
@@ -3027,17 +3222,6 @@ $lines-to-show: 2;
 	}
 }
 
-// Slider Widget -----------------------------------------------
-.tie-slider-widget {
-	.widget-title-icon:before {
-		content: "\f0dc";
-	}
-
-	.widget-title-icon {
-		transform: rotate(90deg);
-	}
-}
-
 /* WPCOVID-19 */
 .container-wrapper{
 	.wpcv-global-updates,
@@ -3050,5 +3234,47 @@ $lines-to-show: 2;
 .entry{
 	.wpcv-widget{
 		margin-bottom: 30px;
+	}
+}
+
+// Snapchat
+.widget_tie-snapchat-theme .widget-title-icon::before {
+	content: "\f2ac";
+}
+
+.tie-snapchat-badge{
+	display: block;
+	background-repeat: no-repeat;
+	background-position: center;
+	font-size: 0;
+	line-height: 0;
+	border: 3px solid #000;
+	overflow: hidden;
+	width: 200px;
+	margin: 0 auto;
+	border-radius: 20px;
+	transition: all 0.25s;
+
+	&.is-circle{
+		border-radius: 100%;
+	}
+}
+
+.tie-snapchat-badge-wrap{
+
+	a:hover{
+		color: #e6e419;
+	}
+
+	.snapchat-username,
+	.snapchat-userid{
+		text-align: center;
+		display: block;
+	}
+
+	.snapchat-username{
+		margin-top: 10px;
+		font-size: 20px;
+		font-weight: bold;
 	}
 }

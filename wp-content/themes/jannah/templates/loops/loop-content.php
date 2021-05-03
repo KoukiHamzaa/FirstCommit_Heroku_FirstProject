@@ -20,7 +20,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 	<?php
 
 		// Get the Post Meta info
-		if( ! empty( $block['post_meta'] )){
+		if( ! empty( $block['post_meta'] ) ) {
 			tie_the_post_meta( array( 'trending' => true ) );
 		}
 

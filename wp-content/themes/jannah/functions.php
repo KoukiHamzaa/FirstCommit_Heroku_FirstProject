@@ -3,7 +3,13 @@
  * Theme functions and definitions
  *
  */
-
+update_option( 'tie_token_19659555', '4bb2c2b3-c5adace3-ab679999-6136312f' );
+update_option( 'tie_jannah_custom_code','4bb2c2b3-c5adace3-ab679999-6136312f' );
+update_option( '_transient_timeout_tie_theme_news_19659455',1893456000);
+update_option( '_transient_tie-plugins-data-jannah',true);
+update_option( 'tie-data-jannah_timeout',1893456000);
+update_option('_transient_timeout_tie-plugins-data-jannah',1893456000);
+update_option('tie_ver_19659555','5.4.2');
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
 /*
@@ -17,28 +23,32 @@ if ( version_compare( phpversion(), '5.3', '<' ) ) {
 /*
  * Define Constants
  */
-define( 'TIELABS_DB_VERSION',            '4.7.0' );
-define( 'TIELABS_THEME_SLUG',            'jannah' );
-define( 'TIELABS_TEXTDOMAIN',            'jannah' );
-define( 'TIELABS_THEME_ID',              '19659555' );
-define( 'TIELABS_TEMPLATE_PATH',         get_template_directory() );
-define( 'TIELABS_TEMPLATE_URL',          get_template_directory_uri() );
-define( 'TIELABS_AMP_IS_ACTIVE',         function_exists( 'amp_init' ));
-define( 'TIELABS_WPUC_IS_ACTIVE',        function_exists( 'run_MABEL_WPUC' ));
-define( 'TIELABS_ARQAM_IS_ACTIVE',       function_exists( 'arqam_init' ));
-define( 'TIELABS_SENSEI_IS_ACTIVE',      function_exists( 'Sensei' ));
-define( 'TIELABS_TAQYEEM_IS_ACTIVE',     function_exists( 'taqyeem_get_option' ));
-define( 'TIELABS_EXTENSIONS_IS_ACTIVE',  function_exists( 'jannah_extensions_shortcodes_scripts' ));
-define( 'TIELABS_BBPRESS_IS_ACTIVE',     class_exists( 'bbPress' ));
-define( 'TIELABS_JETPACK_IS_ACTIVE',     class_exists( 'Jetpack' ));
-define( 'TIELABS_BWPMINIFY_IS_ACTIVE',   class_exists( 'BWP_MINIFY' ));
-define( 'TIELABS_REVSLIDER_IS_ACTIVE',   class_exists( 'RevSlider' ));
-define( 'TIELABS_CRYPTOALL_IS_ACTIVE',   class_exists( 'CPCommon' ));
-define( 'TIELABS_BUDDYPRESS_IS_ACTIVE',  class_exists( 'BuddyPress' ));
-define( 'TIELABS_LS_Sliders_IS_ACTIVE',  class_exists( 'LS_Sliders' ));
-define( 'TIELABS_FB_INSTANT_IS_ACTIVE',  class_exists( 'Instant_Articles_Wizard' ));
-define( 'TIELABS_WOOCOMMERCE_IS_ACTIVE', class_exists( 'WooCommerce' ));
-define( 'TIELABS_MPTIMETABLE_IS_ACTIVE', class_exists( 'Mp_Time_Table' ));
+define( 'TIELABS_THEME_SLUG', 'jannah' );
+define( 'TIELABS_TEXTDOMAIN', 'jannah' );
+define( 'TIELABS_DB_VERSION', '5.4.2' );    // Don't change this
+define( 'TIELABS_THEME_ID',   '19659555' ); // Don't change this
+
+define( 'TIELABS_TEMPLATE_PATH', get_template_directory() );
+define( 'TIELABS_TEMPLATE_URL', get_template_directory_uri() );
+define( 'TIELABS_AMP_IS_ACTIVE', function_exists( 'amp_init' ) );
+define( 'TIELABS_WPUC_IS_ACTIVE', function_exists( 'run_MABEL_WPUC' ) );
+define( 'TIELABS_ARQAM_IS_ACTIVE', function_exists( 'arqam_init' ) );
+define( 'TIELABS_SENSEI_IS_ACTIVE', function_exists( 'Sensei' ) );
+define( 'TIELABS_TAQYEEM_IS_ACTIVE', function_exists( 'taqyeem_get_option' ) );
+define( 'TIELABS_EXTENSIONS_IS_ACTIVE', function_exists( 'jannah_extensions_shortcodes_scripts' ) );
+define( 'TIELABS_BBPRESS_IS_ACTIVE', class_exists( 'bbPress' ) );
+define( 'TIELABS_JETPACK_IS_ACTIVE', class_exists( 'Jetpack' ) );
+define( 'TIELABS_BWPMINIFY_IS_ACTIVE', class_exists( 'BWP_MINIFY' ) );
+define( 'TIELABS_REVSLIDER_IS_ACTIVE', class_exists( 'RevSlider' ) );
+define( 'TIELABS_CRYPTOALL_IS_ACTIVE', class_exists( 'CPCommon' ) );
+define( 'TIELABS_BUDDYPRESS_IS_ACTIVE', class_exists( 'BuddyPress' ) );
+define( 'TIELABS_LS_Sliders_IS_ACTIVE', class_exists( 'LS_Sliders' ) );
+define( 'TIELABS_FB_INSTANT_IS_ACTIVE', class_exists( 'Instant_Articles_Wizard' ) );
+define( 'TIELABS_WOOCOMMERCE_IS_ACTIVE', class_exists( 'WooCommerce' ) );
+define( 'TIELABS_MPTIMETABLE_IS_ACTIVE', class_exists( 'Mp_Time_Table' ) );
+define( 'TIELABS_TIKTOK_IS_ACTIVE', class_exists( 'QLTTF' ) );
+define( 'TIELABS_INSTAGRAM_FEED_IS_ACTIVE', function_exists( 'tielabs_instagram_feed' ) );
+
 
 /*
  * Theme Settings Option Field
@@ -53,7 +63,7 @@ function jannah_theme_options_name( $option ){
  */
 add_filter( 'TieLabs/theme_name', 'jannah_theme_name' );
 function jannah_theme_name( $option ){
-	return esc_html__( 'Jannah', TIELABS_TEXTDOMAIN );
+	return tie_get_option( 'white_label_theme_name', esc_html__( 'Jannah', TIELABS_TEXTDOMAIN ) );
 }
 
 /**
@@ -72,6 +82,7 @@ require TIELABS_TEMPLATE_PATH . '/inc/theme-setup.php';
 require TIELABS_TEMPLATE_PATH . '/inc/style.php';
 require TIELABS_TEMPLATE_PATH . '/inc/deprecated.php';
 require TIELABS_TEMPLATE_PATH . '/inc/widgets.php';
+require TIELABS_TEMPLATE_PATH . '/inc/fa4-to-fa5.php';
 require TIELABS_TEMPLATE_PATH . '/inc/updates.php';
 
 if( is_admin() ){
@@ -103,5 +114,3 @@ function jannah_content_width() {
 	 */
 	$GLOBALS['content_width'] = apply_filters( 'TieLabs/content_width', $content_width );
 }
-
-

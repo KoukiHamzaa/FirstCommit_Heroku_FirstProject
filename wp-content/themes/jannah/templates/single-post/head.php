@@ -8,7 +8,7 @@
  * will need to copy the new files to your child theme to maintain compatibility.
  *
  * @author   TieLabs
- * @version  3.1.0
+ * @version  5.0.0
  */
 
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly
@@ -42,7 +42,7 @@ do_action( 'TieLabs/before_post_head' ); ?>
 
 		<?php
 
-		if( tie_get_postdata( 'tie_post_sub_title' )){ ?>
+		if( tie_get_postdata( 'tie_post_sub_title' ) ) { ?>
 
 			<h2 class="entry-sub-title"><?php echo tie_get_postdata( 'tie_post_sub_title' ) ?></h2>
 			<?php
@@ -52,14 +52,16 @@ do_action( 'TieLabs/before_post_head' ); ?>
 		if( ( tie_get_option( 'post_meta' ) && ! tie_get_postdata( 'tie_hide_meta' ) ) || tie_get_postdata( 'tie_hide_meta' ) == 'no' ){
 
 			$args = array(
-				'author'	=> tie_get_option( 'post_author' ),
-				'avatar'	=> tie_get_option( 'post_author_avatar' ),
-				'twitter'	=> tie_get_option( 'post_author_twitter' ),
-				'email' 	=> tie_get_option( 'post_author_email' ),
-				'date' 		=> tie_get_option( 'post_date' ),
-				'comments'=> tie_get_option( 'post_comments' ),
-				'views' 	=> tie_get_option( 'post_views' ),
-				'reading' => tie_get_option( 'reading_time' ),
+				'author'   => tie_get_option( 'post_author' ),
+				'avatar'   => tie_get_option( 'post_author_avatar' ),
+				'twitter'  => tie_get_option( 'post_author_twitter' ),
+				'email'    => tie_get_option( 'post_author_email' ),
+				'date'     => tie_get_option( 'post_date' ),
+				'modified' => tie_get_option( 'modified' ),
+				'comments' => tie_get_option( 'post_comments' ),
+				'views'    => tie_get_option( 'post_views' ),
+				'reading'  => tie_get_option( 'reading_time' ),
+				'is_main'  => true,
 			);
 
 			tie_the_post_meta( $args );
@@ -73,7 +75,7 @@ do_action( 'TieLabs/before_post_head' ); ?>
 
 		if( ! empty( $post_layout ) && ( $post_layout == 4 || $post_layout == 5 || $post_layout == 8 ) ){ ?>
 
-			<a id="go-to-content" href="#go-to-content"><span class="fa fa-angle-down"></span></a>
+			<a id="go-to-content" href="#go-to-content"><span class="tie-icon-angle-down"></span></a>
 			<?php
 		}
 	?>

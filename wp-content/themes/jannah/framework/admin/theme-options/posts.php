@@ -7,6 +7,22 @@
 			'type'  => 'tab-title',
 		));
 
+$lock_settings = 'block';
+
+if( ! get_option( 'tie_token_'.TIELABS_THEME_ID ) ){
+
+	$lock_settings = 'none !important';
+
+	tie_build_theme_option(
+		array(
+			'text' => esc_html__( 'Verify your license to unlock this section.', TIELABS_TEXTDOMAIN ),
+			'type' => 'error',
+		));
+}
+
+echo '<div style="display:'. $lock_settings .'" >';
+
+
 	tie_build_theme_option(
 		array(
 			'title' => esc_html__( 'Default Posts Layout', TIELABS_TEXTDOMAIN ),
@@ -120,6 +136,7 @@
 			'name' => esc_html__( 'Video Post Format:', TIELABS_TEXTDOMAIN ) .' '. esc_html__( 'Sticky the Featured Video', TIELABS_TEXTDOMAIN ),
 			'id'   => 'sticky_featured_video',
 			'type' => 'checkbox',
+			'hint' => '<span class="autoload-posts-features-notice-options tie-message-hint tie-message-error" style="padding-top: 2px; padding-bottom: 2px;">'. esc_html__( 'This feature can not be used while the Auto Load Posts option is active.', TIELABS_TEXTDOMAIN ) .'</span>'
 		));
 
 
@@ -157,6 +174,7 @@
 			'name' => esc_html__( 'Reading Position Indicator', TIELABS_TEXTDOMAIN ),
 			'id'   => 'reading_indicator',
 			'type' => 'checkbox',
+			'hint' => '<span class="autoload-posts-features-notice-options tie-message-hint tie-message-error" style="padding-top: 2px; padding-bottom: 2px;">'. esc_html__( 'This feature can not be used while the Auto Load Posts option is active.', TIELABS_TEXTDOMAIN ) .'</span>'
 		));
 
 	tie_build_theme_option(
@@ -183,9 +201,17 @@
 
 	tie_build_theme_option(
 		array(
-			'title' => esc_html__( 'Post info Settings', TIELABS_TEXTDOMAIN ),
-			'id'    => 'post-info-settings',
-			'type'  => 'header',
+			'name'   => esc_html__( 'Compact Comments Area', TIELABS_TEXTDOMAIN ),
+			'id'     => 'compact_comments',
+			'toggle' => '#compact_comments_title-item',
+			'type'   => 'checkbox',
+		));
+
+	tie_build_theme_option(
+		array(
+			'name' => esc_html__( 'Compact Comments Custom Title', TIELABS_TEXTDOMAIN ),
+			'id'   => 'compact_comments_title',
+			'type' => 'text',
 		));
 
 	tie_build_theme_option(
@@ -200,15 +226,48 @@
 			'name' => esc_html__( 'Tags', TIELABS_TEXTDOMAIN ),
 			'id'   => 'post_tags',
 			'type' => 'checkbox',
+			'toggle' => '#post_tags_layout-item',
+		));
+
+	tie_build_theme_option(
+		array(
+			'name'    => esc_html__( 'Tags List Layout', TIELABS_TEXTDOMAIN ),
+			'id'      => 'post_tags_layout',
+			'type'    => 'radio',
+			'options' => array(
+				'' => esc_html__( 'Modern', TIELABS_TEXTDOMAIN ),
+				'classic' => esc_html__( 'Classic', TIELABS_TEXTDOMAIN ),
+			)
+		));
+
+	tie_build_theme_option(
+		array(
+			'title' => esc_html__( 'Post info Settings', TIELABS_TEXTDOMAIN ),
+			'id'    => 'post-info-settings',
+			'type'  => 'header',
 		));
 
 	tie_build_theme_option(
 		array(
 			'name'   => esc_html__( 'Post meta area', TIELABS_TEXTDOMAIN ),
 			'id'     => 'post_meta',
-			'toggle' => '#post_author-all-item, #post_date-item, #post_comments-item, #post_views-item, #reading_time-item',
+			'toggle' => '#post_author-all-item, #post_meta_style-item, #post_date-item, #modified-item, #post_comments-item, #post_views-item, #reading_time-item',
 			'type'   => 'checkbox',
 		));
+
+	tie_build_theme_option(
+		array(
+			'id'      => 'post_meta_style',
+			'name'   => esc_html__( 'Post meta area Layout', TIELABS_TEXTDOMAIN ),
+			'type'    => 'visual',
+			'toggle'  => array(
+				''  => '',
+				'column' => '#featured_use_fea-item, #featured_custom_bg-item',
+			),
+			'options' => array(
+				''       => array( esc_html__( 'Default', TIELABS_TEXTDOMAIN ) => 'post-layouts/post-meta-1.png' ),
+				'column' => array( esc_html__( 'Column', TIELABS_TEXTDOMAIN )  => 'post-layouts/post-meta-2.png' ),
+		)));
 
 	echo '<div id="post_author-all-item">';
 	tie_build_theme_option(
@@ -247,6 +306,13 @@
 		array(
 			'name' => esc_html__( 'Date', TIELABS_TEXTDOMAIN ),
 			'id'   => 'post_date',
+			'type' => 'checkbox',
+		));
+
+	tie_build_theme_option(
+		array(
+			'name' => esc_html__( 'Last Updated', TIELABS_TEXTDOMAIN ),
+			'id'   => 'modified',
 			'type' => 'checkbox',
 		));
 
@@ -527,3 +593,71 @@
 			'id'      => 'check_also_title_length',
 			'type'    => 'number',
 		));
+
+
+	tie_build_theme_option(
+		array(
+			'title' => esc_html__( 'Inline Related Posts', TIELABS_TEXTDOMAIN ),
+			'id'    => 'inline-related-posts',
+			'type'  => 'header',
+		));
+
+	tie_build_theme_option(
+		array(
+			'name'   => esc_html__( 'Inline Related Posts', TIELABS_TEXTDOMAIN ),
+			'id'     => 'inline_related_posts',
+			'toggle' => '#inline_related_posts_paragraphs-item, #inline_related_posts_number-item, #inline_related_posts_query-item, #inline_related_posts_order-item',
+			'type'   => 'checkbox',
+		));
+
+	tie_build_theme_option(
+		array(
+			'name' => esc_html__( 'Number of paragraphs before', TIELABS_TEXTDOMAIN ),
+			'id'   => 'inline_related_posts_paragraphs',
+			'type' => 'number',
+		));
+
+	tie_build_theme_option(
+		array(
+			'name' => esc_html__( 'Number of posts to show', TIELABS_TEXTDOMAIN ),
+			'id'   => 'inline_related_posts_number',
+			'type' => 'number',
+		));
+
+	tie_build_theme_option(
+		array(
+			'name'    => esc_html__( 'Query Type', TIELABS_TEXTDOMAIN ),
+			'id'      => 'inline_related_posts_query',
+			'type'    => 'radio',
+			'options' => array(
+				'category' => esc_html__( 'Posts in the same Categories',	TIELABS_TEXTDOMAIN ),
+				'tag'      => esc_html__( 'Posts in the same Tags', TIELABS_TEXTDOMAIN ),
+				'author'   => esc_html__( 'Posts by the same Author', TIELABS_TEXTDOMAIN ),
+			)));
+
+	tie_build_theme_option(
+		array(
+			'name'    => esc_html__( 'Sort Order', TIELABS_TEXTDOMAIN ),
+			'id'      => 'inline_related_posts_order',
+			'type'    => 'select',
+			'options' => apply_filters( 'TieLabs/Options/inline_related_post/post_order_args', $post_order ),
+		));
+
+	// ---
+	if( ! defined( 'JANNAH_AUTOLOAD_POSTS_VERSION' ) ){
+
+		tie_build_theme_option(
+			array(
+				'title' => esc_html__( 'Auto Load Posts', TIELABS_TEXTDOMAIN ),
+				'id'    => 'autoload-posts',
+				'type'  => 'header',
+			));
+
+		tie_build_theme_option(
+			array(
+				'text' => sprintf( esc_html__( 'You need to install the %s plugin to use this feature.', TIELABS_TEXTDOMAIN ), '<a href="'. admin_url('admin.php?page=tie-install-plugins') .'"><strong>Jannah Autoload Posts</strong></a>' ),
+				'type' => 'error',
+			));
+	}
+
+echo '</div>'; // Settings locked

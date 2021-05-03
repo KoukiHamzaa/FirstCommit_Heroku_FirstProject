@@ -7,7 +7,7 @@
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
 
-if( ! class_exists( 'TIELABS_SYSTEM_STATUS' )){
+if( ! class_exists( 'TIELABS_SYSTEM_STATUS' ) ) {
 
 	class TIELABS_SYSTEM_STATUS{
 
@@ -672,7 +672,7 @@ if( ! class_exists( 'TIELABS_SYSTEM_STATUS' )){
 
 
 		/**
-		 * _print_theme_info
+		 * _print_plugins_info
 		 */
 		private function _print_plugins_info(){
 

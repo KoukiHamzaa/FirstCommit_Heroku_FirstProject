@@ -1,3 +1,11 @@
+.tie-page-templates-options,
+#tie_do_not_dublicate_option,
+#tie_builder_breadcrumbs_option,
+#tie_header_extend_bg_option{
+	margin-bottom: 10px;
+	display: none;
+}
+
 .post-type-page{
 
 	&.builder-is-active{
@@ -16,6 +24,7 @@
 
 		#tie-page-builder,
 		#tie_do_not_dublicate_option,
+		#tie_builder_breadcrumbs_option,
 		#tie_header_extend_bg_option{
 			display: block;
 		}
@@ -155,7 +164,7 @@ a.del-item {
 		margin-bottom: 0;
 
 		li {
-			width: calc((100% - 36px) / 9);
+			max-width: calc((100% - 36px) / 9);
 			margin: 2px;
 			min-width: auto;
 
@@ -168,7 +177,7 @@ a.del-item {
 			}
 
 			@include breakpoint(max_min_lg){
-				width: calc((100% - 24px) / 6);
+				max-width: calc((100% - 24px) / 6);
 
 				&:nth-child(9n + 10){
 					clear: none;
@@ -180,7 +189,7 @@ a.del-item {
 			}
 
 			@include breakpoint(max_min_sm){
-				width: calc((100% - 16px) / 4);
+				max-width: calc((100% - 16px) / 4);
 
 				&:nth-child(6n + 7){
 					clear: none;
@@ -192,7 +201,7 @@ a.del-item {
 			}
 
 			@include breakpoint(max_min_xs){
-				width: calc((100% - 12px) / 3);
+				max-width: calc((100% - 12px) / 3);
 
 				&:nth-child(4n + 5){
 					clear: none;
@@ -204,7 +213,7 @@ a.del-item {
 			}
 
 			@include breakpoint_max(320px){
-				width: calc((100% - 8px) / 2);
+				max-width: calc((100% - 8px) / 2);
 
 				&:nth-child(3n + 4){
 					clear: none;
@@ -452,9 +461,12 @@ a.toggle-section{
 	padding: 12px;
 	position: relative;
 	color: #ffffff;
-	cursor: move;
 	overflow: hidden;
 	transition: opacity 0.3s;
+
+	#tie-page-builder &{
+		cursor: move;
+	}
 
 	span{
 		display: inline-block;
@@ -568,33 +580,35 @@ a.toggle-section{
 .block-e3lan-container .block-title-icon-options,
 .block-e3lan-container .block-url-item-options,
 .block-e3lan-container .block-color-item-options,
+.block-e3lan-container .block-bgcolor-item-options,
+.block-e3lan-container .block-sec-color-item-options,
 .block-e3lan-container .block-preview-title,
 
 .block-scroll-container .block-pagination-item-options,
 .block-scroll-container .block-filters-item-options,
 .block-scroll-container .excerpt-options,
-.block-scroll-container .block-read_more-item-options,
+.block-scroll-container .read-more-options,
 .block-scroll-container .block-thumb_small-item-options,
 .block-scroll-container .block-thumb_first-item-options,
 
 .block-scroll2-container .block-pagination-item-options,
 .block-scroll2-container .block-filters-item-options,
 .block-scroll2-container .excerpt-options,
-.block-scroll2-container .block-read_more-item-options,
+.block-scroll2-container .read-more-options,
 .block-scroll2-container .block-thumb_small-item-options,
 .block-scroll2-container .block-thumb_first-item-options,
 .block-scroll2-container .block-post_meta-item-options,
 .block-scroll2-container .block-media-overlay-item-options,
 
 .block-grid-row-container .excerpt-options,
-.block-grid-row-container .block-read_more-item-options,
+.block-grid-row-container .read-more-options,
 .block-grid-row-container .block-title_length-item-options,
 .block-grid-row-container .block-thumb_small-item-options,
 .block-grid-row-container .block-thumb_first-item-options,
 .block-grid-row-container .block-post_meta-item-options,
 
 .block-content-container .excerpt-options,
-.block-content-container .block-read_more-item-options,
+.block-content-container .read-more-options,
 .block-content-container .block-thumb_small-item-options,
 .block-content-container .block-thumb_first-item-options,
 
@@ -603,6 +617,7 @@ a.toggle-section{
 .block-tabs-container .block-url-item-options,
 .block-tabs-container .block-categories-item-options,
 .block-tabs-container .block-tags-item-options,
+.block-tabs-container .block-source-item-options,
 .block-tabs-container .block-pagination-item-options,
 .block-tabs-container .block-filters-item-options,
 .block-tabs-container .block-more-item-options,
@@ -614,7 +629,7 @@ a.toggle-section{
 
 .block-mini-container .block-thumb_first-item-options,
 .block-mini-container .block-thumb_small-item-options,
-.block-mini-container .block-read_more-item-options,
+.block-mini-container .read-more-options,
 
 .block-big-container .block-thumb_first-item-options,
 .block-big-container .block-thumb_small-item-options,
@@ -628,7 +643,7 @@ a.toggle-section{
 .block-first-big-container .block-thumb_first-item-options,
 .block-first-big-container .block-thumb_small-item-options,
 .block-first-big-container .excerpt-options,
-.block-first-big-container .block-read_more-item-options,
+.block-first-big-container .read-more-options,
 
 .block-timeline-container .block-thumb_first-item-options,
 .block-timeline-container .block-thumb_small-item-options,
@@ -638,14 +653,17 @@ a.toggle-section{
 .block-video-list-container .block-title-icon-options,
 .block-video-list-container .block-url-item-options,
 .block-video-list-container .block-content-only-item-options,
+.block-video-list-container .block-bgcolor-item-options,
+.block-video-list-container .block-sec-color-item-options,
 
 .block-breaking-container .block-url-item-options,
+.block-breaking-container .block-title-icon-options,
 .block-breaking-container .block-pagination-item-options,
 .block-breaking-container .block-filters-item-options,
 .block-breaking-container .block-more-item-options,
 .block-breaking-container .block-title_length-item-options,
 .block-breaking-container .excerpt-options,
-.block-breaking-container .block-read_more-item-options,
+.block-breaking-container .read-more-options,
 .block-breaking-container .block-thumb_first-item-options,
 .block-breaking-container .block-thumb_small-item-options,
 .block-breaking-container .block-post_meta-item-options,
@@ -659,7 +677,7 @@ a.toggle-section{
 .block-woocommerce-container .block-thumb_first-item-options,
 .block-woocommerce-container .block-thumb_small-item-options,
 .block-woocommerce-container .excerpt-options,
-.block-woocommerce-container .block-read_more-item-options,
+.block-woocommerce-container .read-more-options,
 .block-woocommerce-container .block-title_length-item-options,
 .block-woocommerce-container .block-media-overlay-item-options,
 .block-woocommerce-container .block-filters-item-options,
@@ -669,35 +687,39 @@ a.toggle-section{
 .block-grid-container .block-post_meta-item-options,
 .block-grid-container .block-title_length-item-options,
 .block-grid-container .excerpt-options,
-.block-grid-container .block-read_more-item-options,
+.block-grid-container .read-more-options,
 .block-grid-container .block-thumb_first-item-options,
 .block-grid-container .block-thumb_small-item-options,
 
 .block-row-container .block-post_meta-item-options,
 .block-row-container .block-title_length-item-options,
 .block-row-container .excerpt-options,
-.block-row-container .block-read_more-item-options,
+.block-row-container .read-more-options,
 .block-row-container .block-thumb_first-item-options,
 .block-row-container .block-thumb_small-item-options,
 
-.block-slider-container .block-title-item-options,
-.block-slider-container .block-title-icon-options,
-.block-slider-container .block-url-item-options,
 .block-slider-container .block-pagination-item-options,
 .block-slider-container .block-filters-item-options,
 .block-slider-container .block-more-item-options,
 .block-slider-container .block-thumb_first-item-options,
 .block-slider-container .block-thumb_small-item-options,
 .block-slider-container .block-dark-item-options,
-.block-slider-container .block-read_more-item-options,
+.block-slider-container .read-more-options,
 .block-slider-container .block-content-only-item-options,
+.block-slider-container .block-bgcolor-item-options,
+.block-slider-container .block-sec-color-item-options,
 
 .block-sliders-plugins .block-settings .option-item,
 .block-sliders-plugins .block-settings-advanced,
+.block-e3lan-container .block-bgcolor-item-options,
+.block-e3lan-container .block-sec-color-item-options,
+
+
+
 
 .block-big-thumb-container .block-thumb_first-item-options,
 .block-big-thumb-container .excerpt-options,
-.block-big-thumb-container .block-read_more-item-options,
+.block-big-thumb-container .read-more-options,
 
 .block-slider-options,
 .block-e3lan-group,
@@ -857,7 +879,6 @@ span.block-e3lan-title{
 		background: $brand-color-secondry;
   	font-size: inherit;
 		margin: 0;
-		padding: 0 20px;
 
 		a{
 			color: #eee;

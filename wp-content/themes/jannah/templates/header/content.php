@@ -21,7 +21,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 		<?php do_action( 'TieLabs/Logo/before_wrapper' ); ?>
 
 		<div class="logo-wrapper">
-			<div class="tie-col-md-4 logo-container">
+			<div class="tie-col-md-4 logo-container clearfix">
 				<?php
 
 					do_action( 'TieLabs/Logo/before' );

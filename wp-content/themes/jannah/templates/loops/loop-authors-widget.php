@@ -8,14 +8,29 @@
  * will need to copy the new files to your child theme to maintain compatibility.
  *
  * @author   TieLabs
- * @version  2.1.0
+ * @version  5.0.4
  */
 
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
+// --
+$author = tie_get_post_authors();
+
+if( empty( $author[0] ) ){
+	return;
+}
+
+$author = $author[0];
+
+// Profile URL
+$profile = tie_get_author_profile_url( $author );
+
+// Author name
+$display_name = tie_get_the_author( $author );
+
 ?>
 
-<li <?php tie_post_class( 'widget-post-list' ); ?>>
+<li <?php tie_post_class( 'widget-single-post-item widget-post-list' ); ?>>
 
 	<?php
 
@@ -26,8 +41,8 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 			$no_thumb = '';
 			?>
 			<div class="post-widget-thumbnail" style="width:70px">
-				<a class="author-avatar" href="<?php echo tie_get_author_profile_url(); ?>">
-					<?php echo get_avatar( get_the_author_meta( 'user_email' ), 70 ); ?>
+				<a class="author-avatar" href="<?php echo $profile; ?>">
+					<?php echo tie_get_author_avatar( $author, 70 ); ?>
 				</a>
 			</div>
 			<?php

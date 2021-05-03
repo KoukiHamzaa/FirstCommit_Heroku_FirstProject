@@ -8,7 +8,7 @@
  * will need to copy the new files to your child theme to maintain compatibility.
  *
  * @author   TieLabs
- * @version  4.5.0
+ * @version  5.0.0
  */
 
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly
@@ -20,7 +20,8 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 	<?php
 
 		if ( has_post_thumbnail() ){
-			tie_post_thumbnail( TIELABS_THEME_SLUG.'-image-large', false, false, false );
+			$thumbnail_size = apply_filters( 'TieLabs/loop_thumbnail_size', TIELABS_THEME_SLUG.'-image-large', 'scroll-2' );
+			tie_post_thumbnail( $thumbnail_size, false, false, false );
 		}
 	?>
 

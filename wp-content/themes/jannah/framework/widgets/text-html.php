@@ -1,6 +1,6 @@
 <?php
 
-if( ! class_exists( 'TIE_TEXT_HTML' )){
+if( ! class_exists( 'TIE_TEXT_HTML' ) ) {
 
 	/**
 	 * Widget API: TIE_TEXT_HTML class

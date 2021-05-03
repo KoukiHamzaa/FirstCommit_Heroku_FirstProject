@@ -8,7 +8,7 @@
  * will need to copy the new files to your child theme to maintain compatibility.
  *
  * @author   TieLabs
- * @version  4.0.0
+ * @version  5.0.0
  */
 
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly
@@ -43,7 +43,7 @@ foreach ( $videos_data as $video ){
 
 		$video_id = $video['id'];
 
-		if( ! empty( $youtube_videos[ $video_id ] )){
+		if( ! empty( $youtube_videos[ $video_id ] ) ) {
 			$video_data          = $youtube_videos[ $video_id ];
 			$video_data['thumb'] = $youtube_thumbnail_base. $video_id .'/default.jpg';
 			$video_data['id']    = $youtube_player_base. $video_id .'?enablejsapi=1&amp;rel=0&amp;showinfo=0';
@@ -55,7 +55,7 @@ foreach ( $videos_data as $video ){
 
 		$video_id = $video['id'];
 
-		if( ! empty( $vimeo_videos[ $video_id ] )){
+		if( ! empty( $vimeo_videos[ $video_id ] ) ) {
 			$video_data          = $vimeo_videos[ $video_id ];
 			$video_data['thumb'] = $vimeo_thumbnail_base. $video_data['thumb'];
 			$video_data['id']    = $vimeo_player_base. $video_id .'?api=1&amp;title=0&amp;byline=0&amp;color='. $custom_color;
@@ -69,7 +69,7 @@ foreach ( $videos_data as $video ){
 
 
 if( ! tie_get_option( 'api_youtube' ) ){
-	TIELABS_HELPER::notice_message( esc_html__( 'You need to set the YouTube API Key in the theme options page > API Keys.', TIELABS_TEXTDOMAIN ) );
+	TIELABS_HELPER::notice_message( esc_html__( 'You need to set the YouTube API Key in the theme options page > Integrations.', TIELABS_TEXTDOMAIN ) );
 }
 elseif( get_option( 'tie_youtube_api_error' ) ){
 	TIELABS_HELPER::notice_message( esc_html__( 'YouTube API ERROR, Go to the Youtube API Console on Google Cloud and remove any restrictions on the API key, Then edit the current page and click on the Update/Save button to re-connect to the YouTube servers to load the videos.', TIELABS_TEXTDOMAIN ) .'<br /><br /><em>'. get_option( 'tie_youtube_api_error' ) .'</em>' );
@@ -93,7 +93,7 @@ elseif( get_option( 'tie_youtube_api_error' ) ){
 
 		<?php if( ! empty( $title ) ): ?>
 			<div class="playlist-title">
-				<div class="playlist-title-icon"><span class="fa fa-play" aria-hidden="true"></span></div>
+				<div class="playlist-title-icon"><span class="tie-icon-play" aria-hidden="true"></span></div>
 				<h2><?php echo esc_html( $title ) ?></h2>
 				<span class="videos-number">
 					<span class="video-playing-number">1</span> / <span class="video-totlal-number"><?php echo ( $videos_count ) ?></span> <?php esc_html_e( 'Videos', TIELABS_TEXTDOMAIN ); ?>
@@ -111,11 +111,11 @@ elseif( get_option( 'tie_youtube_api_error' ) ){
 				?>
 				<div data-name="video-<?php echo esc_attr( $id. '-' .$video_number ) ?>" data-video-src="<?php echo esc_attr( $video['id'] ) ?>" class="video-playlist-item">
 					<div class="video-number"><?php echo esc_attr( $video_number ) ?></div>
-					<div class="video-play-icon"><span class="fa fa-play" aria-hidden="true"></span></div>
-					<div class="video-paused-icon"><span class="fa fa-pause" aria-hidden="true"></span></div>
+					<div class="video-play-icon"><span class="tie-icon-play" aria-hidden="true"></span></div>
+					<div class="video-paused-icon"><span class="tie-icon-pause" aria-hidden="true"></span></div>
 
 					<?php
-						if( tie_get_option( 'lazy_load' )){ ?>
+						if( tie_get_option( 'lazy_load' ) ) { ?>
 							<div data-lazy-bg="<?php echo esc_attr( $video['thumb'] ); ?>" class="video-thumbnail post-thumb"></div>
 							<?php
 						}

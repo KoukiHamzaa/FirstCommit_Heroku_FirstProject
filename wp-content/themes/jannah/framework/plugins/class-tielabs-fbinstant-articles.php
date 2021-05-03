@@ -8,7 +8,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
 
 
-if( ! class_exists( 'TIELABS_FBINSTANT_ARTICLES' )){
+if( ! class_exists( 'TIELABS_FBINSTANT_ARTICLES' ) ) {
 
 	class TIELABS_FBINSTANT_ARTICLES{
 
@@ -61,6 +61,21 @@ if( ! class_exists( 'TIELABS_FBINSTANT_ARTICLES' )){
 					),
 
 					array(
+						'class' => 'PassThroughRule',
+						'selector' => "div[class^='wp-block-image']",
+					),
+
+					array(
+						'class' => 'PassThroughRule',
+						'selector' => "figure",
+					),
+
+					array(
+						'class' => 'IgnoreRule',
+						'selector' => 'div.review_wrap',
+					),
+
+					array(
 						'class' => 'IgnoreRule',
 						'selector' => 'div.index-title',
 					),
@@ -82,10 +97,9 @@ if( ! class_exists( 'TIELABS_FBINSTANT_ARTICLES' )){
 		 * _articles_subtitle
 		 *
 		 */
-		function _articles_subtitle( $sub_title = '', $the_post ){
+		function _articles_subtitle( $sub_title = '', $the_post = false ){
 
 			if( empty( $the_post ) ){
-
 				return $sub_title;
 			}
 

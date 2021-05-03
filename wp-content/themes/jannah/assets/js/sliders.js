@@ -44,8 +44,8 @@ jQuery(document).ready(function(){
 				slidesToShow   : slidesToShow,
 				slidesToScroll : slidesToShow,
 				appendArrows   : '#' + sliderId +' .slider-arrow-nav',
-				prevArrow      : '<li><a><span class="fa fa-angle-left"></span></a></li>',
-				nextArrow      : '<li><a><span class="fa fa-angle-right"></span></a></li>',
+				prevArrow      : '<li><a><span class="tie-icon-angle-left"></span></a></li>',
+				nextArrow      : '<li><a><span class="tie-icon-angle-right"></span></a></li>',
 				infinite       : true,
 				responsive: [
 					{
@@ -110,8 +110,8 @@ jQuery(document).ready(function(){
 				draggable     : false,
 				slide         : '.slide',
 				appendArrows  : '#' + sliderId +' .tie-slider-nav',
-				prevArrow     : '<li><span class="fa fa-angle-up"></span></li>',
-				nextArrow     : '<li><span class="fa fa-angle-down"></span></li>',
+				prevArrow     : '<li><span class="tie-icon-angle-up"></span></li>',
+				nextArrow     : '<li><span class="tie-icon-angle-down"></span></li>',
 				infinite      : true,
 				slidesToShow  : 1,
 				slidesToScroll: 1,
@@ -176,8 +176,8 @@ jQuery(document).ready(function(){
 				dotsClass     : 'tie-slick-dots',
 				slide         : '.slide',
 				appendArrows  : '#' + sliderId + ' .tie-slider-nav',
-				prevArrow     : '<li><span class="fa fa-angle-left"></span></li>',
-				nextArrow     : '<li><span class="fa fa-angle-right"></span></li>',
+				prevArrow     : '<li><span class="tie-icon-angle-left"></span></li>',
+				nextArrow     : '<li><span class="tie-icon-angle-right"></span></li>',
 				infinite      : true,
 				autoplay      : true,
 				autoplaySpeed : 3000,
@@ -247,8 +247,8 @@ jQuery(document).ready(function(){
 			showArrowsOn670 : true,
 			showArrowsOn550 : true,
 			showArrowsOn390 : true,
-			prevArrow : '<li><span class="fa fa-angle-left"></span></li>',
-			nextArrow : '<li><span class="fa fa-angle-right"></span></li>',
+			prevArrow : '<li><span class="tie-icon-angle-left"></span></li>',
+			nextArrow : '<li><span class="tie-icon-angle-right"></span></li>',
 		};
 
 		// Sliders
@@ -308,8 +308,8 @@ jQuery(document).ready(function(){
 					asNavFor       : sliderElm.find( '.tie-slick-slider' ),
 					slide          : '.slide',
 					appendArrows   : sliderNavArrow,
-					prevArrow      : '<li><span class="fa fa-angle-left"></span></li>',
-					nextArrow      : '<li><span class="fa fa-angle-right"></span></li>',
+					prevArrow      : '<li><span class="tie-icon-angle-left"></span></li>',
+					nextArrow      : '<li><span class="tie-icon-angle-right"></span></li>',
 					responsive     : [
 						{
 							breakpoint: 1200,

@@ -20,14 +20,19 @@ get_header(); ?>
 
 				<?php do_action( 'TieLabs/after_archive_title' ); ?>
 
+				<?php get_search_form(); ?>
+
 			</header><!-- .entry-header-outer /-->
 
 			<?php
 
 			// Get the layout template part
 			TIELABS_HELPER::get_template_part( 'templates/archives', '', array(
-				'layout'         => tie_get_option( 'search_layout', 'excerpt' ),
-				'excerpt_length' => tie_get_option( 'search_excerpt_length' ),
+				'layout'          => tie_get_option( 'search_layout', 'excerpt' ),
+				'excerpt'         => tie_get_option( 'search_excerpt' ),
+				'excerpt_length'  => tie_get_option( 'search_excerpt_length' ),
+				'read_more'       => tie_get_option( 'search_read_more' ),
+				'read_more_text'  => tie_get_option( 'search_read_more_text' ),
 			));
 
 			// Page navigation

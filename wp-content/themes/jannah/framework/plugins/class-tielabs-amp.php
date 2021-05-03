@@ -8,7 +8,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
 
 
-if( ! class_exists( 'TIELABS_AMP' )){
+if( ! class_exists( 'TIELABS_AMP' ) ) {
 
 	class TIELABS_AMP{
 
@@ -44,30 +44,55 @@ if( ! class_exists( 'TIELABS_AMP' )){
 			// Sub title
 			add_filter( 'amp_post_article_header_meta', array( $this, 'post_subtitle_template' ) );
 
+			// Author name and date
+			add_filter( 'amp_post_article_header_meta', array( $this, 'meta_info' ) );
+
 			// Actions
-			add_action( 'pre_amp_render_post',    array( $this, 'content_filters' ) );
-			add_action( 'amp_post_template_head', array( $this, 'remove_google_fonts' ), 2 );
+			add_action( 'amp_post_template_head',      array( $this, 'custom_head_codes' ) );
+			add_action( 'amp_post_template_body_open', array( $this, 'custom_body_codes' ) );
+			add_action( 'pre_amp_render_post',         array( $this, 'content_filters' ) );
+			add_action( 'amp_post_template_head',      array( $this, 'remove_google_fonts' ), 2 );
+			add_action( 'amp_post_template_body_open', array( $this, 'sidebar_menu' ), 1 );
 
 			// Filters
 			add_filter( 'amp_content_max_width',        array( $this, 'content_width' ) );
+			add_filter( 'TieLabs/content_width',        array( $this, 'content_width' ) );
 			add_filter( 'amp_post_template_file',       array( $this, 'templates_path' ), 10, 3 );
 			add_filter( 'amp_site_icon_url',            array( $this, 'logo_path' ) );
 			add_filter( 'amp_post_template_metadata',   array( $this, 'post_template_metadata' ) );
 			add_filter( 'amp_post_article_footer_meta', array( $this, 'meta_taxonomy' ) );
-			add_filter( 'amp_post_template_data',       array( $this, 'amp_ad_script' ) );
+			add_filter( 'amp_post_template_data',       array( $this, 'amp_scripts' ) );
+			add_filter( 'nav_menu_link_attributes',     array( $this, 'nav_menu_link_attributes' ) );
+		}
+
+
+		/**
+		 * Custom <head> codes
+		 */
+		function custom_head_codes() {
+			echo tie_get_option( 'amp_header_code' );
+		}
+
+
+		/**
+		 * Custom <body> codes
+		 */
+		function custom_body_codes() {
+			echo tie_get_option( 'amp_body_code' );
 		}
 
 
 		/**
 		 * Include the AMP-Ad js file
 		 */
-		function amp_ad_script( $data ) {
+		function amp_scripts( $data ) {
 
 			if ( ! isset( $data['amp_component_scripts'] ) ) {
 				$data['amp_component_scripts'] = array();
 			}
 
 			$data['amp_component_scripts']['amp-ad'] = 'https://cdn.ampproject.org/v0/amp-ad-0.1.js';
+			$data['amp_component_scripts']['amp-sidebar'] = 'https://cdn.ampproject.org/v0/amp-sidebar-0.1.js';
 
 			return $data;
 		}
@@ -94,6 +119,11 @@ if( ! class_exists( 'TIELABS_AMP' )){
 			add_filter( 'the_content', array( $this, 'share_buttons' ));
 			add_filter( 'the_content', array( $this, 'post_formats'  ));
 			add_filter( 'the_content', array( $this, 'related_posts' ));
+
+			// Co-Authors Plus plugin
+			if( function_exists( 'get_coauthors' ) ){
+				remove_filter( 'amp_post_template_file', 'cap_set_amp_author_meta_template', 10, 3 );
+			}
 		}
 
 
@@ -129,7 +159,7 @@ if( ! class_exists( 'TIELABS_AMP' )){
 				elseif( $post_format == 'slider' ){
 
 					// Custom slider
-					if( tie_get_postdata( 'tie_post_slider' )){
+					if( tie_get_postdata( 'tie_post_slider' ) ) {
 						$slider     = tie_get_postdata( 'tie_post_slider' );
 						$get_slider = get_post_custom( $slider );
 
@@ -139,7 +169,7 @@ if( ! class_exists( 'TIELABS_AMP' )){
 					}
 
 					// Uploaded images
-					elseif( tie_get_postdata( 'tie_post_gallery' )){
+					elseif( tie_get_postdata( 'tie_post_gallery' ) ) {
 						$images = maybe_unserialize( tie_get_postdata( 'tie_post_gallery' ));
 					}
 
@@ -155,7 +185,7 @@ if( ! class_exists( 'TIELABS_AMP' )){
 
 				// Featured Image
 				elseif( has_post_thumbnail() && ( $post_format == 'thumb' ||
-		          ( $post_format == 'standard' && ( tie_get_object_option( 'post_featured', 'cat_post_featured', 'tie_post_featured' ) && tie_get_object_option( 'post_featured', 'cat_post_featured', 'tie_post_featured' ) != 'no' )))){
+							( $post_format == 'standard' && ( tie_get_object_option( 'post_featured', 'cat_post_featured', 'tie_post_featured' ) && tie_get_object_option( 'post_featured', 'cat_post_featured', 'tie_post_featured' ) != 'no' ) ) ) ) {
 
 					the_post_thumbnail();
 				}
@@ -250,40 +280,45 @@ if( ! class_exists( 'TIELABS_AMP' )){
 				$share_buttons = '
 					<div class="social">
 						<amp-social-share type="facebook"
-							width="60"
-							height="44"
-							data-param-app_id='. tie_get_option( 'amp_facebook_app_id' ) .'></amp-social-share>
+							width="32"
+							height="32"
+							data-param-app_id='. tie_facebook_app_id() .'></amp-social-share>
 
 						<amp-social-share type="twitter"
-							width="60"
-							height="44"></amp-social-share>
+							width="32"
+							height="32"></amp-social-share>
 
 						<amp-social-share type="pinterest"
-							width="60"
-							height="44"></amp-social-share>
+							width="32"
+							height="32"></amp-social-share>
 
 						<amp-social-share type="linkedin"
-							width="60"
-							height="44"></amp-social-share>
+							width="32"
+							height="32"></amp-social-share>
 
 						<amp-social-share type="whatsapp"
-							width="60"
-							height="44"></amp-social-share>
+							width="32"
+							height="32"></amp-social-share>
 
 						<amp-social-share type="tumblr"
-							width="60"
-							height="44"></amp-social-share>
+							width="32"
+							height="32"></amp-social-share>
 
-						<amp-social-share type="sms"
-							width="60"
-							height="44"></amp-social-share>
+						<amp-social-share type="line"
+							width="32"
+							height="32"></amp-social-share>
 
 						<amp-social-share type="email"
-							width="60"
-							height="44"></amp-social-share>
-
+							width="32"
+							height="32"></amp-social-share>
 					</div>
 				';
+
+				/*
+					<amp-social-share type="sms"
+							width="32"
+							height="32"></amp-social-share>
+				*/
 
 				$content = $content . $share_buttons;
 			}
@@ -326,7 +361,48 @@ if( ! class_exists( 'TIELABS_AMP' )){
 		 */
 		function content_width( $content_max_width ){
 
-			return 700;
+			if( function_exists( 'is_amp_endpoint' ) && is_amp_endpoint() ){
+				return 700;
+			}
+
+			return $content_max_width;
+		}
+
+
+		/**
+		 * sidebar_menu
+		 * Add the sidebar menu
+		 */
+		function sidebar_menu(){
+
+			if( ! tie_get_option( 'amp_menu_active' ) ){
+				return;
+			}
+
+			$menu_position = tie_get_option( 'amp_menu_position', 'left' ) == 'left' ? 'left' : 'right';
+			?>
+			<amp-sidebar id='sidebar' layout="nodisplay" side="<?php echo $menu_position ?>">
+				<div class="toggle-navigationv2">
+					<div role="button" tabindex="0" on="tap:sidebar.close" class="close-nav">X</div>
+					<nav id ="primary-amp-menu" itemscope="" itemtype="https://schema.org/SiteNavigationElement">
+						<div class="menu-main-menu-container">
+
+						<?php
+							if( tie_get_option( 'amp_the_menu' ) ){
+
+								wp_nav_menu(
+									array(
+										'menu_class' => 'amp-menu',
+										'menu' => tie_get_option( 'amp_the_menu' ),
+									));
+							}
+						?>
+
+						</div>
+					</nav>
+				</div>
+			</amp-sidebar>
+			<?php
 		}
 
 
@@ -336,7 +412,7 @@ if( ! class_exists( 'TIELABS_AMP' )){
 		 */
 		function remove_google_fonts(){
 
-		  remove_action( 'amp_post_template_head', 'amp_post_template_add_fonts' );
+			remove_action( 'amp_post_template_head', 'amp_post_template_add_fonts' );
 		}
 
 
@@ -350,7 +426,32 @@ if( ! class_exists( 'TIELABS_AMP' )){
 				return locate_template( 'framework/plugins/amp-templates/'. $type .'.php' );
 			}
 
+			// Co-Authors Plus plugin
+			if ( function_exists( 'get_coauthors' ) && 'meta-author' === $type ) {
+				return locate_template( 'framework/plugins/amp-templates/meta-coauthors.php' );
+			}
+
 			return $file;
+		}
+
+
+		/**
+		 * meta_info
+		 * Show/Hide Post Author name and date
+		 */
+		function meta_info( $meta ){
+
+			if( ! tie_get_option( 'amp_author_meta') ){
+				$author_key = array_search( 'meta-author', $meta );
+				unset( $meta[ $author_key ] );
+			}
+
+			if( ! tie_get_option( 'amp_date_meta') ){
+				$date_key = array_search( 'meta-time', $meta );
+				unset( $meta[ $date_key ] );
+			}
+
+			return $meta;
 		}
 
 
@@ -449,10 +550,32 @@ if( ! class_exists( 'TIELABS_AMP' )){
 		 */
 		function amp_translation_texts( $texts ){
 
-			$texts['Tags: %s']        = 'Tags: %s';
-			$texts['Categories: %s']  = 'Categories: %s';
-			$texts['Leave a Comment'] = 'Leave a Comment';
+			$texts['amp'] = array(
+				'title' => esc_html__( 'AMP', TIELABS_TEXTDOMAIN ),
+				'texts' => array(
+					'Tags: %s'        => 'Tags: %s',
+					'Categories: %s'  => 'Categories: %s',
+					'Leave a Comment' => 'Leave a Comment',
+				),
+			);
+
 			return $texts;
+		}
+
+
+		/**
+		 * Menu links
+		 */
+		function nav_menu_link_attributes( $atts = array() ){
+
+			if( function_exists( 'is_amp_endpoint' ) && is_amp_endpoint() ){
+
+				if( ! empty( $atts['href'] ) ){
+					$atts['href'] = add_query_arg( 'amp', '1', $atts['href'] );
+				}
+			}
+
+			return $atts;
 		}
 
 	}
@@ -461,3 +584,4 @@ if( ! class_exists( 'TIELABS_AMP' )){
 	new TIELABS_AMP();
 
 }
+

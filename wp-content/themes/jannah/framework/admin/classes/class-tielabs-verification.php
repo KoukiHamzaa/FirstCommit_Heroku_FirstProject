@@ -7,7 +7,6 @@
 
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
-update_option( 'tie_token_'.TIELABS_THEME_ID, 'token-longer-than-20-characters' );
 
 if( ! class_exists( 'TIELABS_VERIFICATION' ) ){
 
@@ -212,6 +211,8 @@ if( ! class_exists( 'TIELABS_VERIFICATION' ) ){
 			}
 
 			$support_info = tie_get_support_period_info();
+			$support_info['expiring'] = '';
+			
 
 			// Support is active
 			if( ! empty( $support_info['status'] ) && $support_info['status'] == 'active' ){
@@ -345,6 +346,7 @@ if( ! class_exists( 'TIELABS_VERIFICATION' ) ){
 				return;
 			}
 
+			$is_expired   = false;
 			$support_info = tie_get_support_period_info();
 
 			// Support is active
@@ -352,6 +354,8 @@ if( ! class_exists( 'TIELABS_VERIFICATION' ) ){
 
 				// Expiring Soon in just two months
 				if( ! empty( $support_info['expiring'] ) ){
+
+					$is_expired = true;
 
 					$message = array(
 						'color' => 'orange',
@@ -373,6 +377,7 @@ if( ! class_exists( 'TIELABS_VERIFICATION' ) ){
 
 			// Boom, Expired :(
 			else{
+				$is_expired = true;
 
 				$message = array(
 					'color' => 'red',
@@ -383,6 +388,9 @@ if( ! class_exists( 'TIELABS_VERIFICATION' ) ){
 
 			if( ! empty( $message ) ){
 				echo '<a class="footer-support-status" style="color: '. $message['color'] .'" target="_blank" href="'. menu_page_url( 'tie-theme-welcome', false ) .'"><strong><span class="dashicons dashicons-'. $message['icon'] .'"></span> '. $message['text'] .'</strong></a>';
+				if( $is_expired ){
+					echo '<a class="button button-primary" style="line-height: 24px; min-height: 24px; margin: 0 5px;" target="_blank" href="'. tie_get_purchase_link( array( 'utm_medium' => 'renew-support' ) ) .'">'. esc_html__( 'Renew', TIELABS_TEXTDOMAIN ) .'</a>';
+				}
 			}
 		}
 	}

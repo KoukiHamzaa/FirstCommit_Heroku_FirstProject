@@ -33,6 +33,14 @@ $doc.ready(function(){
 
 			$thisSliderOuter.attr( 'id', slideshowID );
 
+			// LazyLoad
+			//if( tie.lazyload ){
+			$postSlideshow.find('img').each(function() {
+				jQuery(this).attr( 'src', jQuery(this).attr('data-src') ).removeAttr('data-src');
+				jQuery(this).attr( 'loading', 'eager' );
+			});
+			//}
+
 			$thisSlideshow.slick({
 				rtl            : tie.is_rtl ? true : false,
 				dots           : true,
@@ -43,20 +51,15 @@ $doc.ready(function(){
 				adaptiveHeight : true,
 				slide          : '.slide',
 				appendArrows   : '#'+ slideshowID +' .tie-slider-nav',
-				prevArrow      : '<li><span class=\"fa fa-angle-left\"></span></li>',
-				nextArrow      : '<li><span class=\"fa fa-angle-right\"></span></li>',
+				prevArrow      : '<li><span class=\"tie-icon-angle-left\"></span></li>',
+				nextArrow      : '<li><span class=\"tie-icon-angle-right\"></span></li>',
 			});
 
-			// LazyLoad
-			if(tie.lazyload){
-				$postSlideshow.find('img[data-src]').each(function() {
-					jQuery(this).attr('src', jQuery(this).attr('data-src')).removeAttr('data-src');
-				});
-			}
+			$thisSlideshow.slick('setPosition');
 
-			$thisSlideshow.fadeIn(1000,function(){
-				$thisSliderOuter.css({minHeight: 'auto'});
+			$thisSlideshow.fadeIn( 200,function(){
 				$thisSliderOuter.find('.loader-overlay').remove();
+				$thisSliderOuter.css({minHeight: 'auto'});
 			});
 
 		});

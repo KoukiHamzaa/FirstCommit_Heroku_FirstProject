@@ -8,7 +8,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
 
 
-if( ! class_exists( 'TIELABS_EXTERNAL_LINKS' )){
+if( ! class_exists( 'TIELABS_EXTERNAL_LINKS' ) ) {
 
 	class TIELABS_EXTERNAL_LINKS{
 
@@ -92,7 +92,7 @@ if( ! class_exists( 'TIELABS_EXTERNAL_LINKS' )){
 		}
 
 		function portfolio( $url ){
-			return esc_url( 'https://1.envato.market/zmEzO' );
+			return esc_url( 'https://tielabs.com/buy/portfolio-envato-1' );
 		}
 
 		function foxpush( $url ){
@@ -123,6 +123,10 @@ if( ! class_exists( 'TIELABS_EXTERNAL_LINKS' )){
 		 * Add help icon with the documentation URLs
 		 */
 		function help_icons( $id = false ){
+
+			if( tie_get_option( 'white_label_help_links' ) ){
+				return;
+			}
 
 			$options = array(
 

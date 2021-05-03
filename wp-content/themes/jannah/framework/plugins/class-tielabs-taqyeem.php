@@ -8,7 +8,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
 
 
-if( ! class_exists( 'TIELABS_TAQYEEM' )){
+if( ! class_exists( 'TIELABS_TAQYEEM' ) ) {
 
 	class TIELABS_TAQYEEM{
 
@@ -37,8 +37,11 @@ if( ! class_exists( 'TIELABS_TAQYEEM' )){
 			// Remove Shortcodes code and Keep the content
 			add_filter( 'taqyeem_exclude_content', 'TIELABS_HELPER::strip_shortcodes' );
 
-			// Enqueue Scripts and Styles
+			// Dequeue Scripts and Styles
 			add_filter( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 50 );
+
+			// Dequeue Scripts and Styles
+			add_filter( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ), 50 );
 
 			// Change the reviews head box class
 			add_filter( 'taqyeem_reviews_head_classes', array( $this, 'review_head_class' ) );
@@ -65,12 +68,15 @@ if( ! class_exists( 'TIELABS_TAQYEEM' )){
 			add_filter( 'TieLabs/Options/Related/post_order_args',   array( $this, 'posts_order_args' ) );
 			add_filter( 'TieLabs/Options/Checkalso/post_order_args', array( $this, 'posts_order_args' ) );
 			add_filter( 'TieLabs/Builder/Block/post_order_args',     array( $this, 'posts_order_args' ) );
+			add_filter( 'TieLabs/Settings/Category/posts_order',     array( $this, 'posts_order_args' ) );
 			add_filter( 'TieLabs/Widget/Slider/post_order_args',     array( $this, 'posts_order_args' ) );
 			add_filter( 'TieLabs/Widget/Posts/post_order_args',      array( $this, 'posts_order_args_2' ) );
 
 			// Prevent Taqyeem from displaying the review box in the content block in the builder
 			add_action( 'TieLabs/Builder/before', array( $this, 'remove_review_block' ) );
 
+			// Replace the old icon classes with the new classes of Font Awesome 5.0
+			add_filter( 'taqyeem_buttons_icon',  array( $this, 'replace_icon_fa5' ) );
 		}
 
 
@@ -207,7 +213,7 @@ if( ! class_exists( 'TIELABS_TAQYEEM' )){
 
 
 		/**
-		 * Enqueue Scripts and Styles
+		 * Dequeue Scripts and Styles
 		 */
 		function enqueue_scripts(){
 
@@ -220,6 +226,28 @@ if( ! class_exists( 'TIELABS_TAQYEEM' )){
 				wp_dequeue_style( 'taqyeem-fontawesome' );
 			}
 		}
+
+
+		/**
+		 * Dequeue Scripts and Styles from admin
+		 */
+		function admin_enqueue_scripts(){
+
+			// Don't Load the main Font Awesome file of the theme in the add/edit posts screens, avoid issue with Taqyeem Button which uses v4.0
+			if( function_exists( 'tie_taqyeem_button_output' ) && get_post_type() ){
+
+				wp_dequeue_style( 'tie-fontawesome' );
+			}
+		}
+
+
+		/**
+		 * Replace the old icon classes with the new classes of Font Awesome 5.0
+		 */
+		function replace_icon_fa5( $icon ){
+			return tie_fa4_to_fa5_value_migration( $icon );
+		}
+
 
 	}
 

@@ -8,7 +8,7 @@
  * will need to copy the new files to your child theme to maintain compatibility.
  *
  * @author 		TieLabs
- * @version   4.4.0
+ * @version   5.0.0
  */
 
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly
@@ -30,8 +30,9 @@ if( tie_get_object_option( 'post_layout', 'cat_post_layout', 'tie_post_layout' )
 
 	// Post title area
 	if( $post_layout == 3 || $post_layout == 7 ){
+		// fullwidth-entry-title-wrapper used in the ajax-loaded posts
 		echo '
-			<div class="container">
+			<div class="container fullwidth-entry-title-wrapper">
 				<div class="container-wrapper fullwidth-entry-title">';
 					TIELABS_HELPER::get_template_part( 'templates/single-post/head' );
 					echo '
@@ -47,7 +48,7 @@ if( tie_get_object_option( 'post_layout', 'cat_post_layout', 'tie_post_layout' )
 		# Normal Width layout
 		$before_featured     = $after_featured = '';
 		$featured_area_class = 'full-width-area tie-parallax';
-		$inner_featured_1    = '<div class="container">';
+		$inner_featured_1    = '<div class="container fullwidth-entry-title-wrapper">'; // fullwidth-entry-title-wrapper used in the ajax-loaded posts
 		$inner_featured_2    = '</div><!-- .container /-->';
 		$bg_overlay_effect   =  '<div class="thumb-overlay"></div><!-- .thumb-overlay /-->';
 
@@ -55,7 +56,7 @@ if( tie_get_object_option( 'post_layout', 'cat_post_layout', 'tie_post_layout' )
 		if( $post_layout == 5 ){
 
 			$featured_area_class = 'container-wrapper tie-parallax';
-			$before_featured     = '<div class="container">';
+			$before_featured     = '<div class="container fullwidth-entry-title-wrapper">'; // fullwidth-entry-title-wrapper used in the ajax-loaded posts
 			$after_featured      = '</div><!-- .container /-->';
 			$inner_featured_1    = $inner_featured_2 = '';
 		}
@@ -80,12 +81,12 @@ if( tie_get_object_option( 'post_layout', 'cat_post_layout', 'tie_post_layout' )
 			if( ! empty( $featured_img ) ){
 
 				$featured_color = tie_get_object_option( 'featured_bg_color', 'cat_featured_bg_color', 'tie_featured_bg_color' );
-				$featured_color = ! empty( $featured_color ) ? $featured_color : '';
+				$featured_color = ! empty( $featured_color ) ? 'background-color: '. $featured_color .' !important;' : '';
 
 				echo'
 					<style scoped type="text/css">
 						#tie-container{
-							background-color: '. $featured_color .' !important;
+							'. $featured_color .'
 							background-image: url('. $featured_img .') !important;
 						}
 					</style>
@@ -111,7 +112,7 @@ if( tie_get_object_option( 'post_layout', 'cat_post_layout', 'tie_post_layout' )
 		$before_featured = $after_featured = '';
 
 		if( tie_get_postdata( 'tie_post_head' ) != 'slider' && tie_get_postdata( 'tie_post_head' ) != 'map' ){
-			$before_featured = '<div class="container">';
+			$before_featured = '<div class="container fullwidth-featured-area-wrapper">';
 			$after_featured  = '</div><!-- .container /-->';
 		}
 

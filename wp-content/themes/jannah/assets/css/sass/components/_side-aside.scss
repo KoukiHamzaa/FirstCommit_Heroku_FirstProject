@@ -15,7 +15,6 @@
 .side-aside{
 	position: fixed;
 	top: 0;
-	right: 0;
 	z-index: 111;
 	visibility: hidden;
 	width: 350px;
@@ -26,15 +25,31 @@
 	background-position: center top;
 	background-size: cover;
 	transition: 0.5s cubic-bezier(.55,0,.1,1) 0s;
-	transform: translate3d(350px, 0, 0);
 	overflow-y: auto;
+
+	@include breakpoint(md){
+		right: 0;
+		transform: translate(350px, 0);
+
+		&:not(.slide-sidebar-desktop){
+			display: none;
+		}
+	}
 
 	.dark-skin &{
 		background: darken($darker-bg-more, 2%);
 	}
 
 	@include breakpoint(max_min_md){
-		transform: translate3d(100%, 0, 0);
+		&.appear-from-left{
+			left: 0;
+			transform: translate(-100%, 0);
+		}
+
+		&.appear-from-right{
+			right: 0;
+			transform: translate(100%, 0);
+		}
 
 		&.is-fullwidth{
 			width: 100%;
@@ -42,11 +57,11 @@
 	}
 
 	.is-mobile & .side-aside-wrapper,
-	.is-desktop & .mCSB_container{
+	.is-desktop & .has-custom-scroll{
 		padding: 50px 0 0;
 	}
 
-	.admin-bar.is-desktop & .mCSB_container,
+	.admin-bar.is-desktop & .has-custom-scroll,
 	.is-mobile.admin-bar & .side-aside-wrapper{
 		padding-top: 72px;
 	}
@@ -104,8 +119,8 @@
 	}
 
 	.side-aside {
-		visibility: visible;
-		transform: translate3d(0, 0, 0)!important;
+		visibility: visible !important;
+		transform: translate(0, 0) !important;
 
 		&:after {
 			display: none;

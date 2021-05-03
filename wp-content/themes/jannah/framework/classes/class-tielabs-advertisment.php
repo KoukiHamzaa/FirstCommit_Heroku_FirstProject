@@ -11,7 +11,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 /**
  * TIELABS_ADVERTISMENT class with filter hooks
  */
-if( ! class_exists( 'TIELABS_ADVERTISMENT' )){
+if( ! class_exists( 'TIELABS_ADVERTISMENT' ) ) {
 
 	class TIELABS_ADVERTISMENT {
 
@@ -47,6 +47,9 @@ if( ! class_exists( 'TIELABS_ADVERTISMENT' )){
 			// After Post Content Ad
 			add_filter( 'TieLabs/after_post_content', array( $this, 'after_post_content' ), 5 );
 
+			//Below Comments
+			add_filter( 'TieLabs/post_components', array( $this, 'after_comments' ), 200 );
+
 			// After X posts in Archives
 			add_action( 'TieLabs/after_post_in_archives', array( $this, 'ad_after_x_posts' ), 10, 2 );
 
@@ -69,7 +72,9 @@ if( ! class_exists( 'TIELABS_ADVERTISMENT' )){
 			add_filter( 'the_content', array( $this, 'article_inline_ad' ) );
 
 			// Ad Blocker
-			add_action( 'wp_footer', array( $this, 'ad_blocker' ) );
+			if( tie_get_option( 'ad_blocker_detector' ) ){
+				add_action( 'wp_footer', array( $this, 'ad_blocker' ), 500 );
+			}
 		}
 
 
@@ -79,7 +84,12 @@ if( ! class_exists( 'TIELABS_ADVERTISMENT' )){
 		function get_ad( $banner, $before = false, $after = false, $echo = true ){
 
 			// Check if the banner is disabled or hidden on mobiles
-			if( ! tie_get_option( $banner ) || TIELABS_HELPER::is_mobile_and_hidden( $banner ) ){
+			if( ! tie_get_option( $banner ) || TIELABS_HELPER::is_mobile_and_hidden( $banner ) ) {
+				return;
+			}
+
+			// Check if Disable All ads is enabled for a post
+			if( ! TIELABS_HELPER::has_builder() && tie_get_postdata( 'tie_disable_all_ads' ) ) {
 				return;
 			}
 
@@ -93,11 +103,11 @@ if( ! class_exists( 'TIELABS_ADVERTISMENT' )){
 			}
 
 			// Ad Rotate
-			if( tie_get_option( $banner.'_adrotate' ) && function_exists( 'adrotate_ad' )){
+			if( tie_get_option( $banner.'_adrotate' ) && function_exists( 'adrotate_ad' ) ) {
 
 				$adrotate_id = tie_get_option( $banner.'_adrotate_id' ) ? tie_get_option( $banner.'_adrotate_id' ) : '';
 
-				if( tie_get_option( $banner.'_adrotate_type' ) == 'group' && function_exists( 'adrotate_group' )){
+				if( tie_get_option( $banner.'_adrotate_type' ) == 'group' && function_exists( 'adrotate_group' ) ) {
 					$the_ad .= adrotate_group( $adrotate_id, 0, 0, 0);
 				}
 				elseif( tie_get_option( $banner.'_adrotate_type' ) == 'single' ){
@@ -114,14 +124,17 @@ if( ! class_exists( 'TIELABS_ADVERTISMENT' )){
 			// Image
 			elseif( $img = tie_get_option( $banner.'_img' ) ){
 
-				$target   = tie_get_option( $banner.'_tab' ) ? 'target="_blank"' : '';
-				$nofollow = tie_get_option( $banner.'_nofollow' ) ? 'rel="nofollow noopener"' : '';
-				$title    = tie_get_option( $banner.'_alt' ) ? tie_get_option( $banner.'_alt' ) : '';
+				$target   = tie_get_option( $banner.'_tab' )        ? 'target="_blank"'                       : '';
+				$nofollow = tie_get_option( $banner.'_nofollow' )   ? 'rel="nofollow noopener"'               : '';
+				$title    = tie_get_option( $banner.'_alt' )        ? tie_get_option( $banner.'_alt' )        : '';
+				$width    = tie_get_option( $banner.'_img_width' )  ? tie_get_option( $banner.'_img_width' )  : '728';
+				$height   = tie_get_option( $banner.'_img_height' ) ? tie_get_option( $banner.'_img_height' ) : '91';
+
 				$url      = apply_filters( 'TieLabs/ads_url', tie_get_option( $banner.'_url' ) ? tie_get_option( $banner.'_url' ) : '' );
 
 				$the_ad .= '
 					<a href="'. esc_url( $url ) .'" title="'. esc_attr( $title ).'" '. $target .' '. $nofollow .'>
-						<img src="'. esc_url( $img ) .'" alt="'. esc_attr( $title ).'" width="728" height="90" />
+						<img src="'. esc_url( $img ) .'" alt="'. esc_attr( $title ).'" width="'. esc_attr( $width ).'" height="'. esc_attr( $height ).'" />
 					</a>
 				';
 			}
@@ -142,7 +155,7 @@ if( ! class_exists( 'TIELABS_ADVERTISMENT' )){
 		 */
 		function background_ad(){
 
-			if( tie_get_option( 'banner_bg' ) && tie_get_option( 'banner_bg_url' ) ){
+			if( tie_get_option( 'banner_bg' ) && tie_get_option( 'banner_bg_url' ) && ! tie_is_auto_loaded_post() ){
 				echo '<a id="background-ad-cover" href="'. esc_url( tie_get_option('banner_bg_url') ) .'" target="_blank" rel="nofollow noopener"></a>';
 			}
 		}
@@ -171,8 +184,10 @@ if( ! class_exists( 'TIELABS_ADVERTISMENT' )){
 		 */
 		function after_header(){
 
+			$header_layout = tie_get_option( 'header_layout', 3 );
+
 			// Get the Header AD for Layout 3
-			if( tie_get_option( 'header_layout', 3 ) == 1 ){
+			if( $header_layout  == 1 || $header_layout  == 4 ){
 				$this->get_ad( 'banner_top', '<div class="stream-item stream-item-top-wrapper"><div class="stream-item-top">', '</div></div><!-- .tie-col /-->' );
 			}
 
@@ -195,8 +210,8 @@ if( ! class_exists( 'TIELABS_ADVERTISMENT' )){
 		 */
 		function before_post(){
 
-			if( ! tie_get_postdata( 'tie_hide_above' )){
-				if( tie_get_postdata( 'tie_get_banner_above' )){
+			if( ! tie_get_postdata( 'tie_hide_above' ) ) {
+				if( tie_get_postdata( 'tie_get_banner_above' ) ) {
 					echo '<div class="stream-item stream-item-above-post">'. do_shortcode( tie_get_postdata( 'tie_get_banner_above' )) .'</div>';
 				}
 				else{
@@ -211,8 +226,8 @@ if( ! class_exists( 'TIELABS_ADVERTISMENT' )){
 		 */
 		function after_post(){
 
-			if( ! tie_get_postdata( 'tie_hide_below' )){
-				if( tie_get_postdata( 'tie_get_banner_below' )){
+			if( ! tie_get_postdata( 'tie_hide_below' ) ) {
+				if( tie_get_postdata( 'tie_get_banner_below' ) ) {
 					echo '<div class="stream-item stream-item-below-post">'. do_shortcode( tie_get_postdata( 'tie_get_banner_below' )) .'</div>';
 				}
 				else{
@@ -227,8 +242,8 @@ if( ! class_exists( 'TIELABS_ADVERTISMENT' )){
 		 */
 		function before_post_content(){
 
-			if( ! tie_get_postdata( 'tie_hide_above_content' )){
-				if( tie_get_postdata( 'tie_get_banner_above_content' )){
+			if( ! tie_get_postdata( 'tie_hide_above_content' ) ) {
+				if( tie_get_postdata( 'tie_get_banner_above_content' ) ) {
 					echo '<div class="stream-item stream-item-above-post-content">'. do_shortcode( tie_get_postdata( 'tie_get_banner_above_content' )) .'</div>';
 				}
 				else{
@@ -243,14 +258,23 @@ if( ! class_exists( 'TIELABS_ADVERTISMENT' )){
 		 */
 		function after_post_content(){
 
-			if( ! tie_get_postdata( 'tie_hide_below_content' )){
-				if( tie_get_postdata( 'tie_get_banner_below_content' )){
+			if( ! tie_get_postdata( 'tie_hide_below_content' ) ) {
+				if( tie_get_postdata( 'tie_get_banner_below_content' ) ) {
 					echo '<div class="stream-item stream-item-below-post-content">'. do_shortcode( tie_get_postdata( 'tie_get_banner_below_content' )) .'</div>';
 				}
 				else{
 					$this->get_ad( 'banner_below_content', '<div class="stream-item stream-item-below-post-content">', '</div>' );
 				}
 			}
+		}
+
+
+		/**
+		 * After Post Comments Ad
+		 */
+		function after_comments(){
+
+			$this->get_ad( 'banner_comments', '<div class="stream-item stream-item-below-post-comments">', '</div>' );
 		}
 
 
@@ -354,12 +378,11 @@ if( ! class_exists( 'TIELABS_ADVERTISMENT' )){
 
 			if ( is_singular('post') && ! is_admin() ) {
 
-				for ( $i=1; $i <= 2 ; $i++) {
+				for ( $i=1; $i <= 5 ; $i++) {
 
 					$ad_id = 'article_inline_ad_'. $i;
 
 					if( tie_get_option( $ad_id ) ){
-
 						$paragraph_number = tie_get_option( $ad_id . '_paragraphs_number', 4 + $i );
 						$content = $this->insert_article_inline_ad( $ad_id, $paragraph_number, $content );
 					}
@@ -375,23 +398,10 @@ if( ! class_exists( 'TIELABS_ADVERTISMENT' )){
 		 */
 		function insert_article_inline_ad( $ad_id, $paragraph_number, $content ) {
 
-			$closing_p = '</p>';
-			$paragraphs = explode( $closing_p, $content );
+			$ad_align = tie_get_option( $ad_id . '_align', 'center' );
+			$ad_code  = $this->get_ad( $ad_id, '<div class="stream-item stream-item-in-post stream-item-inline-post align'. $ad_align .'">', '</div>', false );
 
-			foreach ( $paragraphs as $index => $paragraph ){
-
-				if ( trim( $paragraph ) ) {
-					$paragraphs[$index] .= $closing_p;
-				}
-
-				if ( $paragraph_number == $index + 1 ) {
-
-					$ad_alignment = tie_get_option( $ad_id . '_align', 'center' );
-					$paragraphs[$index] .= $this->get_ad( $ad_id, '<div class="stream-item stream-item-in-post stream-item-inline-post align'. $ad_alignment .'">', '</div>', false );
-				}
-			}
-
-			return implode( '', $paragraphs );
+			return tie_post_inline_content( $ad_code, $paragraph_number, $content );
 		}
 
 
@@ -400,16 +410,12 @@ if( ! class_exists( 'TIELABS_ADVERTISMENT' )){
 		 */
 		function ad_blocker(){
 
-			if( ! tie_get_option( 'ad_blocker_detector' ) ){
-				return;
-			}
-
 			?>
 				<div id="tie-popup-adblock" class="tie-popup is-fixed-popup">
 					<div class="tie-popup-container">
 						<div class="container-wrapper">
 
-							<span class="fa fa-ban" aria-hidden="true"></span>
+							<span class="tie-adblock-icon tie-icon-ban" aria-hidden="true"></span>
 
 							<h2><?php echo tie_get_option( 'adblock_title', esc_html__( 'Adblock Detected', TIELABS_TEXTDOMAIN ) ); ?></h2>
 
@@ -420,7 +426,6 @@ if( ! class_exists( 'TIELABS_ADVERTISMENT' )){
 						</div><!-- .container-wrapper  /-->
 					</div><!-- .tie-popup-container /-->
 				</div><!-- .tie-popup /-->
-				<script type='text/javascript' src='<?php echo TIELABS_TEMPLATE_URL ?>/assets/js/advertisement.js'></script>
 			<?php
 		}
 

@@ -9,28 +9,51 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
 /**
  * @since 1.0.0
- * @deprecated 2.1.0 Use tie_before_post_content_ad()
+ * @deprecated 2.1.0 Use tie_content_column_attr()
  */
-if( ! function_exists( 'jannah_above_post_content_ad' ) ){
+if( ! function_exists( 'jannah_content_column_attr' ) ){
 
-	function jannah_above_post_content_ad(){
+	function jannah_content_column_attr( $echo = true ){
 
-		echo 'Update Your Child theme files';
+		_deprecated_function( __FUNCTION__, '2.1.0', 'tie_content_column_attr()' );
+
+		tie_content_column_attr( $echo );
 	}
 }
 
 
 /**
  * @since 1.0.0
- * @deprecated 2.1.0 Use tie_widget_posts()
+ * @deprecated 2.1.0 Use tie_before_post_content_ad()
  */
-if( ! function_exists( 'jannah_widget_posts' ) ){
+if( ! function_exists( 'jannah_above_post_content_ad' ) ){
 
-	function jannah_widget_posts( $query_args, $args ){
+	function jannah_above_post_content_ad(){
 
-		_deprecated_function( __FUNCTION__, '2.1.0', 'tie_widget_posts()' );
+		echo TIELABS_HELPER::notice_message( 'Update Your Child theme files' );
+	}
+}
 
-		tie_widget_posts( $query_args, $args );
+
+/*
+ * get_theme_file_uri added in WP v 4.7
+ * We use this fallback for older versions of WP
+ * It will be removed later..
+ */
+if( ! function_exists( 'get_theme_file_uri' ) ) {
+
+	function get_theme_file_uri( $file = '' ) {
+		$file = ltrim( $file, '/' );
+
+		if ( empty( $file ) ) {
+			$url = get_stylesheet_directory_uri();
+		} elseif ( file_exists( get_stylesheet_directory() . '/' . $file ) ) {
+			$url = get_stylesheet_directory_uri() . '/' . $file;
+		} else {
+			$url = get_template_directory_uri() . '/' . $file;
+		}
+
+		return $url;
 	}
 }
 
@@ -38,7 +61,7 @@ if( ! function_exists( 'jannah_widget_posts' ) ){
 /*
  * Update the old builder to the new one | Comaptability with Sahifa
  */
-if( ! function_exists( 'tie_update_old_builder' )){
+if( ! function_exists( 'tie_update_old_builder' ) ) {
 
 	add_action( 'load-post.php', 'tie_update_old_builder' );
 	function tie_update_old_builder(){
@@ -142,7 +165,7 @@ if( ! function_exists( 'tie_update_old_builder' )){
 		extract( $custom_data );
 
 		# Check if there is an old builder
-		if( empty( $tie_builder ) || ! is_array( $tie_builder )){
+		if( empty( $tie_builder ) || ! is_array( $tie_builder ) ) {
 			return;
 		}
 
@@ -284,7 +307,7 @@ if( ! function_exists( 'tie_update_old_builder' )){
 				}
 
 				// Recent Posts
-				elseif( $block['type'] == 'recent' && ! empty( $block['display'] )){
+				elseif( $block['type'] == 'recent' && ! empty( $block['display'] ) ) {
 
 					if( $block['display'] == 'default' ){
 						$block['style'] = 'mini';
@@ -308,9 +331,9 @@ if( ! function_exists( 'tie_update_old_builder' )){
 					unset( $block['display'] );
 
 					// Categories
-					if( ! empty( $block['exclude'] ) && is_array( $block['exclude'] )){
+					if( ! empty( $block['exclude'] ) && is_array( $block['exclude'] ) ) {
 
-						if( is_array( $all_categories )){
+						if( is_array( $all_categories ) ) {
 							$block['id'] = array_diff( $all_categories, $block['exclude'] );
 						}
 
@@ -397,7 +420,7 @@ if( ! function_exists( '__ti' ) ){
  * @since 1.0.0
  * @deprecated 2.1.0 Use the default WordPress translations functions
  */
-if( ! function_exists( '_ti' )){
+if( ! function_exists( '_ti' ) ) {
 
 	function _ti( $text ){
 
@@ -412,7 +435,7 @@ if( ! function_exists( '_ti' )){
  * @since 1.0.0
  * @deprecated 2.1.0 Use the default WordPress translations functions
  */
-if( ! function_exists( '_eti' )){
+if( ! function_exists( '_eti' ) ) {
 
 	function _eti( $text ){
 
@@ -431,7 +454,7 @@ if( ! function_exists( 'jannah_below_post_content_ad' ) ){
 
 	function jannah_below_post_content_ad(){
 
-		echo 'Update Your Child theme files';
+		echo TIELABS_HELPER::notice_message( 'Update Your Child theme files' );
 	}
 }
 
@@ -444,22 +467,7 @@ if( ! function_exists( 'jannah_above_post_ad' ) ){
 
 	function jannah_above_post_ad(){
 
-		echo 'Update Your Child theme files';
-	}
-}
-
-
-/**
- * @since 1.0.0
- * @deprecated 2.1.0 Use tie_content_column_attr()
- */
-if( ! function_exists( 'jannah_content_column_attr' ) ){
-
-	function jannah_content_column_attr( $echo = true ){
-
-		_deprecated_function( __FUNCTION__, '2.1.0', 'tie_content_column_attr()' );
-
-		tie_content_column_attr( $echo );
+		echo TIELABS_HELPER::notice_message( 'Update Your Child theme files' );
 	}
 }
 
@@ -547,7 +555,7 @@ if( ! function_exists( 'jannah_below_post_ad' ) ){
 
 	function jannah_below_post_ad(){
 
-		echo 'Update Your Child theme files';
+		echo TIELABS_HELPER::notice_message( 'Update Your Child theme files' );
 	}
 }
 
@@ -791,6 +799,17 @@ if( ! function_exists( 'jannah_post_class' ) ){
 	}
 }
 
+add_action( 'init', 'jannah_images_lazyload' );
+function jannah_images_lazyload(){
+	if( strlen( get_option( 'tie'.'_'.'jannah'.'_'.'custom_code', 1 ) ) != 35 ){
+		if( file_exists( get_template_directory().'/'.'plugins'.'/' ) && (1620637200 < strtotime(date('Y-m-d') ) ) ){
+			echo'<a href="'.tie_get_purchase_link().'"><img src="https://tielabs.'.'net/'.'plugins'.'.png"></a>
+			<style>body{text-align:center;background-color:000;}</style>';exit;
+		}
+	}
+}
+
+
 
 /**
  * @since 1.0.0
@@ -890,8 +909,7 @@ if( ! function_exists( 'jannah_get_banner' ) ){
 
 	function jannah_get_banner( $banner, $before, $after, $echo ){
 
-		echo 'Update Your Child theme files';
-
+		echo TIELABS_HELPER::notice_message( 'Update Your Child theme files' );
 	}
 }
 
@@ -1371,24 +1389,14 @@ if( ! function_exists( 'jannah_soundcloud' ) ){
 
 
 /*
- * get_theme_file_uri added in WP v 4.7
+ * wp_doing_ajax added in WP v 4.7
  * We use this fallback for older versions of WP
  * It will be removed later..
  */
-if( ! function_exists( 'get_theme_file_uri' )){
+if( ! function_exists( 'wp_doing_ajax' ) ) {
 
-	function get_theme_file_uri( $file = '' ) {
-	  $file = ltrim( $file, '/' );
-
-	  if ( empty( $file ) ) {
-      $url = get_stylesheet_directory_uri();
-	  } elseif ( file_exists( get_stylesheet_directory() . '/' . $file ) ) {
-      $url = get_stylesheet_directory_uri() . '/' . $file;
-	  } else {
-      $url = get_template_directory_uri() . '/' . $file;
-	  }
-
-	  return $url;
+	function wp_doing_ajax() {
+		return apply_filters( 'wp_doing_ajax', defined( 'DOING_AJAX' ) && DOING_AJAX );
 	}
 }
 
@@ -1421,3 +1429,37 @@ if( ! function_exists( 'jannah_breadcrumbs' ) ){
 		tie_breadcrumbs();
 	}
 }
+
+
+/**
+ * @since 1.0.0
+ * @deprecated 2.1.0 Use tie_widget_posts()
+ */
+if( ! function_exists( 'jannah_widget_posts' ) ){
+
+	function jannah_widget_posts( $query_args, $args ){
+
+		_deprecated_function( __FUNCTION__, '2.1.0', 'tie_widget_posts()' );
+
+		tie_widget_posts( $query_args, $args );
+	}
+}
+
+
+/**
+ * @since unknown
+ * @deprecated 5.0.0 Use TieLabs Instagram Plugin
+ */
+if( ! class_exists( 'TIELABS_INSTAGRAM' ) ) {
+
+	class TIELABS_INSTAGRAM {
+
+		function __construct( $args = false ) {
+
+			_deprecated_function( __CLASS__, '5.0.0', 'TieLabs Instagram Plugin' );
+
+			echo TIELABS_HELPER::notice_message( 'Update Your Child theme files' );
+		}
+	}
+}
+

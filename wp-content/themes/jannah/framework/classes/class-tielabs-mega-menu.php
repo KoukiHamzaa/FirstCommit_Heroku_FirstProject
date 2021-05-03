@@ -7,7 +7,7 @@
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
 
-if( ! class_exists( 'TIELABS_MEGA_MENU' )){
+if( ! class_exists( 'TIELABS_MEGA_MENU' ) ) {
 
 	class TIELABS_MEGA_MENU extends Walker_Nav_Menu {
 
@@ -208,7 +208,7 @@ if( ! class_exists( 'TIELABS_MEGA_MENU' )){
 				$class_names,
 				$item_data_id,
 				$media_icon,
-				in_array( 'menu-item-has-children', $item->classes ) ? ' aria-haspopup="true" aria-expanded="false" tabindex="0"' : ''
+				in_array( 'menu-item-has-children', $classes ) ? ' aria-haspopup="true" aria-expanded="false" tabindex="0"' : ''
 			);
 
 			$atts = array();
@@ -240,12 +240,12 @@ if( ! class_exists( 'TIELABS_MEGA_MENU' )){
 
 			if( ! empty( $this->tie_megamenu_icon ) || ( $depth === 0 && ! empty( $this->tie_megamenu_icon_only )) ){
 
-				$tie_megamenu_icon = 'fa-exclamation-triangle';
+				$tie_megamenu_icon = 'tie-icon-warning';
 				if( ! empty( $this->tie_megamenu_icon ) ){
 					$tie_megamenu_icon = $this->tie_megamenu_icon;
 				}
 
-				$item_output .= ' <span aria-hidden="true" class="fa '.$tie_megamenu_icon.'"></span> ';
+				$item_output .= ' <span aria-hidden="true" class="tie-menu-icon '.$tie_megamenu_icon.'"></span> ';
 
 			}elseif( $depth === 2 && $this->tie_megamenu_type == 'links' ){
 
@@ -296,7 +296,7 @@ if( ! class_exists( 'TIELABS_MEGA_MENU' )){
 			if( $depth === 0 && ! empty( $this->tie_megamenu_type ) && $this->tie_megamenu_type != 'disable' /*&& ! tie_is_mobile() */ ){
 
 				$style = '';
-				if ( ! empty( $this->tie_megamenu_image )){
+				if ( ! empty( $this->tie_megamenu_image ) ) {
 
 					$style .= " background-image: url($this->tie_megamenu_image) ; background-position: $this->tie_megamenu_position_y $this->tie_megamenu_position ; background-repeat: $this->tie_megamenu_repeat ; ";
 				}
@@ -416,8 +416,8 @@ if( ! class_exists( 'TIELABS_MEGA_MENU' )){
 
 					$output .= "
 							<ul class=\"slider-arrow-nav tie-direction-nav\">
-								<li><a class=\"tie-mega-pagination prev-posts pagination-disabled\" href=\"#\"><span class=\"fa fa-angle-left\" aria-hidden=\"true\"></span></a></li>
-								<li><a class=\"tie-mega-pagination next-posts\" href=\"#\"><span class=\"fa fa-angle-right\" aria-hidden=\"true\"></span></a></li>
+								<li><a class=\"tie-mega-pagination prev-posts pagination-disabled\" href=\"#\"><span class=\"tie-icon-angle-left\" aria-hidden=\"true\"></span></a></li>
+								<li><a class=\"tie-mega-pagination next-posts\" href=\"#\"><span class=\"tie-icon-angle-right\" aria-hidden=\"true\"></span></a></li>
 							</ul>\n";
 
 					*/
@@ -448,7 +448,7 @@ if( ! class_exists( 'TIELABS_MEGA_MENU' )){
 		}
 
 
-		function display_element( $element, &$children_elements, $max_depth, $depth=0, $args = array() , &$output ){
+		function display_element( $element, &$children_elements, $max_depth, $depth = 0, $args = array(), &$output = '' ){
 			$id_field = $this->db_fields['id'];
 			if ( is_object( $args[0] ) ){
 				$args[0]->has_children = ! empty( $children_elements[$element->$id_field] );
@@ -478,7 +478,7 @@ if( ! class_exists( 'TIELABS_MEGA_MENU' )){
 
 	// Custom icons beside the title
 	function tie_add_megamenu_icon_preview( $item_id, $item, $depth, $args ){
-		echo "<span class=\"preview-menu-item-icon fa $item->tie_megamenu_icon\"></span>";
+		echo "<span class=\"preview-menu-item-icon $item->tie_megamenu_icon\"></span>";
 	}
 
 	// The Custom TieLabs menu fields
@@ -514,10 +514,10 @@ if( ! class_exists( 'TIELABS_MEGA_MENU' )){
 			<p class="field-megamenu-icon description description-wide">
 				<label for="edit-menu-item-megamenu-icon-<?php echo esc_attr( $item_id ) ?>">
 					<?php esc_html_e( 'Menu Icon', TIELABS_TEXTDOMAIN ); ?>
-					<input type="hidden" id="edit-menu-item-megamenu-icon-<?php echo esc_attr( $item_id ) ?>" class="widefat code edit-menu-item-megamenu-icon" name="menu-item-tie-megamenu-icon[<?php echo esc_attr( $item_id ) ?>]" value="<?php echo esc_attr( $item->tie_megamenu_icon ) ?>">
 					<div class="icon-picker-wrapper">
-						<div id="preview_edit-menu-item-megamenu-icon-<?php echo esc_attr( $item_id ) ?>" data-target="#edit-menu-item-megamenu-icon-<?php echo esc_attr( $item_id ) ?>" class="button icon-picker fa <?php echo esc_attr( $item->tie_megamenu_icon ) ?>"></div>
+						<div id="preview_edit-menu-item-megamenu-icon-<?php echo esc_attr( $item_id ) ?>" data-target="#edit-menu-item-megamenu-icon-<?php echo esc_attr( $item_id ) ?>" class="button icon-picker <?php echo esc_attr( $item->tie_megamenu_icon ) ?>"></div>
 					</div>
+					<input type="text" placeholder="fab fa-icon" id="edit-menu-item-megamenu-icon-<?php echo esc_attr( $item_id ) ?>" class="widefat code edit-menu-item-megamenu-icon" name="menu-item-tie-megamenu-icon[<?php echo esc_attr( $item_id ) ?>]" value="<?php echo esc_attr( $item->tie_megamenu_icon ) ?>">
 				</label>
 			</p>
 
@@ -652,8 +652,8 @@ if( ! class_exists( 'TIELABS_MEGA_MENU' )){
 		);
 
 		foreach( $custom_meta_fields as $custom_meta_field ){
-			$save_option_name   = str_replace( 'menu-item-', '', $custom_meta_field);
-			$save_option_name   = str_replace( '-', '_', $save_option_name);
+			$save_option_name = str_replace( 'menu-item-', '', $custom_meta_field);
+			$save_option_name = str_replace( '-', '_', $save_option_name);
 
 			if ( ! empty($_REQUEST[ $custom_meta_field ][ $menu_item_db_id ] ) ){
 				$custom_value = $_REQUEST[ $custom_meta_field ][ $menu_item_db_id ];
@@ -727,12 +727,12 @@ if( ! class_exists( 'TIELABS_MEGA_MENU' )){
 		 * @param array  $args   Not used.
 		 * @param int    $id     Not used.
 		 */
-		public function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ){
+		public function start_el( &$output, $item, $depth = 0, $args = null, $id = 0 ) {
 			global $_wp_nav_menu_max_depth;
 			$_wp_nav_menu_max_depth = $depth > $_wp_nav_menu_max_depth ? $depth : $_wp_nav_menu_max_depth;
 
 			ob_start();
-			$item_id = esc_attr( $item->ID );
+			$item_id      = esc_attr( $item->ID );
 			$removed_args = array(
 				'action',
 				'customlink-tab',
@@ -742,184 +742,250 @@ if( ! class_exists( 'TIELABS_MEGA_MENU' )){
 				'_wpnonce',
 			);
 
-			$original_title = '';
-			if ( 'taxonomy' == $item->type ){
-				$original_title = get_term_field( 'name', $item->object_id, $item->object, 'raw' );
-				if ( is_wp_error( $original_title ) )
-					$original_title = false;
-			} elseif ( 'post_type' == $item->type ){
+			$original_title = false;
+
+			if ( 'taxonomy' == $item->type ) {
+				$original_object = get_term( (int) $item->object_id, $item->object );
+				if ( $original_object && ! is_wp_error( $original_title ) ) {
+					$original_title = $original_object->name;
+				}
+			} elseif ( 'post_type' == $item->type ) {
 				$original_object = get_post( $item->object_id );
-				$original_title = get_the_title( $original_object->ID );
+				if ( $original_object ) {
+					$original_title = get_the_title( $original_object->ID );
+				}
+			} elseif ( 'post_type_archive' == $item->type ) {
+				$original_object = get_post_type_object( $item->object );
+				if ( $original_object ) {
+					$original_title = $original_object->labels->archives;
+				}
 			}
 
 			$classes = array(
 				'menu-item menu-item-depth-' . $depth,
 				'menu-item-' . esc_attr( $item->object ),
-				'menu-item-edit-' . ( ( isset( $_GET['edit-menu-item'] ) && $item_id == $_GET['edit-menu-item'] ) ? 'active' : 'inactive'),
+				'menu-item-edit-' . ( ( isset( $_GET['edit-menu-item'] ) && $item_id == $_GET['edit-menu-item'] ) ? 'active' : 'inactive' ),
 			);
 
 			$title = $item->title;
 
-			if ( ! empty( $item->_invalid ) ){
+			if ( ! empty( $item->_invalid ) ) {
 				$classes[] = 'menu-item-invalid';
-				/* translators: %s: title of menu item which is invalid */
-				$title = sprintf( esc_html__( '%s (Invalid)', TIELABS_TEXTDOMAIN ), $item->title );
-			} elseif ( isset( $item->post_status ) && 'draft' == $item->post_status ){
+				/* translators: %s: Title of an invalid menu item. */
+				$title = sprintf( __( '%s (Invalid)' ), $item->title );
+			} elseif ( isset( $item->post_status ) && 'draft' == $item->post_status ) {
 				$classes[] = 'pending';
-				/* translators: %s: title of menu item in draft status */
-				$title = sprintf( esc_html__('%s (Pending)', TIELABS_TEXTDOMAIN), $item->title );
+				/* translators: %s: Title of a menu item in draft status. */
+				$title = sprintf( __( '%s (Pending)' ), $item->title );
 			}
 
 			$title = ( ! isset( $item->label ) || '' == $item->label ) ? $title : $item->label;
 
 			$submenu_text = '';
-			if ( 0 == $depth )
+			if ( 0 == $depth ) {
 				$submenu_text = 'style="display: none;"';
+			}
 
 			?>
-			<li id="menu-item-<?php echo esc_attr( $item_id ); ?>" class="<?php echo implode(' ', $classes ); ?>">
-				<dl class="menu-item-bar">
-					<dt class="menu-item-handle">
+			<li id="menu-item-<?php echo $item_id; ?>" class="<?php echo implode( ' ', $classes ); ?>">
+				<div class="menu-item-bar">
+					<div class="menu-item-handle">
 						<span class="item-title">
 
 							<?php
 								//By Tielabs **************************************************
-
-									do_action( 'wp_nav_menu_item_before_title', $item_id, $item, $depth, $args, $id );
-
+								// Since WordPress 5.4.0 this is the only change we need to do on this method.
+								// We can replace this via JS, but since wp_nav_menu_item_custom_fields intreduced in v5.4.0 we will keep use this for a while for backward compatibility
+								do_action( 'wp_nav_menu_item_before_title', $item_id, $item, $depth, $args );
 								// END ********************************************************
 							?>
 
-						<span class="menu-item-title"><?php echo esc_html( $title ); ?></span> <span class="is-submenu" <?php echo ( $submenu_text ); ?>><?php esc_html_e( 'sub item', TIELABS_TEXTDOMAIN ); ?></span></span>
+							<span class="menu-item-title"><?php echo esc_html( $title ); ?></span> <span class="is-submenu" <?php echo $submenu_text; ?>><?php _e( 'sub item' ); ?></span></span>
 						<span class="item-controls">
 							<span class="item-type"><?php echo esc_html( $item->type_label ); ?></span>
 							<span class="item-order hide-if-js">
-								<a href="<?php
-									echo wp_nonce_url(
+								<?php
+								printf(
+									'<a href="%s" class="item-move-up" aria-label="%s">&#8593;</a>',
+									wp_nonce_url(
 										add_query_arg(
 											array(
-												'action' => 'move-up-menu-item',
+												'action'    => 'move-up-menu-item',
 												'menu-item' => $item_id,
 											),
-											remove_query_arg($removed_args, esc_url(admin_url( 'nav-menus.php' )) )
+											remove_query_arg( $removed_args, admin_url( 'nav-menus.php' ) )
 										),
 										'move-menu_item'
-									);
-								?>" class="item-move-up"><abbr title="<?php esc_html__('Move up', TIELABS_TEXTDOMAIN); ?>">&#8593;</abbr></a>
+									),
+									esc_attr__( 'Move up' )
+								);
+								?>
 								|
-								<a href="<?php
-									echo wp_nonce_url(
+								<?php
+								printf(
+									'<a href="%s" class="item-move-down" aria-label="%s">&#8595;</a>',
+									wp_nonce_url(
 										add_query_arg(
 											array(
-												'action' => 'move-down-menu-item',
+												'action'    => 'move-down-menu-item',
 												'menu-item' => $item_id,
 											),
-											remove_query_arg($removed_args, esc_url(admin_url( 'nav-menus.php' )) )
+											remove_query_arg( $removed_args, admin_url( 'nav-menus.php' ) )
 										),
 										'move-menu_item'
-									);
-								?>" class="item-move-down"><abbr title="<?php esc_html__('Move down', TIELABS_TEXTDOMAIN); ?>">&#8595;</abbr></a>
+									),
+									esc_attr__( 'Move down' )
+								);
+								?>
 							</span>
-							<a class="item-edit" id="edit-<?php echo esc_attr( $item_id ); ?>" title="<?php esc_html__('Edit Menu Item', TIELABS_TEXTDOMAIN); ?>" href="<?php
-								echo ( isset( $_GET['edit-menu-item'] ) && $item_id == $_GET['edit-menu-item'] ) ? esc_url(admin_url( 'nav-menus.php' )) : add_query_arg( 'edit-menu-item', $item_id, remove_query_arg( $removed_args, admin_url( 'nav-menus.php#menu-item-settings-' . $item_id ) ) );
-							?>"><?php esc_html_e( 'Edit Menu Item', TIELABS_TEXTDOMAIN ); ?></a>
-						</span>
-					</dt>
-				</dl>
+							<?php
+							if ( isset( $_GET['edit-menu-item'] ) && $item_id == $_GET['edit-menu-item'] ) {
+								$edit_url = admin_url( 'nav-menus.php' );
+							} else {
+								$edit_url = add_query_arg(
+									array(
+										'edit-menu-item' => $item_id,
+									),
+									remove_query_arg( $removed_args, admin_url( 'nav-menus.php#menu-item-settings-' . $item_id ) )
+								);
+							}
 
-				<div class="menu-item-settings wp-clearfix" id="menu-item-settings-<?php echo esc_attr( $item_id ); ?>">
-					<?php if( 'custom' == $item->type ) : ?>
+							printf(
+								'<a class="item-edit" id="edit-%s" href="%s" aria-label="%s"><span class="screen-reader-text">%s</span></a>',
+								$item_id,
+								$edit_url,
+								esc_attr__( 'Edit menu item' ),
+								__( 'Edit' )
+							);
+							?>
+						</span>
+					</div>
+				</div>
+
+				<div class="menu-item-settings wp-clearfix" id="menu-item-settings-<?php echo $item_id; ?>">
+					<?php if ( 'custom' == $item->type ) : ?>
 						<p class="field-url description description-wide">
-							<label for="edit-menu-item-url-<?php echo esc_attr( $item_id ); ?>">
-								<?php esc_html_e( 'URL', TIELABS_TEXTDOMAIN ); ?><br />
-								<input type="text" id="edit-menu-item-url-<?php echo esc_attr( $item_id ); ?>" class="widefat code edit-menu-item-url" name="menu-item-url[<?php echo esc_attr( $item_id ); ?>]" value="<?php echo esc_attr( $item->url ); ?>" />
+							<label for="edit-menu-item-url-<?php echo $item_id; ?>">
+								<?php _e( 'URL' ); ?><br />
+								<input type="text" id="edit-menu-item-url-<?php echo $item_id; ?>" class="widefat code edit-menu-item-url" name="menu-item-url[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->url ); ?>" />
 							</label>
 						</p>
 					<?php endif; ?>
-					<p class="description description-thin">
-						<label for="edit-menu-item-title-<?php echo esc_attr( $item_id ); ?>">
-							<?php esc_html_e( 'Navigation Label', TIELABS_TEXTDOMAIN ); ?><br />
-							<input type="text" id="edit-menu-item-title-<?php echo esc_attr( $item_id ); ?>" class="widefat edit-menu-item-title" name="menu-item-title[<?php echo esc_attr( $item_id ); ?>]" value="<?php echo esc_attr( $item->title ); ?>" />
+					<p class="description description-wide">
+						<label for="edit-menu-item-title-<?php echo $item_id; ?>">
+							<?php _e( 'Navigation Label' ); ?><br />
+							<input type="text" id="edit-menu-item-title-<?php echo $item_id; ?>" class="widefat edit-menu-item-title" name="menu-item-title[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->title ); ?>" />
 						</label>
 					</p>
-					<p class="description description-thin">
-						<label for="edit-menu-item-attr-title-<?php echo esc_attr( $item_id ); ?>">
-							<?php esc_html_e( 'Title Attribute', TIELABS_TEXTDOMAIN ); ?><br />
-							<input type="text" id="edit-menu-item-attr-title-<?php echo esc_attr( $item_id ); ?>" class="widefat edit-menu-item-attr-title" name="menu-item-attr-title[<?php echo esc_attr( $item_id ); ?>]" value="<?php echo esc_attr( $item->post_excerpt ); ?>" />
+					<p class="field-title-attribute field-attr-title description description-wide">
+						<label for="edit-menu-item-attr-title-<?php echo $item_id; ?>">
+							<?php _e( 'Title Attribute' ); ?><br />
+							<input type="text" id="edit-menu-item-attr-title-<?php echo $item_id; ?>" class="widefat edit-menu-item-attr-title" name="menu-item-attr-title[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->post_excerpt ); ?>" />
 						</label>
 					</p>
 					<p class="field-link-target description">
-						<label for="edit-menu-item-target-<?php echo esc_attr( $item_id ); ?>">
-							<input type="checkbox" id="edit-menu-item-target-<?php echo esc_attr( $item_id ); ?>" value="_blank" name="menu-item-target[<?php echo esc_attr( $item_id ); ?>]"<?php checked( $item->target, '_blank' ); ?> />
-							<?php esc_html_e( 'Open link in a new window/tab', TIELABS_TEXTDOMAIN ); ?>
+						<label for="edit-menu-item-target-<?php echo $item_id; ?>">
+							<input type="checkbox" id="edit-menu-item-target-<?php echo $item_id; ?>" value="_blank" name="menu-item-target[<?php echo $item_id; ?>]"<?php checked( $item->target, '_blank' ); ?> />
+							<?php _e( 'Open link in a new tab' ); ?>
 						</label>
 					</p>
 					<p class="field-css-classes description description-thin">
-						<label for="edit-menu-item-classes-<?php echo esc_attr( $item_id ); ?>">
-							<?php esc_html_e( 'CSS Classes (optional)', TIELABS_TEXTDOMAIN ); ?><br />
-							<input type="text" id="edit-menu-item-classes-<?php echo esc_attr( $item_id ); ?>" class="widefat code edit-menu-item-classes" name="menu-item-classes[<?php echo esc_attr( $item_id ); ?>]" value="<?php echo esc_attr( implode(' ', $item->classes ) ); ?>" />
+						<label for="edit-menu-item-classes-<?php echo $item_id; ?>">
+							<?php _e( 'CSS Classes (optional)' ); ?><br />
+							<input type="text" id="edit-menu-item-classes-<?php echo $item_id; ?>" class="widefat code edit-menu-item-classes" name="menu-item-classes[<?php echo $item_id; ?>]" value="<?php echo esc_attr( implode( ' ', $item->classes ) ); ?>" />
 						</label>
 					</p>
 					<p class="field-xfn description description-thin">
-						<label for="edit-menu-item-xfn-<?php echo esc_attr( $item_id ); ?>">
-							<?php esc_html_e( 'Link Relationship (XFN)', TIELABS_TEXTDOMAIN ); ?><br />
-							<input type="text" id="edit-menu-item-xfn-<?php echo esc_attr( $item_id ); ?>" class="widefat code edit-menu-item-xfn" name="menu-item-xfn[<?php echo esc_attr( $item_id ); ?>]" value="<?php echo esc_attr( $item->xfn ); ?>" />
+						<label for="edit-menu-item-xfn-<?php echo $item_id; ?>">
+							<?php _e( 'Link Relationship (XFN)' ); ?><br />
+							<input type="text" id="edit-menu-item-xfn-<?php echo $item_id; ?>" class="widefat code edit-menu-item-xfn" name="menu-item-xfn[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->xfn ); ?>" />
 						</label>
 					</p>
 					<p class="field-description description description-wide">
-						<label for="edit-menu-item-description-<?php echo esc_attr( $item_id ); ?>">
-							<?php esc_html_e( 'Description', TIELABS_TEXTDOMAIN ); ?><br />
-							<textarea id="edit-menu-item-description-<?php echo esc_attr( $item_id ); ?>" class="widefat edit-menu-item-description" rows="3" cols="20" name="menu-item-description[<?php echo esc_attr( $item_id ); ?>]"><?php echo esc_html( $item->description ); // textarea_escaped ?></textarea>
-							<span class="description"><?php esc_html_e('The description will be displayed in the menu if the current theme supports it.', TIELABS_TEXTDOMAIN); ?></span>
+						<label for="edit-menu-item-description-<?php echo $item_id; ?>">
+							<?php _e( 'Description' ); ?><br />
+							<textarea id="edit-menu-item-description-<?php echo $item_id; ?>" class="widefat edit-menu-item-description" rows="3" cols="20" name="menu-item-description[<?php echo $item_id; ?>]"><?php echo esc_html( $item->description ); // textarea_escaped ?></textarea>
+							<span class="description"><?php _e( 'The description will be displayed in the menu if the current theme supports it.' ); ?></span>
 						</label>
 					</p>
-
 
 					<?php
-						//By TieLabs **************************************************
-
-							do_action( 'wp_nav_menu_item_custom_fields', $item_id, $item, $depth, $args );
-
-						// END ********************************************************
+					/**
+					 * Fires just before the move buttons of a nav menu item in the menu editor.
+					 *
+					 * @since 5.4.0
+					 *
+					 * @param int      $item_id Menu item ID.
+					 * @param WP_Post  $item    Menu item data object.
+					 * @param int      $depth   Depth of menu item. Used for padding.
+					 * @param stdClass $args    An object of menu item arguments.
+					 * @param int      $id      Nav menu ID.
+					 */
+					do_action( 'wp_nav_menu_item_custom_fields', $item_id, $item, $depth, $args, $id );
 					?>
 
-					<p class="field-move hide-if-no-js description description-wide">
-						<label>
-							<span><?php esc_html_e( 'Move', TIELABS_TEXTDOMAIN ); ?></span>
-							<a href="#" class="menus-move-up"><?php esc_html_e( 'Up one', TIELABS_TEXTDOMAIN ); ?></a>
-							<a href="#" class="menus-move-down"><?php esc_html_e( 'Down one', TIELABS_TEXTDOMAIN ); ?></a>
-							<a href="#" class="menus-move-left"></a>
-							<a href="#" class="menus-move-right"></a>
-							<a href="#" class="menus-move-top"><?php esc_html_e( 'To the top', TIELABS_TEXTDOMAIN ); ?></a>
-						</label>
-					</p>
+					<fieldset class="field-move hide-if-no-js description description-wide">
+						<span class="field-move-visual-label" aria-hidden="true"><?php _e( 'Move' ); ?></span>
+						<button type="button" class="button-link menus-move menus-move-up" data-dir="up"><?php _e( 'Up one' ); ?></button>
+						<button type="button" class="button-link menus-move menus-move-down" data-dir="down"><?php _e( 'Down one' ); ?></button>
+						<button type="button" class="button-link menus-move menus-move-left" data-dir="left"></button>
+						<button type="button" class="button-link menus-move menus-move-right" data-dir="right"></button>
+						<button type="button" class="button-link menus-move menus-move-top" data-dir="top"><?php _e( 'To the top' ); ?></button>
+					</fieldset>
 
 					<div class="menu-item-actions description-wide submitbox">
-						<?php if( 'custom' != $item->type && $original_title !== false ) : ?>
+						<?php if ( 'custom' !== $item->type && false !== $original_title ) : ?>
 							<p class="link-to-original">
-								<?php printf( esc_html__('Original: %s', TIELABS_TEXTDOMAIN), '<a href="' . esc_attr( $item->url ) . '">' . esc_html( $original_title ) . '</a>' ); ?>
+								<?php
+								/* translators: %s: Link to menu item's original object. */
+								printf( __( 'Original: %s' ), '<a href="' . esc_attr( $item->url ) . '">' . esc_html( $original_title ) . '</a>' );
+								?>
 							</p>
 						<?php endif; ?>
-						<a class="item-delete submitdelete deletion" id="delete-<?php echo esc_attr( $item_id ); ?>" href="<?php
-						echo wp_nonce_url(
-							add_query_arg(
-								array(
-									'action' => 'delete-menu-item',
-									'menu-item' => $item_id,
+
+						<?php
+						printf(
+							'<a class="item-delete submitdelete deletion" id="delete-%s" href="%s">%s</a>',
+							$item_id,
+							wp_nonce_url(
+								add_query_arg(
+									array(
+										'action'    => 'delete-menu-item',
+										'menu-item' => $item_id,
+									),
+									admin_url( 'nav-menus.php' )
 								),
-								esc_url(admin_url( 'nav-menus.php' ))
+								'delete-menu_item_' . $item_id
 							),
-							'delete-menu_item_' . $item_id
-						); ?>"><?php esc_html_e( 'Remove', TIELABS_TEXTDOMAIN ); ?></a> <span class="meta-sep hide-if-no-js"> | </span> <a class="item-cancel submitcancel hide-if-no-js" id="cancel-<?php echo esc_attr( $item_id ); ?>" href="<?php echo esc_url( add_query_arg( array( 'edit-menu-item' => $item_id, 'cancel' => time() ), esc_url(admin_url( 'nav-menus.php' )) ) );
-							?>#menu-item-settings-<?php echo esc_attr( $item_id ); ?>"><?php esc_html_e('Cancel', TIELABS_TEXTDOMAIN); ?></a>
+							__( 'Remove' )
+						);
+						?>
+						<span class="meta-sep hide-if-no-js"> | </span>
+						<?php
+						printf(
+							'<a class="item-cancel submitcancel hide-if-no-js" id="cancel-%s" href="%s#menu-item-settings-%s">%s</a>',
+							$item_id,
+							esc_url(
+								add_query_arg(
+									array(
+										'edit-menu-item' => $item_id,
+										'cancel'         => time(),
+									),
+									admin_url( 'nav-menus.php' )
+								)
+							),
+							$item_id,
+							__( 'Cancel' )
+						);
+						?>
 					</div>
 
-					<input class="menu-item-data-db-id" type="hidden" name="menu-item-db-id[<?php echo esc_attr( $item_id ); ?>]" value="<?php echo esc_attr( $item_id ); ?>" />
-					<input class="menu-item-data-object-id" type="hidden" name="menu-item-object-id[<?php echo esc_attr( $item_id ); ?>]" value="<?php echo esc_attr( $item->object_id ); ?>" />
-					<input class="menu-item-data-object" type="hidden" name="menu-item-object[<?php echo esc_attr( $item_id ); ?>]" value="<?php echo esc_attr( $item->object ); ?>" />
-					<input class="menu-item-data-parent-id" type="hidden" name="menu-item-parent-id[<?php echo esc_attr( $item_id ); ?>]" value="<?php echo esc_attr( $item->menu_item_parent ); ?>" />
-					<input class="menu-item-data-position" type="hidden" name="menu-item-position[<?php echo esc_attr( $item_id ); ?>]" value="<?php echo esc_attr( $item->menu_order ); ?>" />
-					<input class="menu-item-data-type" type="hidden" name="menu-item-type[<?php echo esc_attr( $item_id ); ?>]" value="<?php echo esc_attr( $item->type ); ?>" />
+					<input class="menu-item-data-db-id" type="hidden" name="menu-item-db-id[<?php echo $item_id; ?>]" value="<?php echo $item_id; ?>" />
+					<input class="menu-item-data-object-id" type="hidden" name="menu-item-object-id[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->object_id ); ?>" />
+					<input class="menu-item-data-object" type="hidden" name="menu-item-object[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->object ); ?>" />
+					<input class="menu-item-data-parent-id" type="hidden" name="menu-item-parent-id[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->menu_item_parent ); ?>" />
+					<input class="menu-item-data-position" type="hidden" name="menu-item-position[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->menu_order ); ?>" />
+					<input class="menu-item-data-type" type="hidden" name="menu-item-type[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->type ); ?>" />
 				</div><!-- .menu-item-settings-->
 				<ul class="menu-item-transport"></ul>
 			<?php
@@ -971,7 +1037,7 @@ function tie_special_current_nav_class( $classes, $item, $args, $depth = 0 ) {
 
   if( ! empty( $current_classes ) && is_array( $current_classes ) ){
 		foreach ( $classes as $class ){
-			if( in_array( $class, $current_classes )){
+			if( in_array( $class, $current_classes ) ) {
 
 				$classes[] = 'tie-current-menu';
 				break;

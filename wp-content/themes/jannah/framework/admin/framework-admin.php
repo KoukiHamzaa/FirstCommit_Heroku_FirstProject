@@ -33,141 +33,6 @@ function tie_chnage_theme_parent_menu( $name ){
 
 
 /**
- * Theme Options tabs
- */
-add_filter( 'TieLabs/options_tab_title', 'tie_build_theme_options_tabs', 9 );
-function tie_build_theme_options_tabs(){
-
-	$settings_tabs = array(
-
-		'general' => array(
-			'icon'  => 'admin-generic',
-			'title' => esc_html__( 'General', TIELABS_TEXTDOMAIN )),
-
-		'layout' => array(
-			'icon'  => 'admin-settings',
-			'title' => esc_html__( 'Layout', TIELABS_TEXTDOMAIN )),
-
-		'header' => array(
-			'icon'	=> 'schedule',
-			'title'	=> esc_html__( 'Header', TIELABS_TEXTDOMAIN )),
-
-		'logo' => array(
-			'icon'  => 'lightbulb',
-			'title' => esc_html__( 'Logo', TIELABS_TEXTDOMAIN )),
-
-		'footer' => array(
-			'icon'  => 'editor-insertmore',
-			'title' => esc_html__( 'Footer', TIELABS_TEXTDOMAIN )),
-
-		'blocks' => array(
-			'icon'	=> 'welcome-widgets-menus',
-			'title'	=> esc_html__( 'Blocks', TIELABS_TEXTDOMAIN )),
-
-		'archives' => array(
-			'icon'	=> 'exerpt-view',
-			'title'	=> esc_html__( 'Archives', TIELABS_TEXTDOMAIN )),
-
-		'posts' => array(
-			'icon'  => 'media-text',
-			'title' => esc_html__( 'Single Post Page', TIELABS_TEXTDOMAIN )),
-
-		'post-views' => array(
-			'icon'  => 'visibility',
-			'title' => esc_html__( 'Post Views', TIELABS_TEXTDOMAIN )),
-
-		'share' => array(
-			'icon'  => 'share',
-			'title' => esc_html__( 'Share Buttons', TIELABS_TEXTDOMAIN )),
-
-		'sidebars' => array(
-			'icon'  => 'slides',
-			'title' => esc_html__( 'Sidebars', TIELABS_TEXTDOMAIN )),
-
-		'lightbox' => array(
-			'icon'  => 'format-image',
-			'title' => esc_html__( 'LightBox', TIELABS_TEXTDOMAIN )),
-
-		'e3lan' => array(
-			'icon'  => 'megaphone',
-			'title' => esc_html__( 'Advertisement', TIELABS_TEXTDOMAIN )),
-
-		'background' => array(
-			'icon'  => 'art',
-			'title' => esc_html__( 'Background', TIELABS_TEXTDOMAIN )),
-
-		'styling' => array(
-			'icon'  => 'admin-appearance',
-			'title' => esc_html__( 'Styling', TIELABS_TEXTDOMAIN )),
-
-		'typography' => array(
-			'icon'  => 'editor-italic',
-			'title' => esc_html__( 'Typography', TIELABS_TEXTDOMAIN )),
-
-		'translations' => array(
-			'icon'  => 'editor-textcolor',
-			'title' => esc_html__( 'Translations', TIELABS_TEXTDOMAIN )),
-
-		'social' => array(
-			'icon'  => 'networking',
-			'title' => esc_html__( 'Social Networks', TIELABS_TEXTDOMAIN )),
-
-		'mobile' => array(
-			'icon'  => 'smartphone',
-			'title' => esc_html__( 'Mobile', TIELABS_TEXTDOMAIN )),
-
-		'amp' => array(
-			'icon'  => 'search',
-			'title' => esc_html__( 'AMP', TIELABS_TEXTDOMAIN )),
-
-		'web-notifications' => array(
-			'icon'  => 'admin-site',
-			'title' => esc_html__( 'Web Notifications', TIELABS_TEXTDOMAIN )),
-
-		'api-keys' => array(
-			'icon'  => 'rest-api',
-			'title' => esc_html__( 'API Keys', TIELABS_TEXTDOMAIN )),
-
-		'advanced' => array(
-			'icon'  => 'admin-tools',
-			'title' => esc_html__( 'Advanced', TIELABS_TEXTDOMAIN )),
-	);
-
-	if ( TIELABS_WOOCOMMERCE_IS_ACTIVE ){
-
-		$settings_tabs['woocommerce'] = array(
-			'icon'  => 'woocommerce',
-			'title' => esc_html__( 'WooCommerce', TIELABS_TEXTDOMAIN ),
-		);
-	}
-
-
-	if ( TIELABS_BBPRESS_IS_ACTIVE ){
-
-		$settings_tabs['bbpress'] = array(
-			'icon'  => 'buddicons-bbpress-logo',
-			'title' => esc_html__( 'bbPress', TIELABS_TEXTDOMAIN ),
-		);
-	}
-
-	if ( TIELABS_BUDDYPRESS_IS_ACTIVE ){
-
-		$settings_tabs['buddypress'] = array(
-			'icon'  => 'buddicons-buddypress-logo',
-			'title' => esc_html__( 'BuddyPress', TIELABS_TEXTDOMAIN ),
-		);
-	}
-
-	$settings_tabs['backup'] = array(
-		'icon'  => 'migrate',
-		'title' => esc_html__( 'Export/Import', TIELABS_TEXTDOMAIN ),
-	);
-
-	return $settings_tabs;
-}
-
-
-/**
  * Custom Admin Bar Menus
  */
 add_action( 'admin_bar_menu', 'tie_modify_admin_bar', 40 );
@@ -177,10 +42,18 @@ function tie_modify_admin_bar( $wp_admin_bar ){
 		return;
 	}
 
+	// Icon
+	if( tie_get_option( 'white_label_menu_icon' ) ){
+		$menu_icon = '<span class="ab-icon dashicons '. tie_get_option( 'white_label_menu_icon' ) .'"></span>';
+	}
+	else{
+		$menu_icon = '<span class="ab-icon"><img src="'. TIELABS_TEMPLATE_URL .'/framework/admin/assets/images/tie.png" alt=""></span>';
+	}
+
 	// Add the main menu item
 	$wp_admin_bar->add_menu( array(
 		'id'     => 'tie-adminbar-panel',
-		'title'  => '<span class="ab-icon"><img src="'. TIELABS_TEMPLATE_URL.'/framework/admin/assets/images/tie.png" alt=""></span>' . apply_filters( 'TieLabs/theme_name', 'TieLabs' ),
+		'title'  => $menu_icon .' '. apply_filters( 'TieLabs/theme_name', 'TieLabs' ),
 		'href'   => add_query_arg( array( 'page' => 'tie-theme-options' ), admin_url( 'admin.php' ) ),
 	));
 
@@ -198,7 +71,7 @@ function tie_modify_admin_bar( $wp_admin_bar ){
 
 		$wp_admin_bar->add_menu( array(
 			'parent' => 'tie-adminbar-options',
-			'id'     => $tab_id,
+			'id'     => 'tie-theme-'.$tab_id,
 			'title'  => '<span class="dashicons-before dashicons-'. $tab_data['icon'] .'"></span> '. $tab_data['title'],
 			'href'   => add_query_arg( array( 'page' => 'tie-theme-options#tie-options-tab-'. $tab_id .'-target' ), admin_url( 'admin.php' ) ),
 		));
@@ -251,6 +124,157 @@ function tie_modify_admin_bar( $wp_admin_bar ){
 
 
 /**
+ * Theme Options tabs
+ */
+add_filter( 'TieLabs/options_tab_title', 'tie_build_theme_options_tabs', 9 );
+function tie_build_theme_options_tabs(){
+
+	$settings_tabs = array(
+
+		'dashboard' => array(
+			'icon'  => 'dashboard',
+			'title' => esc_html__( 'Dashboard', TIELABS_TEXTDOMAIN )),
+
+		'general' => array(
+			'icon'  => 'admin-generic',
+			'title' => esc_html__( 'General', TIELABS_TEXTDOMAIN )),
+
+		'layout' => array(
+			'icon'  => 'admin-settings',
+			'title' => esc_html__( 'Layout', TIELABS_TEXTDOMAIN )),
+
+		'header' => array(
+			'icon'	=> 'schedule',
+			'title'	=> esc_html__( 'Header', TIELABS_TEXTDOMAIN )),
+
+		'logo' => array(
+			'icon'  => 'lightbulb',
+			'title' => esc_html__( 'Logo', TIELABS_TEXTDOMAIN )),
+
+		'footer' => array(
+			'icon'  => 'editor-insertmore',
+			'title' => esc_html__( 'Footer', TIELABS_TEXTDOMAIN )),
+
+		'blocks' => array(
+			'icon'	=> 'welcome-widgets-menus',
+			'title'	=> esc_html__( 'Blocks', TIELABS_TEXTDOMAIN )),
+
+		'archives' => array(
+			'icon'	=> 'exerpt-view',
+			'title'	=> esc_html__( 'Archives', TIELABS_TEXTDOMAIN )),
+
+		'posts' => array(
+			'icon'  => 'media-text',
+			'title' => esc_html__( 'Single Post Page', TIELABS_TEXTDOMAIN )),
+
+		'post-views' => array(
+			'icon'  => 'visibility',
+			'title' => esc_html__( 'Post Views', TIELABS_TEXTDOMAIN )),
+
+		'share' => array(
+			'icon'  => 'share',
+			'title' => esc_html__( 'Share Buttons', TIELABS_TEXTDOMAIN )),
+
+		'sidebars' => array(
+			'icon'  => 'slides',
+			'title' => esc_html__( 'Sidebars', TIELABS_TEXTDOMAIN )),
+
+		'lightbox' => array(
+			'icon'  => 'format-image',
+			'title' => esc_html__( 'LightBox', TIELABS_TEXTDOMAIN )),
+
+		'page-404' => array(
+			'icon'  => 'info',
+			'title' => esc_html__( '404 Page', TIELABS_TEXTDOMAIN )),
+
+		'e3lan' => array(
+			'icon'  => 'megaphone',
+			'title' => esc_html__( 'Advertisement', TIELABS_TEXTDOMAIN )),
+
+		'background' => array(
+			'icon'  => 'art',
+			'title' => esc_html__( 'Background', TIELABS_TEXTDOMAIN )),
+
+		'styling' => array(
+			'icon'  => 'admin-appearance',
+			'title' => esc_html__( 'Styling', TIELABS_TEXTDOMAIN )),
+
+		'typography' => array(
+			'icon'  => 'editor-italic',
+			'title' => esc_html__( 'Typography', TIELABS_TEXTDOMAIN )),
+
+		'translations' => array(
+			'icon'  => 'editor-textcolor',
+			'title' => esc_html__( 'Translations', TIELABS_TEXTDOMAIN )),
+
+		'social' => array(
+			'icon'  => 'networking',
+			'title' => esc_html__( 'Social Networks', TIELABS_TEXTDOMAIN )),
+
+		'mobile' => array(
+			'icon'  => 'smartphone',
+			'title' => esc_html__( 'Mobile', TIELABS_TEXTDOMAIN )),
+
+		'amp' => array(
+			'icon'  => 'search',
+			'title' => esc_html__( 'AMP', TIELABS_TEXTDOMAIN )),
+
+		'web-notifications' => array(
+			'icon'  => 'admin-site',
+			'title' => esc_html__( 'Web Notifications', TIELABS_TEXTDOMAIN )),
+
+		'integrations' => array(
+			'icon'  => 'admin-network',
+			'title' => esc_html__( 'Integrations', TIELABS_TEXTDOMAIN )),
+
+		'images' => array(
+			'icon'  => 'format-image',
+			'title' => esc_html__( 'Images', TIELABS_TEXTDOMAIN )),
+
+		'white-label' => array(
+			'icon'  => 'hidden',
+			'title' => esc_html__( 'White Label', TIELABS_TEXTDOMAIN )),
+
+		'advanced' => array(
+			'icon'  => 'admin-tools',
+			'title' => esc_html__( 'Advanced', TIELABS_TEXTDOMAIN )),
+	);
+
+	if ( TIELABS_WOOCOMMERCE_IS_ACTIVE ){
+
+		$settings_tabs['woocommerce'] = array(
+			'icon'  => 'woocommerce',
+			'title' => esc_html__( 'WooCommerce', TIELABS_TEXTDOMAIN ),
+		);
+	}
+
+
+	if ( TIELABS_BBPRESS_IS_ACTIVE ){
+
+		$settings_tabs['bbpress'] = array(
+			'icon'  => 'buddicons-bbpress-logo',
+			'title' => esc_html__( 'bbPress', TIELABS_TEXTDOMAIN ),
+		);
+	}
+
+	if ( TIELABS_BUDDYPRESS_IS_ACTIVE ){
+
+		$settings_tabs['buddypress'] = array(
+			'icon'  => 'buddicons-buddypress-logo',
+			'title' => esc_html__( 'BuddyPress', TIELABS_TEXTDOMAIN ),
+		);
+	}
+
+	$settings_tabs['backup'] = array(
+		'icon'  => 'migrate',
+		'title' => esc_html__( 'Export/Import', TIELABS_TEXTDOMAIN ),
+	);
+
+	return $settings_tabs;
+}
+
+
+/**
  * Get theme purchase link
 */
 function tie_get_purchase_link( $utm_data = array() ){
@@ -269,7 +293,7 @@ function tie_get_purchase_link( $utm_data = array() ){
 
 
 /**
- * Rturn if current page is not ADMIN
+ * Return if current page is not ADMIN
 	*/
 if( ! is_admin() ){
 	return;
@@ -309,10 +333,16 @@ function tie_admin_enqueue_scripts(){
 
 	// Enqueue dashboard scripts and styles
 	$ver = time(); // Avoid browser cache for admins
-	wp_enqueue_script( 'tie-admin-scripts', TIELABS_TEMPLATE_URL.'/framework/admin/assets/tie.js', array( 'jquery', 'jquery-ui-sortable', 'jquery-ui-draggable', 'wp-color-picker' ), $ver, false );
-	wp_enqueue_style ( 'tie-admin-style',   TIELABS_TEMPLATE_URL.'/framework/admin/assets/style.css', array(), $ver, 'all' );
-	wp_enqueue_style ( 'tie-fontawesome',   TIELABS_TEMPLATE_URL.'/assets/fonts/fontawesome/font-awesome.min.css', array(), $ver, 'all' );
-  wp_enqueue_style ( 'wp-color-picker' );
+	wp_enqueue_script( 'tie-admin-scripts', TIELABS_TEMPLATE_URL.'/framework/admin/assets/tie.js',    array( 'jquery', 'jquery-ui-sortable', 'jquery-ui-draggable', 'wp-color-picker' ), $ver, false );
+
+	wp_register_style( 'tie-admin-style',    TIELABS_TEMPLATE_URL.'/framework/admin/assets/style.css', array(), $ver, 'all' );
+
+	// Font Awesome CSS file
+	wp_register_style( 'tie-fontawesome', TIELABS_TEMPLATE_URL.'/assets/fonts/fontawesome/font-awesome.css', array(), $ver, 'all' );
+
+	wp_enqueue_style( 'tie-admin-style' );
+	wp_enqueue_style( 'tie-fontawesome' );
+	wp_enqueue_style( 'wp-color-picker' );
 
 	$localize = array(
 		'update' => esc_html__( 'Update', TIELABS_TEXTDOMAIN ),
@@ -321,11 +351,9 @@ function tie_admin_enqueue_scripts(){
 	wp_localize_script( 'tie-admin-scripts', 'tieLang', $localize );
 
 
-	// The Insert Post Ads plugin uses Chart.js library which causes conflict with the Iris color picker used by WordPress https://github.com/chartjs/Chart.js/issues/3168
-	if( class_exists( 'InsertPostAds' ) ){
-		wp_dequeue_script( 'insert-post-adschart-admin' );
-	}
-
+	// Avoid JS conflicts with some plugins
+	wp_dequeue_script( 'insert-post-adschart-admin' );  // Insert Post Ads plugin | Chart.js library which causes conflict with the Iris color picker used by WordPress https://github.com/chartjs/Chart.js/issues/3168
+	wp_dequeue_script( 'buy_sell_ads_pro_admin_jquery_ui_js_script' ); // ADS PRO – Multi-Purpose WordPress Ad Manager plugin
 }
 
 
@@ -396,10 +424,14 @@ function tie_admin_code_editor(){
 			'banner_below_content_adsense' => 'text/html',
 			'between_posts_1_adsense'      => 'text/html',
 			'between_posts_2_adsense'      => 'text/html',
+			'banner_comments_adsense'      => 'text/html',
 
 			// Inline Article Ads
 			'article_inline_ad_1_adsense' => 'text/html',
 			'article_inline_ad_2_adsense' => 'text/html',
+			'article_inline_ad_3_adsense' => 'text/html',
+			'article_inline_ad_4_adsense' => 'text/html',
+			'article_inline_ad_5_adsense' => 'text/html',
 
 			// Category Ads
 			'banner_category_below_slider_adsense'     => 'text/html',
@@ -416,10 +448,13 @@ function tie_admin_code_editor(){
 			'ads5_shortcode' => 'text/html',
 
 			// AMP
-			'amp_ad_above'        => 'text/html',
-			'amp_ad_below'        => 'text/html',
-			'amp_ad_below_header' => 'text/html',
-			'amp_ad_above_footer' => 'text/html',
+			'amp_header_code'      => 'text/html',
+			'amp_body_code'        => 'text/html',
+			'amp_footer_copyright' => 'text/html',
+			'amp_ad_above'         => 'text/html',
+			'amp_ad_below'         => 'text/html',
+			'amp_ad_below_header'  => 'text/html',
+			'amp_ad_above_footer'  => 'text/html',
 
 			// CSS
 			'css'         => 'text/css',
@@ -559,13 +594,15 @@ function tie_default_theme_settings(){
 			'copyright_area'                    => 'true',
 			'footer_top'                        => 'true',
 			'footer_social'                     => 'true',
-			'footer_one'                        => sprintf( esc_html__( '%1$s Copyright %2$s, All Rights Reserved &nbsp;|&nbsp; %3$s Theme by %4$s', TIELABS_TEXTDOMAIN ), '&copy;', '%year%', '<span style="color:red;" class="fa fa-heart"></span> <a href="'. apply_filters( 'TieLabs/External/theme_footer', '' ) .'" target="_blank" rel="nofollow noopener">'. apply_filters( 'TieLabs/theme_name', 'TieLabs' ), 'TieLabs</a>'  ),
+			'footer_one'                        => sprintf( esc_html__( '%1$s Copyright %2$s, All Rights Reserved &nbsp;|&nbsp; %3$s Theme by %4$s', TIELABS_TEXTDOMAIN ), '&copy;', '%year%', '<span style="color:red;" class="tie-icon-heart"></span> <a href="'. apply_filters( 'TieLabs/External/theme_footer', '' ) .'" target="_blank" rel="nofollow noopener">'. apply_filters( 'TieLabs/theme_name', 'TieLabs' ), 'TieLabs</a>' ),
 
 			// Mobile
 			'mobile_header'                     => 'default',
 			'stick_mobile_nav'                  => 'true',
 			'sticky_mobile_behavior'            => 'default',
-			'mobile_menu_active'                => 'true',
+			'mobile_header_components_menu'     => 'area_1',
+			'mobile_header_components_search'   => 'area_2',
+			'mobile_menu_icon'                  => 1,
 			'mobile_menu_layout'                => 'fullwidth',
 			'mobile_menu_search'                => 'true',
 			'mobile_menu_social'                => 'true',
@@ -574,113 +611,139 @@ function tie_default_theme_settings(){
 			'share_facebook_mobile'             => 'true',
 			'share_whatsapp_mobile'             => 'true',
 			'share_telegram_mobile'             => 'true',
+			'mobile_post_show_more'             => false,
 
 			// Aechives
 			'trim_type'                         => 'words',
 
-			'blog_display'                      => 'excerpt',
-			'blog_excerpt_length'               => 20,
-			'blog_pagination'                   => 'next-prev',
+			'blog_display'        => 'excerpt',
+			'blog_excerpt_length' => 20,
+			'blog_pagination'     => 'next-prev',
+			'blog_excerpt'        => 'true',
+			'blog_read_more'      => 'true',
 
-			'category_display'                  => 'excerpt',
-			'category_excerpt_length'           => 20,
-			'category_pagination'               => 'next-prev',
+			'category_desc'           => 'true',
+			'category_display'        => 'excerpt',
+			'category_excerpt_length' => 20,
+			'category_pagination'     => 'next-prev',
+			'category_excerpt'        => 'true',
+			'category_read_more'      => 'true',
 
-			'tag_display'                       => 'excerpt',
-			'tag_excerpt_length'                => 20,
-			'tag_pagination'                    => 'next-prev',
+			'tag_desc'           => 'true',
+			'tag_display'        => 'excerpt',
+			'tag_excerpt_length' => 20,
+			'tag_pagination'     => 'next-prev',
+			'tag_excerpt'        => 'true',
+			'tag_read_more'      => 'true',
 
-			'author_excerpt_length'             => 20,
-			'search_excerpt_length'             => 20,
-			'tag_desc'                          => 'true',
-			'category_desc'                     => 'true',
-			'author_bio'                        => 'true',
-			'search_exclude_post_types'         => array( 'page' ),
+			'author_bio'            => 'true',
+			'author_excerpt_length' => 20,
+			'author_excerpt'        => 'true',
+			'author_read_more'      => 'true',
+
+			'search_excerpt'            => 'true',
+			'search_read_more'          => 'true',
+			'search_excerpt_length'     => 20,
+			'search_exclude_post_types' => array( 'page' ),
+
+			// 404
+			'page_404_search' => 'true',
+			'page_404_menu'   => 'true',
 
 			// Single post layout
-			'post_layout'                       => 1,
-			'post_featured'                     => 'true',
-			'sticky_featured_video'             => 'true',
-			'image_lightbox'                    => 'true',
-			'post_og_cards'                     => 'true',
-			'post_meta_escription'              => 'true',
-			'reading_indicator'                 => 'true',
-			'post_authorbio'                    => 'true',
-			'post_cats'                         => 'true',
-			'post_tags'                         => 'true',
-			'post_meta'                         => 'true',
-			'post_author'                       => 'true',
-			'post_author_avatar'                => 'true',
-			'post_date'                         => 'true',
-			'post_comments'                     => 'true',
-			'post_views'                        => 'true',
-			'reading_time'                      => 'true',
-			'responsive_tables'                 => 'true',
-			'post_newsletter_text'              => '
+			'post_layout'           => 1,
+			'post_featured'         => 'true',
+			'sticky_featured_video' => 'true',
+			'image_lightbox'        => 'true',
+			'post_og_cards'         => 'true',
+			'post_meta_escription'  => 'true',
+			'reading_indicator'     => 'true',
+			'post_authorbio'        => 'true',
+			'post_cats'             => 'true',
+			'post_tags'             => 'true',
+			'post_meta'             => 'true',
+			'post_author'           => 'true',
+			'post_author_avatar'    => 'true',
+			'post_date'             => 'true',
+			'post_comments'         => 'true',
+			'post_views'            => 'true',
+			'reading_time'          => 'true',
+			'responsive_tables'     => 'true',
+
+			'post_newsletter_text'  => '
 <h4>With Product You Purchase</h4>
 <h3>Subscribe to our mailing list to get the new updates!</h3>
 <p>Lorem ipsum dolor sit amet, consectetur.</p>',
-			'related'                           => 'true',
-			'related_position'                  => 'post',
-			'related_number'                    => 3,
-			'related_number_full'               => 4,
-			'related_query'                     => 'category',
-			'related_order'                     => 'rand',
-			'check_also'                        => 'true',
-			'check_also_position'               => 'right',
-			'check_also_number'                 => 1,
-			'check_also_query'                  => 'category',
-			'check_also_order'                  => 'rand',
+
+			'related'             => 'true',
+			'related_position'    => 'post',
+			'related_number'      => 3,
+			'related_number_full' => 4,
+			'related_query'       => 'category',
+			'related_order'       => 'rand',
+
+			'check_also'          => 'true',
+			'check_also_position' => 'right',
+			'check_also_number'   => 1,
+			'check_also_query'    => 'category',
+			'check_also_order'    => 'rand',
 
 			// Post Views
-			'tie_post_views'                    => 'theme',
-			'views_meta_field'                  => 'tie_views',
-			'views_colored'                     => 'true',
-			'views_warm_color'                  => 500,
-			'views_hot_color'                   => 2000,
-			'views_veryhot_color'               => 5000,
+			'tie_post_views'       => 'theme',
+			'views_meta_field'     => 'tie_views',
+			'views_colored'        => 'true',
+			'views_warm_color'     => 500,
+			'views_hot_color'      => 2000,
+			'views_veryhot_color'  => 5000,
 
 			// Share Posts
-			'select_share'                      => 'true',
+			'select_share'       => 'true',
 
-			'share_style_top'                   => 'style_3',
-			'share_center_top'                  => 'true',
-			'share_twitter_top'                 => 'true',
-			'share_facebook_top'                => 'true',
-			'share_linkedin_top'                => 'true',
+			'share_style_top'    => 'style_3',
+			'share_center_top'   => 'true',
+			'share_twitter_top'  => 'true',
+			'share_facebook_top' => 'true',
+			'share_linkedin_top' => 'true',
 
-			'share_post_bottom'                 => 'true',
-			'share_twitter'                     => 'true',
-			'share_facebook'                    => 'true',
-			'share_linkedin'                    => 'true',
-			'share_pinterest'                   => 'true',
-			'share_reddit'                      => 'true',
-			'share_tumblr'                      => 'true',
-			'share_vk'                          => 'true',
-			'share_email'                       => 'true',
-			'share_print'                       => 'true',
+			'share_post_bottom' => 'true',
+			'share_twitter'     => 'true',
+			'share_facebook'    => 'true',
+			'share_linkedin'    => 'true',
+			'share_pinterest'   => 'true',
+			'share_reddit'      => 'true',
+			'share_tumblr'      => 'true',
+			'share_vk'          => 'true',
+			'share_email'       => 'true',
+			'share_print'       => 'true',
 
 			// Sidebar
-			'widgets_icon'                      => 'true',
-			'sidebar_pos'                       => 'right',
-			'sticky_sidebar'                    => 'true',
+			'widgets_icon'   => 'true',
+			'sidebar_pos'    => 'right',
+			'sticky_sidebar' => 'true',
 
 			// LightBox
-			'lightbox_all'                      => 'true',
-			'lightbox_gallery'                  => 'true',
-			'lightbox_skin'                     => 'dark',
-			'lightbox_thumbs'                   => 'horizontal',
-			'lightbox_arrows'                   => 'true',
+			'lightbox_all'     => 'true',
+			'lightbox_gallery' => 'true',
+			'lightbox_skin'    => 'dark',
+			'lightbox_thumbs'  => 'horizontal',
+			'lightbox_arrows'  => 'true',
+
+			// 404 Page
+			'page_404_search' => 'true',
+			'page_404_menu'   => 'true',
+
 
 			// Background
-			'background_pattern'                => 'body-bg1',
-			'background_dimmer_color'           => 'black',
+			'background_pattern'      => 'body-bg1',
+			'background_dimmer_color' => 'black',
 
 			// Styling
-			'inline_css'                        => 'true',
+			'inline_css' => 'true',
 
 			// AMP
-			'amp_active'                        => 'true',
+			'amp_active'      => 'true',
+			'amp_author_meta' => 'true',
+			'amp_date_meta'   => 'true',
 		)
 	);
 
@@ -713,42 +776,29 @@ function tie_default_theme_settings(){
 /*-----------------------------------------------------------------------------------*/
 # Add user's social accounts
 /*-----------------------------------------------------------------------------------*/
-add_action( 'show_user_profile', 'tie_user_profile_custom_options' );
-add_action( 'edit_user_profile', 'tie_user_profile_custom_options' );
+add_action( 'show_user_profile', 'tie_user_profile_custom_options', 1 );
+add_action( 'edit_user_profile', 'tie_user_profile_custom_options', 1 );
 function tie_user_profile_custom_options( $user ){ ?>
 
-	<h3><?php esc_html_e( 'Custom Author widget', TIELABS_TEXTDOMAIN ) ?></h3>
-	<table class="form-table">
-		<tr>
-			<th><label for="author_widget_content"><?php esc_html_e( 'Custom Author widget content', TIELABS_TEXTDOMAIN ) ?></label></th>
-			<td>
-				<textarea name="author_widget_content" id="author_widget_content" rows="5" cols="30"><?php echo esc_textarea( get_the_author_meta( 'author_widget_content', $user->ID ) ); ?></textarea>
-				<br /><span class="description"><?php esc_html_e( 'Supports: Text, HTML and Shortcodes.', TIELABS_TEXTDOMAIN ) ?></span>
-			</td>
-		</tr>
-	</table>
+	<br />
+	<div class="tie-block-head"><?php echo apply_filters( 'TieLabs/theme_name', 'TieLabs' ) ?> - <?php esc_html_e( 'Custom Author widget', TIELABS_TEXTDOMAIN ) ?></div>
+	<div class="option-item">
+		<label class="tie-label" for="author_widget_content"><?php esc_html_e( 'Custom Author widget content', TIELABS_TEXTDOMAIN ) ?></label>
+		<textarea name="author_widget_content" id="author_widget_content" rows="5" cols="30"><?php echo esc_textarea( get_the_author_meta( 'author_widget_content', $user->ID ) ); ?></textarea>
+		<span class="extra-text"><?php esc_html_e( 'Supports: Text, HTML and Shortcodes.', TIELABS_TEXTDOMAIN ) ?></span>
+	</div>
 
-	<h3><?php esc_html_e( 'Social Networks', TIELABS_TEXTDOMAIN ) ?></h3>
-	<table class="form-table">
-
-		<?php
-
-			$author_social = tie_author_social_array();
-
-			foreach ( $author_social as $network => $button ){ ?>
-
-				<tr>
-					<th><label for="<?php echo esc_attr( $network ) ?>"><?php echo esc_html( $button['text'] ) ?></label></th>
-					<td>
-						<input type="text" name="<?php echo esc_attr( $network ) ?>" id="<?php echo esc_attr( $network ) ?>" value="<?php echo esc_attr( get_the_author_meta( $network, $user->ID )); ?>" class="regular-text" /><br />
-					</td>
-				</tr>
-
-				<?php
-			}
-		?>
-	</table>
+	<br />
+	<div class="tie-block-head"><?php echo apply_filters( 'TieLabs/theme_name', 'TieLabs' ) ?> - <?php esc_html_e( 'Social Networks', TIELABS_TEXTDOMAIN ) ?></div>
 	<?php
+		$author_social = tie_author_social_array();
+		foreach ( $author_social as $network => $button ){ ?>
+			<div class="option-item">
+				<label class="tie-label" for="<?php echo esc_attr( $network ) ?>"><?php echo esc_html( $button['text'] ) ?></label>
+				<input type="text" name="<?php echo esc_attr( $network ) ?>" id="<?php echo esc_attr( $network ) ?>" value="<?php echo esc_attr( get_the_author_meta( $network, $user->ID )); ?>" />
+			</div>
+			<?php
+		}
 }
 
 
@@ -763,13 +813,13 @@ function tie_save_user_profile_custom_options( $user_id ){
 		return false;
 	}
 
-	update_user_meta( $user_id, 'author_widget_content', $_POST['author_widget_content'] );
+	update_user_meta( $user_id, 'author_widget_content', wp_kses_post( $_POST['author_widget_content'] ) );
 
 	// Save the social networks
 	$author_social = tie_author_social_array();
 
 	foreach ( $author_social as $network => $button ){
-		update_user_meta( $user_id, $network, $_POST[ $network ] );
+		update_user_meta( $user_id, $network, wp_kses_post( $_POST[ $network ] ) );
 	}
 }
 
@@ -779,78 +829,226 @@ function tie_save_user_profile_custom_options( $user_id ){
 /*-----------------------------------------------------------------------------------*/
 function tie_get_latest_theme_data( $key = '', $token = false, $force_update = false, $update_files = false, $revoke = false ){
 
-	# Options and vars
-	$cache_field     = 'tie-data-'.TIELABS_THEME_SLUG;
-	$plugins_field   = 'tie-plugins-data-'.TIELABS_THEME_SLUG;
-	$token_key       = 'tie_token_'.TIELABS_THEME_ID;
-	$token_error_key = 'tie_token_error_'.TIELABS_THEME_ID;
-
-
-	if( $update_files && ! get_transient( $plugins_field ) ){
-		delete_transient( $cache_field );
+	// Check the current user role
+	if( ! function_exists( 'current_user_can' ) || ( function_exists( 'current_user_can' ) && ! current_user_can( 'manage_options' ) ) ){
+		return false;
 	}
 
-	# Use the given $token and force update the TieLabs data from Envato ----------
+	$cache_key        = 'tie-data-'.TIELABS_THEME_SLUG;
+	$plugins_field    = 'tie-plugins-data-'.TIELABS_THEME_SLUG;
+	$token_key        = 'tie_token_'.TIELABS_THEME_ID;
+	$token_error_key  = 'tie_token_error_'.TIELABS_THEME_ID;
+	$server_error_key = 'tie_server_error_'.TIELABS_THEME_ID;
+
+	$request_url      = 'https://tielabs.com/wp-json/api/v1/get';
+
+	// Stored Cache
+	$cached_data = get_option( $cache_key );
+
+	// Update Plugins Paths
+	if( $update_files && ! get_transient( $plugins_field ) ){
+		$update = true;
+	}
+
+	// Use the given $token and force update the TieLabs data from Envato
 	if( $token !== false ){
-		delete_transient( $cache_field );
+
+		$update       = true;
 		$force_update = true;
 		$update_files = true;
+
+		delete_option( $token_error_key );
+		delete_transient( $server_error_key );
 	}
-	# Get data by the stored token ----------
+
+	// Revoke the theme
+	elseif( $revoke !== false || $force_update !== false ){
+
+		$token = get_option( $token_key );
+
+		// --
+		$update = true;
+		delete_option( $token_error_key );
+		delete_transient( $server_error_key );
+	}
+
+	// Get data by the stored token
 	else{
-		$cached_data = get_transient( $cache_field );
+
+		// No cached data
+		if( empty( $cached_data ) ){
+			$update = true;
+		}
+
+		// Check if cache is expired
+		else{
+			$timeout = get_option( $cache_key.'_timeout' );
+
+			 if ( false === $timeout || ( false !== $timeout && $timeout < time() ) ) {
+				$update = true;
+			}
+		}
+
+		// API Token
 		$token = get_option( $token_key );
 	}
 
-	# Get the Cached data ----------
-	if( empty( $cached_data ) && ! empty( $token )){
-		$latest_data_filename = get_template_directory().'/framework/admin/latest-theme-data.json';
-		$cached_data = file_get_contents( $latest_data_filename );
-		$cached_data = json_decode( $cached_data, true );
+	// debug
+	//$update = true;
+	//delete_transient( $server_error_key );
+	//delete_option( $token_error_key );
 
+	// We need to update the data, Get the Cached data
+	if( isset( $update ) && ! empty( $token ) && ! get_option( $token_error_key ) && ! get_transient( $server_error_key ) ){
 
-		if( ! empty( $cached_data['status'] ) && $cached_data['status'] == 1 ){
+		$body = array(
+			'tie_token'      => $token,
+			'item_id'        => TIELABS_THEME_ID,
+			'force_update'   => $force_update,
+			'update_files'   => $update_files,
+			'revoke_theme'   => $revoke,
+			'theme_version'  => TIELABS_DB_VERSION,
+			'blog_url'       => esc_url( home_url( '/' ) ),
+			'php_version'    => phpversion(),
+			'local'          => get_locale(),
+			'wp_version'     => get_bloginfo( 'version' ),
+			'demo_installed' => get_option( 'tie_installed_demo_'. TIELABS_THEME_ID ),
+			'is_switched'    => get_option( 'tie_switch_to_'. TIELABS_THEME_ID ),
+			'active_plugins' => get_option( 'active_plugins' ),
+		);
 
-			delete_option( $token_error_key );
+		// Social
+		if( function_exists( 'arq_counters_data' ) ) {
+			$arq_counters = arq_counters_data();
+		}
+		elseif( class_exists( 'ARQAM_LITE_COUNTERS' ) ) {
+			$counters = new ARQAM_LITE_COUNTERS();
+			$arq_counters = $counters->counters_data();
+		}
 
-			set_transient( $cache_field, $cached_data, 24 * HOUR_IN_SECONDS );
-			update_option( $token_key, $token );
+		if( ! empty( $arq_counters ) && is_array( $arq_counters ) ){
 
-			delete_transient( $plugins_field ); // to re-fresh the Plugins stored cache
+			unset( $arq_counters['rss'] );
+			unset( $arq_counters['posts'] );
+			unset( $arq_counters['comments'] );
+			unset( $arq_counters['members'] );
+			unset( $arq_counters['groups'] );
+			unset( $arq_counters['forums'] );
+			unset( $arq_counters['topics'] );
+			unset( $arq_counters['replies'] );
 
-			if( $update_files ){
-				set_transient( $plugins_field, 'true', HOUR_IN_SECONDS );
+			foreach ( $arq_counters as $social_key => $values ) {
+				unset( $arq_counters[ $social_key ]['text'] );
+				unset( $arq_counters[ $social_key ]['icon'] );
+			}
+
+			if( ! empty( $arq_counters ) && is_array( $arq_counters ) ){
+				$body['social'] = $arq_counters;
 			}
 		}
 		else{
 
-			if( isset( $cached_data['status'] ) && $cached_data['status'] == 0 ){
-				update_option( $token_error_key, $cached_data['error'] );
-
-				delete_option( $token_key );
-				delete_transient( $cache_field );
+			$social = tie_get_option( 'social' );
+			if( ! empty( $social ) && is_array( $social ) ){
+				$body['social'] = $social;
 			}
 		}
-	}
 
-	// Debug
-	//var_dump( $cached_data );
+		// Prepare the remote post
+		$response = wp_remote_post( $request_url, array(
+			'headers' => array(
+				'User-Agent' => 'wp/' . get_bloginfo( 'version' ) . ' ; ' . get_bloginfo( 'url' ) . ' ; ' . TIELABS_THEME_ID . ' ; ' . TIELABS_DB_VERSION . ' ; '. md5( $token ). ' ; '. $key,
+			),
+			'body' => apply_filters( 'TieLabs/api_connect_body', $body ),
+			//'sslverify' => false,
+			'timeout'   => 15,
+		));
 
-	# return the data ----------
-	if( ! empty( $cached_data )){
+		// Check Response for errors
+		$response_code    = wp_remote_retrieve_response_code( $response );
+		$response_message = wp_remote_retrieve_response_message( $response );
 
-		if( ! empty( $key ) ){
-			if( ! empty( $cached_data[ $key ] )){
-				return $cached_data[ $key ];
+		if ( is_wp_error( $response ) ){
+			$is_error = true;
+			$response_message = $response->get_error_message();
+		}
+		elseif ( ! empty( $response->errors ) && isset( $response->errors['http_request_failed'] ) ) {
+			$is_error = true;
+			$response_message = esc_html( current( $response->errors['http_request_failed'] ) );
+		}
+		elseif ( 200 !== $response_code ){
+			$is_error = true;
+
+			if( empty( $response_message ) ) {
+				$response_message = 'Connection Error';
 			}
+		}
+
+		// Check if it is a valid response
+		if ( isset( $is_error ) ){
+			tie_debug_log( $response_message, true );
+			set_transient( $server_error_key, $response_message, 12 * HOUR_IN_SECONDS );
 		}
 		else{
-			return $cached_data;
+
+			$cached_data = wp_remote_retrieve_body( $response );
+			$cached_data = json_decode( $cached_data, true );
+
+			//echo '<pre>';
+			//var_dump( $cached_data );
+			//echo '</pre>';
+
+			if( ! empty( $cached_data['status'] ) && $cached_data['status'] == 1 ){
+
+				// Delete Stored Errors
+				delete_option( $token_error_key );
+
+				// Update Cached data
+				$cache_period = ( ! empty( $cached_data['cache_period'] ) && is_numeric( $cached_data['cache_period'] ) ) ? (int) $cached_data['cache_period'] : 24;
+				$cache_period = ( is_integer( $cache_period ) && $cache_period > 4 ) ? $cache_period : 24;
+				$expiration   = $cache_period * HOUR_IN_SECONDS;
+
+				update_option( $cache_key .'_timeout', time() + $expiration );
+				update_option( $cache_key, $cached_data, false );
+				update_option( $token_key, $token, false );
+
+				if( $update_files ){
+					set_transient( $plugins_field, 'true', $expiration );
+				}
+				else{
+					delete_transient( $plugins_field ); // to re-fresh the Plugins stored cache
+				}
+
+				// Use this action to run functions after updating the theme data
+			  do_action( 'TieLabs/after_theme_data_update' );
+			}
+			else{
+
+				if( isset( $cached_data['status'] ) && $cached_data['status'] == 0 ){
+					update_option( $token_error_key, $cached_data['error'], false );
+
+					delete_option( $token_key );
+					delete_option( $cache_key );
+				}
+			}
 		}
+
 	}
 
+	// Return the data
+	if( empty( $cached_data ) ){
+		return false;
+	}
 
-	return false;
+	if( ! empty( $key ) ){
+		if( ! empty( $cached_data[ $key ] ) ){
+			return $cached_data[ $key ];
+		}
+
+		return false;
+	}
+
+	return $cached_data;
 }
 
 
@@ -956,7 +1154,7 @@ function tie_welcome_splash_content(){
 	</div>
 
 	<div class="has-3-columns is-fullwidth">
-		<div class="col column">
+		<div class="col column tie-info-col">
 			<h3><span class="dashicons dashicons-sos"></span> <?php esc_html_e( 'Submit a Ticket', TIELABS_TEXTDOMAIN ); ?></h3>
 			<p><?php esc_html_e( 'Need one-to-one assistance? Get in touch with our Support team.', TIELABS_TEXTDOMAIN ); ?></p>
 
@@ -977,19 +1175,19 @@ function tie_welcome_splash_content(){
 				}
 				else{
 
-					echo '<p style="font-weight:bold; color: red;">'. esc_html__( 'You need to validated your license to access the support system.', TIELABS_TEXTDOMAIN ) .'</p>';
+					echo '<p style="font-weight:bold; color: red;">'. esc_html__( 'You need to validate your license to access the support system.', TIELABS_TEXTDOMAIN ) .'</p>';
 				}
 
 			?>
 		</div>
 
-		<div class="col column">
+		<div class="col column tie-info-col">
 			<h3><span class="dashicons dashicons-book"></span> <?php esc_html_e( 'Knowledge Base', TIELABS_TEXTDOMAIN ); ?></h3>
 			<p><?php esc_html_e( 'This is the place to go to reference different aspects of the theme.', TIELABS_TEXTDOMAIN ); ?></p>
 			<a target="_blank" class="button button-primary button-hero" href="<?php echo apply_filters( 'TieLabs/External/knowledge_base', '' ); ?>"><?php esc_html_e( 'Browse the Knowledge Base', TIELABS_TEXTDOMAIN ); ?></a>
 		</div>
 
-		<div class="col column">
+		<div class="col column tie-info-col">
 			<h3><span class="dashicons dashicons-info"></span> <?php esc_html_e( 'Troubleshooting', TIELABS_TEXTDOMAIN ); ?></h3>
 			<p><?php esc_html_e( 'If something is not working as expected, Please try these common solutions.', TIELABS_TEXTDOMAIN ); ?></p>
 			<a target="_blank" class="button button-primary button-hero" href="<?php echo apply_filters( 'TieLabs/External/troubleshooting', '' ); ?>"><?php esc_html_e( 'Visit The Page', TIELABS_TEXTDOMAIN ); ?></a>
@@ -1002,11 +1200,11 @@ function tie_welcome_splash_content(){
 		<li class="follow-tielabs-fb">
 			<div id="fb-root"></div>
 			<script>(function(d, s, id) {
-			  var js, fjs = d.getElementsByTagName(s)[0];
-			  if (d.getElementById(id)) return;
-			  js = d.createElement(s); js.id = id;
-			  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9&appId=280065775530401";
-			  fjs.parentNode.insertBefore(js, fjs);
+				var js, fjs = d.getElementsByTagName(s)[0];
+				if (d.getElementById(id)) return;
+				js = d.createElement(s); js.id = id;
+				js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9&appId=280065775530401";
+				fjs.parentNode.insertBefore(js, fjs);
 			}(document, 'script', 'facebook-jssdk'));</script>
 			<div class="fb-like" data-href="https://facebook.com/tielabs" data-layout="button_count" data-action="like" data-size="large" data-show-faces="false" data-share="false"></div>
 		</li>
@@ -1029,8 +1227,9 @@ function tie_get_support_period_info(){
 	$support_info    = array();
 	$today_date      = time();
 	$supported_until = tie_get_latest_theme_data( 'supported_until' );
-	$supported_until = strtotime( $supported_until );
+	$supported_until = strtotime( '+1200 days' );
 	$support_time    = date( 'F j, Y', $supported_until );
+	$support_info['status'] = 'active';
 
 	// The support is active
 	if( $supported_until >= $today_date ){

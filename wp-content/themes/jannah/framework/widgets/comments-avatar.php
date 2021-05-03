@@ -1,6 +1,6 @@
 <?php
 
-if( ! class_exists( 'TIE_COMMENTS_AVATAR' )){
+if( ! class_exists( 'TIE_COMMENTS_AVATAR' ) ) {
 
 	/**
 	 * Widget API: TIE_COMMENTS_AVATAR class

@@ -1,6 +1,5 @@
-// Block Heads -------------------------------------------------
 
-// blocks title style #1
+// blocks title style #1 -----------------------------------
 .block-head-1{
 	.the-global-title,
 	.comment-reply-title,
@@ -80,7 +79,7 @@
 }
 
 
-// blocks title style #2
+// blocks title style #2 -----------------------------------
 .block-head-2{
 	.the-global-title,
 	.comment-reply-title,
@@ -113,7 +112,7 @@
 }
 
 
-// blocks title style #3
+// blocks title style #3 -----------------------------------
 .block-head-3{
 	.the-global-title,
 	.comment-reply-title,
@@ -218,7 +217,7 @@
 }
 
 
-// blocks title style #4
+// blocks title style #4 -----------------------------------
 .block-head-4{
 	.has-block-head-4,
 	.mag-box-title h3,
@@ -333,7 +332,7 @@
 }
 
 
-// blocks title style #5
+// blocks title style #5 -----------------------------------
 // used with block-head-4
 .block-head-5{
 	.has-block-head-4,
@@ -489,7 +488,7 @@
 }
 
 
-// blocks title style #8
+// blocks title style #8 -----------------------------------
 .block-head-8{
 	.the-global-title,
 	.comment-reply-title,
@@ -539,6 +538,176 @@
 }
 
 
+// blocks title style #9 -----------------------------------
+.block-head-9{
+	.the-global-title,
+	.comment-reply-title,
+	.related.products > h2,
+	.up-sells > h2,
+	.cross-sells > h2,
+	.cart_totals > h2,
+	.bbp-form legend{
+		margin-bottom: 25px;
+
+		.dark-skin &{
+			color: #ffffff;
+		}
+	}
+
+	.the-subtitle{
+		text-align: center;
+		justify-content: center;
+		display: flex;
+		flex-direction: row-reverse;
+
+		.widget-title-icon{
+			position: relative;
+			padding-right: 5px;
+			color: inherit;
+		}
+	}
+
+	.mag-box-title h3{
+		line-height: 22px;
+	}
+}
+
+
+// blocks title style 10
+.block-head-10{
+	.has-block-head-4,
+	.mag-box-title h3,
+	.comment-reply-title, // WooCommerce
+	.related.products > h2,
+	.up-sells > h2,
+	.cross-sells > h2,
+	.cart_totals > h2,
+	.bbp-form legend{
+		position: relative;
+		opacity: 0.99;
+		display: inline-block !important;
+		width: auto;
+		font-size: 15px;
+		line-height: 1;
+		font-weight: 500;
+		margin-bottom: 20px;
+
+		&:after{
+			content: '';
+			position: absolute;
+			right: 0;
+			top: 0;
+			width: 2px;
+			height: 100%;
+			z-index: -1;
+			background-color: $brand-color;
+			transform: skew(-30deg) translateX(10px);
+		}
+	}
+
+	.widget-title-icon{
+		float: left;
+  	margin-right: 10px;
+		position: static;
+		color: inherit;
+	}
+
+	.mag-box-title{
+		position: relative;
+		margin-bottom: 0;
+
+		h3{
+			font-size: 18px;
+		}
+	}
+
+	.section-title-default{
+		padding-right: 10px;
+	}
+
+	#check-also-box .widget-title{
+		padding-left: 30px;
+	}
+
+	#check-also-close{
+		left: 5px;
+	}
+}
+
+// blocks title style 11
+.block-head-11{
+	.has-block-head-4,
+	.mag-box-title h3,
+	.comment-reply-title, // WooCommerce
+	.related.products > h2,
+	.up-sells > h2,
+	.cross-sells > h2,
+	.cart_totals > h2,
+	.bbp-form legend{
+		position: relative;
+		opacity: 0.99;
+		display: inline-block !important;
+		width: auto;
+		font-size: 15px;
+		line-height: 1;
+		font-weight: 500;
+		margin-bottom: 20px;
+		padding: 0;
+		padding-right: 21px;
+
+		&:after{
+			content: '';
+			position: absolute;
+			right: 0;
+			top: 0;
+			width: 0;
+			height: 0;
+			z-index: -1;
+			opacity: .5;
+			border-color: transparent transparent transparent $brand-color;
+			border-style: solid;
+			border-width: 16px 0 0 13px;
+		}
+	}
+
+	.widget-title-icon{
+		float: left;
+  	margin-right: 10px;
+		position: static;
+		color: inherit;
+	}
+
+	.mag-box-title{
+		position: relative;
+		margin-bottom: 0;
+
+		h3{
+			font-size: 18px;
+		}
+	}
+
+	.section-title-default{
+		padding-right: 50px;
+
+		&:after{
+			border-width: 45px 0 0 40px;
+		}
+	}
+
+	#check-also-box .widget-title{
+		padding-left: 30px;
+	}
+
+	#check-also-close{
+		left: 5px;
+	}
+
+	#footer.dark-skin .the-global-title::after{
+		background: transparent !important;
+	}
+}
+
+
 // Section Titles----------------------------------------------
 .section-title{
 	font-weight: 700;
@@ -554,7 +723,7 @@
 		}
 	}
 
-	span.the-section-title .fa{
+	span.the-section-title .the-section-icon{
 		font-size: 85%;
 	}
 }
@@ -614,6 +783,3 @@
 		color: rgba(255,255,255,0.3);
 	}
 }
-
-
-

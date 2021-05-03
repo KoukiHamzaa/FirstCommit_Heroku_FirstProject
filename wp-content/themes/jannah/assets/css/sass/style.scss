@@ -19,53 +19,40 @@
 
 /** Magaizne Layout 2 */
 @import "layout/magazine2";
-// ----------------------------------------------------------------------------
 
 /** Header Compontents Sub Menus */
-@import "header/_header-comp-menus";
-@import "header/_mega_menus.scss";
-// ----------------------------------------------------------------------------
+@import "header/_header-comp-menus"; // 6 KB
+@import "header/_mega_menus.scss"; // 8 KB
+
+/** Breaking News */
+@import "header/breaking-news"; // 3KB
 
 /** General Compontents */
-@import "base/general";
-// ----------------------------------------------------------------------------
+@import "base/general"; // 37 KB
 
 /** Header :: Mobile Menu */
-@import "header/mobile-nav";
-// ----------------------------------------------------------------------------
+@import "header/mobile-nav"; // 6 KB
 
 /** Block Heads */
-@import "components/block-heads";
-// ----------------------------------------------------------------------------
+@import "components/block-heads"; // 14 KB
 
 /** Magazine Boxes */
-@import "components/magazine-boxes";
-// ----------------------------------------------------------------------------
-
-// /** Sidebars */
-//@import "components/widgets";
-// ----------------------------------------------------------------------------
+@import "components/magazine-boxes"; // 28 KB
 
 /** Tabs (Mag box, Widget, Shortcodes, Woocommerce product tabs) & in Mag2, Dark-skin */
-@import "components/tabs";
-// ----------------------------------------------------------------------------
+@import "components/tabs"; // 9 KB
 
 /** Page Templates */
-@import "components/page-templates";
-// ----------------------------------------------------------------------------
+@import "components/page-templates"; // 8 KB
 
 /** Sliders */
-@import "components/sliders";
-// ----------------------------------------------------------------------------
+@import "components/sliders"; // 35 KB
 
 /** Side Aside (Secondary Sidebar) (Hidden Sidebar) */
-@import "components/side-aside";
-// ----------------------------------------------------------------------------
+@import "components/side-aside"; // 2 KB
 
 /** Footer */
-@import "components/footer";
-// ----------------------------------------------------------------------------
+@import "components/footer"; // 5 KB
 
 /** Dark Skin */
-@import "components/dark-skin";
-// ----------------------------------------------------------------------------
+@import "components/dark-skin"; // 5 KB

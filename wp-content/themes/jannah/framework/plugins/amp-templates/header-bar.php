@@ -1,5 +1,15 @@
 <header id="#top" class="amp-wp-header">
-	<div>
+
+	<?php
+		if( tie_get_option( 'amp_menu_active' ) ){ ?>
+			<div class="hamburgermenu">
+				<button class="toast" on='tap:sidebar.toggle'><span></span></button>
+			</div>
+		<?php
+		}
+	?>
+
+	<div class="amp-logo">
 		<a href="<?php echo esc_url( $this->get( 'home_url' ) ); ?>">
 			<?php echo esc_html( $this->get( 'blog_name' ) ); ?>
 		</a>

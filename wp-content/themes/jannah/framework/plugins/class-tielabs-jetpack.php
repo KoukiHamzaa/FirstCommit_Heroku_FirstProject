@@ -8,7 +8,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
 
 
-if( ! class_exists( 'TIELABS_JETPACK' )){
+if( ! class_exists( 'TIELABS_JETPACK' ) ) {
 
 	class TIELABS_JETPACK{
 
@@ -82,7 +82,7 @@ if( ! class_exists( 'TIELABS_JETPACK' )){
 		 */
 		public function widget_query( $query_args ){
 
-			if( ! empty( $query_args['order'] ) && strpos( $query_args['order'], 'jetpack' ) !== false && function_exists( 'stats_get_csv' )){
+			if( ! empty( $query_args['order'] ) && strpos( $query_args['order'], 'jetpack' ) !== false && function_exists( 'stats_get_csv' ) ) {
 
 				// Number of Days
 				$days  = str_replace( 'jetpack-', '', $query_args['order'] );

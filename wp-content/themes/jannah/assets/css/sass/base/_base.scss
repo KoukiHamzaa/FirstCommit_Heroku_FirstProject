@@ -27,7 +27,7 @@ body{
 }
 
 h1,h2,h3,h4,h5,h6, .the-subtitle{
-	line-height: 1.3;
+	line-height: 1.4;
 	font-weight: 600;
 }
 
@@ -97,8 +97,7 @@ p{
 // ADS ---------------------------------------------------------
 .stream-title {
   margin-bottom: 3px;
-  font-size: 85%;
-  line-height: 20px;
+  font-size: 11px;
   color: #a5a5a5;
   display: block;
 }
@@ -125,6 +124,18 @@ p{
 
 	&.stream-item-above-header{
 		margin: 0;
+	}
+
+	// Reduce CLS
+	//@include breakpoint_max($screen-sm){
+		//.adsbygoogle {
+			//min-height: 300px;
+		//}
+	//}
+
+	&.stream-item-between .post-item-inner{
+		width: 100%;
+		display: block;
 	}
 }
 
@@ -170,6 +181,7 @@ body.post-layout-8.has-header-below-ad .entry-header-outer{
 	}
 }
 
+.has-full-width-logo,
 .header-layout-2 {
 	.stream-item-top-wrapper{
 		width: 100%;
@@ -179,17 +191,35 @@ body.post-layout-8.has-header-below-ad .entry-header-outer{
 	}
 }
 
-.header-layout-3 {
-	.stream-item-top{
-
+.header-layout-2{
+	&.has-normal-width-logo{
 		@include breakpoint(md){
-			img{
-				float: right;
+			.stream-item-top-wrapper{
+				margin-top: 0;
 			}
 		}
+	}
+}
 
-		@include breakpoint(max_min_md){
-			clear: both;
+.header-layout-3 {
+
+	&.no-stream-item .logo-container{
+		width: 100%;
+		float: none;
+	}
+
+	&.has-normal-width-logo{
+		.stream-item-top{
+
+			@include breakpoint(md){
+				img{
+					float: right;
+				}
+			}
+
+			@include breakpoint(max_min_md){
+				clear: both;
+			}
 		}
 	}
 }
@@ -213,33 +243,51 @@ body.post-layout-8.has-header-below-ad .entry-header-outer{
 	.hide_banner_top .stream-item-top-wrapper,
 	.hide_banner_below_header .stream-item-below-header,
 	.hide_banner_bottom .stream-item-above-footer,
+	.hide_banner_above .stream-item-above-post,
+	.hide_banner_above_content .stream-item-above-post-content,
+	.hide_banner_below_content .stream-item-below-post-content,
+	.hide_banner_below .stream-item-below-post,
+	.hide_banner_comments .stream-item-below-post-comments,
 	.hide_breaking_news #top-nav,
 	.hide_sidebars .sidebar,
 	.hide_footer #footer-widgets-container,
 	.hide_copyright #site-info,
 	.hide_breadcrumbs #breadcrumb,
-	.hide_share_post_top .post-footer-on-top,
-	.hide_share_post_bottom .post-footer-on-bottom,
+	.hide_share_post_top .share-buttons-top,
+	.hide_share_post_bottom .share-buttons-bottom,
 	.hide_post_newsletter #post-newsletter,
 	.hide_related #related-posts,
 	.hide_read_next #read-next-block,
 	.hide_post_authorbio .post-components .about-author,
 	.hide_post_nav .prev-next-post-nav,
 	.hide_back_top_button #go-to-top,
-	.hide_read_more_buttons .more-link{
+	.hide_read_more_buttons .more-link,
+	.hide_inline_related_posts #inline-related-post{
 		display: none !important;
 	}
 }
 
+// Load this early to avoid screen shift
+.tie-icon:before,
+[class^="tie-icon-"],
+[class*=" tie-icon-"] {
+  font-family: 'tiefonticon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: inline-block;
+}
 
-// Hide Elements till the CSS file load ----------------------------------
+
+// Hide Elements till the CSS file load
 // this class added by Sari3 Project
 body.tie-no-js{
 	a.remove,
-	.fa,
-	.weather-icon,
-	[class^="tie-icon-"],
-	[class*=" tie-icon-"],
 	.tooltip,
 	.woocommerce-message,
 	.woocommerce-error,
@@ -250,16 +298,30 @@ body.tie-no-js{
 	.notifications-total-outer,
 	.comp-sub-menu,
 	.menu-sub-content{
-		display: none !important;
+    display: none !important;
 	}
 
+	.fa,
+	.fas,
+	.far,
+	.fab,
+	.tie-icon:before,
+	[class^="tie-icon-"],
+	[class*=" tie-icon-"],
 	.weather-icon{
     visibility: hidden !important;
+	}
+
+	[class^="tie-icon-"],
+	[class*=" tie-icon-"]{
+		&:before{
+			content: "\f105";
+		}
 	}
 }
 
 // These Two elements appears after footer, tie-no-js removed before the Helper file got fully loaded, we need to keep them hidden and they by default hidden.
 .tie-popup,
-.autocomplete-suggestions{
+#autocomplete-suggestions{
 	display: none;
 }

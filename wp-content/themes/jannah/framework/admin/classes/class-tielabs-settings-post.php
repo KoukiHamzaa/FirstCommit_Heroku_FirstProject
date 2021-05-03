@@ -8,7 +8,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
 
 
-if( ! class_exists( 'TIELABS_SETTINGS_POST' )){
+if( ! class_exists( 'TIELABS_SETTINGS_POST' ) ) {
 
 	class TIELABS_SETTINGS_POST{
 
@@ -20,7 +20,9 @@ if( ! class_exists( 'TIELABS_SETTINGS_POST' )){
 		 */
 		function __construct(){
 
-			add_action( 'admin_head',     array( $this, 'post_subtitle' ) );
+			add_action( 'admin_head', array( $this, 'post_subtitle' ) );
+			add_action( 'admin_head', array( $this, 'meta_boxes_roles' ) );
+
 			add_action( 'save_post',      array( $this, 'save' ) );
 			add_action( 'add_meta_boxes', array( $this, 'meta_boxes' ), 3 );
 
@@ -73,6 +75,27 @@ if( ! class_exists( 'TIELABS_SETTINGS_POST' )){
 			}
 			else{
 				add_action( 'edit_form_after_title', array( $this, 'secondry_title' ), 40 );
+			}
+		}
+
+
+		/**
+		 * Allow Post meta boxes for specfic user roles only
+		 */
+		function meta_boxes_roles(){
+
+			if ( current_user_can( 'manage_options' ) ) {
+				return;
+			}
+
+			if( tie_get_option( 'posts_advanced_options_admin' ) ){
+				remove_meta_box( 'tie_post_options',     'post', 'normal' );
+				remove_meta_box( 'tie_post_options',     'page', 'normal' );
+				remove_meta_box( 'tie_frontpage_option', 'page', 'normal' );
+				//remove_meta_box( 'taqyeem_post_options', 'post', 'normal' );
+				//remove_meta_box( 'taqyeem_post_options', 'page', 'normal' );
+
+				do_action( 'TieLabs/posts_advanced_options_admin' );
 			}
 		}
 
@@ -212,6 +235,15 @@ if( ! class_exists( 'TIELABS_SETTINGS_POST' )){
 				return;
 			}
 
+			// --
+			/*
+			foreach ( $_POST as $key => $value ) {
+				if ( $value === '-tie-101' ) { // Checkbox is disabled
+					unset( $_POST[ $key ] );
+				}
+			}
+			*/
+
 			// Prevent set the revision pages as frontpage
 			if( ! wp_is_post_revision( $post_id ) ){
 
@@ -239,8 +271,10 @@ if( ! class_exists( 'TIELABS_SETTINGS_POST' )){
 				'tie_primary_category',
 				'tie_trending_post',
 				'tie_hide_title',
+				'tie_hide_page_featured',
 				'tie_hide_header',
 				'tie_hide_footer',
+				'tie_builder_breadcrumbs',
 				'tie_do_not_dublicate',
 				'tie_header_extend_bg',
 
@@ -257,6 +291,8 @@ if( ! class_exists( 'TIELABS_SETTINGS_POST' )){
 					'logo_text',
 					'logo',
 					'logo_retina',
+					'logo_inverted',
+					'logo_inverted_retina',
 					'logo_retina_width',
 					'logo_retina_height',
 					'logo_margin',
@@ -292,6 +328,7 @@ if( ! class_exists( 'TIELABS_SETTINGS_POST' )){
 				'tie_audio_embed',
 
 				// Custom Ads
+				'tie_disable_all_ads',
 				'tie_hide_above',
 				'tie_get_banner_above',
 				'tie_hide_below',
@@ -358,12 +395,12 @@ if( ! class_exists( 'TIELABS_SETTINGS_POST' )){
 				// Dependency Options fields
 				if( is_array( $custom_meta_field ) ){
 
-					if( ! empty( $_POST[ $key ] )){
+					if( ! empty( $_POST[ $key ] ) ) {
 
 						update_post_meta( $post_id, $key, $_POST[ $key ] );
 
 						foreach ( $custom_meta_field as $single_field ){
-							if( ! empty( $_POST[ $single_field ] )){
+							if( ! empty( $_POST[ $single_field ] ) ) {
 								update_post_meta( $post_id, $single_field, $_POST[ $single_field ] );
 							}
 							else{
@@ -378,7 +415,7 @@ if( ! class_exists( 'TIELABS_SETTINGS_POST' )){
 
 				// Single Options fields
 				else{
-					if( ! empty( $_POST[ $custom_meta_field ] )){
+					if( ! empty( $_POST[ $custom_meta_field ] ) ) {
 						update_post_meta( $post_id, $custom_meta_field, $_POST[ $custom_meta_field ] );
 					}
 					else{
@@ -707,13 +744,41 @@ if( ! class_exists( 'TIELABS_SETTINGS_POST' )){
 				),
 
 				array(
-					'title' => esc_html__( 'Hide the page title', TIELABS_TEXTDOMAIN ),
+					'title' => esc_html__( 'Hide page elements', TIELABS_TEXTDOMAIN ),
 					'type'  => 'header',
 				),
 
 				array(
 					'name' => esc_html__( 'Hide the page title', TIELABS_TEXTDOMAIN ),
 					'id'   => 'tie_hide_title',
+					'type' => 'checkbox',
+				),
+
+				array(
+					'name' => esc_html__( 'Hide the featured image', TIELABS_TEXTDOMAIN ),
+					'id'   => 'tie_hide_page_featured',
+					'type' => 'checkbox',
+				),
+
+				array(
+					'content' => '</div>',
+					'type'    => 'html',
+				),
+
+				// Builder Breadcrumbs
+				array(
+					'content' => '<div id="tie_builder_breadcrumbs_option">',
+					'type'    => 'html',
+				),
+
+				array(
+					'title' => esc_html__( 'Breadcrumbs', TIELABS_TEXTDOMAIN ),
+					'type'  => 'header',
+				),
+
+				array(
+					'name' => esc_html__( 'Display Breadcrumbs', TIELABS_TEXTDOMAIN ),
+					'id'   => 'tie_builder_breadcrumbs',
 					'type' => 'checkbox',
 				),
 
@@ -974,7 +1039,7 @@ if( ! class_exists( 'TIELABS_SETTINGS_POST' )){
 					'id'    => 'tie_googlemap_notice',
 					'type'  => 'error',
 					'class' => 'tie_post_head',
-					'text' => esc_html__( 'You need to set the Google Map API Key in the theme options page > API Keys.', TIELABS_TEXTDOMAIN ),
+					'text' => esc_html__( 'You need to set the Google Map API Key in the theme options page > Integrations.', TIELABS_TEXTDOMAIN ),
 				);
 			}
 
@@ -1117,48 +1182,65 @@ if( ! class_exists( 'TIELABS_SETTINGS_POST' )){
 					'content' => '<div id="tie-post-logo-item">',
 					'type'    => 'html',
 				),
-
 				array(
 					'name'    => esc_html__( 'Logo Settings', TIELABS_TEXTDOMAIN ),
 					'id'      => 'logo_setting',
 					'type'    => 'radio',
 					'toggle'  => array(
-						'logo'  => '#logo-item, #logo_retina-item, #logo_retina_width-item, #logo_retina_height-item',
+						'logo'  => '#logo-image-settings',
 						'title' => ''),
 					'options'	=> array(
-						'logo'  => esc_html__( 'Image',      TIELABS_TEXTDOMAIN ),
+						'logo'  => esc_html__( 'Image', TIELABS_TEXTDOMAIN ),
 						'title' => esc_html__( 'Site Title', TIELABS_TEXTDOMAIN ),
 				)),
+
+				array(
+					'content' => '<div id="logo-image-settings" class="logo_setting-options">',
+					'type'    => 'html',
+				),
 
 				array(
 					'name'  => esc_html__( 'Logo Image', TIELABS_TEXTDOMAIN ),
 					'id'    => 'logo',
 					'type'  => 'upload',
-					'class' => 'logo_setting',
 				),
 
 				array(
 					'name'  => esc_html__( 'Logo Image (Retina Version @2x)', TIELABS_TEXTDOMAIN ),
 					'id'    => 'logo_retina',
 					'type'  => 'upload',
-					'class' => 'logo_setting',
 					'hint'	=> esc_html__( 'Please choose an image file for the retina version of the logo. It should be 2x the size of main logo.', TIELABS_TEXTDOMAIN ),
 				),
 
 				array(
-					'name'  => esc_html__( 'Standard Logo Width for Retina Logo', TIELABS_TEXTDOMAIN ),
-					'id'    => 'logo_retina_width',
-					'type'  => 'number',
-					'class' => 'logo_setting',
-					'hint'  => esc_html__( 'If retina logo is uploaded, please enter the standard logo (1x) version width, do not enter the retina logo width.', TIELABS_TEXTDOMAIN ),
+					'name'  => esc_html__( 'Logo Inverted Image', TIELABS_TEXTDOMAIN ),
+					'id'    => 'logo_inverted',
+					'type'  => 'upload',
+					'hint'	=> '<strong>'. esc_html__( 'Used if users are allowed to switch between Light and Dark skins.', TIELABS_TEXTDOMAIN ) .'</strong>',
 				),
 
 				array(
-					'name'  => esc_html__( 'Standard Logo Height for Retina Logo', TIELABS_TEXTDOMAIN ),
+					'name'  => esc_html__( 'Logo Inverted Image (Retina Version @2x)', TIELABS_TEXTDOMAIN ),
+					'id'    => 'logo_inverted_retina',
+					'type'  => 'upload',
+					'hint'	=> '<strong>'. esc_html__( 'Used if users are allowed to switch between Light and Dark skins.', TIELABS_TEXTDOMAIN ) .'</strong><br />'. esc_html__( 'Please choose an image file for the retina version of the logo. It should be 2x the size of main logo.', TIELABS_TEXTDOMAIN ),
+				),
+
+				array(
+					'name'  => esc_html__( 'Logo width', TIELABS_TEXTDOMAIN ),
+					'id'    => 'logo_retina_width',
+					'type'  => 'number',
+				),
+
+				array(
+					'name'  => esc_html__( 'Logo height', TIELABS_TEXTDOMAIN ),
 					'id'    => 'logo_retina_height',
 					'type'  => 'number',
-					'class' => 'logo_setting',
-					'hint'  => esc_html__( 'If retina logo is uploaded, please enter the standard logo (1x) version height, do not enter the retina logo height.', TIELABS_TEXTDOMAIN ),
+				),
+
+				array(
+					'content' => '</div>',
+					'type'    => 'html',
 				),
 
 				array(
@@ -1610,6 +1692,17 @@ if( ! class_exists( 'TIELABS_SETTINGS_POST' )){
 				),
 
 				array(
+					'name' => esc_html__( 'Disable All Ads', TIELABS_TEXTDOMAIN ),
+					'id'   => 'tie_disable_all_ads',
+					'type' => 'checkbox',
+				),
+
+				array(
+					'title' => esc_html__( 'Above Post Ad', TIELABS_TEXTDOMAIN ),
+					'type'  => 'header',
+				),
+
+				array(
 					'name' => esc_html__( 'Hide Above Post Ad', TIELABS_TEXTDOMAIN ),
 					'id'   => 'tie_hide_above',
 					'type' => 'checkbox',
@@ -1619,6 +1712,11 @@ if( ! class_exists( 'TIELABS_SETTINGS_POST' )){
 					'name' => esc_html__( 'Custom Above Post Ad', TIELABS_TEXTDOMAIN ),
 					'id'   => 'tie_get_banner_above',
 					'type' => 'textarea',
+				),
+
+				array(
+					'title' => esc_html__( 'Below Post Ad', TIELABS_TEXTDOMAIN ),
+					'type'  => 'header',
 				),
 
 				array(
@@ -1633,6 +1731,12 @@ if( ! class_exists( 'TIELABS_SETTINGS_POST' )){
 					'type' => 'textarea',
 				),
 
+
+				array(
+					'title' => esc_html__( 'Above Content Ad', TIELABS_TEXTDOMAIN ),
+					'type'  => 'header',
+				),
+
 				array(
 					'name' => esc_html__( 'Hide Above Content Ad', TIELABS_TEXTDOMAIN ),
 					'id'   => 'tie_hide_above_content',
@@ -1643,6 +1747,12 @@ if( ! class_exists( 'TIELABS_SETTINGS_POST' )){
 					'name' => esc_html__( 'Custom Above Content Ad', TIELABS_TEXTDOMAIN ),
 					'id'   => 'tie_get_banner_above_content',
 					'type' => 'textarea',
+				),
+
+
+				array(
+					'title' => esc_html__( 'Below Content Ad', TIELABS_TEXTDOMAIN ),
+					'type'  => 'header',
 				),
 
 				array(
@@ -1704,7 +1814,7 @@ if( ! class_exists( 'TIELABS_SETTINGS_POST' )){
 						$sources = tie_get_postdata( 'tie_source' );
 						$sources_count = 0;
 
-						if( ! empty( $sources ) && is_array( $sources )){
+						if( ! empty( $sources ) && is_array( $sources ) ) {
 
 							foreach ( $sources as $single_source ){
 
@@ -1782,7 +1892,7 @@ if( ! class_exists( 'TIELABS_SETTINGS_POST' )){
 						$via = tie_get_postdata( 'tie_via' );
 						$via_count = 0;
 
-						if( ! empty( $via ) && is_array( $via )){
+						if( ! empty( $via ) && is_array( $via ) ) {
 							foreach ( $via as $single_via ){
 								$via_count++; ?>
 
@@ -1861,7 +1971,7 @@ if( ! class_exists( 'TIELABS_SETTINGS_POST' )){
 						$highlights_text = tie_get_postdata( 'tie_highlights_text' );
 						$custom_count    = 0;
 
-						if( ! empty( $highlights_text ) && is_array( $highlights_text )){
+						if( ! empty( $highlights_text ) && is_array( $highlights_text ) ) {
 							foreach ( $highlights_text as $custom_text ){
 								$custom_count++; ?>
 

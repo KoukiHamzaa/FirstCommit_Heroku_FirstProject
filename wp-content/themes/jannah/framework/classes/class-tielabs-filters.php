@@ -17,10 +17,11 @@ class TIELABS_FILTERS {
 		// Add Support for Shortcodes in the terms descriptions
 		add_filter( 'term_description', 'do_shortcode' );
 
-		add_action( 'init',                  array( $this, 'init_hook' ) );
+		//add_action( 'init',                  array( $this, 'init_hook' ) );
 		add_action( 'init',                  array( $this, 'redirect_random_post' ) );
 
 		add_action( 'wp_head',               array( $this, 'meta_description' ) );
+		add_action( 'wp_head',               array( $this, 'meta_generator' ) );
 		add_action( 'wp_head',               array( $this, 'x_ua_compatible' ) );
 
 		add_action( 'wp_footer',             array( $this, 'footer_inline_scripts' ), 999 );
@@ -28,9 +29,8 @@ class TIELABS_FILTERS {
 		add_action( 'wp_footer',             array( $this, 'popup_module' ) );
 
 		add_action( 'comment_class',         array( $this, 'is_avatar_enabled' ) );
-
-		add_filter( 'gettext',               array( $this, 'theme_translation' ), 10, 3 );
 		add_filter( 'pre_get_posts',         array( $this, 'search_filters' ) );
+		add_filter( 'pre_get_posts',         array( $this, 'category_posts_order' ) );
 		add_filter( 'TieLabs/cache_key',     array( $this, 'cache_key' ) );
 		add_filter( 'widget_tag_cloud_args', array( $this, 'tag_widget_limit' ) );
 		add_filter( 'widget_title',          array( $this, 'tagcloud_widget_title' ), 10, 3 );
@@ -41,9 +41,33 @@ class TIELABS_FILTERS {
 		add_filter( 'excerpt_more',          array( $this, 'excerpt_more' ) );
 		add_filter( 'get_the_excerpt',       array( $this, 'post_excerpt' ), 9 );
 
+		add_filter( 'has_post_thumbnail',    array( $this, 'has_post_thumbnail' ) );
+		add_filter( 'post_thumbnail_html',   array( $this, 'default_featured_image' ), 10, 5 );
+
 		add_filter( 'TieLabs/exclude_content',            'TIELABS_HELPER::strip_shortcodes' );
 		add_filter( 'wp_get_attachment_image_src',        array( $this, 'gif_image' ), 10, 4 );
 		add_filter( 'wp_get_attachment_image_attributes', array( $this, 'small_thumb_image_class' ), 10, 3 );
+
+		add_filter( 'TieLabs/Primary_Category/custom', array( $this, 'yoast_seo_primary_category' ) );
+
+		// Translations
+		if( tie_get_option( 'translations' ) ){
+			add_filter( 'gettext', array( $this, 'theme_translation' ), 10, 3 );
+		}
+
+		if( tie_get_option( 'translation_numbers' ) ){
+			add_filter( 'get_the_date',                   array( $this, 'translate_numbers' ), 55 );
+			add_filter( 'get_comment_date',               array( $this, 'translate_numbers' ), 55 );
+			add_filter( 'get_comment_time',               array( $this, 'translate_numbers' ), 55 );
+			add_filter( 'comments_number',                array( $this, 'translate_numbers' ), 55 );
+			add_filter( 'wp_list_categories',             array( $this, 'translate_numbers' ), 55 );
+			add_filter( 'TieLabs/number_format',          array( $this, 'translate_numbers' ), 55 );
+			add_filter( 'TieLabs/post_date',              array( $this, 'translate_numbers' ), 55 );
+			add_filter( 'TieLabs/reading_time',           array( $this, 'translate_numbers' ), 55 );
+			add_filter( 'TieLabs/post_views_number',      array( $this, 'translate_numbers' ), 55 );
+			add_filter( 'TieLabs/Social_Counters/number', array( $this, 'translate_numbers' ), 55 );
+			add_filter( 'TieLabs/Weather/number',         array( $this, 'translate_numbers' ), 55 );
+		}
 	}
 
 
@@ -203,15 +227,19 @@ class TIELABS_FILTERS {
 		// Custom Footer Code
 		if ( tie_get_option( 'footer_code' ) ){
 			echo do_shortcode( apply_filters( 'TieLabs/footer_code', tie_get_option( 'footer_code' ) ) );
- 		}
+		}
 
 		// Reading Position Indicator
-		if ( tie_get_option( 'reading_indicator' ) && is_single() ){
+		if ( tie_get_option( 'reading_indicator' ) && is_single() && ! tie_get_option( 'autoload_posts' ) ){
 			echo '<div id="reading-position-indicator"></div>';
 		}
 
 		// Live Search
-		if( tie_menu_has_search( 'top_nav', true ) || tie_menu_has_search( 'main_nav', true ) ){
+		if(
+			tie_menu_has_search( 'top_nav', true )  ||
+			tie_menu_has_search( 'main_nav', true ) ||
+		  ( tie_get_option( 'mobile_header_components_search') && tie_get_option( 'mobile_header_live_search') )
+		){
 			echo '<div id="autocomplete-suggestions" class="autocomplete-suggestions"></div>';
 		}
 
@@ -289,11 +317,53 @@ class TIELABS_FILTERS {
 
 
 	/**
+	 * Change the posts order in the category page
+	 */
+	function category_posts_order( $query ){
+
+		if( ! is_admin() && is_category() && $query->is_main_query() ){
+
+			$current_category = get_queried_object();
+
+			if( ! empty( $current_category->term_id ) ){
+
+				$posts_order = tie_get_category_option( 'posts_order', $current_category->term_id );
+
+				// Posts Order
+				if( ! empty( $posts_order ) ){
+
+					if( $posts_order == 'views' && tie_get_option( 'tie_post_views' ) ){ // Most Viewd posts
+						$query->set( 'orderby', 'meta_value_num' );
+						$query->set( 'meta_key', apply_filters( 'TieLabs/views_meta_field', 'tie_views' ) );
+					}
+					elseif( $posts_order == 'popular' ){ // Popular Posts by comments
+						$query->set( 'orderby', 'comment_count' );
+					}
+					elseif( $posts_order == 'title' ){
+						$query->set( 'orderby', 'title' );
+						$query->set( 'order', 'ASC' );
+					}
+					else{
+						$query->set( 'orderby', $posts_order );
+					}
+				}
+			}
+		}
+
+		return $query;
+	}
+
+
+	/**
 	 * Random Article
 	 */
 	function redirect_random_post(){
 
-		if( isset( $_GET['random-post'] ) && ( tie_get_option( 'top-nav-components_random' ) || tie_get_option( 'main-nav-components_random' ) )){
+		if( wp_doing_ajax() ){
+			return;
+		}
+
+		if( isset( $_GET['random-post'] ) && ( tie_get_option( 'top-nav-components_random' ) || tie_get_option( 'main-nav-components_random' ) ) ) {
 
 			$args = array(
 				'posts_per_page'      => 1,
@@ -306,9 +376,9 @@ class TIELABS_FILTERS {
 			$random_post = new WP_Query ( $args );
 
 			while ( $random_post->have_posts () ){
-			  $random_post->the_post();
-			  wp_redirect( get_permalink() );
-			  exit;
+				$random_post->the_post();
+				wp_redirect( get_permalink() );
+				exit;
 			}
 		}
 	}
@@ -367,6 +437,13 @@ class TIELABS_FILTERS {
 		if ( '' == $text ){
 			$text = get_the_content( '' );
 			$text = apply_filters( 'TieLabs/exclude_content', $text );
+
+			/**
+			 * If images with class wp-image-{ID} exists in the conetnt, WordPress make a DB request to get andd add the srcset
+			 * Since we are in excerpt we don't need that, Great affect on archives pages
+			 */
+			$text = str_replace( 'wp-image-', 'tie-image', $text );
+
 			$text = strip_shortcodes( $text );
 			$text = apply_filters( 'the_content', $text );
 			$text = str_replace( ']]>', ']]>', $text );
@@ -501,6 +578,102 @@ class TIELABS_FILTERS {
 	 */
 	function excerpt_more( $more ){
 		return ' &hellip;';
+	}
+
+
+	/**
+	 * Theme Generator Meta
+	 */
+	function meta_generator(){
+
+		$active_theme = wp_get_theme();
+
+		if ( is_child_theme() ) {
+			$active_theme = wp_get_theme( $active_theme->Template );
+		}
+
+		if( ! empty( $active_theme->Name ) ){
+			$theme_info = apply_filters( 'TieLabs/theme_meta_generator', $active_theme->Name .' '.  TIELABS_DB_VERSION );
+			if( ! empty( $theme_info ) ){
+				echo "\n" . "<meta name='generator' content='' />" . "\n";
+			}
+		}
+	}
+
+
+	/**
+	 * If the post doesn't have a Primary Category, use the Primary Category of Yoast if it is available
+	 */
+	function yoast_seo_primary_category( $category = false ){
+
+		if( class_exists( 'WPSEO_Meta' ) ){
+
+			$wpseo_primary_term = get_post_meta( get_the_id(), WPSEO_Meta::$meta_prefix . 'primary_category', true );
+
+			if( ! empty( $wpseo_primary_term ) ){
+				$get_the_category = TIELABS_WP_HELPER::get_term_by( 'id', $wpseo_primary_term, 'category' );
+
+				if ( ! empty( $get_the_category ) && ! is_wp_error( $get_the_category ) ) {
+					return $get_the_category;
+				}
+			}
+		}
+
+		return false;
+	}
+
+
+	/**
+	 * Always return true, If there is a default featured image
+	 */
+	function has_post_thumbnail( $has_thumbnail ) {
+
+		if( tie_get_option( 'default_featured_image' ) && tie_get_option( 'default_featured_image_id' ) ){
+			$has_thumbnail = true;
+		}
+
+		return $has_thumbnail;
+	}
+
+
+	/**
+	 * Set a default featured image if it is missing
+	 */
+	function default_featured_image( $html, $post_id, $post_thumbnail_id, $size, $attr ) {
+
+		// Return if the post has a featured image
+		if( ! empty( $html ) ){
+			return $html;
+		}
+
+		// Check if the default eatured image option is active
+		if( ! tie_get_option( 'default_featured_image' ) || ! tie_get_option( 'default_featured_image_id' ) ){
+			return $html;
+		}
+
+		$default_thumbnail_id = tie_get_option( 'default_featured_image_id' ); // select the default thumb.
+
+		return wp_get_attachment_image( $default_thumbnail_id, $size, false, $attr );
+	}
+
+
+	/**
+	 * Translate numbers
+	 */
+	function translate_numbers( $the_number ) {
+
+		if( ! ( is_admin() && ! wp_doing_ajax() ) ) {
+
+			$translated_numbers = tie_get_option( 'translation_numbers' );
+
+			if( ! empty( $translated_numbers ) && is_array( $translated_numbers ) && count( $translated_numbers ) == 10 ){
+
+				$original_numbers = array( '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' );
+				return str_replace( $original_numbers, $translated_numbers, $the_number );
+			}
+		}
+
+		return $the_number;
 	}
 
 }

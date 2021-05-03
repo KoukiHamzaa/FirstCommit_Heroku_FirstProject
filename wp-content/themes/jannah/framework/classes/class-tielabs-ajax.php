@@ -8,7 +8,7 @@
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
 
-if( ! class_exists( 'TIELABS_AJAX' )){
+if( ! class_exists( 'TIELABS_AJAX' ) ) {
 
 	class TIELABS_AJAX {
 
@@ -25,6 +25,10 @@ if( ! class_exists( 'TIELABS_AJAX' )){
 			add_action( 'wp_ajax_nopriv_tie_archives_load_more',  array( $this, 'archive_load_more' ) );
 			add_action( 'wp_ajax_tie_archives_load_more',         array( $this, 'archive_load_more' ) );
 
+			// Widget Load More
+			add_action( 'wp_ajax_nopriv_tie_widgets_load_more',   array( $this, 'widget_load_more' ) );
+			add_action( 'wp_ajax_tie_widgets_load_more',          array( $this, 'widget_load_more' ) );
+
 			// Mega Menu
 			add_action( 'wp_ajax_nopriv_tie_mega_menu_load_ajax', array( $this, 'mega_menu' ) );
 			add_action( 'wp_ajax_tie_mega_menu_load_ajax',        array( $this, 'mega_menu' ) );
@@ -32,6 +36,10 @@ if( ! class_exists( 'TIELABS_AJAX' )){
 			// Live Search
 			add_action( 'wp_ajax_nopriv_tie_ajax_search',         array( $this, 'live_search' ) );
 			add_action( 'wp_ajax_tie_ajax_search',                array( $this, 'live_search' ) );
+
+			// User Weather
+			add_action( 'wp_ajax_nopriv_tie_get_user_weather',    array( $this, 'get_user_weather' ) );
+			add_action( 'wp_ajax_tie_get_user_weather',           array( $this, 'get_user_weather' ) );
 		}
 
 
@@ -65,6 +73,8 @@ if( ! class_exists( 'TIELABS_AJAX' )){
 
 			ob_start();
 
+			$hide_next = $hide_prev = false;
+
 			if( $block_query->have_posts() ){
 				while ( $block_query->have_posts() ){
 
@@ -79,9 +89,7 @@ if( ! class_exists( 'TIELABS_AJAX' )){
 					}
 				}
 
-				$hide_next = $hide_prev = false;
-
-				if( $block_query->query_vars['new_max_num_pages'] == 1 || ( $block_query->query_vars['new_max_num_pages'] == $block_query->query_vars['paged'])){
+				if( $block_query->query_vars['new_max_num_pages'] == 1 || ( $block_query->query_vars['new_max_num_pages'] == $block_query->query_vars['paged']) ) {
 					$hide_next = true;
 				}
 
@@ -106,6 +114,65 @@ if( ! class_exists( 'TIELABS_AJAX' )){
 						'button'    => esc_html__( 'No More Posts', TIELABS_TEXTDOMAIN ),
 					)));
 			}
+
+			die;
+		}
+
+
+		/**
+		 * Widget Load More
+		 */
+		function widget_load_more(){
+
+			if( ! empty( $_REQUEST['query'] ) && ! empty( $_REQUEST['style'] ) ){
+
+				$query = stripslashes( $_REQUEST['query'] );
+				$query = json_decode( str_replace( '\'', '"', $query ), true );
+				$style = stripslashes( $_REQUEST['style'] );
+				$style = json_decode( str_replace( '\'', '"', $style ), true );
+
+				$hide_next = $hide_prev = false;
+
+				$query['pagi']        = true;
+				$query['target_page'] = $_REQUEST['page'];
+
+				$block_query = tie_query( $query );
+
+				$hide_next = $hide_prev = false;
+
+				if( $block_query->have_posts() ){
+
+					ob_start();
+
+					tie_widget_posts( $query, $style );
+
+					if( $block_query->query_vars['new_max_num_pages'] == 1 || ( $block_query->query_vars['new_max_num_pages'] == $block_query->query_vars['paged']) ) {
+						$hide_next = true;
+					}
+
+					if( empty( $block_query->query_vars['paged'] ) || $block_query->query_vars['paged'] == 1 ){
+						$hide_prev = true;
+					}
+
+					wp_send_json( wp_json_encode(
+						array(
+							'hide_next' => $hide_next,
+							'hide_prev' => $hide_prev,
+							'code'      => ob_get_clean(),
+							'button'    => esc_html__( 'No More Posts', TIELABS_TEXTDOMAIN ),
+						)));
+
+					die;
+				}
+			}
+
+			wp_send_json( wp_json_encode(
+				array(
+					'hide_next' => true,
+					'hide_prev' => false,
+					'code'      => esc_html__( 'No More Posts', TIELABS_TEXTDOMAIN ),
+					'button'    => esc_html__( 'No More Posts', TIELABS_TEXTDOMAIN ),
+				)));
 
 			die;
 		}
@@ -159,7 +226,7 @@ if( ! class_exists( 'TIELABS_AJAX' )){
 				// Disable the Load more button
 				$hide_next = false;
 
-				if( $block_query->max_num_pages == 1 || ( $block_query->max_num_pages == $block_query->query_vars['paged'] )){
+				if( $block_query->max_num_pages == 1 || ( $block_query->max_num_pages == $block_query->query_vars['paged'] ) ) {
 					$hide_next = true;
 				}
 
@@ -314,6 +381,66 @@ if( ! class_exists( 'TIELABS_AJAX' )){
 			}
 
 			echo json_encode( $search_json );
+			die;
+		}
+
+
+		/**
+		 * User Weather
+		 */
+		function get_user_weather(){
+
+			if( ! empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
+				$ip = $_SERVER['HTTP_CLIENT_IP'];
+			}
+			elseif( ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
+				$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+			}
+			else{
+				$ip = $_SERVER['REMOTE_ADDR'];
+			}
+
+			//$ip = '3.97.255.255';
+
+			if( ! empty( $ip ) ){
+
+				$request = wp_remote_get( 'http://ip-api.com/json/'.$ip );
+
+				//
+				if( ! is_wp_error( $request ) ){
+
+					$request = wp_remote_retrieve_body( $request );
+					$request = json_decode( $request, true );
+
+					if( $request && ! empty( $request['status'] ) && $request['status'] == 'success' ){
+						$city = $request['city'];
+						setcookie( 'TieUserLocation', $city, time() + ( DAY_IN_SECONDS * 30 ), "/");
+						$success = true;
+					}
+				}
+			}
+
+			if( ! isset( $success ) || empty( $city ) ){
+				TIELABS_HELPER::notice_message( esc_html__( 'Failed to fetch your current loction! try again later!', TIELABS_TEXTDOMAIN ) );
+			}
+
+			// --
+			if( ! empty( $city ) ){
+
+				$options = array();
+
+				if( ! empty( $_REQUEST['options'] ) ){
+					$options = stripslashes( $_REQUEST['options'] );
+					$options = json_decode( str_replace( '\'', '"', $options ), true );
+				}
+
+				$options['custom_name'] = false;
+				$options['location']    = $city;
+				//$options['avoid_cache'] = true;
+
+				new TIELABS_WEATHER( $options );
+			}
+
 			die;
 		}
 

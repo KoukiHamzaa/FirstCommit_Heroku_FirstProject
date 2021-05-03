@@ -8,7 +8,7 @@
  * will need to copy the new files to your child theme to maintain compatibility.
  *
  * @author   TieLabs
- * @version  4.5.0
+ * @version  5.0.0
  */
 
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly
@@ -51,12 +51,24 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 		?>
 	</div>
 
-	<?php if( $block['excerpt'] ): ?>
+
+
+	<?php if( ! empty( $block['excerpt'] ) || ! empty( $block['read_more'] ) ): ?>
 		<div class="entry-content">
+	<?php endif; ?>
 
-			<p><?php tie_the_excerpt( $block['excerpt_length'] ); ?></p>
+	<?php
+		if( ! empty( $block['excerpt'] ) ) { ?>
+			<p class="post-excerpt"><?php tie_the_excerpt( $block['excerpt_length'] ) ?></p>
+			<?php
+		}
 
-			<?php tie_the_more_button(); ?>
+		if( ! empty( $block['read_more'] ) ) {
+			tie_the_more_button( $block['read_more_text'] );
+		}
+	?>
+
+	<?php if( ! empty( $block['excerpt'] ) || ! empty( $block['read_more'] ) ): ?>
 		</div><!-- .entry-content /-->
 	<?php endif; ?>
 

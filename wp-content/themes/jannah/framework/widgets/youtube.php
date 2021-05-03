@@ -1,6 +1,6 @@
 <?php
 
-if( ! class_exists( 'TIE_YOUTUBE_WIDGET' )){
+if( ! class_exists( 'TIE_YOUTUBE_WIDGET' ) ) {
 
 	/**
 	 * Widget API: TIE_YOUTUBE_WIDGET class

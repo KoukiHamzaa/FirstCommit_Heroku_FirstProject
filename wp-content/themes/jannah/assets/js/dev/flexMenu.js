@@ -1,11 +1,14 @@
 /*
-	jQuery.flexMenu 1.5
+	jQuery.flexMenu 1.5.1
 	https://github.com/352Media/flexMenu
 	Description: If a list is too long for all items to fit on one line, display a popup menu instead.
 	Dependencies: jQuery, Modernizr (optional). Without Modernizr, the menu can only be shown on click (not hover).
 */
 
 /**
+	- TieLabs 06/06/20
+	-- Performance Improv.
+
 	- TieLabs 06/03/19
 	-- Check if the menu has items if the item is not exists it gives a js error because of .top
 	-- Remove active class
@@ -22,27 +25,27 @@
 	}
 }(function ($) {
 
-	var windowWidth  = window.innerWidth; // TieLabs ude innerWidth instead of .width() | Performance
-	// var windowWidth  = $(window).width(); // Store the window width // TieLabs
-	// var windowHeight = $(window).height(); // Store the window height // TieLabs
+	var windowWidth  = window.innerWidth;
 	var flexObjects  = [], // Array of all flexMenu objects
       resizeTimeout;
 
 	// When the page is resized, adjust the flexMenus.
-	function adjustFlexMenu() {
+	$(window).resize(function () {
+		clearTimeout(resizeTimeout);
+		resizeTimeout = setTimeout(function () {
 
-		// if ($(window).width() !== windowWidth || $(window).height() !== windowHeight) { // Original Line - TieLabs
-		if ($(window).width() !== windowWidth ) { // New Line - TieLabs
+			var newWidth = window.innerWidth;
+			if ( newWidth !== windowWidth ) {
+				windowWidth = newWidth;
+				$(flexObjects).each(function () {
+					$(this).flexMenu({
+						'undo' : true
+					}).flexMenu(this.options);
+				});
+			}
 
-			$(flexObjects).each(function () {
-				$(this).flexMenu({
-					'undo' : true
-				}).flexMenu(this.options);
-			});
-			windowWidth  = $(window).width(); // Store the window width if it changed
-			// windowHeight = $(window).height(); // Store the window height if it changed TieLabs
-		}
-	}
+		}, 200);
+	});
 
 	function collapseAllExcept($menuToAvoid) {
 		var $activeMenus,
@@ -50,18 +53,12 @@
 
 		$activeMenus     = $('li.flexMenu-viewMore.active');
 		$menusToCollapse = $activeMenus.not($menuToAvoid);
-		// $menusToCollapse.removeClass('active').find('> ul').hide(); // Original Line By TieLabs
-		$menusToCollapse.find('> ul').hide();    // New Line By TieLabs
+		$menusToCollapse.find('> ul').hide();
 	}
 
-	$(window).resize(function () {
-		clearTimeout(resizeTimeout);
-		resizeTimeout = setTimeout(function () {
-			adjustFlexMenu();
-		}, 200);
-	});
 
 	$.fn.flexMenu = function (options) {
+
 		var checkFlexObject,
 			s = $.extend({
 				'threshold'     : 2,                           // [integer] If there are this many items or fewer in the list, we will not display a "View More" link and will instead let the list break to the next line. This is useful in cases where adding a "view more" link would actually cause more things to break  to the next line.
@@ -87,22 +84,18 @@
 		else {
 			flexObjects.push(this); // Add this object to the flexObjects array
 		}
+
 		return this.each(function () {
 
-			// Change By TieLabs to check if the menu has items
 			var $this    = $(this),
 			    $items   = $this.find('> li'),
 			    numItems = $items.length;
-			// ---
+
 
 			if( numItems ){
 
-				// --
-				var $firstItem      = $items.first(),
-				    $lastItem       = $items.last(),
-				    firstItemTop    = Math.floor($firstItem.offset().top),
-				    firstItemHeight = Math.floor($firstItem.outerHeight(true)),
-				    allInPopup      = false,
+				var firstItemTop = getTop($items) + 20,
+				    allInPopup   = false,
 				    $lastChild,
 				    keepLooking,
 				    $moreItem,
@@ -111,25 +104,33 @@
 				    $menu,
 				    i;
 
-				function needsMenu($itemOfInterest) {
-					var result = (Math.ceil($itemOfInterest.offset().top) >= (firstItemTop + firstItemHeight)) ? true : false;
-					// Values may be calculated from em and give us something other than round numbers. Browsers may round these inconsistently. So, let's round numbers to make it easier to trigger flexMenu.
-					return result;
+				function getTop( $item ) {
+					return $item[0].offsetTop;
+					//return $item.offset().top;
+					//var result = $item[0].getBoundingClientRect();
+					//return result.top;
 				}
 
-				if ( needsMenu($lastItem) && numItems > s.threshold && !s.undo && $this.is(':visible') && (s.shouldApply())) {
+				function needsMenu( $itemOfInterest ) {
+					return getTop($itemOfInterest) >= firstItemTop ? true : false;
+				}
+
+
+				if( needsMenu( $items.last() ) && numItems > s.threshold && !s.undo && (s.shouldApply())) { //  && $this.is(':visible')
 
 					var $popup = $('<ul class="flexMenu-popup" style="display:none;' + ((s.popupAbsolute) ? ' position: absolute;' : '') + '"></ul>');
 
 					// Add class if popupClass option is set
-					$popup.addClass(s.popupClass);
+					if( s.popupClass ){
+						$popup.addClass(s.popupClass);
+					}
 
 					// Move all list items after the first to this new popup ul
 					for (i = numItems; i > 1; i--) {
 
 						// Find all of the list items that have been pushed below the first item. Put those items into the popup menu. Put one additional item into the popup menu to cover situations where the last item is shorter than the "more" text.
-						$lastChild = $this.find('> li:last-child');
-						keepLooking = (needsMenu($lastChild));
+						$lastChild  = $this.find('li:last-child');
+						keepLooking = needsMenu( $lastChild );
 
 						// If there only a few items left in the navigation bar, move them all to the popup menu.
 						if ((i - 1) <= s.cutoff) { // We've removed the ith item, so i - 1 gives us the number of items remaining.
@@ -137,10 +138,12 @@
 							allInPopup = true;
 							break;
 						}
-						if (!keepLooking) {
+
+						if ( ! keepLooking ){
 							break;
-						} else {
-							$lastChild.appendTo($popup);
+						}
+						else {
+							$lastChild.appendTo( $popup );
 						}
 					}
 
@@ -166,6 +169,8 @@
 
 					$moreItem.append($popup);
 					$moreLink = $this.find('> li.flexMenu-viewMore > a');
+
+
 					$moreLink.click(function (e) {
 						// Collapsing any other open flexMenu
 						collapseAllExcept($moreItem);
@@ -190,6 +195,7 @@
 				}
 
 				else if (s.undo && $this.find('ul.flexMenu-popup')) {
+
 					$menu = $this.find('ul.flexMenu-popup');
 					numToRemove = $menu.find('li').length;
 					for (i = 1; i <= numToRemove; i++) {
@@ -198,6 +204,7 @@
 					$menu.remove();
 					$this.find('> li.flexMenu-viewMore').remove();
 				}
+
 
 			} // The Number Check Added By TieLabs
 

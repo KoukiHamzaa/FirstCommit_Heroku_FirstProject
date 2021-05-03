@@ -56,8 +56,7 @@ class OCDI_Helpers {
 		$downloaded_files = array();
 
 		// Retrieve demo data content from the URL.
-		//$demo_import_content = self::get_content_from_url( $import_file_info['import_file_url'], $import_file_info['import_file_name'] );
-		$demo_import_content = file_get_contents( get_template_directory() . '/demo/' . $import_file_info['import_file_name'] . '/' . 'demo-content-import-file.xml' );
+		$demo_import_content = file_get_contents( get_template_directory() . '/demos/' . $import_file_info['import_file_name'] . '/' . 'demo-content-import-file.xml' );
 
 		// Return from this function if there was an error.
 		if ( is_wp_error( $demo_import_content ) ){
@@ -81,8 +80,7 @@ class OCDI_Helpers {
 		if ( ! empty( $import_file_info['import_widget_file_url'] ) ){
 
 			// Retrieve widget content from the URL.
-			//$demo_import_widgets_content = self::get_content_from_url( $import_file_info['import_widget_file_url'], $import_file_info['import_file_name'] );
-			$demo_import_widgets_content = file_get_contents( get_template_directory() . '/demo/' . $import_file_info['import_file_name'] . '/' . 'demo-widgets-import-file.json' );
+			$demo_import_widgets_content = file_get_contents( get_template_directory() . '/demos/' . $import_file_info['import_file_name'] . '/' . 'demo-widgets-import-file.json' );
 
 			// Return from this function if there was an error.
 			if ( is_wp_error( $demo_import_widgets_content ) ){
@@ -106,8 +104,7 @@ class OCDI_Helpers {
 		if ( ! empty( $import_file_info['import_settings_file_url'] ) ){
 
 			// Retrieve widget content from the URL.
-			//$demo_import_settings_content = self::get_content_from_url( $import_file_info['import_settings_file_url'], $import_file_info['import_file_name'] );
-			$demo_import_settings_content = file_get_contents( get_template_directory() . '/demo/' . $import_file_info['import_file_name'] . '/' . 'demo-settings-import-file.json' );
+			$demo_import_settings_content = file_get_contents( get_template_directory() . '/demos/' . $import_file_info['import_file_name'] . '/' . 'demo-settings-import-file.json' );
 
 			// Return from this function if there was an error.
 			if ( is_wp_error( $demo_import_settings_content ) ){
@@ -129,8 +126,7 @@ class OCDI_Helpers {
 		if ( ! empty( $import_file_info['import_woocommerce_file_url'] ) && TIELABS_WOOCOMMERCE_IS_ACTIVE ){
 
 			// Retrieve widget content from the URL.
-			//$demo_import_woocommerce_content = self::get_content_from_url( $import_file_info['import_woocommerce_file_url'], $import_file_info['import_file_name'] );
-			$demo_import_woocommerce_content = file_get_contents( get_template_directory() . '/demo/demo-woocommerce-import-file.xml' );
+			$demo_import_woocommerce_content = file_get_contents( get_template_directory() . '/demos/demo-woocommerce-import-file.xml' );
 
 			// Return from this function if there was an error.
 			if ( is_wp_error( $demo_import_woocommerce_content ) ){
@@ -155,8 +151,7 @@ class OCDI_Helpers {
 		if ( ! empty( $import_file_info['import_customizer_file_url'] ) ){
 
 			// Retrieve customizer content from the URL.
-			//$demo_import_customizer_content = self::get_content_from_url( $import_file_info['import_customizer_file_url'], $import_file_info['import_file_name'] );
-			$demo_import_customizer_content = file_get_contents( get_template_directory() . '/demo/' . $import_file_info['import_file_name'] . '/' . 'demo-customizer-import-file.dat' );
+			$demo_import_customizer_content = file_get_contents( get_template_directory() . '/demos/' . $import_file_info['import_file_name'] . '/' . 'demo-customizer-import-file.dat' );
 
 			// Return from this function if there was an error.
 			if ( is_wp_error( $demo_import_customizer_content ) ){

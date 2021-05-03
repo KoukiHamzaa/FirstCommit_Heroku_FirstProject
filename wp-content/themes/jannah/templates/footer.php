@@ -28,10 +28,13 @@ do_action( 'TieLabs/before_footer' );
 
 		do_action( 'TieLbas/Footer/before_widgets' );
 
+		TIELABS_HELPER::get_template_part( 'templates/footer', 'tiktok' );
 		TIELABS_HELPER::get_template_part( 'templates/footer', 'instagram' );
 
 		// Check if the footer sidebars area is hidden on mobiles
-		if( ( tie_get_option( 'footer_widgets_area_1' ) || tie_get_option( 'footer_widgets_area_2' ) ) && ! TIELABS_HELPER::is_mobile_and_hidden( 'footer' )){ ?>
+		if( ( tie_get_option( 'footer_widgets_area_1' ) || tie_get_option( 'footer_widgets_area_2' ) ) && ! TIELABS_HELPER::is_mobile_and_hidden( 'footer' ) ) {
+
+			?>
 
 			<div id="footer-widgets-container">
 				<div class="container">
@@ -123,7 +126,7 @@ do_action( 'TieLabs/before_footer' );
 if( tie_get_option( 'footer_top' ) ){
 	?>
 		<a id="go-to-top" class="go-to-top-button" href="#go-to-tie-body">
-			<span class="fa fa-angle-up"></span>
+			<span class="tie-icon-angle-up"></span>
 			<span class="screen-reader-text"><?php esc_html_e( 'Back to top button', TIELABS_TEXTDOMAIN ) ?></span>
 		</a>
 	<?php

@@ -8,7 +8,7 @@
  * will need to copy the new files to your child theme to maintain compatibility.
  *
  * @author   TieLabs
- * @version  4.5.0
+ * @version  5.0.0
  */
 
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly
@@ -24,8 +24,10 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 		// Get the post thumbnail
 		if ( has_post_thumbnail() ){
 
-			$image_size = ! empty( $block['is_full'] ) ? 'full' : TIELABS_THEME_SLUG.'-image-post';
-			tie_post_thumbnail( $image_size, 'large', false, true, $block['media_overlay'] );
+			$thumbnail_size = ! empty( $block['is_full'] ) ? 'full' : TIELABS_THEME_SLUG.'-image-post';
+			$thumbnail_size = apply_filters( 'TieLabs/loop_thumbnail_size', $thumbnail_size, 'large-above', $count );
+
+			tie_post_thumbnail( $thumbnail_size, 'large', false, true, $block['media_overlay'] );
 		}
 		?>
 
@@ -53,7 +55,9 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
 		// Get the post thumbnail
 		if ( has_post_thumbnail() ){
-			tie_post_thumbnail( TIELABS_THEME_SLUG.'-image-large', 'small', false, true, $block['media_overlay']  );
+			$thumbnail_size = apply_filters( 'TieLabs/loop_thumbnail_size', TIELABS_THEME_SLUG.'-image-large', 'large-above', $count );
+
+			tie_post_thumbnail( $thumbnail_size, 'small', false, true, $block['media_overlay']  );
 		}
 		?>
 
@@ -75,7 +79,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 				<?php
 
 					// Get the review score for the posts with stars
-					if( ! empty( $block['post_meta'] )){
+					if( ! empty( $block['post_meta'] ) ) {
 						echo '<div class="post-meta">'. tie_get_score( 'stars' ) .'</div>';
 					}
 				?>

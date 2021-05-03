@@ -50,10 +50,6 @@
   margin-bottom: 20px;
 }
 
-.review_wrap h2.review-box-header:after {
-  width: 70px;
-}
-
 .review-item,
 .review-summary,
 .user-rate-wrap {
@@ -142,8 +138,8 @@
 .post-large-rate:after,
 .post-small-rate:after {
   color: rgba(154, 154, 154, 0.65);
-  content: "\f006" "\f006" "\f006" "\f006" "\f006";
-  font-family: "FontAwesome";
+  content: "\f005" "\f005" "\f005" "\f005" "\f005";
+  font-family: tiefonticon;
   display: block;
 }
 
@@ -163,7 +159,7 @@
 .post-large-rate span:after,
 .post-small-rate span:after {
   content: "\f005" "\f005" "\f005" "\f005" "\f005";
-  font-family: "FontAwesome";
+  font-family: "tiefonticon";
   display: block;
 }
 
@@ -175,7 +171,7 @@
 
 .hearts-large:after,
 .hearts-small:after {
-  content: "\f08a" "\f08a" "\f08a" "\f08a" "\f08a";
+  content: "\f004" "\f004" "\f004" "\f004" "\f004";
 }
 
 .hearts-large span,
@@ -344,7 +340,7 @@
 }
 
 .user-rate-wrap .user-rate .spinner {
-  width: 2.5em;
+  width: 2.501em;
 }
 
 .user-rate-wrap .user-rate .spinner > div {

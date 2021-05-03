@@ -8,7 +8,7 @@
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
 
-if( ! class_exists( 'TIELABS_WP_HELPER' )){
+if( ! class_exists( 'TIELABS_WP_HELPER' ) ) {
 
 	class TIELABS_WP_HELPER {
 

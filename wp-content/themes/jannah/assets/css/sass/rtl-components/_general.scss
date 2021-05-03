@@ -21,16 +21,16 @@
     margin-left: 8px;
     margin-right: 0;
 
-    // Icons
-    &.fa-before{
-      &:before{
-        padding-left: 3px;
-        padding-right: 0;
-      }
-    }
-
     .mag-box &{
       white-space: nowrap; // safari fix
+    }
+  }
+
+  // Icons
+  .tie-icon{
+    &:before{
+      padding-left: 3px;
+      padding-right: 0 !important;
     }
   }
 
@@ -62,12 +62,12 @@
 
 
 // Popup
-#tie-popup-search-wrap input[type="text"]{
+.tie-popup-search-wrap input[type="text"]{
   padding-right: 20px;
   padding-left: 80px;
 }
 
-#tie-popup-search-submit {
+button.tie-popup-search-submit {
   left: 25px;
   right: auto;
 }
@@ -91,23 +91,23 @@
   text-align: left;
 }
 
-.post-thumb .trending-post.fa.trending-lg {
+.post-thumb .trending-post.trending-lg {
   right: 10px;
   left: auto;
 }
 
-.trending-post.fa.trending-sm{
+.trending-post.trending-sm{
   float: right;
 }
 
-.thumb-meta .trending-post.fa {
+.thumb-meta .trending-post {
   margin-left: 7px;
   margin-right: 0;
 }
 
 // pages-navigation
 .first-last-pages {
-  .fa {
+  .pagination-icon {
     border-width: 0 1px 0 0;
     margin: 0 10px 0 0;
     text-align: left;
@@ -117,14 +117,14 @@
     }
   }
 
-  &.first-page .fa{
+  &.first-page .pagination-icon{
     float: right;
     border-width: 0 0 0 1px;
     margin: 0 0 0 10px;
     text-align: right;
 
     &:before {
-      content: "\f105";
+      content: "\f106";
     }
   }
 }
@@ -135,7 +135,7 @@
   }
 
   .last-page,
-  .fa {
+  .pagination-icon {
     float: left;
   }
 }
@@ -182,8 +182,20 @@ a.remove{
 
   // popup module [login & search]
   .tie-popup &{
-    left: 40px;
+    left: 15px;
     right: auto;
+  }
+}
+
+#tie-popup-search-mobile{
+  button.tie-popup-search-submit {
+    right: auto;
+    left: 0;
+  }
+
+  input.tie-popup-search-input {
+    padding-right: 20px;
+    padding-left: 50px;
   }
 }
 
@@ -198,4 +210,9 @@ a.remove{
   .ilightbox-next-button {
     transform: rotate(180deg);
   }
+}
+
+// WPCF7
+div.wpcf7 {
+  direction: rtl !important;
 }

@@ -7,7 +7,7 @@
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
 
-if( ! class_exists( 'TIELABS_STYLES' )){
+if( ! class_exists( 'TIELABS_STYLES' ) ) {
 
 	class TIELABS_STYLES {
 
@@ -71,7 +71,7 @@ if( ! class_exists( 'TIELABS_STYLES' )){
 				'is_sticky_video'        => ( is_single() && tie_get_option( 'sticky_featured_video' ) ),
 
 				'mobile_menu_top'        => ( tie_get_option( 'mobile_the_menu' ) === 'main-secondary' ) ,
-				'mobile_menu_active'     => tie_get_option( 'mobile_menu_active' ),
+				'mobile_menu_active'     => tie_get_option( 'mobile_header_components_menu' ),
 				'mobile_menu_parent'     => tie_get_option( 'mobile_menu_parent_link' ),
 
 				'lightbox_all'           => tie_get_option( 'lightbox_all' ),
@@ -81,6 +81,7 @@ if( ! class_exists( 'TIELABS_STYLES' )){
 				'lightbox_arrows'        => tie_get_option( 'lightbox_arrows' ),
 				'is_singular'            => is_singular(),
 
+				'autoload_posts'         => ( is_single() && tie_get_option( 'autoload_posts' ) ),
 				'reading_indicator'      => tie_get_option( 'reading_indicator' ),
 				'lazyload'               => tie_get_option( 'lazy_load' ),
 
@@ -90,11 +91,11 @@ if( ! class_exists( 'TIELABS_STYLES' )){
 				'select_share_linkedin'  => tie_get_option( 'select_share_linkedin' ),
 				'select_share_email'     => tie_get_option( 'select_share_email' ),
 
-				'facebook_app_id'        => tie_get_option( 'facebook_app_id' ),
+				'facebook_app_id'        => tie_facebook_app_id(),
 				'twitter_username'       => tie_get_option( 'share_twitter_username' ),
 				'responsive_tables'      => tie_get_option( 'responsive_tables' ),
 
-				'ad_blocker_detector'    => tie_get_option( 'ad_blocker_detector' ),
+				'ad_blocker_detector'    => tie_get_option( 'ad_blocker_detector' ) ? TIELABS_TEMPLATE_URL.'/assets/js/ads.js' : '',
 
 				'sticky_behavior'        => tie_get_option( 'sticky_behavior' ),
 				'sticky_desktop'         => tie_get_option( 'stick_nav' ),
@@ -104,6 +105,9 @@ if( ! class_exists( 'TIELABS_STYLES' )){
 				'ajax_loader'            => tie_get_ajax_loader( false ),
 				'type_to_search'         => $type_to_search,
 				'lang_no_results'        => esc_html__( 'Nothing Found', TIELABS_TEXTDOMAIN ),
+
+				'sticky_share_mobile'    => tie_get_option( 'share_post_mobile' ),
+				'sticky_share_post'      => tie_get_option( 'share_post_sticky' ),
 			);
 
 			wp_localize_script( 'tie-scripts', 'tie', apply_filters( 'TieLabs/js_main_vars', $js_vars ) );
@@ -114,10 +118,6 @@ if( ! class_exists( 'TIELABS_STYLES' )){
 		 * Embed Post Format Dark Skin
 		 */
 		public static function embed_iframe_styles(){
-
-			if( ! tie_get_option( 'dark_skin' ) ){
-				return;
-			}
 
 			echo '
 				<style type="text/css">
@@ -245,11 +245,12 @@ if( ! class_exists( 'TIELABS_STYLES' )){
 			$out = '';
 			foreach ( $text_sections as $option => $elements ){
 
-				if( $section = tie_get_option( 'typography_'.$option )){
+				if( $section = tie_get_option( 'typography_'.$option ) ) {
 
 					$text_styles  = '';
 					$text_styles .= ! empty( $section['size'] )   ? 'font-size: '.   $section['size'] .'px;' : '';
 					$text_styles .= ! empty( $section['weight'] ) ? 'font-weight: '. $section['weight'] .';' : '';
+					$text_styles .= ! empty( $section['letter_spacing'] ) ? 'letter-spacing: '. $section['letter_spacing'] .'px;' : '';
 
 					if( ! empty( $section['line_height'] ) && $option != 'main_nav' && $option != 'top_menu' ){
 						$text_styles .= 'line-height: '. $section['line_height'] .';';
@@ -322,6 +323,7 @@ if( ! class_exists( 'TIELABS_STYLES' )){
 				})();
 			";
 
+			// echo '<script src="//ajax.googleapis.com/ajax/libs/webfont/1/webfont.js" type="text/javascript" defer></script>';
 			echo '<script>';
 			echo apply_filters( 'TieLabs/google_fonts/js_code', $js_code, $GLOBALS['tie_google_fonts'] );
 			echo '</script>';
@@ -369,7 +371,7 @@ if( ! class_exists( 'TIELABS_STYLES' )){
 				// Google Web fonts
 				if( $source == 'google' ){
 
-					if( $font = tie_get_option( 'typography_'. $font_section_key .'_google_font' )){
+					if( $font = tie_get_option( 'typography_'. $font_section_key .'_google_font' ) ) {
 
 						// Early access Google web font
 						if( strpos( $font, 'early#' ) !== false ){
@@ -385,14 +387,22 @@ if( ! class_exists( 'TIELABS_STYLES' )){
 
 							// Set the google font name as array to add a prefix to it later
 							// Avoid generate the default fonts hardcoded in the main style.css file
-							if( ! in_array( $font, $default_fonts )){
+							if( ! in_array( $font, $default_fonts ) ) {
 								$custom_fonts_names[ $font_section_key ] = array( str_replace( '+', ' ', "'$font'" ) );
 							}
 
 							// Google web font variants
 							$font .= ':';
-							if( $variants = tie_get_option( 'typography_'. $font_section_key .'_google_variants' )){
-								$font .= implode( ',', $variants );
+							if( $variants = tie_get_option( 'typography_'. $font_section_key .'_google_variants' ) ) {
+
+								if( is_array( $variants ) ){
+
+									if( ! in_array( 'regular', $variants ) ){
+										$variants[] = 'regular'; // Always load the "regular" to avoid 404 error
+									}
+
+									$font .= implode( ',', array_filter( $variants ) );
+								}
 							}
 
 							// Google web font character sets
@@ -462,7 +472,7 @@ if( ! class_exists( 'TIELABS_STYLES' )){
 				}
 			}
 
-			if( ! empty( $custom_fonts_names )){
+			if( ! empty( $custom_fonts_names ) ) {
 				$GLOBALS['tie_fonts_family'] = $custom_fonts_names;
 			}
 		}
@@ -564,7 +574,7 @@ if( ! class_exists( 'TIELABS_STYLES' )){
 
 					$css_code .= self::builder_section_style( $section );
 
-					if( ! empty( $section['blocks'] ) && is_array( $section['blocks'] )){
+					if( ! empty( $section['blocks'] ) && is_array( $section['blocks'] ) ) {
 						foreach( $section['blocks'] as $block ){
 							$css_code .= self::builder_block_style( $block );
 						}
@@ -633,10 +643,40 @@ if( ! class_exists( 'TIELABS_STYLES' )){
 					$background_pattern = tie_get_object_option( $prefix.'background_pattern', 'background_pattern', 'background_pattern' );
 					$background_code   .= ! empty( $background_pattern ) ? 'background-image: url('.  TIELABS_TEMPLATE_URL .'/assets/images/patterns/' .$background_pattern .'.png);' : '';
 				}
+
+				// Overlay background
+				$background_overlay = '';
+
+				// Overlay dots
+				$background_dots = tie_get_object_option( $prefix.'background_dots', 'background_dots', 'background_dots' );
+
+				if( ! empty( $background_dots ) ) {
+					$background_overlay .= ! empty( $background_dots ) ? 'background-image: url('.  TIELABS_TEMPLATE_URL .'/assets/images/bg-dots.png);' : '';
+				}
+
+				// Overlay Dimmer
+				$background_dimmer = tie_get_object_option( $prefix.'background_dimmer', 'background_dimmer', 'background_dimmer' );
+
+				if( ! empty( $background_dimmer ) ) {
+
+					$dimmer_value = tie_get_object_option( $prefix.'background_dimmer_value', 'background_dimmer_value', 'background_dimmer_value' );
+
+					if( ! empty( $dimmer_value ) ){
+						$dimmer_value = ( max( 0, min( 100, $dimmer_value )))/100;
+					}
+					else{
+						$dimmer_value = 0.5;
+					}
+
+					$dimmer_color = tie_get_object_option( $prefix.'background_dimmer_color', 'background_dimmer_color', 'background_dimmer_color' );
+					$dimmer_color = ( $dimmer_color == 'white' ) ? '255,255,255,' : '0,0,0,';
+
+					$background_overlay .= ! empty( $background_dimmer ) ? 'background-color: rgba('. $dimmer_color . $dimmer_value .');' : '';
+				}
 			}
 
 			// Body Background CSS code
-			if( ! empty( $background_code )){
+			if( ! empty( $background_code ) ) {
 				$out .='
 					#tie-body{
 						'. $background_code .'
@@ -644,38 +684,8 @@ if( ! class_exists( 'TIELABS_STYLES' )){
 				';
 			}
 
-			// Overlay background
-			$background_overlay = '';
-
-			// Overlay dots
-			$background_dots = tie_get_object_option( $prefix.'background_dots', 'background_dots', 'background_dots' );
-
-			if( ! empty( $background_dots )){
-				$background_overlay .= ! empty( $background_dots ) ? 'background-image: url('.  TIELABS_TEMPLATE_URL .'/assets/images/bg-dots.png);' : '';
-			}
-
-			// Overlay Dimmer
-			$background_dimmer = tie_get_object_option( $prefix.'background_dimmer', 'background_dimmer', 'background_dimmer' );
-
-			if( ! empty( $background_dimmer )){
-
-				$dimmer_value = tie_get_object_option( $prefix.'background_dimmer_value', 'background_dimmer_value', 'background_dimmer_value' );
-
-				if( ! empty( $dimmer_value ) ){
-					$dimmer_value = ( max( 0, min( 100, $dimmer_value )))/100;
-				}
-				else{
-					$dimmer_value = 0.5;
-				}
-
-				$dimmer_color = tie_get_object_option( $prefix.'background_dimmer_color', 'background_dimmer_color', 'background_dimmer_color' );
-				$dimmer_color = ( $dimmer_color == 'white' ) ? '255,255,255,' : '0,0,0,';
-
-				$background_overlay .= ! empty( $background_dimmer ) ? 'background-color: rgba('. $dimmer_color . $dimmer_value .');' : '';
-			}
-
 			// background-overlay CSS code
-			if( ! empty( $background_overlay )){
+			if( ! empty( $background_overlay ) ) {
 				$out .='
 					.background-overlay {
 						'. $background_overlay .'
@@ -718,6 +728,25 @@ if( ! class_exists( 'TIELABS_STYLES' )){
 			}
 
 			return $background_code;
+		}
+
+
+		/*
+		 * Gradiant CSS code
+		 */
+		public static function gradiant( $bg_color_1 = false, $bg_color_2 = false, $deg = '135' ){
+
+			if( empty( $bg_color_1 ) || empty( $bg_color_2 ) ){
+				return;
+			}
+
+			return "
+				background: $bg_color_1;
+				background: -webkit-linear-gradient({$deg}deg, $bg_color_2, $bg_color_1 );
+				background:    -moz-linear-gradient({$deg}deg, $bg_color_2, $bg_color_1 );
+				background:      -o-linear-gradient({$deg}deg, $bg_color_2, $bg_color_1 );
+				background:         linear-gradient({$deg}deg, $bg_color_1, $bg_color_2 );
+			";
 		}
 
 
@@ -785,6 +814,31 @@ if( ! class_exists( 'TIELABS_STYLES' )){
 			}
 
 			return $rgb;
+		}
+
+
+		/*
+		 * Calculating the average color between two colors
+		 */
+		public static function average_color( $color_1, $color_2 ){
+
+			$color_1_rgb = TIELABS_STYLES::rgb_color( $color_1, true );
+			$color_2_rgb = TIELABS_STYLES::rgb_color( $color_2, true );
+			$average_rgb = array();
+
+			$rgb_keys = array( 'r', 'g', 'b' );
+
+			if( count( $color_1_rgb ) == 3 && count( $color_2_rgb ) == 3 ){
+				foreach ( $rgb_keys as $key ) {
+					$average_rgb[ $key ] = round( ( $color_1_rgb[ $key ] + $color_2_rgb[ $key ] ) / 2 );
+				}
+			}
+
+			if( ! empty( $average_rgb ) && is_array( $average_rgb ) && count( $average_rgb ) == 3 ){
+				return 'rgb('. implode( ',', $average_rgb ).')';
+			}
+
+			return $color_1_rgb;
 		}
 
 
@@ -860,7 +914,9 @@ if( ! class_exists( 'TIELABS_STYLES' )){
 			}
 
 			// Builder styles
-			$inline_css_code .= self::builder_styles();
+			if( apply_filters( 'TieLabs/Styles/inline_builder_css_code', true ) ){
+				$inline_css_code .= self::builder_styles();
+			}
 
 			// Return if there is no inline code
 			if( empty( $inline_css_code ) ){
@@ -953,24 +1009,51 @@ if( ! class_exists( 'TIELABS_STYLES' )){
 		 */
 		public static function builder_section_style( $section ){
 
-			if( empty( $section['settings']['section_id'] ) ) return false;
+			if( empty( $section['settings']['section_id'] ) ){
+				return false;
+			}
 
 			$section_css      = '';
-			$section_styles   = array();
 			$section_settings = $section['settings'];
 			$section_id       = $section_settings['section_id'];
 
-			// Default Section Styles :: Margins
-			$section_styles[] = isset( $section_settings['margin_top'] )    ? 'margin-top:'.$section_settings['margin_top'].'px;'       : '';
-			$section_styles[] = isset( $section_settings['margin_bottom'] ) ? 'margin-bottom:'.$section_settings['margin_bottom'].'px;' : '';
-			$section_styles   = implode( ' ', array_filter( $section_styles ) );
+			// Margins
+			$section_margins   = array();
+			$section_margins[] = isset( $section_settings['margin_top'] )     ? 'margin-top:'.$section_settings['margin_top'].'px;'         : '';
+			$section_margins[] = isset( $section_settings['margin_bottom'] )  ? 'margin-bottom:'.$section_settings['margin_bottom'].'px;'   : '';
+			$section_margins   = implode( ' ', array_filter( $section_margins ) );
 
-			if( ! empty( $section_styles ) ){
+			if( ! empty( $section_margins ) ){
 				$section_css .= "
 					@media (min-width: 992px){
 						#$section_id{
-							$section_styles
+							$section_margins
 						}
+					}
+				";
+			}
+
+			// Paddings
+			$section_paddings   = array();
+			$section_paddings[] = isset( $section_settings['padding_top'] )    ? 'padding-top:'.$section_settings['padding_top'].'px;'       : '';
+			$section_paddings[] = isset( $section_settings['padding_bottom'] ) ? 'padding-bottom:'.$section_settings['padding_bottom'].'px;' : '';
+			$section_paddings   = implode( ' ', array_filter( $section_paddings ) );
+
+			if( ! empty( $section_paddings ) ){
+				$section_css .= "
+					@media (min-width: 992px){
+						#$section_id .section-item{
+							$section_paddings
+						}
+					}
+				";
+			}
+
+			// Inverted Bg Color
+			if( ! empty( $section_settings['background_color_inverted'] ) ){
+				$section_css .= "
+					.tie-skin-inverted #$section_id .section-item{
+						background-color:". $section_settings['background_color_inverted'] ."!important;
 					}
 				";
 			}
@@ -984,16 +1067,33 @@ if( ! class_exists( 'TIELABS_STYLES' )){
 		 */
 		public static function builder_block_style( $block ){
 
-			// Check if the block has a custom color
-			if( empty( $block['color'] ) ) return;
+			$out = '';
 
-			// Define the ID and colors
+			// Define the ID
 			$id_css = '#tie-' .$block['boxid'];
-			$color  = $block['color'];
-			$bright = self::light_or_dark( $color );
-			$darker = self::color_brightness( $color );
 
-			return apply_filters( 'TieLabs/CSS/Builder/block_style', '', $id_css, $block, $color, $bright, $darker );
+			// Check if the block has a custom bg
+			if( ! empty( $block['color'] ) ){
+				$color  = $block['color'];
+				$darker = self::color_brightness( $color );
+				$bright = self::light_or_dark( $color );
+
+				$out .= apply_filters( 'TieLabs/CSS/Builder/block_style', '', $id_css, $block, $color, $bright, $darker );
+			}
+
+			// Check if the block has a custom bgcolor
+			if( ! empty( $block['bgcolor'] ) && empty( $block['content_only'] ) ){
+
+				if( $block['style'] != 'ad_50' && $block['style'] != 'ad' && $block['style'] != 'videos_list' && strpos( $block['style'], 'slider_' ) === false  ){
+					$color  = $block['bgcolor'];
+					$darker = self::color_brightness( $color );
+					$bright = ! empty( $block['sec_color'] ) ? $block['sec_color'] : self::light_or_dark( $color );
+
+					$out .= apply_filters( 'TieLabs/CSS/Builder/block_bg', '', $id_css, $block, $color, $bright, $darker );
+				}
+			}
+
+			return $out;
 		}
 
 
@@ -1043,7 +1143,7 @@ if( ! class_exists( 'TIELABS_STYLES' )){
 		 */
 		public static function meta_viewport(){
 
-			if( tie_get_option( 'disable_responsive' )){
+			if( tie_get_option( 'disable_responsive' ) ) {
 				echo '<meta name="viewport" content="width='. apply_filters( 'TieLabs/non_responsive_viewport', '1200' ) .'" />';
 			}
 			else{
@@ -1063,7 +1163,11 @@ if( ! class_exists( 'TIELABS_STYLES' )){
 				$theme_color = apply_filters( 'TieLabs/default_theme_color', '#000' );
 			}
 
-			echo "<meta name=\"theme-color\" content=\"$theme_color\" />";
+			$theme_color = apply_filters( 'TieLabs/meta_android_color', $theme_color );
+
+			if( ! empty( $theme_color ) ){
+				echo "<meta name=\"theme-color\" content=\"$theme_color\" />";
+			}
 		}
 
 
@@ -1072,6 +1176,16 @@ if( ! class_exists( 'TIELABS_STYLES' )){
 		 */
 		public static function custom_body_code(){
 			echo do_shortcode( apply_filters( 'TieLabs/body_code', tie_get_option( 'body_code' ) ) ), "\n";
+		}
+
+
+		/**
+		 * Custom Code after the opening <body> tag.
+		 */
+		public static function print_inline_css( $css ){
+			if( ! empty( $css ) ){
+				echo "\n".'<style>'. self::minify_css( $css ) .'</style>'."\n";
+			}
 		}
 
 	} // class

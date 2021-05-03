@@ -9,7 +9,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 /**
  * set Custom class for body for masonry page
  */
-if( ! function_exists( 'tie_template_masonry_custom_body_class' )){
+if( ! function_exists( 'tie_template_masonry_custom_body_class' ) ) {
 
 	function tie_template_masonry_custom_body_class( $classes ){
 
@@ -31,7 +31,7 @@ if( ! function_exists( 'tie_template_masonry_custom_body_class' )){
 /**
  * Get Masonry for the Masonry page template
  */
-if( ! function_exists( 'tie_template_get_masonry' )){
+if( ! function_exists( 'tie_template_get_masonry' ) ) {
 
 	function tie_template_get_masonry(){
 
@@ -66,7 +66,7 @@ if( ! function_exists( 'tie_template_get_masonry' )){
 		$paged   = intval( get_query_var('paged') );
 		$paged_2 = intval( get_query_var('page')  );
 
-		if( empty( $paged ) && ! empty( $paged_2 )){
+		if( empty( $paged ) && ! empty( $paged_2 ) ) {
 			global $paged; // Used by the get_previous_posts_link() and get_next_posts_link
 			$paged = $paged_2;
 		}
@@ -90,7 +90,7 @@ if( ! function_exists( 'tie_template_get_masonry' )){
 		}
 
 		// Do not duplicate posts
-		if( ! empty( $GLOBALS['tie_do_not_duplicate'] ) && is_array( $GLOBALS['tie_do_not_duplicate'] )){
+		if( ! empty( $GLOBALS['tie_do_not_duplicate'] ) && is_array( $GLOBALS['tie_do_not_duplicate'] ) ) {
 			$args['post__not_in'] = $GLOBALS['tie_do_not_duplicate'];
 		}
 
@@ -123,7 +123,7 @@ if( ! function_exists( 'tie_template_get_masonry' )){
 /**
  * Get authors for the authors page template
  */
-if( ! function_exists( 'tie_template_get_authors' )){
+if( ! function_exists( 'tie_template_get_authors' ) ) {
 
 	function tie_template_get_authors(){
 
@@ -154,7 +154,7 @@ if( ! function_exists( 'tie_template_get_authors' )){
 /**
  * Sitemap for the sitemap page template
  */
-if( ! function_exists( 'tie_template_sitemap' )){
+if( ! function_exists( 'tie_template_sitemap' ) ) {
 
 	function tie_template_sitemap(){
 
@@ -190,7 +190,7 @@ if( ! function_exists( 'tie_template_sitemap' )){
 						$get_tags  = get_tags( apply_filters( 'TieLabs/Page_Template/Sitemap/tags', '' ) );
 						$tags_list = '';
 
-						if ( ! empty( $get_tags )){
+						if ( ! empty( $get_tags ) ) {
 							foreach ( $get_tags as $tag ){
 								?>
 									<li><a href="<?php echo TIELABS_WP_HELPER::get_term_link( $tag->term_id, 'post_tag' ) ?>"><?php echo $tag->name ?></a></li>

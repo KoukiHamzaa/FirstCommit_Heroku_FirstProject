@@ -493,7 +493,10 @@ if ( ! class_exists( 'TIE_TGM_Plugin_Activation' ) ){
 		 * @return array
 		 */
 		public function filter_plugin_action_links_activate( $actions ){
-			unset( $actions['activate'] );
+
+			if( isset( $actions['activate'] ) ){
+				unset( $actions['activate'] );
+			}
 
 			return $actions;
 		}
@@ -556,6 +559,7 @@ if ( ! class_exists( 'TIE_TGM_Plugin_Activation' ) ){
 		 * @return null Returns early if not the TIE_TGMPA page.
 		 */
 		public function admin_init(){
+
 			if ( ! $this->is_tie_tgmpa_page() ){
 				return;
 			}
@@ -686,145 +690,158 @@ if ( ! class_exists( 'TIE_TGM_Plugin_Activation' ) ){
 
 			<div class="tie_tgmpa wrap about-wrap tie-about-wrap">
 
-				<?php TIELABS_WELCOME_PAGE::_head_section( 'plugins' );
+				<?php TIELABS_WELCOME_PAGE::_head_section( 'plugins' ); ?>
 
-					if( ! get_option( 'tie_token_'.TIELABS_THEME_ID ) ){
-						TIELABS_VERIFICATION::authorize_notice( false );
-					}
-					else{?>
+					<h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
 
-						<h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
-						<?php $plugin_table->prepare_items(); ?>
-
-						<?php
-						if ( ! empty( $this->message ) && is_string( $this->message ) ){
-							echo wp_kses_post( $this->message );
-						}
-						?>
-						<?php $plugin_table->views(); ?>
-
-						<form id="tie_tgmpa-plugins" action="" method="post">
-							<input type="hidden" name="tie_tgmpa-page" value="<?php echo esc_attr( $this->menu ); ?>" />
-							<input type="hidden" name="plugin_status" value="<?php echo esc_attr( $plugin_table->view_context ); ?>" />
-							<?php $plugin_table->display(); ?>
-						</form>
-
-						<br />
-						<br />
-
-						<hr />
-						<h3><?php esc_html_e( 'Tested and Recommended Plugins', TIELABS_TEXTDOMAIN ); ?></h3>
-						<?php
-
-							add_thickbox();
-							wp_enqueue_script( 'plugin-install' );
-							wp_enqueue_script( 'updates' );
-
-							$tested_plugins = array(
-
-								'buddypress' => array(
-									'name' => 'BuddyPress',
-									'desc' => 'BuddyPress is focused on ease of integration, ease of use, and extensibility. It is deliberately powerful yet unbelievably simple social network software, built by contributors to WordPress.',
-								),
-								'bbpress' => array(
-									'name' => 'bbPress',
-									'desc' => 'bbPress is free, open source forum software built on top of WordPress',
-								),
-								/*
-								'jetpack' => array(
-									'name' => 'Jetpack',
-									'desc' => 'This plugin brings many of the most powerful features available on WordPress.com to self-hosted WordPress sites.',
-								),
-								*/
-								'contact-form-7' => array(
-									'name' => 'Contact Form 7',
-									'desc' => 'Contact Form 7 can manage multiple contact forms, plus you can customize the form and the mail contents flexibly with simple markup. The form supports Ajax-powered submitting, CAPTCHA, Akismet spam filtering and so on.',
-								),
-								'woocommerce' => array(
-									'name' => 'WooCommerce',
-									'desc' => 'WooCommerce is a free eCommerce plugin that allows you to sell anything, beautifully. Built to integrate seamlessly with WordPress, WooCommerce is the world’s favorite eCommerce solution that gives both store owners and developers complete control.',
-								),
-								'wordpress-seo' => array(
-									'name' => 'Yoast SEO',
-									'desc' => 'Yoast SEO is the most comprehensive WordPress SEO plugin with many built-in tools and features.',
-								),
-								'amp' => array(
-									'name' => 'AMP',
-									'desc' => 'This plugin adds support for the Accelerated Mobile Pages (AMP) Project, which is an an open source initiative that aims to provide mobile optimized content that can load instantly everywhere.',
-								),
-								'co-authors-plus' => array(
-									'name' => 'Co-Authors Plus',
-									'desc' => 'Assign multiple bylines to posts, pages, and custom post types via a search-as-you-type input box.',
-								),
-								'wp-smushit' => array(
-									'name' => 'WP Smush',
-									'desc' => 'Resize, optimize and compress all of your images',
-								),
-								'wp-super-cache' => array(
-									'name' => 'WP Super Cache',
-									'desc' => 'This plugin generates static html files from your dynamic WordPress blog. After a html file is generated your webserver will serve that file instead of processing the comparatively heavier and more expensive WordPress PHP scripts.',
-								),
-								/*
-								'wp-html-compression' => array(
-									'name' => 'WP-HTML-Compression',
-									'desc' => 'Combining HTML “minification” with cache and HTTP compression (WP Super Cache, or similar) will cut down your bandwidth and ensure near-immediate content delivery while increasing your Google rankings.',
-								),
-								'bwp-minify' => array(
-									'name' => 'Better WordPress Minify',
-									'desc' => 'Allows you to combine and minify your CSS and JS files to improve page load time. This plugin uses the PHP library Minify and relies on WordPress’s enqueueing system rather than the output buffer, which respects the order of CSS and JS files as well as their dependencies. BWP Minify is very customizable and easy to use.',
-								),
-								*/
-								'mp-timetable' => array(
-									'name' => 'Timetable and Event Schedule',
-									'desc' => 'This plugin helps you create and manage online schedules for a single or multiple events, customize the appearance of each event, add date, time, description and display all the needed items in a carefully-crafted timetable.',
-								),
-								'google-captcha' => array(
-									'name' => 'Google Captcha (reCAPTCHA)',
-									'desc' => 'Google Captcha (reCaptcha) plugin is an effective security solution that protects your WordPress website forms from spam entries while letting real people pass through with ease. It can be used for login, registration, password recovery, comments, popular contact forms, and other.',
-								),
-								'wp-user-avatar' => array(
-									'name' => 'WP User Avatar',
-									'desc' => 'WP User Avatar enables you to use any photo uploaded into your Media Library as an avatar. This means you use the same uploader and library as your posts. No extra folders or image editing functions are necessary.',
-								),
-								'uk-cookie-consent' => array(
-									'name' => 'Cookie Consent',
-									'desc' => 'One of the most popular aspects of the plugin is its simplicity of use – simply install and activate the plugin to automatically add the cookie consent notification bar.',
-								),
-
-							)
-						?>
-
-						<table id="recommended-plugins" class="widefat importers striped">
-							<tbody>
-								<?php
-									foreach( $tested_plugins as $plugin_slug => $plugin ){
-
-										$url = add_query_arg( array(
-											'tab'       => 'plugin-information',
-											'plugin'    => $plugin_slug,
-											'from'      => 'import',
-											'TB_iframe' => 'true',
-											'width'     => 600,
-											'height'    => 550,
-										), network_admin_url( 'plugin-install.php' ) );
-									?>
-									<tr class="importer-item">
-										<td class="plugin-name">
-											<span class="importer-title"><a href="<?php echo esc_url( $url ) ?>" class="thickbox open-plugin-details-modal"><?php echo esc_html( $plugin['name'] ); ?></a></span>
-										</td>
-										<td class="plugin-desc">
-											<?php echo $plugin['desc'] ?>
-										</td>
-									</tr>
-									<?php
-									}
-								?>
-							</tbody>
-						</table>
-
-					</div>
 					<?php
-				} // auth else
+						if( ! get_option( 'tie_token_'.TIELABS_THEME_ID ) ){
+							TIELABS_VERIFICATION::authorize_notice( false );
+							?>
+								<script type="text/javascript">
+									jQuery(document).ready(function(){
+										jQuery('#tie_tgmpa-plugins .install a').on( 'click', function(){
+											if( jQuery(this).attr('href').indexOf('tie_sample') !== -1 ){
+												alert('<?php esc_html_e( 'Verify your license to unlock bundeled plugins', TIELABS_TEXTDOMAIN ) ?>');
+												return false;
+											}
+										});
+									});
+								</script>
+							<?php
+						}
+					?>
+
+					<?php $plugin_table->prepare_items(); ?>
+
+					<?php
+					if ( ! empty( $this->message ) && is_string( $this->message ) ){
+						echo wp_kses_post( $this->message );
+					}
+					?>
+					<?php $plugin_table->views(); ?>
+
+					<form id="tie_tgmpa-plugins" action="" method="post">
+						<input type="hidden" name="tie_tgmpa-page" value="<?php echo esc_attr( $this->menu ); ?>" />
+						<input type="hidden" name="plugin_status" value="<?php echo esc_attr( $plugin_table->view_context ); ?>" />
+						<?php $plugin_table->display(); ?>
+					</form>
+
+					<br />
+					<br />
+
+					<hr />
+					<h3><?php esc_html_e( 'Tested and Recommended Plugins', TIELABS_TEXTDOMAIN ); ?></h3>
+					<?php
+
+						add_thickbox();
+						wp_enqueue_script( 'plugin-install' );
+						wp_enqueue_script( 'updates' );
+
+						$tested_plugins = array(
+
+							'buddypress' => array(
+								'name' => 'BuddyPress',
+								'desc' => 'BuddyPress is focused on ease of integration, ease of use, and extensibility. It is deliberately powerful yet unbelievably simple social network software, built by contributors to WordPress.',
+							),
+							'bbpress' => array(
+								'name' => 'bbPress',
+								'desc' => 'bbPress is free, open source forum software built on top of WordPress',
+							),
+							/*
+							'jetpack' => array(
+								'name' => 'Jetpack',
+								'desc' => 'This plugin brings many of the most powerful features available on WordPress.com to self-hosted WordPress sites.',
+							),
+							*/
+							'contact-form-7' => array(
+								'name' => 'Contact Form 7',
+								'desc' => 'Contact Form 7 can manage multiple contact forms, plus you can customize the form and the mail contents flexibly with simple markup. The form supports Ajax-powered submitting, CAPTCHA, Akismet spam filtering and so on.',
+							),
+							'woocommerce' => array(
+								'name' => 'WooCommerce',
+								'desc' => 'WooCommerce is a free eCommerce plugin that allows you to sell anything, beautifully. Built to integrate seamlessly with WordPress, WooCommerce is the world’s favorite eCommerce solution that gives both store owners and developers complete control.',
+							),
+							'wordpress-seo' => array(
+								'name' => 'Yoast SEO',
+								'desc' => 'Yoast SEO is the most comprehensive WordPress SEO plugin with many built-in tools and features.',
+							),
+							'amp' => array(
+								'name' => 'AMP',
+								'desc' => 'This plugin adds support for the Accelerated Mobile Pages (AMP) Project, which is an an open source initiative that aims to provide mobile optimized content that can load instantly everywhere.',
+							),
+							'co-authors-plus' => array(
+								'name' => 'Co-Authors Plus',
+								'desc' => 'Assign multiple bylines to posts, pages, and custom post types via a search-as-you-type input box.',
+							),
+							'wp-smushit' => array(
+								'name' => 'WP Smush',
+								'desc' => 'Resize, optimize and compress all of your images',
+							),
+							'wp-super-cache' => array(
+								'name' => 'WP Super Cache',
+								'desc' => 'This plugin generates static html files from your dynamic WordPress blog. After a html file is generated your webserver will serve that file instead of processing the comparatively heavier and more expensive WordPress PHP scripts.',
+							),
+							/*
+							'wp-html-compression' => array(
+								'name' => 'WP-HTML-Compression',
+								'desc' => 'Combining HTML “minification” with cache and HTTP compression (WP Super Cache, or similar) will cut down your bandwidth and ensure near-immediate content delivery while increasing your Google rankings.',
+							),
+							'bwp-minify' => array(
+								'name' => 'Better WordPress Minify',
+								'desc' => 'Allows you to combine and minify your CSS and JS files to improve page load time. This plugin uses the PHP library Minify and relies on WordPress’s enqueueing system rather than the output buffer, which respects the order of CSS and JS files as well as their dependencies. BWP Minify is very customizable and easy to use.',
+							),
+							*/
+							'mp-timetable' => array(
+								'name' => 'Timetable and Event Schedule',
+								'desc' => 'This plugin helps you create and manage online schedules for a single or multiple events, customize the appearance of each event, add date, time, description and display all the needed items in a carefully-crafted timetable.',
+							),
+							'google-captcha' => array(
+								'name' => 'Google Captcha (reCAPTCHA)',
+								'desc' => 'Google Captcha (reCaptcha) plugin is an effective security solution that protects your WordPress website forms from spam entries while letting real people pass through with ease. It can be used for login, registration, password recovery, comments, popular contact forms, and other.',
+							),
+							'wp-user-avatar' => array(
+								'name' => 'WP User Avatar',
+								'desc' => 'WP User Avatar enables you to use any photo uploaded into your Media Library as an avatar. This means you use the same uploader and library as your posts. No extra folders or image editing functions are necessary.',
+							),
+							'uk-cookie-consent' => array(
+								'name' => 'Cookie Consent',
+								'desc' => 'One of the most popular aspects of the plugin is its simplicity of use – simply install and activate the plugin to automatically add the cookie consent notification bar.',
+							),
+
+						)
+					?>
+
+					<table id="recommended-plugins" class="widefat importers striped">
+						<tbody>
+							<?php
+								foreach( $tested_plugins as $plugin_slug => $plugin ){
+
+									$url = add_query_arg( array(
+										'tab'       => 'plugin-information',
+										'plugin'    => $plugin_slug,
+										'from'      => 'import',
+										'TB_iframe' => 'true',
+										'width'     => 600,
+										'height'    => 550,
+									), network_admin_url( 'plugin-install.php' ) );
+								?>
+								<tr class="importer-item">
+									<td class="plugin-name">
+										<span class="importer-title"><a href="<?php echo esc_url( $url ) ?>" class="thickbox open-plugin-details-modal"><?php echo esc_html( $plugin['name'] ); ?></a></span>
+									</td>
+									<td class="plugin-desc">
+										<?php echo $plugin['desc'] ?>
+									</td>
+								</tr>
+								<?php
+								}
+							?>
+						</tbody>
+					</table>
+
+				</div>
+				<?php
 		}
 
 		/**
@@ -1066,7 +1083,31 @@ if ( ! class_exists( 'TIE_TGM_Plugin_Activation' ) ){
 			}
 
 			if ( ! empty( $desired_slug ) ){
+
 				$subdir_name = untrailingslashit( str_replace( trailingslashit( $remote_source ), '', $source ) );
+
+
+				// TieLabs
+				if( empty( $subdir_name ) ){
+					$upgrade_path = untrailingslashit( $remote_source );
+					$upgrade_path = explode( '/', $upgrade_path );
+					$folder_name  = array_pop( $upgrade_path );
+					$upgrade_path = implode( '/', $upgrade_path );
+
+					$from_path = untrailingslashit( $source );
+					$new_path  = trailingslashit( $upgrade_path ) . $folder_name .'-new';
+					$to_path   = trailingslashit( $new_path ) . $desired_slug;
+
+					if( true === $GLOBALS['wp_filesystem']->mkdir( $new_path ) ){
+						if( true === $GLOBALS['wp_filesystem']->mkdir( $to_path ) ){
+							if ( true === copy_dir( $from_path, $to_path ) ){
+								return trailingslashit( $to_path );
+							}
+						}
+					}
+				}
+				// ----
+
 
 				if ( ! empty( $subdir_name ) && $subdir_name !== $desired_slug ){
 					$from_path = untrailingslashit( $source );
@@ -1218,21 +1259,24 @@ if ( ! class_exists( 'TIE_TGM_Plugin_Activation' ) ){
 					}
 					*/
 
-					if ( $this->does_plugin_require_update( $slug ) || false !== $this->does_plugin_have_update( $slug ) ){
+					if( $this->is_plugin_active( $slug ) ) { // Tielabs, Show the update notice if the plugin is active only
+						if ( $this->does_plugin_require_update( $slug ) || false !== $this->does_plugin_have_update( $slug ) ){
 
-						if ( current_user_can( 'update_plugins' ) ){
-							$update_link_count++;
+							if ( current_user_can( 'update_plugins' ) ){
+								$update_link_count++;
 
-							if ( $this->does_plugin_require_update( $slug ) ){
-								$message['notice_ask_to_update'][] = $slug;
-							} elseif ( false !== $this->does_plugin_have_update( $slug ) ){
-								$message['notice_ask_to_update_maybe'][] = $slug;
+								if ( $this->does_plugin_require_update( $slug ) ){
+									$message['notice_ask_to_update'][] = $slug;
+								} elseif ( false !== $this->does_plugin_have_update( $slug ) ){
+									$message['notice_ask_to_update_maybe'][] = $slug;
+								}
+							}
+							if ( true === $plugin['required'] ){
+								$total_required_action_count++;
 							}
 						}
-						if ( true === $plugin['required'] ){
-							$total_required_action_count++;
-						}
 					}
+
 				}
 			}
 			unset( $slug, $plugin );

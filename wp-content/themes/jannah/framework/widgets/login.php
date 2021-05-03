@@ -1,6 +1,6 @@
 <?php
 
-if( ! class_exists( 'TIE_LOGIN_WIDGET' )){
+if( ! class_exists( 'TIE_LOGIN_WIDGET' ) ) {
 
 	/**
 	 * Widget API: TIE_LOGIN_WIDGET class

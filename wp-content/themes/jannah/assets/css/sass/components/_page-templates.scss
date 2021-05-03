@@ -75,7 +75,7 @@
 
 	.mag-box{
 		.container-wrapper{
-			border-top: 0;
+			border-top-width: 0;
 			border-radius: $base-border-radius;
 			border-top-left-radius: 0;
   		border-top-right-radius: 0;
@@ -116,12 +116,9 @@
 
 // Not-found ---------------------------------------------------
 .not-found{
-	.search-form{
-		max-width: 400px;
-	}
-
 	h5{
 		margin-bottom: 20px;
+		font-weight: normal;
 	}
 }
 
@@ -148,24 +145,29 @@
 
 .container-404 {
 	text-align: center;
-	margin: 50px 0 100px;
+	margin: 30px 0;
+
+	.img-404{
+		margin: 20px auto;
+	}
 
 	h2 {
-		@include font-size(250px);
+		@include font-size(150px);
 		color: $font-color;
 
 		@include breakpoint(max_min_sm){
-			@include font-size(80px);
+			@include font-size(60px);
 		}
 	}
 
 	h3 {
-		@include font-size(30px);
+		@include font-size(28px);
 		color: $dark-color;
 	}
 
 	h4 {
-		margin: 20px auto 50px;
+		margin: 50px auto 20px;
+		font-weight: normal;
 	}
 }
 
@@ -237,6 +239,7 @@ div.post-element{
 	padding: 0;
 	position: relative;
 	margin-bottom: 50px;
+	overflow: hidden;
 
 	.featured-area{
 		margin-bottom: 0;
@@ -603,6 +606,10 @@ div.post-element{
 
 #category-footer-description{
 	margin-top: 30px;
+
+	.review_wrap{
+		display: none !important;
+	}
 
 	.entry *:last-child{
 		margin-bottom: 0;

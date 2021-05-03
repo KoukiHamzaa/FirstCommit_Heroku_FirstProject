@@ -8,7 +8,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
 
 
-if( ! class_exists( 'TIELABS_POSTS_SWITCHER' )){
+if( ! class_exists( 'TIELABS_POSTS_SWITCHER' ) ) {
 
 	class TIELABS_POSTS_SWITCHER{
 

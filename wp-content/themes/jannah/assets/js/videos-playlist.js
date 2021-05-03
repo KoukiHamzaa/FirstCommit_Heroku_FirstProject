@@ -17,6 +17,9 @@ jQuery(document).ready(function(){
 		// Set an ID to the block
 		$thisVideoBox.attr( 'id', videoBoxID );
 
+		// Replace for mCustomScrollbar
+		tie_animate_element( $thisVideoBox );
+
 		// Init
 		$videFrames.video();
 

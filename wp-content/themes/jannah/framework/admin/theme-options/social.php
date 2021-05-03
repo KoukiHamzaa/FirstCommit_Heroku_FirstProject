@@ -74,9 +74,9 @@ for( $i = 1; $i <= 5; $i++ ){
 		array(
 			'name'        => esc_html__( 'Icon', TIELABS_TEXTDOMAIN ),
 			'id'          => 'custom_social_icon_'.$i,
-			'hint'        => '<a href="'. esc_url( 'https://fontawesome.com/v4.7.0/icons/' ) .'" target="_blank">'. esc_html__( 'Use the full Font Awesome icon name', TIELABS_TEXTDOMAIN ) .'</a>',
-			'type'        => 'text',
-			'placeholder' => 'fa fa-icon',
+			'hint'        => '<a href="'. esc_url( 'https://fontawesome.com/icons?d=gallery&s=brands&m=free' ) .'" target="_blank">'. esc_html__( 'Use the full Font Awesome icon name', TIELABS_TEXTDOMAIN ) .'</a>',
+			'type'        => 'icon',
+			'placeholder' => 'fab fa-icon',
 		));
 
 	tie_build_theme_option(

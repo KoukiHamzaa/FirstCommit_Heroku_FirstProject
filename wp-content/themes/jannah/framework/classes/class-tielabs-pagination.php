@@ -8,7 +8,7 @@
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
 
-if( ! class_exists( 'TIELABS_PAGINATION' )){
+if( ! class_exists( 'TIELABS_PAGINATION' ) ) {
 
 	class TIELABS_PAGINATION {
 
@@ -66,7 +66,7 @@ if( ! class_exists( 'TIELABS_PAGINATION' )){
 					$paged_2     = intval( get_query_var('page' ) );
 					$latest_post = ! empty( $GLOBALS['latest_post_count'] ) ? $GLOBALS['latest_post_count'] : 0;
 
-					if( empty( $paged ) && ! empty( $paged_2 )){
+					if( empty( $paged ) && ! empty( $paged_2 ) ) {
 						$paged = $paged_2;
 					}
 
@@ -91,11 +91,11 @@ if( ! class_exists( 'TIELABS_PAGINATION' )){
 					?>
 					<div class="pages-numbers pages-standard">
 						<span class="first-page first-last-pages">
-							<?php previous_posts_link( '<span class="fa" aria-hidden="true"></span>'. esc_html__( 'Previous page', TIELABS_TEXTDOMAIN ) ); ?>
+							<?php previous_posts_link( '<span class="pagination-icon" aria-hidden="true"></span>'. esc_html__( 'Previous page', TIELABS_TEXTDOMAIN ) ); ?>
 						</span>
 
 						<span class="last-page first-last-pages">
-							<?php next_posts_link( '<span class="fa" aria-hidden="true"></span>'. esc_html__( 'Next page', TIELABS_TEXTDOMAIN ) ); ?>
+							<?php next_posts_link( '<span class="pagination-icon" aria-hidden="true"></span>'. esc_html__( 'Next page', TIELABS_TEXTDOMAIN ) ); ?>
 						</span>
 					</div>
 					<?php
@@ -114,7 +114,7 @@ if( ! class_exists( 'TIELABS_PAGINATION' )){
 
 			if ( is_single() ) return;
 
-			if( ! empty( $query )){
+			if( ! empty( $query ) ) {
 				$request		    = $query->request;
 				$numposts 		  = ! empty( $query->query_vars['new_found_posts'] )   ? $query->query_vars['new_found_posts']   : $query->found_posts;
 				$max_page 		  = ! empty( $query->query_vars['new_max_num_pages'] ) ? $query->query_vars['new_max_num_pages'] : $query->max_num_pages;
@@ -151,7 +151,7 @@ if( ! class_exists( 'TIELABS_PAGINATION' )){
 			$paged   = intval( get_query_var('paged') );
 			$paged_2 = intval( get_query_var('page')  );
 
-			if( empty( $paged ) && ! empty( $paged_2 )){
+			if( empty( $paged ) && ! empty( $paged_2 ) ) {
 				$paged = $paged_2;
 			}
 
@@ -217,7 +217,7 @@ if( ! class_exists( 'TIELABS_PAGINATION' )){
 				echo '<ul class="pages-numbers">'."\n";
 
 				/*
-				if(! empty($pages_text)){
+				if(! empty($pages_text) ) {
 					echo '<span class="pages">'.$pages_text.'</span>';
 				}
 				*/
@@ -226,7 +226,7 @@ if( ! class_exists( 'TIELABS_PAGINATION' )){
 					$first_page_text = str_replace("%TOTAL_PAGES%", number_format_i18n($max_page), $pagenavi_options['first_text']);
 					echo '<li class="first-page first-last-pages"><a class="pages-nav-item" href="'.esc_url(get_pagenum_link()).'" title="'.$first_page_text.'"><span class="fa" aria-hidden="true"></span>'.$first_page_text.'</a></li>';
 
-					if( ! empty( $pagenavi_options['dotleft_text'] )){
+					if( ! empty( $pagenavi_options['dotleft_text'] ) ) {
 						echo '<li class="extend"><span class="pages-nav-item">'.$pagenavi_options['dotleft_text'].'</span></li>';
 					}
 				}
@@ -266,7 +266,7 @@ if( ! class_exists( 'TIELABS_PAGINATION' )){
 				}
 
 				if ($end_page < $max_page){
-					if(! empty($pagenavi_options['dotright_text'])){
+					if( ! empty( $pagenavi_options['dotright_text'] ) ) {
 						echo '<li class="extend"><span class="pages-nav-item">'.$pagenavi_options['dotright_text'].'</span></li>';
 					}
 					$last_page_text = str_replace("%TOTAL_PAGES%", number_format_i18n($max_page), $pagenavi_options['last_text']);

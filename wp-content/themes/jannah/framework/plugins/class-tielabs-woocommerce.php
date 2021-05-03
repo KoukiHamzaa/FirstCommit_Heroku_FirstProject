@@ -8,7 +8,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
 
 
-if( ! class_exists( 'TIELABS_WOOCOMMERCE' )){
+if( ! class_exists( 'TIELABS_WOOCOMMERCE' ) ) {
 
 	class TIELABS_WOOCOMMERCE{
 
@@ -127,15 +127,17 @@ if( ! class_exists( 'TIELABS_WOOCOMMERCE' )){
 				return $logo_args;
 			}
 
-			$logo_args['logo_type']          = self::get_page_data( 'logo_setting'.$logo_suffix );
-			$logo_args['logo_img']           = self::get_page_data( 'logo'.$logo_suffix );
-			$logo_args['logo_retina']        = self::get_page_data( 'logo_retina'.$logo_suffix );
-			$logo_args['logo_width']         = self::get_page_data( 'logo_retina_width'.$logo_suffix );
-			$logo_args['logo_height']        = self::get_page_data( 'logo_retina_height'.$logo_suffix );
-			$logo_args['logo_margin_top']    = self::get_page_data( 'logo_margin'.$logo_suffix );
-			$logo_args['logo_margin_bottom'] = self::get_page_data( 'logo_margin_bottom'.$logo_suffix );
-			$logo_args['logo_title']         = self::get_page_data( 'logo_text', get_bloginfo() );
-			$logo_args['logo_url']           = self::get_page_data( 'logo_url'.$logo_suffix );
+			$logo_args['logo_type']            = self::get_page_data( 'logo_setting'.$logo_suffix );
+			$logo_args['logo_img']             = self::get_page_data( 'logo'.$logo_suffix );
+			$logo_args['logo_retina']          = self::get_page_data( 'logo_retina'.$logo_suffix );
+			$logo_args['logo_inverted']        = self::get_page_data( 'logo_inverted'.$logo_suffix );
+			$logo_args['logo_inverted_retina'] = self::get_page_data( 'logo_inverted_retina'.$logo_suffix );
+			$logo_args['logo_width']           = self::get_page_data( 'logo_retina_width'.$logo_suffix );
+			$logo_args['logo_height']          = self::get_page_data( 'logo_retina_height'.$logo_suffix );
+			$logo_args['logo_margin_top']      = self::get_page_data( 'logo_margin'.$logo_suffix );
+			$logo_args['logo_margin_bottom']   = self::get_page_data( 'logo_margin_bottom'.$logo_suffix );
+			$logo_args['logo_title']           = self::get_page_data( 'logo_text', get_bloginfo() );
+			$logo_args['logo_url']             = self::get_page_data( 'logo_url'.$logo_suffix );
 
 			return $logo_args;
 		}
@@ -150,7 +152,7 @@ if( ! class_exists( 'TIELABS_WOOCOMMERCE' )){
 				return $args;
 			}
 
-			if( ! empty( $block['woo_cats'] )){
+			if( ! empty( $block['woo_cats'] ) ) {
 				$woo_categories = $block['woo_cats'];
 			}
 			else{
@@ -228,7 +230,7 @@ if( ! class_exists( 'TIELABS_WOOCOMMERCE' )){
 		function single_product_image_html( $html, $attachment_id ){
 
 			$full_size_image = wp_get_attachment_image_src( $attachment_id, 'full' );
-			$zoom_trigger = 'class="woocommerce-product-gallery__image"><a href="'. esc_url( $full_size_image[0] ) .'" class="woocommerce-product-gallery__trigger"><span class="fa fa-search-plus"></span></a>';
+			$zoom_trigger = 'class="woocommerce-product-gallery__image"><a href="'. esc_url( $full_size_image[0] ) .'" class="woocommerce-product-gallery__trigger"><span class="tie-icon-search-plus"></span></a>';
 
 			return str_replace( 'class="woocommerce-product-gallery__image">', $zoom_trigger, $html );
 		}
@@ -274,7 +276,7 @@ if( ! class_exists( 'TIELABS_WOOCOMMERCE' )){
 			$wc_id = wc_get_page_id( 'shop' );
 
 			if( ! empty( $wc_id ) ){
-				if( $value = get_post_meta( $wc_id, $key, $single = true )){
+				if( $value = get_post_meta( $wc_id, $key, $single = true ) ) {
 					return $value;
 				}
 			}
@@ -299,7 +301,7 @@ if( ! class_exists( 'TIELABS_WOOCOMMERCE' )){
 
 			$categories = array();
 
-			if( ! empty( $label )){
+			if( ! empty( $label ) ) {
 				$categories = array( '' => esc_html__( '- Select a category -', TIELABS_TEXTDOMAIN ));
 			}
 
@@ -361,8 +363,8 @@ if( ! class_exists( 'TIELABS_WOOCOMMERCE' )){
 						infinite      : false,
 						rtl           : is_RTL,
 						appendArrows  : '.images .tie-slider-nav',
-						prevArrow     : '<li><span class=\"fa fa-angle-left\"></span></li>',
-						nextArrow     : '<li><span class=\"fa fa-angle-right\"></span></li>',
+						prevArrow     : '<li><span class=\"tie-icon-angle-left\"></span></li>',
+						nextArrow     : '<li><span class=\"tie-icon-angle-right\"></span></li>',
 					});
 
 					/* WooCommerce LightBox */
@@ -402,8 +404,8 @@ if( ! class_exists( 'TIELABS_WOOCOMMERCE' )){
 
 			$output = '<span class="shooping-cart-counter menu-counter-bubble-outer">';
 
-			if( WC()->cart->get_cart_contents_count() != 0 ){
-				$output .= '<span class="menu-counter-bubble">'. WC()->cart->get_cart_contents_count() .'</span>';
+			if( isset( WC()->cart ) && WC()->cart->get_cart_contents_count() != 0 ){
+				$output .= '<span class="menu-counter-bubble">'. apply_filters( 'TieLabs/number_format', WC()->cart->get_cart_contents_count() ) .'</span>';
 			}
 
 			$output .= '</span><!-- .menu-counter-bubble-outer -->';
@@ -434,7 +436,7 @@ if( ! class_exists( 'TIELABS_WOOCOMMERCE' )){
 		 */
 		function header_cart_content(){
 
-			$cart_items = WC()->cart->get_cart(); ?>
+			$cart_items = isset( WC()->cart ) ? WC()->cart->get_cart() : false; ?>
 
 			<div class="shopping-cart-details">
 			<?php

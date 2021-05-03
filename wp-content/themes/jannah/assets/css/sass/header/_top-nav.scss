@@ -50,7 +50,6 @@
 		}
 	}
 
-
 	&.has-date-components .tie-alignleft,
 	&.has-date-components-menu,
 	.top-nav-boxed &.has-components{
@@ -69,10 +68,11 @@
 .topbar-today-date{
 	float: left;
 	padding-right: 15px;
-	font-size: 11px;
+	font-size: 12px;
 	flex-shrink: 0;
 
 	&:before{
+		font-size: 13px;
 		content: "\f017";
 	}
 }
@@ -185,6 +185,7 @@
 	}
 }
 
+
 //Topbar Components---------------------------------------------
 .top-nav{
 	.tie-alignleft{
@@ -207,10 +208,11 @@
 		color: $dark-base-color;
 	}
 
-	#top-nav,
-	#top-nav .topbar-wrapper{
-		border-width: 0;
-	}
+	// version 5.0
+	//#top-nav,
+	//#top-nav .topbar-wrapper{
+		//border-width: 0;
+	//}
 
 	.top-nav *{
 		border-color: $base-border-color-in-white;
@@ -269,6 +271,17 @@
 	}
 }
 
+.top-nav-light #top-nav,
+.main-nav-light #main-nav{
+	.weather-icon{
+		.icon-cloud,
+		.icon-basecloud-bg,
+		.icon-cloud-behind{
+			color: #d3d3d3;
+		}
+	}
+}
+
 //Top Nav Media Queries-----------------------------------------
 @include breakpoint(max_min_md){
 	.top-nav:not(.has-breaking-news),
@@ -278,7 +291,12 @@
 		display: none;
 	}
 
-	.is-header-layout-1 .top-nav-below .top-nav.has-breaking-news{
-		border-top-width: 0;
-	}
+	//.is-header-layout-1 .top-nav-below .top-nav.has-breaking-news{
+		//border-top-width: 0;
+	//}
+}
+
+// Hide the breaking news till its CSS loaded
+.breaking{
+	display: none;
 }

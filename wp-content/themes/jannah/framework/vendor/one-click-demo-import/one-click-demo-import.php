@@ -89,7 +89,7 @@ class PT_One_Click_Demo_Import {
 	 *
 	 * @return void
 	 */
-	private function __wakeup(){}
+	public function __wakeup(){}
 
 
 	/**
@@ -148,8 +148,14 @@ class PT_One_Click_Demo_Import {
 
 	// by TieLabs ***************************************************************
 
-	$demos_count  = tie_get_latest_theme_data( 'demos' ) ? count( tie_get_latest_theme_data( 'demos' ) ) : 0;
-	update_option( TIELABS_THEME_SLUG .'_demos_count', $demos_count, false );
+
+
+		$demos_count = tie_get_latest_theme_data( 'demos' );
+		if( ! empty( $demos_count ) && is_array( $demos_count ) ){
+
+			$demos_count = count( tie_get_latest_theme_data( 'demos' ) );
+			update_option( TIELABS_THEME_SLUG .'_demos_count', $demos_count, false );
+		}
 
 	?>
 
@@ -158,22 +164,27 @@ class PT_One_Click_Demo_Import {
 		<?php TIELABS_WELCOME_PAGE::_head_section( 'demos' ); ?>
 
 		<?php
-		$plugin_page_setup = apply_filters( 'pt-ocdi/plugin_page_setup', array(
-				'page_title'  => esc_html__( 'Choose the demo which you want to import', TIELABS_TEXTDOMAIN ),
-			)
-		);
+
+			$plugin_page_setup = apply_filters( 'pt-ocdi/plugin_page_setup', array(
+					'page_title'  => esc_html__( 'Choose the demo which you want to import', TIELABS_TEXTDOMAIN ),
+				)
+			);
+
+			do_action( 'TieLabs/Demos/before_page_title' );
+		?>
+
+		<h2 class="tie-import-title"><?php echo esc_html( $plugin_page_setup['page_title'] ) ?></h2>
+
+		<?php
 
 			if( ! get_option( 'tie_token_'.TIELABS_THEME_ID ) ){
 				TIELABS_VERIFICATION::authorize_notice( false );
 			}
-			else{
 
-				do_action( 'TieLabs/Demos/before_page_title' );
-
-			?>
+			//else{
+		?>
 
 
-		<h2 class="tie-import-title"><?php echo esc_html( $plugin_page_setup['page_title'] ) ?></h2>
 
 		<?php
 
@@ -208,7 +219,7 @@ class PT_One_Click_Demo_Import {
 		<?php if ( ! empty ( $this->import_files ) ) : ?>
 
 
-<?php // by TieLabs *************************************************************** ?>
+		<?php // by TieLabs *************************************************************** ?>
 
 		<div class="theme-browser tie-demo-importer rendered" id="ocdi__demo-import-files">
 			<?php foreach ( $this->import_files as $index => $import_file ) :	?>
@@ -227,7 +238,7 @@ class PT_One_Click_Demo_Import {
 					<div class="theme-id-container">
 						<h3 class="theme-name"><?php echo esc_html( $import_file['import_file_name'] ); ?></h3>
 						<?php
-							if( ! empty( $import_file['import_demo'] )){ ?>
+							if( ! empty( $import_file['import_demo'] ) ) { ?>
 								<div class="theme-actions">
 									<a class="tie-live-demo button button-secondry" target="_blank" href="<?php echo esc_url( $import_file['import_demo'] ); ?>"><?php echo esc_html__( 'Live Demo', TIELABS_TEXTDOMAIN ); ?></a>
 								</div>
@@ -239,8 +250,7 @@ class PT_One_Click_Demo_Import {
 			<?php endforeach; ?>
 		</div>
 
-
-<?php // by TieLabs ***************************************************************?>
+		<?php // by TieLabs ***************************************************************?>
 
 
 		<?php endif; ?>
@@ -248,14 +258,10 @@ class PT_One_Click_Demo_Import {
 
 		<div class="clear"></div>
 
-
-
-
 		<div id="tie-page-overlay"></div>
 
 		<div id="tie-import-data-notes" class="theme-overlay tie-popup-window">
 			<div class="theme-overlay">
-
 
 				<div class="theme-wrap wp-clearfix">
 					<div class="theme-header">
@@ -268,33 +274,39 @@ class PT_One_Click_Demo_Import {
 						</div>
 
 						<div class="theme-info">
-
 							<h3 class="theme-name"></h3>
 							<p class="theme-tags"></p>
-
 							<div id="theme-description" class="theme-description"></div>
-
 						</div>
 
 						<div class="wp-clearfix"></div>
 
-						<div class="tie-message-hint">
-							<h4>
-								<?php esc_html_e( 'Important Notes:', TIELABS_TEXTDOMAIN ); ?>
-							</h4>
+						<?php
 
-							<ol>
-								<li><?php esc_html_e( 'We recommend to run Demo Import on a clean WordPress installation.', TIELABS_TEXTDOMAIN ); ?></li>
-								<li><?php esc_html_e( 'The Demo Import will not import the images we have used in our live demos, due to copyright / license reasons.', TIELABS_TEXTDOMAIN ); ?></li>
-								<li><?php esc_html_e( 'No existing posts, pages, categories, images, custom post types or any other data will be deleted or modified.', TIELABS_TEXTDOMAIN ); ?></li>
-								<li><?php esc_html_e( 'Posts, pages, images, widgets and menus will get imported.', TIELABS_TEXTDOMAIN ); ?></li>
-								<li><?php esc_html_e( 'Before you begin, make sure all the required plugins are activated.', TIELABS_TEXTDOMAIN ); ?></li>
-								<li><?php esc_html_e( 'Do not run the Demo Import multiple times one after another, it will result in double content.', TIELABS_TEXTDOMAIN ); ?></li>
-							</ol>
-						</div>
+							if( ! get_option( 'tie_token_'.TIELABS_THEME_ID ) ){
+								TIELABS_VERIFICATION::authorize_notice( false );
+							}
+
+							else{ ?>
+							<div class="tie-message-hint">
+								<h4>
+									<?php esc_html_e( 'Important Notes:', TIELABS_TEXTDOMAIN ); ?>
+								</h4>
+
+								<ol>
+									<li><?php esc_html_e( 'We recommend to run Demo Import on a clean WordPress installation.', TIELABS_TEXTDOMAIN ); ?></li>
+									<li><?php esc_html_e( 'The Demo Import will not import the images we have used in our live demos, due to copyright / license reasons.', TIELABS_TEXTDOMAIN ); ?></li>
+									<li><?php esc_html_e( 'No existing posts, pages, categories, images, custom post types or any other data will be deleted or modified.', TIELABS_TEXTDOMAIN ); ?></li>
+									<li><?php esc_html_e( 'Posts, pages, images, widgets and menus will get imported.', TIELABS_TEXTDOMAIN ); ?></li>
+									<li><?php esc_html_e( 'Before you begin, make sure all the required plugins are activated.', TIELABS_TEXTDOMAIN ); ?></li>
+									<li><?php esc_html_e( 'Do not run the Demo Import multiple times one after another, it will result in double content.', TIELABS_TEXTDOMAIN ); ?></li>
+								</ol>
+							</div>
+						<?php } ?>
 
 					</div>
 
+					<?php if( get_option( 'tie_token_'.TIELABS_THEME_ID ) ): ?>
 					<div class="theme-actions">
 						<div class="import-button">
 							<a id="tie-install-demo" class="tie-primary-button button button-primary button-hero" href="#"><?php echo esc_html__( 'Import', TIELABS_TEXTDOMAIN ); ?></a>
@@ -306,10 +318,7 @@ class PT_One_Click_Demo_Import {
 							<a class="tie-primary-button button button-hero" target="_blank" href="<?php echo esc_url(home_url( '/' )) ?>"><?php echo esc_html__( 'Visit Site', TIELABS_TEXTDOMAIN ); ?></a>
 						</div>
 					</div>
-
-
-
-
+					<?php endif; ?>
 
 					<div class="ocdi__response js-tie-ajax-response js-ocdi-ajax-response">
 
@@ -342,7 +351,7 @@ class PT_One_Click_Demo_Import {
 
 	<?php
 
-		}//Validation else
+		//}//Validation else
 	}
 
 
@@ -359,7 +368,7 @@ class PT_One_Click_Demo_Import {
 
 			wp_localize_script( 'ocdi-main-js', 'ocdi',
 				array(
-					'ajax_url'     => admin_url( 'admin-ajax.php' ),
+					//'ajax_url'     => admin_url( 'admin-ajax.php' ), // TieLabs, replaced in the JS file to use the global ajaxurl to avoid SSL importing demo issue
 					'ajax_nonce'   => wp_create_nonce( 'ocdi-ajax-verification' ),
 					'import_files' => $this->import_files,
 					'texts'        => array(
@@ -386,7 +395,7 @@ class PT_One_Click_Demo_Import {
 
 
 		// TieLabs ===
-		if( empty( $this->start_time )){
+		if( empty( $this->start_time ) ) {
 			$this->start_time = microtime(true);
 		}
 
@@ -457,7 +466,7 @@ class PT_One_Click_Demo_Import {
 				);
 
 				// Store the installed Demo // TieLabs
-				if( ! empty( $this->import_files[ $this->selected_index ]['import_file_name'] )){
+				if( ! empty( $this->import_files[ $this->selected_index ]['import_file_name'] ) ) {
 					update_option( 'tie_installed_demo_'. TIELABS_THEME_ID, $this->import_files[ $this->selected_index ]['import_file_name'], false );
 				}
 			}
@@ -483,7 +492,7 @@ class PT_One_Click_Demo_Import {
 		 * 2.2 Import WooCommerce.
 		 * WooCommerce Data Import by TieLabs
 		 */
-		if( ! empty( $this->selected_import_files['woocommerce'] )){
+		if( ! empty( $this->selected_import_files['woocommerce'] ) ) {
 
 			$log_added = OCDI_Helpers::append_to_file( 'Begin to import the media files from the WooCommerce XML', $this->log_file_path, 'Debugging' );
 
@@ -820,6 +829,15 @@ class PT_One_Click_Demo_Import {
 	 * Get data from filters, after the theme has loaded and instantiate the importer.
 	 */
 	public function setup_plugin_with_filter_data(){
+
+		if( ! is_admin() ){
+			return;
+		}
+
+		// Check the current user role
+		if( ! function_exists( 'current_user_can' ) || function_exists( 'current_user_can' ) && ! current_user_can( 'manage_options' ) ){
+			return;
+		}
 
 		// Get info of import data files and filter it.
 		$this->import_files = OCDI_Helpers::validate_import_file_info( apply_filters( 'pt-ocdi/import_files', array() ) );

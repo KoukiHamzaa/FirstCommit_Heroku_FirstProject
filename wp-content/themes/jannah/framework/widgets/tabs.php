@@ -1,6 +1,6 @@
 <?php
 
-if( ! class_exists( 'TIE_WIDGET_TABS' )){
+if( ! class_exists( 'TIE_WIDGET_TABS' ) ) {
 
 	/**
 	 * Widget API: TIE_WIDGET_TABS class
@@ -47,6 +47,21 @@ if( ! class_exists( 'TIE_WIDGET_TABS' )){
 				return;
 			}
 
+			$popular_order = 'popular';
+
+			if( ! empty( $instance['posts_order'] ) ){
+				$popular_order = ( $instance['posts_order'] == 'viewed' ) ? 'views' : $instance['posts_order'];
+			}
+
+			$tabs_icons = ! empty( $instance['tabs_title_icons'] ) ? true : false;
+
+			$popular_text  = esc_html__( 'Popular', TIELABS_TEXTDOMAIN );
+			$recent_text   = $tabs_icons ? '<span class="tie-icon-file-text"></span>' : esc_html__( 'Recent', TIELABS_TEXTDOMAIN );
+			$comments_text = $tabs_icons ? '<span class="tie-icon-comments"></span>'  : esc_html__( 'Comments', TIELABS_TEXTDOMAIN );
+
+			if( $tabs_icons ){
+				$popular_text = $popular_order == 'popular' ? '<span class="tie-icon-thumbs-up"></span>' : '<span class="tie-icon-eye"></span>';
+			}
 			?>
 
 			<div class="container-wrapper tabs-container-wrapper tabs-container-<?php echo count( $tabs_order_array ) ?>">
@@ -65,15 +80,15 @@ if( ! class_exists( 'TIE_WIDGET_TABS' )){
 										foreach ( $tabs_order_array as $tab ){
 
 											if( $tab == 'p' ){
-												echo '<li><a href="#'.$widget_id.'-popular">'. esc_html__( 'Popular', TIELABS_TEXTDOMAIN ) .'</a></li>';
+												echo '<li><a href="#'.$widget_id.'-popular">'. $popular_text .'</a></li>';
 											}
 
 											elseif( $tab == 'r' ){
-												echo '<li><a href="#'.$widget_id.'-recent">'. esc_html__( 'Recent', TIELABS_TEXTDOMAIN ) .'</a></li>';
+												echo '<li><a href="#'.$widget_id.'-recent">'. $recent_text .'</a></li>';
 											}
 
 											elseif( $tab == 'c' ){
-												echo '<li><a href="#'.$widget_id.'-comments">'. esc_html__( 'Comments', TIELABS_TEXTDOMAIN ) .'</a></li>';
+												echo '<li><a href="#'.$widget_id.'-comments">'. $comments_text .'</a></li>';
 											}
 
 										}
@@ -88,17 +103,7 @@ if( ! class_exists( 'TIE_WIDGET_TABS' )){
 
 											<div id="<?php echo esc_attr( $widget_id ) ?>-popular" class="tab-content tab-content-popular">
 												<ul class="tab-content-elements">
-													<?php
-
-														$popular_order = 'popular';
-
-														if( ! empty( $instance['posts_order'] ) ){
-															$popular_order = ( $instance['posts_order'] == 'viewed' ) ? 'views' : $instance['posts_order'];
-														}
-
-														tie_widget_posts( array( 'number' => $posts_number, 'order' => $popular_order ));
-
-													?>
+													<?php tie_widget_posts( array( 'number' => $posts_number, 'order' => $popular_order )); ?>
 												</ul>
 											</div><!-- .tab-content#popular-posts-tab /-->
 
@@ -145,6 +150,8 @@ if( ! class_exists( 'TIE_WIDGET_TABS' )){
 			$instance['disable_popular']  = ! empty( $new_instance['disable_popular'] )  ? 'true' : false;
 			$instance['disable_recent']   = ! empty( $new_instance['disable_recent'] )   ? 'true' : false;
 			$instance['disable_comments'] = ! empty( $new_instance['disable_comments'] ) ? 'true' : false;
+
+			$instance['tabs_title_icons'] = ! empty( $new_instance['tabs_title_icons'] ) ? 'true' : false;
 			return $instance;
 		}
 
@@ -165,7 +172,14 @@ if( ! class_exists( 'TIE_WIDGET_TABS' )){
 			$disable_recent   = isset( $instance['disable_recent'] )   ? $instance['disable_recent']   : '';
 			$disable_comments = isset( $instance['disable_comments'] ) ? $instance['disable_comments'] : '';
 
+			$tabs_title_icons = isset( $instance['tabs_title_icons'] ) ? $instance['tabs_title_icons'] : '';
+
 			?>
+
+			<p>
+				<input id="<?php echo esc_attr( $this->get_field_id( 'tabs_title_icons' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'tabs_title_icons' ) ); ?>" value="true" <?php checked( $tabs_title_icons, 'true' ) ?> type="checkbox" />
+				<label for="<?php echo esc_attr( $this->get_field_id( 'tabs_title_icons' ) ); ?>"><?php esc_html_e( 'Use icons', TIELABS_TEXTDOMAIN) ?></label>
+			</p>
 
 			<p>
 				<label for="<?php echo esc_attr( $this->get_field_id( 'posts_number' ) ); ?>"><?php esc_html_e( 'Number of items to show:', TIELABS_TEXTDOMAIN) ?></label>

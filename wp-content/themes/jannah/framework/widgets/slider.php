@@ -1,6 +1,6 @@
 <?php
 
-if( ! class_exists( 'TIE_SLIDER_WIDGET' )){
+if( ! class_exists( 'TIE_SLIDER_WIDGET' ) ) {
 
 	/**
 	 * Widget API: TIE_SLIDER_WIDGET class
@@ -26,11 +26,11 @@ if( ! class_exists( 'TIE_SLIDER_WIDGET' )){
 			$posts_order   = ! empty( $instance['posts_order'] )   ? $instance['posts_order']   : 'latest';
 			$cats_id       = '';
 
-			if( ! empty( $instance['cats_id'] )){
+			if( ! empty( $instance['cats_id'] ) ) {
 				$cats_id = explode ( ',', $instance['cats_id'] );
 			}
 
-			if( ! empty( $instance['slider_only'] )){
+			if( ! empty( $instance['slider_only'] ) ) {
 				$args['before_widget'] = '<div id="'. $args['widget_id'] .'" class="widget container-wrapper tie-slider-widget widget-content-only">';
 				$args['after_widget']  = '</div>';
 				$instance['title']     = '';
@@ -51,7 +51,7 @@ if( ! class_exists( 'TIE_SLIDER_WIDGET' )){
 			<div class="main-slider boxed-slider boxed-five-slides-slider slider-in-widget">
 
 				<?php
-					# Loader icon
+					// Loader icon
 					tie_get_ajax_loader();
 				?>
 
@@ -75,7 +75,7 @@ if( ! class_exists( 'TIE_SLIDER_WIDGET' )){
 								if( $slider_query->have_posts() ):
 									while ( $slider_query->have_posts() ):  $slider_query->the_post();
 
-                    if( tie_get_option( 'lazy_load' )){
+                    if( tie_get_option( 'lazy_load' ) ) {
                     	?>
                       <div class="slide">
                         <img data-lazy="<?php echo tie_thumb_src( TIELABS_THEME_SLUG.'-image-post' ) ?>" src="<?php echo tie_lazyload_placeholder(); ?>" alt="">
@@ -173,7 +173,7 @@ if( ! class_exists( 'TIE_SLIDER_WIDGET' )){
 			$posts_order   = isset( $instance['posts_order'] )   ? esc_attr( $instance['posts_order'])   : '';
 			$cats_id       = array();
 
-			if( ! empty( $instance['cats_id'] )){
+			if( ! empty( $instance['cats_id'] ) ) {
 				$cats_id = explode ( ',', $instance['cats_id'] );
 			}
 

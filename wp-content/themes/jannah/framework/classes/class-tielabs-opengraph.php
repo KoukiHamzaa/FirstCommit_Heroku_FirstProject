@@ -8,7 +8,7 @@
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
 
-if( ! class_exists( 'TIELABS_OPENGRAPH' )){
+if( ! class_exists( 'TIELABS_OPENGRAPH' ) ) {
 
 	class TIELABS_OPENGRAPH {
 
@@ -33,7 +33,7 @@ if( ! class_exists( 'TIELABS_OPENGRAPH' )){
 			}
 
 			$post           = get_post();
-			$og_title       = the_title_attribute( 'echo=0' ) . ' - ' . get_bloginfo('name') ;
+			$og_title       = the_title_attribute( 'echo=0' ) . ' - ' . get_bloginfo('name');
 			$og_description = apply_filters( 'TieLabs/exclude_content', $post->post_content );
 			$og_description = strip_tags( strip_shortcodes( $og_description ) );
 			$og_type        = 'article';
@@ -66,7 +66,7 @@ echo '<meta property="og:image" content="'. esc_url( $image ) .'" />'."\n";
 		function opengraph_namespace( $input ){
 
 			// Check if single and og is active and there is no OG plugin is active
-			if( is_admin() || self::is_active() || ! is_singular() || ! tie_get_option( 'post_og_cards' )){
+			if( is_admin() || self::is_active() || ! is_singular() || ! tie_get_option( 'post_og_cards' ) ) {
 				return $input;
 			}
 
@@ -84,7 +84,7 @@ echo '<meta property="og:image" content="'. esc_url( $image ) .'" />'."\n";
 			// Yoast SEO
 			if( class_exists( 'WPSEO_Frontend' ) ){
 				$yoast = get_option( 'wpseo_social' );
-				if( ! empty( $yoast['opengraph'] )){
+				if( ! empty( $yoast['opengraph'] ) ) {
 					$is_active = true;
 				}
 			}

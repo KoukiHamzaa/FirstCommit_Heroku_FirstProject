@@ -8,7 +8,7 @@
  * will need to copy the new files to your child theme to maintain compatibility.
  *
  * @author   TieLabs
- * @version  2.1.0
+ * @version  5.0.0
  */
 
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly
@@ -19,11 +19,11 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 	<div class="subscribe-widget">
 		<div class="widget-inner-wrap">
 
-			<span class="fa fa-envelope newsletter-icon" aria-hidden="true"></span>
+			<span class="tie-icon-envelope newsletter-icon" aria-hidden="true"></span>
 
 			<?php
 
-				if( $text = tie_get_option( 'post_newsletter_text' )){ ?>
+				if( $text = tie_get_option( 'post_newsletter_text' ) ) { ?>
 
 					<div class="subscribe-widget-content">
 						<?php echo do_shortcode( $text ) ?>
@@ -32,7 +32,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 					<?php
 				}
 
-				if( $feedburner = tie_get_option( 'post_newsletter_feedburner' )){ ?>
+				if( $feedburner = tie_get_option( 'post_newsletter_feedburner' ) ) { ?>
 
 					<form action="https://feedburner.google.com/fb/a/mailverify" method="post" class="subscribe-form" target="popupwindow" onsubmit="window.open('https://feedburner.google.com/fb/a/mailverify?uri=<?php echo esc_attr( $feedburner ) ?>', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true">
 						<label class="screen-reader-text" for="email"><?php esc_html_e( 'Enter your Email address', TIELABS_TEXTDOMAIN ); ?></label>
@@ -44,7 +44,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 					<?php
 				}
 
-				elseif( $mailchimp = tie_get_option( 'post_newsletter_mailchimp' )){ ?>
+				elseif( $mailchimp = tie_get_option( 'post_newsletter_mailchimp' ) ) { ?>
 					<div id="mc_embed_signup">
 						<form action="<?php echo esc_attr( $mailchimp ) ?>" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="subscribe-form validate" target="_blank" novalidate>
 							<div id="mc_embed_signup_scroll">

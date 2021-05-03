@@ -8,32 +8,30 @@
  * will need to copy the new files to your child theme to maintain compatibility.
  *
  * @author 		TieLabs
- * @version   3.0.0
+ * @version   5.0.0
  */
 
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
+// Header Layout
+$header_layout = tie_get_option( 'header_layout', 3 );
 
-if( tie_get_option( 'main_nav' ) || tie_get_option( 'header_layout' ) == 1 ):
-
-	// Header Layout
-	$header_layout = tie_get_option( 'header_layout', 3 );
+if( tie_get_option( 'main_nav' ) || $header_layout == 1 || $header_layout == 4 ):
 
 	$main_menu_class = 'main-nav header-nav';
 
 	// Live Search skin
 	$live_search_data_skin = '';
 	if( tie_get_option( 'main-nav-components_search' ) && tie_get_option( 'main-nav-components_live_search' ) ){
-		$live_search_skin      = tie_get_option( 'main_nav_dark' ) ? 'dark' : 'light';
 		$main_menu_class      .= ' live-search-parent';
-		$live_search_data_skin = 'data-skin="search-in-main-nav live-search-'. $live_search_skin .'"';
+		$live_search_data_skin = 'data-skin="search-in-main-nav"';
 	}
 
 	// Header Layout
 	$logo_width  = '';
 	$line_height = '';
 
-	if( $header_layout == 1 ){
+	if( $header_layout == 1 || $header_layout == 4 ){
 
 		$logo_args = tie_logo_args();
 
@@ -56,19 +54,17 @@ if( tie_get_option( 'main_nav' ) || tie_get_option( 'header_layout' ) == 1 ):
 			<div class="main-menu-wrapper">
 
 				<?php
-					if( $header_layout == 1 ){ ?>
+					if( $header_layout == 1 || $header_layout == 4 ){
+						do_action( 'TieLabs/Logo/before' ); ?>
+
 						<div class="header-layout-1-logo" <?php echo ( $logo_width ) ?>>
-							<?php
-
-								do_action( 'TieLabs/Logo/before' );
-
-								tie_logo();
-
-								do_action( 'TieLabs/Logo/after' );
-							?>
+							<?php tie_logo(); ?>
 						</div>
+
 						<?php
+						do_action( 'TieLabs/Logo/after' );
 					}
+
 				?>
 
 				<div id="menu-components-wrap">

@@ -15,30 +15,13 @@ if( ! class_exists( 'TIELABS_THEME_UPDATER' ) ){
 	class TIELABS_THEME_UPDATER {
 
 		/**
-		 * Holds the remote theme version.
-		 * @var string
-		 */
-		private $remote_theme_version = '';
-
-		/**
-		 * Holds the current theme version.
-		 * @var string
-		 */
-		private $current_theme_version = '';
-
-		/**
-		 * Holds the theme's changelog page url.
-		 * @var string
-		 */
-		private $theme_changeLog_url = '';
-
-
-		/**
 		 * __construct
 		 *
 		 * Class constructor where we will call our filter and action hooks.
 		 */
 		function __construct( ) {
+
+			// we moved the new_update_available inside the methods to avoid loading it in the ajax requests
 
 			// Debug
 			/*
@@ -47,14 +30,6 @@ if( ! class_exists( 'TIELABS_THEME_UPDATER' ) ){
 			var_dump( $wp_current_filter );
 			var_dump( get_site_transient( 'update_themes' ));
 			*/
-
-			$this->remote_theme_version  = tie_get_latest_theme_data( 'version' );
-			$this->current_theme_version = TIELABS_DB_VERSION;
-			$this->theme_changeLog_url   = apply_filters( 'TieLabs/External/changelog', '' );
-
-			if( empty( $this->current_theme_version ) || version_compare( $this->remote_theme_version, $this->current_theme_version, '<=' ) ){
-				return;
-			}
 
 			// Filters
 			add_filter( 'pre_set_site_transient_update_themes', array( $this, 'check_for_update' ) );
@@ -66,6 +41,25 @@ if( ! class_exists( 'TIELABS_THEME_UPDATER' ) ){
 
 
 		/**
+		 * is the theme has a new update
+		 */
+		function new_update_available(){
+
+			if( ! current_user_can( 'manage_options' ) ){
+				return false;
+			}
+
+			$remote_theme_version = tie_get_latest_theme_data( 'version' );
+
+			if( ! defined('TIELABS_DB_VERSION') || empty( TIELABS_DB_VERSION ) || version_compare( $remote_theme_version, TIELABS_DB_VERSION, '<=' ) ){
+				return false;
+			}
+
+			return true;
+		}
+
+
+		/**
 		 * check_for_update
 		 *
 		 * Check if update is available.
@@ -73,13 +67,17 @@ if( ! class_exists( 'TIELABS_THEME_UPDATER' ) ){
 		 */
 		function check_for_update( $transient ){
 
+			if( ! $this->new_update_available() ){
+				return $transient;
+			}
+
 			if ( empty( $transient->checked ) || ! tie_get_latest_theme_data( 'download_url' ) ){
 				return $transient;
 			}
 
 			$data = array(
-				'new_version' => $this->remote_theme_version,
-				'url'         => $this->theme_changeLog_url . '&via-iframe=true',
+				'new_version' => tie_get_latest_theme_data( 'version' ),
+				'url'         => apply_filters( 'TieLabs/External/changelog', '' ) . '&via-iframe=true',
 				'package'     => tie_get_latest_theme_data( 'download_url' ),
 			);
 
@@ -97,6 +95,11 @@ if( ! class_exists( 'TIELABS_THEME_UPDATER' ) ){
 		 * Update the theme's update URL after updating the theme data via the API
 		 */
 		function update_cached_data(){
+
+			if( ! $this->new_update_available() ){
+				return;
+			}
+
 			set_site_transient( 'update_themes', null );
 		}
 
@@ -108,10 +111,14 @@ if( ! class_exists( 'TIELABS_THEME_UPDATER' ) ){
 		 */
 		function update_notifier_menu(){
 
+			if( ! $this->new_update_available() ){
+				return;
+			}
+
 			add_submenu_page(
 				'tie-theme-options',
 				esc_html__( 'Theme Updates', TIELABS_TEXTDOMAIN ),
-				esc_html__( 'New Update', TIELABS_TEXTDOMAIN ) . ' <span class="update-plugins tie-theme-update"><span class="update-count">'. $this->remote_theme_version .'</span></span>',
+				esc_html__( 'New Update', TIELABS_TEXTDOMAIN ) . ' <span class="update-plugins tie-theme-update"><span class="update-count">'. tie_get_latest_theme_data( 'version' ) .'</span></span>',
 				'administrator',
 				'theme-update-notifier',
 				array( $this, 'redirect_to_update_notifier' )
@@ -170,10 +177,26 @@ if( ! class_exists( 'TIELABS_THEME_UPDATER' ) ){
 
 			tie_build_theme_option(
 				array(
-					'text' => sprintf( esc_html__( 'There is a new version of the %s available.', TIELABS_TEXTDOMAIN ), apply_filters( 'TieLabs/theme_name', 'TieLabs' ) ) .' <a href="'. $this->theme_changeLog_url .'" target="_blank">'. sprintf( esc_html__( 'View version %1$s details.', TIELABS_TEXTDOMAIN ), $this->remote_theme_version ) .'</a>',
+					'text' => sprintf( esc_html__( 'There is a new version of %s available.', TIELABS_TEXTDOMAIN ), apply_filters( 'TieLabs/theme_name', 'TieLabs' ) ) .' <a href="'. apply_filters( 'TieLabs/External/changelog', '' ) .'" target="_blank">'. sprintf( esc_html__( 'View version %1$s details.', TIELABS_TEXTDOMAIN ), tie_get_latest_theme_data( 'version' ) ).'</a>',
 					'type' => 'message',
 				));
 
+			echo '<div class="tie-message-hint" style="font-size: 15px;">';
+
+			echo '<p style="font-size: 15px;">'. esc_html__( 'It is very important to keep your WordPress site always up to date with the latest version of WordPress, plugins and theme. Keeping your WordPress website updated regularly ensures that;', TIELABS_TEXTDOMAIN ) .'<p>';
+
+				echo '<ol>';
+					echo '<li>'. esc_html__( 'Your website is secure from the threat of hackers and malware', TIELABS_TEXTDOMAIN ). '</li>';
+					echo '<li>'. esc_html__( 'Your data remains intact', TIELABS_TEXTDOMAIN ). '</li>';
+					echo '<li>'. esc_html__( 'Your website remains functional and you don’t experience downtime', TIELABS_TEXTDOMAIN ). '</li>';
+					echo '<li>'. esc_html__( 'Your website is faster and free of bugs', TIELABS_TEXTDOMAIN ). '</li>';
+					echo '<li>'. esc_html__( 'You get access to cool new features!', TIELABS_TEXTDOMAIN ). '</li>';
+				echo '</ol>';
+
+			echo '</div>';
+
+
+			// ---
 			$support_info = tie_get_support_period_info();
 
 			if( ! empty( $support_info['status'] ) && $support_info['status'] == 'active' ){
@@ -250,7 +273,7 @@ if( ! class_exists( 'TIELABS_THEME_UPDATER' ) ){
 
 			?>
 
-			<p><?php esc_html_e( 'Please Note: Any customizations you have made to theme files will be lost. Please consider using child themes for modifications.', TIELABS_TEXTDOMAIN ); ?></p>
+			<p><?php esc_html__( 'Please Note: Any customizations you have made to theme files will be lost. Please consider using child themes for modifications.', TIELABS_TEXTDOMAIN ); ?></p>
 
 			<?php
 		}

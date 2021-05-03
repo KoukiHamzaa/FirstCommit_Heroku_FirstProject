@@ -9,16 +9,16 @@ $doc.ready(function(){
 
 	'use strict';
 
-
 	/**
-	 * Toggle post content for mobile
+	 * Compact Comments
 	 */
-	$doc.on('click', '#toggle-post-button', function(){
-		$postContent.toggleClass('is-expanded');
+	jQuery('#show-comments-section').on('click', function(){
+		var $comments = jQuery('#comments');
+		tie_animate_element( $comments );
+		$comments.show();
 		jQuery(this).hide();
 		return false;
 	});
-
 
 	/**
 	 * Share Buttons : Print
@@ -40,6 +40,7 @@ $doc.ready(function(){
 	/**
 	 * Open Share buttons in a popup
 	 */
+	/*
 	$doc.on('click', '.share-links a:not(.email-share-btn)', function(){
 		var link = jQuery(this).attr('href');
 		if( link != '#' ){
@@ -47,83 +48,89 @@ $doc.ready(function(){
 			return false;
 		}
 	});
+	*/
 
 
-	/**
-	 * Sticky video
-	 */
-	if( tie.is_sticky_video && jQuery( '#the-sticky-video' ).length ){
+	// --
+	if( ! tie.autoload_posts ){
 
-		var $featuredMedia = jQuery( '#the-sticky-video' ),
-				top = $featuredMedia.offset().top,
-				beforeOffset = tie.sticky_desktop ? 60 : 0,
-				beforeOffset = $body.hasClass('admin-bar') ? beforeOffset + 32 : beforeOffset,
-				offset = Math.floor( top + $featuredMedia.outerHeight() - beforeOffset),
-				widowWidth = $window.width();
+		/**
+		 * Sticky video
+		 */
+		var $featuredMedia = jQuery( '#the-sticky-video' );
+		if( tie.is_sticky_video && $featuredMedia.length ){
 
-		jQuery('.video-close-btn').click(function() {
-			$featuredMedia.removeClass('video-is-sticky').addClass('stop-sticky');
-		});
+			var top = $featuredMedia.offset().top,
+					beforeOffset = tie.sticky_desktop ? 60 : 0,
+					beforeOffset = $body.hasClass('admin-bar') ? beforeOffset + 32 : beforeOffset,
+					offset = Math.floor( top + $featuredMedia.outerHeight() - beforeOffset),
+					widowWidth = $window.width();
 
-		/*
-		*  Twitter video dosen't load untile the page is loaded,
-		* so we recalcualte the offset after the twitter video loaded.
-		*/
-		$window.on( 'resize load', function() {
-
-			top = $featuredMedia.offset().top;
-			offset = Math.floor( top + $featuredMedia.outerHeight() - beforeOffset);
-			widowWidth = $window.width();
+			jQuery('.video-close-btn').click(function() {
+				$featuredMedia.removeClass('video-is-sticky').addClass('stop-sticky');
+			});
 
 			/*
-			* if the page has a sidebar, sticky the video at the top of it with the same width.
+			*  Twitter video dosen't load untile the page is loaded,
+			* so we recalcualte the offset after the twitter video loaded.
 			*/
-			if( $body.hasClass('has-sidebar') ){
-				var $sidebar = jQuery('.sidebar'),
-						sidebarWidth       = $sidebar.width(),
-						sidebarPadding     = ($body.hasClass('magazine2') && $body.hasClass('sidebar-right')) ? 40 : 15,
-						sidebarRightOffset = $window.width() - ($sidebar.offset().left + sidebarWidth);
+			$window.on( 'resize load', function() {
 
-				$featuredMedia.find('.featured-area-inner').css({
-					width: sidebarWidth,
-					right: sidebarRightOffset - sidebarPadding,
-					left: "auto",
-					bottom: "auto",
-					top: beforeOffset + 20
-				});
-			}
+				top = $featuredMedia.offset().top;
+				offset = Math.floor( top + $featuredMedia.outerHeight() - beforeOffset);
+				widowWidth = $window.width();
 
-		}).on( 'scroll', function() {
-			if( ! $featuredMedia.hasClass('stop-sticky') ){
-				$featuredMedia.toggleClass('video-is-sticky', $window.scrollTop() > offset && widowWidth > 992 ).show();
-			}
-		});
+				/*
+				* if the page has a sidebar, sticky the video at the top of it with the same width.
+				*/
+				var $sidebar = jQuery('.sidebar');
+				if( $body.hasClass('has-sidebar') && $sidebar.length ){
+					var sidebarWidth       = $sidebar.width(),
+							sidebarPadding     = ($body.hasClass('magazine2') && $body.hasClass('sidebar-right')) ? 40 : 15,
+							sidebarRightOffset = $window.width() - ($sidebar.offset().left + sidebarWidth);
 
-	}
+					if( sidebarWidth ){
+						$featuredMedia.find('.featured-area-inner').css({
+							width: sidebarWidth,
+							right: sidebarRightOffset - sidebarPadding,
+							left: "auto",
+							bottom: "auto",
+							top: beforeOffset + 20
+						});
+					}
+				}
+
+			}).on( 'scroll', function() {
+				if( ! $featuredMedia.hasClass('stop-sticky') ){
+					$featuredMedia.toggleClass('video-is-sticky', $window.scrollTop() > offset && widowWidth > 992 ).show();
+				}
+			});
+		}
 
 
-	/**
-	 * Reading Position Indicator
-	 */
-	if( tie.reading_indicator && $postContent.length ){
+		/**
+		 * Reading Position Indicator
+		 */
+		if( tie.reading_indicator && $postContent.length ){
 
-		var content_height  = $postContent.height(),
-				window_height   = $window.height();
+			var content_height  = $postContent.height(),
+					window_height   = $window.height();
 
-		$window.scroll(function(){
-			var percent        = 0,
-					content_offset = $postContent.offset().top,
-					window_offest  = $window.scrollTop();
+			$window.scroll(function(){
+				var percent        = 0,
+						content_offset = $postContent.offset().top,
+						window_offest  = $window.scrollTop();
 
-			if (window_offest > content_offset){
-				percent = 100 * (window_offest - content_offset) / (content_height - window_height);
-			}
+				if (window_offest > content_offset){
+					percent = 100 * (window_offest - content_offset) / (content_height - window_height);
+				}
 
-			jQuery('#reading-position-indicator').css('width', percent + '%');
-		});
+				jQuery('#reading-position-indicator').css('width', percent + '%');
+			});
 
-	}
+		}
 
+	} //! tie.autoload_posts
 
 	/**
 	 * Check Also Box
@@ -201,19 +208,19 @@ $doc.ready(function(){
 				var share_content = '';
 
 				if( tie.select_share_twitter ){
-					share_content += "<a href=\"https://twitter.com/share?url="+encodeURIComponent(sl)+"&text="+encodeURIComponent(st)+"\" class='fa fa-twitter' onclick=\"window.open(this.href, \'\', \'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600\');return false;\"></a>";
+					share_content += "<a href=\"https://twitter.com/share?url="+encodeURIComponent(sl)+"&text="+encodeURIComponent(st)+"\" class='tie-icon-twitter' onclick=\"window.open(this.href, \'\', \'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600\');return false;\"></a>";
 				}
 
 				if( tie.select_share_facebook && tie.facebook_app_id ){
-					share_content += "<a href=\"https://www.facebook.com/dialog/feed?app_id="+tie.facebook_app_id+"&amp;link="+encodeURIComponent(sl)+"&amp;quote="+encodeURIComponent(ds)+"\" class='fa fa-facebook' onclick=\"window.open(this.href, \'\', \'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600\');return false;\"></a>";
+					share_content += "<a href=\"https://www.facebook.com/dialog/feed?app_id="+tie.facebook_app_id+"&amp;link="+encodeURIComponent(sl)+"&amp;quote="+encodeURIComponent(ds)+"\" class='tie-icon-facebook' onclick=\"window.open(this.href, \'\', \'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600\');return false;\"></a>";
 				}
 
 				if( tie.select_share_linkedin ){
-					share_content += "<a href=\"https://www.linkedin.com/shareArticle?mini=true&url="+encodeURIComponent(sl)+"&summary="+encodeURIComponent(ds)+"\" class='fa fa-linkedin' onclick=\"window.open(this.href, \'\', \'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600\');return false;\"></a>";
+					share_content += "<a href=\"https://www.linkedin.com/shareArticle?mini=true&url="+encodeURIComponent(sl)+"&summary="+encodeURIComponent(ds)+"\" class='tie-icon-linkedin' onclick=\"window.open(this.href, \'\', \'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600\');return false;\"></a>";
 				}
 
 				if( tie.select_share_email ){
-					share_content += "<a href=\"mailto:?body="+encodeURIComponent(ds)+" "+encodeURIComponent(sl)+"\" class='fa fa-envelope' onclick=\"window.open(this.href, \'\', \'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600\');return false;\"></a>";
+					share_content += "<a href=\"mailto:?body="+encodeURIComponent(ds)+" "+encodeURIComponent(sl)+"\" class='tie-icon-envelope' onclick=\"window.open(this.href, \'\', \'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600\');return false;\"></a>";
 				}
 
 				if( share_content != '' ){

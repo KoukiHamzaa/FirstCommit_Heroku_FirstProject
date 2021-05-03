@@ -3,13 +3,13 @@
 @import "../utils/mixins";
 
 // bbPress Style
-.magazine1.bbpress.archive .entry-content{
-	padding-top: 30px;
+//.magazine1.bbpress.archive .entry-content{
+//	padding-top: 30px;
 
-	@include breakpoint(max_min_sm){
-		padding-top: 15px;
-	}
-}
+	//@include breakpoint(max_min_sm){
+		//padding-top: 15px;
+	//}
+//}
 
 #bbpress-forums hr {
 	margin: 0 0 24px 0;
@@ -177,6 +177,8 @@ li.bbp-topic-freshness {
 	padding: 0;
 	margin: 12px auto 0 auto;
 	float: none;
+	display: block;
+	border-radius: 50%;
 }
 #bbpress-forums div.bbp-forum-author a.bbp-author-name,
 #bbpress-forums div.bbp-topic-author a.bbp-author-name,
@@ -250,7 +252,7 @@ span.bbp-author-ip {
 .widget_display_replies,
 .widget_display_topics{
 	.widget-title-icon:before {
-		content: "\f211";
+		content: "\f086";
 	}
 }
 
@@ -621,7 +623,6 @@ td.bbp-topic-counts {
 	margin:20px 0 10px;
 
 	legend {
-		width: 100%;
 		margin-bottom: 20px;
 	}
 

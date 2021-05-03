@@ -8,7 +8,7 @@
  * will need to copy the new files to your child theme to maintain compatibility.
  *
  * @author   TieLabs
- * @version  4.0.0
+ * @version  5.0.0
  */
 
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly
@@ -79,10 +79,10 @@ if( $post_format ){ // $post_format == 'standard' and no featured image
 	 * Get post featured image
 	 */
 	elseif( has_post_thumbnail() && ( $post_format == 'thumb' ||
-		    ( $post_format == 'standard' && ( tie_get_object_option( 'post_featured', 'cat_post_featured', 'tie_post_featured' ) && tie_get_object_option( 'post_featured', 'cat_post_featured', 'tie_post_featured' ) != 'no' )))){
+		    ( $post_format == 'standard' && ( tie_get_object_option( 'post_featured', 'cat_post_featured', 'tie_post_featured' ) && tie_get_object_option( 'post_featured', 'cat_post_featured', 'tie_post_featured' ) != 'no' ) ) ) ) {
 
 		// Uncropped featured image
-		if( tie_get_object_option( 'image_uncropped', 'cat_image_uncropped', 'tie_image_uncropped' )){
+		if( tie_get_object_option( 'image_uncropped', 'cat_image_uncropped', 'tie_image_uncropped' ) ) {
 			$image_size = 'full';
 		}
 
@@ -103,15 +103,15 @@ if( $post_format ){ // $post_format == 'standard' and no featured image
 		echo ( $before );
 			echo '<figure class="single-featured-image">';
 				echo ( $lightbox_before );
-					the_post_thumbnail( $image_size );
+					the_post_thumbnail( $image_size, array( 'is_main_img' => true ) );
 				echo ( $lightbox_after );
 
 				// Featured image caption
 				$thumb_caption = get_post( get_post_thumbnail_id() );
-				if( ! empty( $thumb_caption->post_excerpt )){
+				if( ! empty( $thumb_caption->post_excerpt ) ) {
 					echo '
 						<figcaption class="single-caption-text">
-							<span class="fa fa-camera" aria-hidden="true"></span> '.
+							<span class="tie-icon-camera" aria-hidden="true"></span> '.
 								do_shortcode( $thumb_caption->post_excerpt ) .'
 						</figcaption>
 					';
@@ -147,8 +147,8 @@ if( $post_format ){ // $post_format == 'standard' and no featured image
 						centerMode   : true,
 						variableWidth: true,
 						appendArrows : '#tie-post-fullwidth-gallery .tie-slider-nav',
-						prevArrow    : '<li><span class=\"fa fa-angle-left\"></span></li>',
-						nextArrow    : '<li><span class=\"fa fa-angle-right\"></span></li>'
+						prevArrow    : '<li><span class=\"tie-icon-angle-left\"></span></li>',
+						nextArrow    : '<li><span class=\"tie-icon-angle-right\"></span></li>'
 					});
 					jQuery('#tie-post-fullwidth-gallery').find('.loader-overlay').remove();
 			";
@@ -173,7 +173,7 @@ if( $post_format ){ // $post_format == 'standard' and no featured image
 		}
 
 		// Custom slider
-		if( tie_get_postdata( 'tie_post_slider' )){
+		if( tie_get_postdata( 'tie_post_slider' ) ) {
 			$slider     = tie_get_postdata( 'tie_post_slider' );
 			$get_slider = get_post_custom( $slider );
 
@@ -182,7 +182,7 @@ if( $post_format ){ // $post_format == 'standard' and no featured image
 			}
 		}
 		// Uploaded images
-		elseif( tie_get_postdata( 'tie_post_gallery' )){
+		elseif( tie_get_postdata( 'tie_post_gallery' ) ) {
 			$images = maybe_unserialize( tie_get_postdata( 'tie_post_gallery' ));
 		}
 
@@ -205,6 +205,7 @@ if( $post_format ){ // $post_format == 'standard' and no featured image
 					<?php
 
 					foreach( $images as $single_image ):
+
 						$image = wp_get_attachment_image_src( $single_image['id'], $image_size ); ?>
 
 						<div class="slide">
@@ -222,9 +223,11 @@ if( $post_format ){ // $post_format == 'standard' and no featured image
 										}
 
 										// Get the image description
-										if( ! empty( $single_image['caption'] ) ){
+										$caption = ! empty( $single_image['caption'] ) ? $single_image['caption'] : get_post_field( 'post_excerpt', $single_image['id'] );
+
+										if( ! empty( $caption ) ){
 											?>
-												<div class="thumb-desc"><?php echo $single_image['caption'] ?></div>
+												<div class="thumb-desc"><?php echo $caption ?></div>
 											<?php
 										}
 
@@ -237,7 +240,7 @@ if( $post_format ){ // $post_format == 'standard' and no featured image
 								$link_before = $link_after = '';
 								$img_attrs = array();
 
-								if( ! empty( $single_image['link'] )){
+								if( ! empty( $single_image['link'] ) ) {
 									$link_before = '<a href="'. esc_url( $single_image['link'] ) .'">';
 									$link_after  = '</a>';
 								}

@@ -1,6 +1,6 @@
 //Magazine1 | none-homepages | wider in responsive
 @include breakpoint(max_min_sm){
-	.magazine1:not(.has-builder){
+	.magazine1:not(.has-builder):not(.error404){
 		.main-content,
 		.related-posts-full-width .tie-col-md-12,
 		.sidebar{
@@ -21,7 +21,7 @@ input,
 select{
 	border: $base-border;
 	color: $base-color;
-	font-size: 12px;
+	font-size: 13px;
 	outline: none;
 	padding: 5px;
 	line-height: 23px;
@@ -43,6 +43,7 @@ select:focus{
 textarea,
 input:not([type="checkbox"]):not([type="radio"]){
 	appearance: none;
+	outline: none;
 }
 
 textarea{
@@ -52,6 +53,7 @@ textarea{
 select{
 	padding: 5px;
 	height: 30px;
+	-webkit-appearance: menulist;
 }
 
 select[multiple]{
@@ -60,6 +62,12 @@ select[multiple]{
 
 [type="radio"] {
 	appearance: radio;
+}
+
+@include breakpoint(max_min_sm){
+	input:not([type="submit"]), select, textarea {
+		font-size: 16px !important;
+	}
 }
 
 // Buttons
@@ -74,7 +82,7 @@ select[multiple]{
 	padding: 7px 15px;
 	margin: 0;
 	font-weight: normal;
-	font-size: 12px;
+	font-size: 13px;
 	display: inline-block;
 	text-align: center;
 	line-height: 21px;
@@ -200,15 +208,48 @@ kbd {
 	.sidebar{
 		float: right;
 	}
+
+	@include breakpoint(md){
+		&.magazine1,
+		.magazine1 &{
+			.main-content{
+				padding-right: 3px;
+			}
+		}
+
+		&.magazine2,
+		.magazine2 &{
+			.main-content{
+				padding-right: 5px;
+			}
+		}
+	}
 }
 
 .sidebar-left{
 	.main-content{
 		float: right;
+		padding-left: 5px;
 	}
 
 	.sidebar{
 		float: left;
+	}
+
+	@include breakpoint(md){
+		&.magazine1,
+		.magazine1 &{
+			.main-content{
+				padding-left: 3px;
+			}
+		}
+
+		&.magazine2,
+		.magazine2 &{
+			.main-content{
+				padding-left: 5px;
+			}
+		}
 	}
 }
 
@@ -316,15 +357,17 @@ kbd {
 #tie-body .tie-animate-slideInUp{
 	opacity: 0;
 	animation: tieSlideInUp 0.4s forwards 1;
+	animation-delay: 0.3;
 }
 
-#tie-body .tie-animate-delay{
-	@for $i from 1 through 10{
-		&:nth-child( #{$i} ) {
-			animation-delay: $i * .1s;
-		}
-	}
-}
+
+//#tie-body .tie-animate-delay{
+	//@for $i from 1 through 12{
+		//&:nth-child( #{$i} ) {
+			//animation-delay: $i * .1s;
+		//}
+	//}
+//}
 
 
 // Post Thumb Overlay ------------------------------------------
@@ -390,7 +433,7 @@ kbd {
 		transform: scale(1);
 	}
 
-	.icon {
+	.tie-media-icon {
 		position: absolute;
 		@include center(xy);
 		color: #ffffff;
@@ -401,34 +444,25 @@ kbd {
 		&:before{
 			height: 32px;
 			width: 32px;
-			line-height: 32px;
 			content: "\e685";
-			font-family: 'tiefonticon';
-			speak: none;
-			font-style: normal;
-			font-weight: normal;
-			font-variant: normal;
-			text-transform: none;
-			line-height: 1;
-			@include font-smoothing();
 		}
 	}
 }
 
-.tie-video .icon:before {
+.tie-video .tie-media-icon:before {
 	content: "\e6b6";
 }
 
-.tie-thumb .icon:before,
-.tie-slider .icon:before {
+.tie-thumb .tie-media-icon:before,
+.tie-slider .tie-media-icon:before {
 	content: "\e6ac";
 }
 
-.tie-map .icon:before {
+.tie-map .tie-media-icon:before {
 	content: "\e6ab";
 }
 
-.tie-audio .icon:before {
+.tie-audio .tie-media-icon:before {
 	content: "\e6a2";
 }
 
@@ -441,14 +475,13 @@ kbd {
 		opacity: 1;
 	}
 
-	.icon:before{
+	.tie-media-icon:before{
 		border: 2px solid #ffffff;
 		border-radius: 50%;
 		width: 40px;
 		height: 40px;
 		line-height: 36px;
 		display: block;
-		font-family: fontawesome;
 		content: "\f030";
 		text-align: center;
 		@include font-size(17px);
@@ -457,12 +490,12 @@ kbd {
 		z-index: 2;
 	}
 
-	.tie-video .icon:before{
+	.tie-video .tie-media-icon:before{
 		content: "\f04b";
 		letter-spacing: -3px;
 	}
 
-	.tie-audio .icon:before {
+	.tie-audio .tie-media-icon:before {
 		content: "\f028";
 	}
 
@@ -471,14 +504,14 @@ kbd {
 			opacity: 0.85;
 		}
 
-		.icon:before{
+		.tie-media-icon:before{
 			background: rgba(0,0,0,0.6);
 		}
 	}
 
 	.tie-map,
 	.tie-standard{
-		.icon{
+		.tie-media-icon{
 			display: none;
 		}
 	}
@@ -497,7 +530,7 @@ kbd {
 	.wide-post-box,
 	.big-posts-box,
 	.posts-list-bigs{
-		.icon:before{
+		.tie-media-icon:before{
 			width: 50px;
 			height: 50px;
 			line-height: 46px;
@@ -528,12 +561,12 @@ kbd {
 		margin-right: 8px;
 		display: inline-block;
 
-		// Icons
-		&.fa-before{
+		.fa{
+			display: none; // compatibility with old versions child themes
+		}
 
-			.fa{
-				display: none; // compatanility with old versions child themes
-			}
+		// Icons
+		&.tie-icon{
 
 			&:before{
 				padding-right: 3px;
@@ -549,6 +582,11 @@ kbd {
 		&.meta-comment:before{
 			content: "\f086";
 		}
+	}
+
+	.no-avatars .author-name:before{
+		content: "\f007";
+		padding-right: 3px;
 	}
 
 	.tie-alignright .meta-item:last-child{
@@ -596,7 +634,7 @@ kbd {
 	background: $brand-color;
 	color: $bright;
 	padding: 0 6px;
-	font-size: 11px;
+	font-size: 12px;
 	line-height: 1.85em;
 	margin-right: 4px;
 	position: relative;
@@ -610,12 +648,14 @@ kbd {
 		margin: 0;
 	}
 
-	@include breakpoint(max_min_xs){
-		font-size: 9px;
-		padding: 1px 5px;
-		height: 18px;
-		line-height: 18px;
-	}
+
+	//@include breakpoint(max_min_xs){
+		//font-size: 9px;
+		//padding: 1px 5px;
+		//height: 18px;
+		//line-height: 18px;
+	//}
+
 }
 
 a.post-cat:hover{
@@ -644,7 +684,7 @@ a.post-cat:hover{
 
 	&:before{
 		content: "\f005" "\f005" "\f005" "\f005" "\f005";
-			font-family: "FontAwesome";
+			font-family: tiefonticon;
 			display: block;
 	}
 }
@@ -654,7 +694,7 @@ a.post-cat:hover{
 
 	&:before{
 		content: "\f005" "\f005" "\f005" "\f005" "\f005";
-			font-family: "FontAwesome";
+			font-family: tiefonticon;
 			display: block;
 	}
 }
@@ -690,7 +730,7 @@ a.post-cat:hover{
 .post-meta {
 	.post-rating {
 		position: relative;
-		top: 1px;
+		top: -1px;
 		float: left;
 		right: auto;
 		margin-right: 8px;
@@ -918,6 +958,11 @@ circle.circle_bar {
 		display: inline-block;
 		margin: 3px;
 
+		//a,
+		//span{
+			//display: block;
+		//}
+
 		&.current span{
 			background: $brand-color;
 			border-color: $brand-color;
@@ -933,7 +978,7 @@ circle.circle_bar {
 .pages-numbers a, // .the-next-page & .the-prev-page arrows
 .pages-nav-item,
 .bp-pagination-links .page-numbers{
-	line-height: 32px;
+	line-height: 36px;
 	padding: 0 15px;
 	border: $base-border;
 	border-radius :$base-border-radius;
@@ -942,21 +987,22 @@ circle.circle_bar {
 }
 
 .first-last-pages {
-	.fa {
+	.pagination-icon {
 		width: 22px;
 		@include font-size(16px);
-		line-height: 32px;
+		line-height: 36px;
+		font-family: tiefonticon;
 		border: $base-border;
 		border-width: 0 0 0 1px;
 		margin: 0 0 0 10px;
 		text-align: right;
 
 		&:before {
-			content: "\f105";
+			content: "\f106";
 		}
 	}
 
-	&.first-page .fa{
+	&.first-page .pagination-icon{
 		float: left;
 		border-width: 0 1px 0 0;
 		margin: 0 10px 0 0;
@@ -976,7 +1022,7 @@ circle.circle_bar {
 	}
 
 	.last-page,
-	.fa {
+	.pagination-icon {
 		float: right;
 	}
 }
@@ -1051,7 +1097,6 @@ circle.circle_bar {
 
 		.entry &{
 			@include font-size(13px);
-			line-height: 20px;
 		}
 	}
 
@@ -1141,25 +1186,29 @@ a.author-avatar:hover {
 		span{
 			color: $base-color;
 			transition: 0.15s;
+			line-height: unset;
 		}
 
 		.social-icons &,
 		.social-icons-widget &{
 			width: 24px;
 			height: 24px;
-			line-height: 22px;
+			line-height: 24px;
 			padding: 0;
 			display: block;
 			text-align: center;
 			border-radius: $base-border-radius;
 		}
 
-		&.custom-social-img span.fa {
-			background-size: 14px;
+		&.custom-social-img span.social-icon-img {
+			background-size: 18px;
 			background-repeat: no-repeat;
 			background-position: center;
+			width: 100%;
+			display: inline-block;
 
 			&:before {
+				content: "\f005"; // dummy content
 				visibility: hidden;
 			}
 		}
@@ -1219,6 +1268,7 @@ a.author-avatar:hover {
 		rss
 		goodreads
 		steam
+		tiktok
 
 		url
 		skype
@@ -1234,6 +1284,7 @@ a.author-avatar:hover {
 		google_play
 		odnoklassniki
 		telegram
+		whatsapp
 		bitbucket
 		medium
 		viadeo
@@ -1264,6 +1315,7 @@ a.author-avatar:hover {
 		$rss-color
 		$goodreads-color
 		$steam-color
+		$tiktok-color
 
 		$dark-bg
 		$skype-color
@@ -1279,6 +1331,7 @@ a.author-avatar:hover {
 		$googleplay-color
 		$odnoklassniki-color
 		$telegram-color
+		$whatsapp-color
 		$bitbucket-color
 		$medium-color
 		$viadeo-color
@@ -1517,16 +1570,20 @@ a.author-avatar:hover {
 
 
 // Trending Icon -----------------------------------------------
-.trending-post.fa{
-	width: 22px;
-	height: 22px;
-	line-height: 22px;
-	text-align: center;
-	font-size: 12px;
-	background: #F64E4E;
-	color: #ffffff;
-	border-radius: 100%;
-	z-index: 4;
+.trending-post{
+
+	&.tie-icon-bolt{
+		width: 22px;
+		height: 22px;
+		line-height: 22px;
+		text-align: center;
+		font-size: 12px;
+		background: #F64E4E;
+		color: #ffffff;
+		border-radius: 100%;
+		z-index: 4;
+		display: inline-block;
+	}
 
 	// In the Sliders Meta Area
 	.thumb-meta &{
@@ -1586,7 +1643,7 @@ a.author-avatar:hover {
 	perspective: 10000px;
 	background: transparent;
 	position: absolute;
-	zoom: 1;
+	*zoom: 1;
 	@include center(xy);
 }
 
@@ -1598,7 +1655,7 @@ a.author-avatar:hover {
 	width: 5em;
 
 	.show-more-button &{
-		width: 3.1em;
+		width: 3.101em;
 	}
 
 	.bounce1{
@@ -1813,8 +1870,12 @@ $spinner-width: 40px;
 	max-width: 100%;
 
 	&:not(.alignleft):not(.alignright){
-		margin-right: auto;
-		margin-left: auto;
+
+		&,
+		img{
+			margin-right: auto;
+			margin-left: auto;
+		}
 	}
 
 	img[class*="wp-image-"] {
@@ -1828,6 +1889,7 @@ $spinner-width: 40px;
 		font-style: italic;
 		line-height: 1.6153846154;
 		padding-top: 5px;
+		margin-bottom: 20px;
 	}
 }
 
@@ -1842,8 +1904,8 @@ blockquote{
 
 	&::before{
 		display: block;
-		content: "\f10d";
-		font-family: fontawesome;
+		content: "\f10e";
+		font-family: tiefonticon;
 		font-size: 26px;
 		color: $brand-color;
 		margin-bottom: 20px;
@@ -1973,14 +2035,14 @@ table {
 		border-right: 1px dotted $base-border-color;
 	}
 
-	th:last-child,
-	tr td:last-child {
-    border-right: 0;
-	}
+	//th:last-child,
+	//tr td:last-child {
+    //border-right: 0;
+	//}
 
 	thead th {
     background: rgba(0,0,0,0.03);
-    border-bottom: 1px solid $base-border-color;
+    border: 1px solid $base-border-color;
     text-transform: uppercase;
     padding: 0.7em .4em;
     vertical-align: middle;
@@ -2075,5 +2137,24 @@ table {
 	.container-wrapper,
 	.entry-content{
 		padding: 20px 15px;
+	}
+}
+
+@include breakpoint(max_min_md){
+	.sidebar-before-content{
+
+		.main-content-row{
+			display: flex;
+			flex-direction: column;
+		}
+
+		.main-content{
+			order: 2;
+		}
+
+		.sidebar{
+			order: 1;
+			margin-bottom: 20px;
+		}
 	}
 }

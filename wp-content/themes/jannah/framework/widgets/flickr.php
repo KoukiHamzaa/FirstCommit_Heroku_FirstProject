@@ -1,6 +1,6 @@
 <?php
 
-if( ! class_exists( 'TIE_FLICKR_PHOTOS' )){
+if( ! class_exists( 'TIE_FLICKR_PHOTOS' ) ) {
 
 	/**
 	 * Widget API: TIE_FLICKR_PHOTOS class
@@ -30,7 +30,7 @@ if( ! class_exists( 'TIE_FLICKR_PHOTOS' )){
 			$no_of_photos   = ! empty( $instance['no_of_photos'] )   ? $instance['no_of_photos']   : 6;
 			$flickr_display = ! empty( $instance['flickr_display'] ) ? $instance['flickr_display'] : 'latest';
 
-			if( ! empty( $instance['flickr_id'] )){
+			if( ! empty( $instance['flickr_id'] ) ) {
 			?>
 
 				<div class="flickr-images-wrapper">

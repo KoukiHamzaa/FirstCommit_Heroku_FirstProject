@@ -6,7 +6,7 @@
 	}
 
 	#theme-options-search-wrap{
-		left: 190px;
+		left: 220px;
 		right: auto;
 
 		input{
@@ -124,8 +124,17 @@
 		}
 	}
 
+	.header-layout-1 .header-main-menu .header-top-logo{
+		margin-right: 0;
+		margin-left: 10px;
+	}
+
 	.header-layout-1 .header-main-menu {
 	  text-align: left;
+	}
+
+	.header-layout-4 .header-main-menu .tie-alignleft {
+	  float: right;
 	}
 
 	.option-contents,
@@ -197,10 +206,12 @@
 		li {
 			float: right;
 
+			/*
 			&:after {
 				left: 0;
 				right: auto;
 			}
+			*/
 
 			&:not(.selected):after{
 				transform: translateX(-100%) translateY(-100%);
@@ -426,8 +437,8 @@
 		.tie-widget-options {
 			float: right;
 
-			&:nth-child(2n+2) {
-				clear: left;
+			&:nth-child(2n+3) {
+				clear: right;
 			}
 		}
 	}
@@ -474,10 +485,20 @@
 	}
 
 
-	/* Help Scout Beacon */
-#beacon-container .Beacon{
+	.icon-picker-wrapper {
+		float: right;
+		margin-left: 5px;
+		margin-right: 0;
 
-	.BeaconFabButtonFrame {
+		& ul li{
+			float: right;
+		}
+	}
+
+	/* Help Scout Beacon */
+	#beacon-container .Beacon{
+
+		.BeaconFabButtonFrame {
 			left: auto !important;
 	    right: 185px !important;
 
@@ -491,6 +512,19 @@
 	.translations-meter-outer > span{
 		right: 0;
 		left: auto;
+	}
+
+	// RTL Flip Images
+	#tie_footer_widgets_layout_area_1,
+	#tie_footer_widgets_layout_area_2,
+	#tie-options-tab-blocks,
+	#tie-options-tab-posts,
+	#tie-options-tab-archives,
+	.tie-posts-list-widget,
+	.block-style-options li:not(.visual-option-woocommerce-slider):not(.visual-option-woocommerce):not(.visual-option-code):not(.visual-option-code_50):not(.visual-option-ad):not(.visual-option-ad_50):not(.visual-option-2c):not(.visual-option-breaking){
+		img{
+			transform: scaleX(-1);
+		}
 	}
 
 }

@@ -8,7 +8,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
 
 
-if( ! class_exists( 'TIELABS_SETTINGS' )){
+if( ! class_exists( 'TIELABS_SETTINGS' ) ) {
 
 	class TIELABS_SETTINGS {
 
@@ -145,6 +145,10 @@ if( ! class_exists( 'TIELABS_SETTINGS' )){
 						$this->icon();
 						break;
 
+					case 'select_image':
+						$this->select_image();
+						break;
+
 					default:
 						break;
 				}
@@ -206,7 +210,7 @@ if( ! class_exists( 'TIELABS_SETTINGS' )){
 			</div>
 
 			<div id="<?php echo $this->item_id . '-preview' ?>" class="img-preview" <?php echo $hide_preview ?>>
-				<img src="<?php echo $image_preview ?>" alt="">
+				<img loading="lazy" src="<?php echo $image_preview ?>" alt="">
 				<a class="del-img"></a>
 			</div>
 			<div class="clear"></div>
@@ -266,6 +270,8 @@ if( ! class_exists( 'TIELABS_SETTINGS' )){
 
 			$toggle_data  = ! empty( $this->settings['toggle'] ) ? 'data-tie-toggle="'. $this->settings['toggle'] .'"' : '';
 			$toggle_class = ! empty( $this->settings['toggle'] ) ? 'tie-toggle-option' : '';
+
+			//echo '<input type="hidden"'. $this->name_attr .' value="-tie-101" />';
 
 			?>
 				<input <?php echo $this->item_id_attr ?> <?php echo $this->name_attr ?> class="tie-js-switch <?php echo $toggle_class ?>" <?php echo $toggle_data ?> type="checkbox" value="true" <?php echo $checked ?>>
@@ -469,7 +475,7 @@ if( ! class_exists( 'TIELABS_SETTINGS' )){
 			}
 
 			?>
-				<p <?php echo $this->item_id_wrap ?> class="<?php echo $this->custom_class ?>"><?php echo $this->settings['text'] ?></p>
+				<div <?php echo $this->item_id_wrap ?> class="<?php echo $this->custom_class ?>"><?php echo $this->settings['text'] ?></div>
 			<?php
 		}
 
@@ -563,50 +569,50 @@ if( ! class_exists( 'TIELABS_SETTINGS' )){
 
 					?>
 						<li class="visual-option-<?php echo $option_key ?>">
-							<input <?php echo $this->name_attr ?> type="radio" value="<?php echo $option_key ?>" <?php echo $checked ?>>
-							<a class="checkbox-select" href="#">
+							<label class="checkbox-select">
+								<input <?php echo $this->name_attr ?> type="radio" value="<?php echo $option_key ?>" <?php echo $checked ?>>
+								<?php
+									do_action( 'TieLabs/Settings/Visual/'.$this->item_id, $option_key, $option  );
 
-							<?php
+									if( is_array( $option ) ){
+										foreach ( $option as $description => $img_data ){
 
-								if( is_array( $option ) ){
-									foreach ( $option as $description => $img_data ){
+											if( is_array( $img_data ) ){
 
-										if( is_array( $img_data ) ){
+												$img_value = reset( $img_data );
+												$key = key($img_data);
+												unset( $img_data[ $key ] );
 
-											$img_value = reset( $img_data );
-											$key = key($img_data);
-											unset( $img_data[ $key ] );
-
-											$data_attr = '';
-											if( !empty( $img_data ) && is_array( $img_data ) ){
-												foreach ($img_data as $data_name => $data_value) {
-													$data_attr = ' data-'. $data_name .'="'. $data_value .'"';
+												$data_attr = '';
+												if( !empty( $img_data ) && is_array( $img_data ) ){
+													foreach ($img_data as $data_name => $data_value) {
+														$data_attr = ' data-'. $data_name .'="'. $data_value .'"';
+													}
 												}
+												?>
+													<img loading="lazy" class="<?php echo $key ?>" <?php echo $data_attr ?> src="<?php echo $images_path.$img_value ?>" alt="">
+												<?php
 											}
-											?>
-												<img class="<?php echo $key ?>" <?php echo $data_attr ?> src="<?php echo $images_path.$img_value ?>" alt="">
-											<?php
-										}
-										else{
-											?>
-												<img src="<?php echo $images_path.$img_data ?>" alt="">
-											<?php
-										}
+											else{
+												?>
+													<img loading="lazy" src="<?php echo $images_path.$img_data ?>" alt="">
+												<?php
+											}
 
-										if( ! empty( $description ) ){
-											?>
-												<span><?php echo $description ?></span>
-											<?php
+											if( ! empty( $description ) ){
+												?>
+													<span><?php echo $description ?></span>
+												<?php
+											}
 										}
 									}
-								}
-								else{
-									?>
-										<img src="<?php echo $images_path.$option ?>" alt="">
-									<?php
-								}
-							?>
-							</a>
+									else{
+										?>
+											<img loading="lazy" src="<?php echo $images_path.$option ?>" alt="">
+										<?php
+									}
+								?>
+							</label>
 						</li>
 					<?php
 				}
@@ -622,7 +628,7 @@ if( ! class_exists( 'TIELABS_SETTINGS' )){
 				jQuery(document).ready(function(){
 					jQuery( '.<?php echo esc_js( $this->item_id ) ?>-options' ).hide();
 					<?php
-					if( ! empty( $this->settings['toggle'][ $this->current_value ] )){ ?>
+					if( ! empty( $this->settings['toggle'][ $this->current_value ] ) ) { ?>
 						jQuery( '<?php echo esc_js( $this->settings['toggle'][ $this->current_value ] ) ?>' ).show();
 					<?php
 					}elseif( is_array( $this->settings['toggle'] ) ){
@@ -632,7 +638,7 @@ if( ! class_exists( 'TIELABS_SETTINGS' )){
 					}
 					?>
 
-				jQuery(document).on( 'click', '#tie_<?php echo esc_js( $this->item_id ) ?> a', function(){
+				jQuery(document).on( 'click', '#tie_<?php echo esc_js( $this->item_id ) ?> label', function(){
 					selected_val = jQuery( this ).parent().find( 'input' ).val();
 					jQuery( '.<?php echo esc_js( $this->item_id ) ?>-options' ).hide();
 					<?php
@@ -734,7 +740,74 @@ if( ! class_exists( 'TIELABS_SETTINGS' )){
 				});
 			</script>
 			<?php
+		}
 
+
+		/**
+		 * Select Image ID
+		 */
+		private function select_image(){
+
+			$upload_button = ! empty( $this->settings['custom_text'] ) ? $this->settings['custom_text'] : esc_html__( 'Select Image', TIELABS_TEXTDOMAIN );
+
+			$hide_preview  = 'style="display:none"';
+			$image_preview = TIELABS_TEMPLATE_URL.'/framework/admin/assets/images/empty.png';
+
+			if( ! empty( $this->current_value ) ){
+				$get_the_image = wp_get_attachment_image_src( $this->current_value, 'thumbnail' );
+				if( ! empty( $get_the_image['0'] ) ){
+					$image_preview = $get_the_image['0'];
+					$hide_preview = '';
+					$upload_button = esc_html__( 'Select another image', TIELABS_TEXTDOMAIN );
+				}
+			}
+
+			?>
+
+			<div class="image-preview-wrapper tie-select-image">
+				<input <?php echo $this->item_id_attr ?> <?php echo $this->name_attr ?> type="hidden" value="<?php echo esc_attr( $this->current_value ) ?>" <?php echo $this->placeholder_attr ?>>
+				<input id="<?php echo esc_attr( $this->item_id ) ?>-upload" type="button" class="button" value="<?php echo $upload_button ?>">
+
+				<?php $this->hint(); ?>
+			</div>
+
+			<div id="<?php echo $this->item_id . '-preview' ?>" class="img-preview" <?php echo $hide_preview ?>>
+				<img loading="lazy" src="<?php echo $image_preview ?>" alt="">
+				<a class="del-img"></a>
+			</div>
+			<div class="clear"></div>
+
+			<script>
+
+				jQuery(document).ready(function(){
+
+					// Uploading files
+					var tie_slider_uploader;
+
+					jQuery(document).on('click', '#<?php echo esc_attr( $this->item_id ) ?>-upload' , function( event ){
+						event.preventDefault();
+						tie_slider_uploader = wp.media.frames.tie_slider_uploader = wp.media({
+							title: '<?php esc_html_e( 'Select Image', TIELABS_TEXTDOMAIN ) ?>',
+							library: {type: 'image'},
+							button: {text: '<?php esc_html_e( 'Select', TIELABS_TEXTDOMAIN ) ?>'},
+							multiple: true,
+						});
+
+						tie_slider_uploader.on( 'select', function(){
+							var selection = tie_slider_uploader.state().get('selection');
+							selection.map( function( attachment ){
+								attachment = attachment.toJSON();
+								jQuery('#<?php echo $this->item_id; ?>').val( attachment.id );
+								jQuery('#<?php echo $this->item_id; ?>-preview').show();
+								jQuery('#<?php echo $this->item_id; ?>-preview img').attr('src', attachment.url );
+							});
+						});
+
+						tie_slider_uploader.open();
+					});
+				});
+			</script>
+			<?php
 		}
 
 
@@ -743,10 +816,10 @@ if( ! class_exists( 'TIELABS_SETTINGS' )){
 		 */
 		private function icon(){
 			?>
-				<input <?php echo $this->item_id_attr ?> <?php echo $this->name_attr ?> type="hidden" value="<?php echo esc_attr( $this->current_value ) ?>">
-				<div class="icon-picker-wrapper">
-					<div id="preview-edit-icon-<?php echo esc_attr( $this->item_id ) ?>" data-target="#<?php echo esc_attr( $this->item_id ) ?>" class="button icon-picker fa <?php echo esc_attr( $this->current_value ) ?>"></div>
-				</div>
+			<div class="icon-picker-wrapper">
+				<div id="preview-edit-icon-<?php echo esc_attr( $this->item_id ) ?>" data-target="#<?php echo esc_attr( $this->item_id ) ?>" class="button icon-picker <?php echo esc_attr( $this->current_value ) ?>"></div>
+			</div>
+			<input <?php echo $this->item_id_attr ?> <?php echo $this->name_attr ?> type="text" value="<?php echo esc_attr( $this->current_value ) ?>" <?php echo $this->placeholder_attr ?> style="width: 130px;">
 			<?php
 		}
 
@@ -787,7 +860,7 @@ if( ! class_exists( 'TIELABS_SETTINGS' )){
 						jQuery( '.<?php echo esc_js( $this->item_id ) ?>-options' ).hide();
 
 						<?php
-						if( ! empty( $this->settings['toggle'][ $this->current_value ] )){ ?>
+						if( ! empty( $this->settings['toggle'][ $this->current_value ] ) ) { ?>
 							jQuery( '<?php echo esc_js( $this->settings['toggle'][ $this->current_value ] ) ?>' ).show();
 						<?php
 						}elseif( is_array( $this->settings['toggle'] ) ){
@@ -864,7 +937,7 @@ if( ! class_exists( 'TIELABS_SETTINGS' )){
 			</div>
 
 			<div id="<?php echo esc_attr( $this->item_id ) ?>-preview" class="img-preview" <?php if( empty( $current_value['img'] )) echo 'style="display:none;"' ?>>
-				<img src="<?php if( ! empty($current_value['img'] )) echo esc_attr( $current_value['img'] ) ; else echo TIELABS_TEMPLATE_URL.'/framework/admin/assets/images/empty.png'; ?>" alt="">
+				<img loading="lazy" src="<?php if( ! empty($current_value['img'] )) echo esc_attr( $current_value['img'] ) ; else echo TIELABS_TEMPLATE_URL.'/framework/admin/assets/images/empty.png'; ?>" alt="">
 				<a class="del-img" title="<?php esc_html_e( 'Remove', TIELABS_TEXTDOMAIN ) ?>"></a>
 			</div>
 
@@ -878,10 +951,11 @@ if( ! class_exists( 'TIELABS_SETTINGS' )){
 		private function typography(){
 
 			$current_value = wp_parse_args( $this->current_value, array(
-				'size'        => '',
-				'line_height' => '',
-				'weight'      => '',
-				'transform' 	=> '',
+				'size'           => '',
+				'line_height'    => '',
+				'weight'         => '',
+				'letter_spacing' => '',
+				'transform' 	   => '',
 			));
 
 			?>
@@ -906,7 +980,7 @@ if( ! class_exists( 'TIELABS_SETTINGS' )){
 					<?php for( $i=10 ; $i<=60 ; $i+=2.5 ){
 						$line_height = $i/10;
 						?>
-						<option value="<?php echo ( $line_height ) ?>" <?php selected( $current_value['line_height'], $line_height ); ?>><?php echo ( $line_height ) ?></option>
+						<option value="<?php echo ( $line_height ) ?>" <?php selected( $current_value['line_height'], $line_height ); ?>><?php echo ( number_format( $line_height, 2 ) ) ?></option>
 					<?php } ?>
 				</select>
 			</div>
@@ -924,6 +998,23 @@ if( ! class_exists( 'TIELABS_SETTINGS' )){
 					<option value="700" <?php selected( $current_value['weight'], 700 ); ?>><?php esc_html_e( 'Bold 700',        TIELABS_TEXTDOMAIN ); ?></option>
 					<option value="800" <?php selected( $current_value['weight'], 800 ); ?>><?php esc_html_e( 'Extra 800 Bold',  TIELABS_TEXTDOMAIN ); ?></option>
 					<option value="900" <?php selected( $current_value['weight'], 900 ); ?>><?php esc_html_e( 'Black 900',       TIELABS_TEXTDOMAIN ); ?></option>
+				</select>
+			</div>
+
+			<div class="tie-custom-select typography-custom-slelect">
+				<select name="<?php echo esc_attr( $this->option_name ) ?>[letter_spacing]" id="<?php echo esc_attr( $this->settings['id'] ) ?>[letter_spacing]">
+
+					<option <?php selected( $current_value['letter_spacing'], '' ); ?> <?php disabled(1,1); ?>><?php esc_html_e( 'Letter Spacing', TIELABS_TEXTDOMAIN ); ?></option>
+					<option value=""><?php esc_html_e( 'Default', TIELABS_TEXTDOMAIN ); ?></option>
+					<?php for( $i=-5 ; $i<200 ; $i+=1){
+							$letter_spacing = $i/10;
+
+							if( $i == 0 ){
+								continue;
+							}
+						?>
+						<option value="<?php echo ( $letter_spacing ) ?>" <?php selected( $current_value['letter_spacing'], $letter_spacing ); ?>><?php echo ( number_format( $letter_spacing, 1 ) ) ?></option>
+					<?php } ?>
 				</select>
 			</div>
 
@@ -978,7 +1069,7 @@ if( ! class_exists( 'TIELABS_SETTINGS' )){
 			$this->name_attr = 'name="'. $option_name .'"';
 
 			// Placeholder
-			$this->placeholder_attr = ! empty( $placeholder ) ? 'placeholder="'. $placeholder .'"' : '';
+			$this->placeholder_attr = isset( $placeholder ) ? 'placeholder="'. $placeholder .'"' : '';
 
 			// Get the option stored data
 			if( ! empty( $data ) ){

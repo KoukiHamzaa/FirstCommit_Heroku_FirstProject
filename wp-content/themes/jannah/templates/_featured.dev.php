@@ -243,7 +243,7 @@ if( ! empty( $slider_settings ) ){
 					$get_custom_slider = get_post_custom( $custom_slider );
 					$slider_items      = ( ! empty( $get_custom_slider['custom_slider'][0] )) ? maybe_unserialize( $get_custom_slider['custom_slider'][0] ) : '';
 
-					if( ! empty( $slider_items ) && is_array( $slider_items )){
+					if( ! empty( $slider_items ) && is_array( $slider_items ) ) {
 						foreach ( $slider_items as $slide_id => $slide_item ){
 							$slider_items[ $slide_id ]['slide_title']      = $slide_item['title'];
 							$slider_items[ $slide_id ]['slide_title_attr'] = esc_html( $slide_item['title'] );
@@ -442,7 +442,7 @@ if( ! empty( $slider_settings ) ){
 
 						if( $media_overlay && $query_type != 'custom' ){
 							$before_slider .= '
-								<span class="icon"></span>
+								<span class="tie-icon tie-media-icon"></span>
 							';
 						}
 
@@ -546,7 +546,7 @@ if( ! empty( $slider_settings ) ){
 
 																printf( $slide_title_html, $slide_link, $slide_title_attr, $slide_title );
 
-																if( ! empty( $slide_caption )){
+																if( ! empty( $slide_caption ) ) {
 																	echo ( $slide_caption );
 																}
 
@@ -600,7 +600,7 @@ if( ! empty( $slider_settings ) ){
 												echo '<ul class="tie-slider-nav"></ul>';
 											}
 
-											if( ! empty( $slider_items ) && is_array( $slider_items )){
+											if( ! empty( $slider_items ) && is_array( $slider_items ) ) {
 
 												$number_of_posts = count( $slider_items );
 

@@ -1,68 +1,4 @@
 @include breakpoint(md){
-	// Header menus arrows ---------------------------------------
-	.menu-item-has-children,
-	.mega-menu{
-		> a:before{
-			content: '';
-			position: absolute;
-			right: 12px;
-			margin-top: 2px;
-			@include center(y);
-			width: 0;
-			height: 0;
-			border: 4px solid transparent;
-			border-top: 4px solid #ffffff;
-			transition: border 0.15s;
-		}
-
-		.menu-item-has-children > a:before{
-			border: 4px solid transparent;
-			border-left-color: #ffffff;
-		}
-	}
-
-	.menu > .menu-item-has-children:not(.is-icon-only) > a,
-	.menu .mega-menu:not(.is-icon-only) > a{
-		padding-right: 25px;
-	}
-
-	// Main menu arrow
-	.main-menu .menu > li.tie-current-menu > a:before,
-	.main-menu .menu > li:hover > a:before {
-	  border-top-color: $bright;
-	}
-
-	.main-nav-light{
-		.main-nav .menu-item-has-children,
-		.mega-menu {
-			> a:before {
-				border-top-color: $base-color;
-			}
-
-			.menu-item-has-children > a:before {
-				border-top-color: transparent;
-				border-left-color: $base-color;
-			}
-
-			li:hover > a:before{
-				border-left-color: $brand-color;
-			}
-		}
-	}
-
-	// Top menu arrow
-	.top-nav-dark{
-		.top-menu .menu-item-has-children {
-			> a:before{
-				border-top-color: $dark-base-color;
-			}
-
-			.menu-item-has-children > a:before{
-				border-left-color: $dark-base-color;
-				border-top-color: transparent;
-			}
-		}
-	}
 
 	.theme-header .top-menu li{
 		> a:before{
@@ -204,8 +140,14 @@
 		}
 
 		.mega-ajax-content{
-			min-height: 190px;
+			min-height: 200px;
 			position: relative; // to center the loader overlay
+		}
+
+		.mega-recent-featured{
+			.mega-ajax-content{
+				min-height: 325px;
+			}
 		}
 
 		.mega-cat {
@@ -253,7 +195,8 @@
 			}
 
 			a.mega-menu-link{
-				@include font-size(15px);
+				@include font-size(14px);
+				font-weight: 500;
 				border: 0;
 				display: block;
 

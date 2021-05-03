@@ -1,6 +1,6 @@
 <?php
 
-if( ! class_exists( 'TIE_ADS125_WIDGET' )){
+if( ! class_exists( 'TIE_ADS125_WIDGET' ) ) {
 
 	/**
 	 * Widget API: TIE_ADS125_WIDGET class
@@ -17,13 +17,18 @@ if( ! class_exists( 'TIE_ADS125_WIDGET' )){
 		 */
 		public function widget( $args, $instance ){
 
+			// Check if the banner is disabled
+			if( ! TIELABS_HELPER::has_builder() && tie_get_postdata( 'tie_disable_all_ads' ) ){
+				return;
+			}
+
 			/** This filter is documented in wp-includes/widgets/class-wp-widget-pages.php */
 			$instance['title'] = apply_filters( 'widget_title', empty( $instance['title'] ) ? '' : $instance['title'], $instance, $this->id_base );
 
 			$new_window = ! empty( $instance['new_window'] ) ? ' target="_blank"' : '';
 			$nofollow   = ! empty( $instance['nofollow'] )   ? ' rel="nofollow noopener"' : '';
 
-			if( ! empty( $instance['tran_bg'] )){
+			if( ! empty( $instance['tran_bg'] ) ) {
 				$args['before_widget'] = '<div id="'. $args['widget_id'] .'" class="widget stream-item-125-widget widget-content-only">';
 				$args['after_widget']  = '</div>';
 				$instance['title']     = '';
@@ -40,15 +45,15 @@ if( ! class_exists( 'TIE_ADS125_WIDGET' )){
 
 			for($i=1 ; $i<11 ; $i++ ){
 
-				if( ! empty( $instance['e3lan'.$i.'_code'] )){
+				if( ! empty( $instance['e3lan'.$i.'_code'] ) ) {
 					echo'<li>';
 					echo do_shortcode( apply_filters( 'TieLabs/Ad_widget/code', $instance['e3lan'.$i.'_code'] ) );
 					echo '</li>';
 				}
 
-				elseif( ! empty( $instance['e3lan'.$i.'_img'] )){
+				elseif( ! empty( $instance['e3lan'.$i.'_img'] ) ) {
 					echo '<li>';
-					if( ! empty( $instance['e3lan'.$i.'_url'] )){
+					if( ! empty( $instance['e3lan'.$i.'_url'] ) ) {
 
 						$url = apply_filters( 'TieLabs/ads_url', $instance['e3lan'.$i.'_url'] );
 						echo '<a href="'. esc_url( $url ) .'"'. $new_window . $nofollow .'>';
@@ -56,7 +61,7 @@ if( ! class_exists( 'TIE_ADS125_WIDGET' )){
 
 					echo apply_filters( 'TieLabs/Ad_widget/image', '<img class="widget-ad-image" src="'. $instance['e3lan'.$i.'_img'] .'" width="125" height="125" alt="">', $instance['e3lan'.$i.'_img'] );
 
-					if( ! empty( $instance['e3lan'.$i.'_url'] )){
+					if( ! empty( $instance['e3lan'.$i.'_url'] ) ) {
 						echo '</a>';
 					}
 				echo '</li>';
@@ -158,7 +163,7 @@ if( ! class_exists( 'TIE_ADS125_WIDGET' )){
 
 
 
-if( ! class_exists( 'TIE_AD_WIDGET' )){
+if( ! class_exists( 'TIE_AD_WIDGET' ) ) {
 
 	/**
 	 * Widget API: TIE_AD_WIDGET class
@@ -175,6 +180,11 @@ if( ! class_exists( 'TIE_AD_WIDGET' )){
 		 */
 		public function widget( $args, $instance ){
 
+			// Check if the banner is disabled
+			if( ! TIELABS_HELPER::has_builder() && tie_get_postdata( 'tie_disable_all_ads' ) ){
+				return;
+			}
+
 			/** This filter is documented in wp-includes/widgets/class-wp-widget-pages.php */
 			$instance['title'] = apply_filters( 'widget_title', empty( $instance['title'] ) ? '' : $instance['title'], $instance, $this->id_base );
 
@@ -182,7 +192,10 @@ if( ! class_exists( 'TIE_AD_WIDGET' )){
 			$nofollow   = ! empty( $instance['nofollow'] )   ? ' rel="nofollow noopener"' : '';
 			$alt_text   = ! empty( $instance['e3lan_alt'] )  ? $instance['e3lan_alt'] : '';
 
-			if( ! empty( $instance['tran_bg'] )){
+			$width  = ! empty( $instance['e3lan_img_width'] )  ? $instance['e3lan_img_width']  : '336';
+			$height = ! empty( $instance['e3lan_img_height'] ) ? $instance['e3lan_img_height'] : '280';
+
+			if( ! empty( $instance['tran_bg'] ) ) {
 				$args['before_widget'] = '<div id="'. $args['widget_id'] .'" class="widget stream-item-widget widget-content-only">';
 				$args['after_widget']  = '</div>';
 				$instance['title']     = '';
@@ -206,20 +219,20 @@ if( ! class_exists( 'TIE_AD_WIDGET' )){
 			}
 
 
-			if( ! empty( $instance['e3lan_code'] )){
+			if( ! empty( $instance['e3lan_code'] ) ) {
 				echo do_shortcode( apply_filters( 'TieLabs/Ad_widget/code', $instance['e3lan_code'] ) );
 			}
 
-			elseif( ! empty( $instance['e3lan_img'] )){
-				if( ! empty( $instance['e3lan_url'] )){
+			elseif( ! empty( $instance['e3lan_img'] ) ) {
+				if( ! empty( $instance['e3lan_url'] ) ) {
 
 					$url = apply_filters( 'TieLabs/ads_url', $instance['e3lan_url'] );
 					echo '<a href="'. esc_url( $url ) .'"'. $new_window . $nofollow .'>';
 				}
 
-				echo apply_filters( 'TieLabs/Ad_widget/image', '<img class="widget-ad-image" src="'. $instance['e3lan_img'] .'" width="728" height="90" alt="'. $alt_text .'">', $instance['e3lan_img'] );
+				echo apply_filters( 'TieLabs/Ad_widget/image', '<img class="widget-ad-image" src="'. $instance['e3lan_img'] .'" width="'. esc_attr( $width ).'" height="'. esc_attr( $height ).'" alt="'. $alt_text .'">', $instance['e3lan_img'] );
 
-				if( ! empty( $instance['e3lan_url'] )){
+				if( ! empty( $instance['e3lan_url'] ) ) {
 					echo '</a>';
 				}
 			}
@@ -248,6 +261,9 @@ if( ! class_exists( 'TIE_AD_WIDGET' )){
 			$instance['e3lan_title']      = $new_instance['e3lan_title'];
 			$instance['e3lan_title_link'] = $new_instance['e3lan_title_link'];
 
+			$instance['e3lan_img_height'] = $new_instance['e3lan_img_height'];
+			$instance['e3lan_img_width']  = $new_instance['e3lan_img_width'];
+
 			return $instance;
 		}
 
@@ -258,10 +274,10 @@ if( ! class_exists( 'TIE_AD_WIDGET' )){
 			$defaults = array( 'title' =>esc_html__( 'Advertisement', TIELABS_TEXTDOMAIN) );
 			$instance = wp_parse_args( (array) $instance, $defaults );
 
-			$title      = isset( $instance['title'] ) ?      esc_attr( $instance['title'])      : '';
-			$tran_bg    = isset( $instance['tran_bg'] ) ?    esc_attr( $instance['tran_bg'])    : '';
-			$new_window = isset( $instance['new_window'] ) ? esc_attr( $instance['new_window']) : '';
-			$nofollow   = isset( $instance['nofollow'] ) ?   esc_attr( $instance['nofollow'])   : '';
+			$title      = isset( $instance['title'] ) ?      esc_attr( $instance['title'] )      : '';
+			$tran_bg    = isset( $instance['tran_bg'] ) ?    esc_attr( $instance['tran_bg'] )    : '';
+			$new_window = isset( $instance['new_window'] ) ? esc_attr( $instance['new_window'] ) : '';
+			$nofollow   = isset( $instance['nofollow'] ) ?   esc_attr( $instance['nofollow'] )   : '';
 
 			?>
 
@@ -299,6 +315,16 @@ if( ! class_exists( 'TIE_AD_WIDGET' )){
 			<p>
 				<label for="<?php echo esc_attr( $this->get_field_id( 'e3lan_img' ) ); ?>"><?php esc_html_e( 'Image path:', TIELABS_TEXTDOMAIN ) ?></label>
 				<input id="<?php echo esc_attr( $this->get_field_id( 'e3lan_img' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'e3lan_img' ) ); ?>" value="<?php if( ! empty( $instance['e3lan_img'] ) ) echo esc_attr( $instance['e3lan_img'] ); ?>" class="widefat" placeholder="http://" type="text" />
+			</p>
+
+			<p>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'e3lan_img_width' ) ); ?>"><?php esc_html_e( 'Ad Image Width', TIELABS_TEXTDOMAIN ) ?></label>
+				<input id="<?php echo esc_attr( $this->get_field_id( 'e3lan_img_width' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'e3lan_img_width' ) ); ?>" value="<?php if( ! empty( $instance['e3lan_img_width'] ) ) echo esc_attr( $instance['e3lan_img_width'] ); ?>" class="widefat" type="number" style="width: 50px;" />
+			</p>
+
+			<p>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'e3lan_img_height' ) ); ?>"><?php esc_html_e( 'Ad Image Height', TIELABS_TEXTDOMAIN ) ?></label>
+				<input id="<?php echo esc_attr( $this->get_field_id( 'e3lan_img_height' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'e3lan_img_height' ) ); ?>" value="<?php if( ! empty( $instance['e3lan_img_height'] ) ) echo esc_attr( $instance['e3lan_img_height'] ); ?>" class="widefat" type="number" style="width: 50px;" />
 			</p>
 
 			<p>

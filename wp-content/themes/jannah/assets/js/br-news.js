@@ -13,6 +13,9 @@ jQuery(document).ready(function(){
 			if( $this.find('li').length ){
 				$this.ticker({
 					speed       : 0.2,
+					pauseOnItems : ( $this.data('speed') ) ? $this.data('speed') : 2000,
+					fadeInSpeed  : 600,
+					fadeOutSpeed : 300,
 					controls    : ( $this.data('arrows') ) ? true : false,
 					direction   : is_RTL ? 'rtl' : 'ltr',
 					displayType : ( $this.data('type') ) ? $this.data('type') : 'reveal',

@@ -137,7 +137,7 @@
 		.meta-author{
 			margin: 0;
 
-			.fa{
+			.tie-icon-author{
 				display: none;
 			}
 
@@ -147,10 +147,6 @@
 		}
 
 		.date{
-			.fa{
-				display: none;
-			}
-
 			&:before{
 				content: "\2022";
 				color: #ccc;
@@ -244,9 +240,9 @@
 	border: 0;
 	background-size: cover;
 
-	@include breakpoint(max_min_lg){
-		height: 440px;
-	}
+	//@include breakpoint(max_min_lg){
+		//height: 440px;
+	//}
 
 	@include breakpoint(max_min_md){
 		height: 380px;
@@ -367,6 +363,7 @@
 	}
 }
 
+
 // post layout#4, #5, #8
 .full-width-area{
 	padding: 0;
@@ -388,10 +385,10 @@
 		}
 	}
 
-	.entry-title,
-	.entry-sub-title{
-		padding: 0;
-	}
+	//.entry-title,
+	//.entry-sub-title{
+	//	padding: 0;
+	//}
 
 	#go-to-content {
 		right: 15px;
@@ -498,6 +495,17 @@
 	}
 }
 
+
+
+.post-layout-7,
+.post-layout-6{
+	.fullwidth-featured-area-wrapper{
+		@include breakpoint(max_min_sm){
+			padding: 0;
+		}
+	}
+}
+
 // post layout #8
 .post-layout-8{
 	#tie-container{
@@ -548,29 +556,31 @@
 		text-align: center;
 	}
 
-	.with-avatars{
-		display: block;
-		margin-bottom: 35px;
+	.entry-header{
+		.with-avatars{
+			display: block;
+			margin-bottom: 35px;
 
-		.meta-author-wrapper{
-			margin: 0;
+			.meta-author-wrapper{
+				margin: 0;
+			}
+
+			&.multiple-authors .meta-author-wrapper{
+				padding: 0 20px;
+			}
 		}
 
-		&.multiple-authors .meta-author-wrapper{
-			padding: 0 20px;
-		}
-	}
+		.meta-author-avatar{
+			display: block;
+			margin: 60px 0 10px;
+			pointer-events: none;
 
-	.meta-author-avatar{
-		display: block;
-		margin: 60px 0 10px;
-		pointer-events: none;
-
-		img{
-			pointer-events: auto;
-			width: 70px;
-			height: 70px;
-			margin: 0;
+			img{
+				pointer-events: auto;
+				width: 70px;
+				height: 70px;
+				margin: 0;
+			}
 		}
 	}
 
@@ -653,6 +663,12 @@
 		margin-top: 0;
 	}
 
+	&.one-column-no-sidebar{
+		#the-post{
+			border: none;
+		}
+	}
+
 	@include breakpoint(md){
 		&.one-column-no-sidebar{
 			#content{
@@ -726,20 +742,29 @@
 // entry content
 .entry-content{
 	padding: 0 30px 30px;
+
+	@include breakpoint(max_min_sm){
+		padding-right: 15px;
+		padding-left: 15px;
+	}
+
 }
 
 .entry{
+	&,
+	.dark-skin &{
+		a{
+			color: $brand-color;
 
-	a{
-		color: $brand-color;
-
-		&:hover{
-			color: $dark-brand-color;
+			&:hover{
+				color: $dark-brand-color;
+			}
 		}
 	}
 
 	a.button{
 		color: $bright;
+		vertical-align: inherit;
 	}
 
 	h1,
@@ -758,7 +783,7 @@
 	}
 
 	.single .entry-content{
-		padding-top: 0;
+		padding-top: 15px;
 	}
 }
 
@@ -815,11 +840,41 @@
 	}
 }
 
+.post-tags-modern{
+	margin-top: 30px;
+
+	.post-bottom-meta-title{
+		display: none;
+	}
+
+	.tagcloud{
+		display: block;
+		text-align: center;
+	}
+
+	a{
+		float: none;
+		padding: 8px 15px;
+		display: inline-block;
+		font-size: 12pt;
+		font-weight: bold;
+
+		&:before{
+			content: '#';
+
+		}
+	}
+}
+
+.magazine1.post-layout-7 .entry-content,
+.post-layout-8 .entry-content{
+	padding-top: 20px;
+}
 
 // post footer area
-.post-footer{
+.share-buttons{
 	padding: 18px 28px; // +2px around icons = 20px 30px;
-	overflow: hidden;
+	//overflow: hidden;
 	line-height: 0;
 
 	@include breakpoint(max_min_sm){
@@ -827,13 +882,16 @@
 	}
 }
 
-.magazine1 .post-footer-on-bottom{
+.magazine1 .share-buttons-bottom{
 	background: $base-light-light-color;
 	border-top: $primary-border;
 }
 
-.post-footer-on-top{
-	padding-bottom: 0;
+.share-buttons-top{
+
+	@include breakpoint(sm){
+		padding-bottom: 0;
+	}
 
 	.featured-area + &,
 	.entry-header-outer + &{
@@ -851,12 +909,31 @@
 	}
 }
 
-.magazine1.post-layout-7 .entry-content,
-.post-layout-8 .entry-content{
-	padding-top: 20px;
+.share-buttons-sticky{
+	background: transparent;
+	border: 0 none;
+	padding: 0;
+
+	.share-links{
+		top: 300px;
+		left: 0;
+		position: fixed;
+		width: 40px;
+		z-index: 1000;
+
+		&.share-right{
+			left: auto;
+			right: 0;
+		}
+
+		a{
+			margin: 0;
+			border-radius: 0;
+		}
+	}
 }
 
-.post-footer-on-mobile {
+.share-buttons-mobile {
 	position: fixed;
 	bottom: 0;
 	z-index: 999999;
@@ -872,7 +949,7 @@
 		display: table-cell;
 		opacity: 1 !important;
 
-		.fa {
+		.share-btn-icon {
 			margin: 0 auto;
 			float: none;
 		}
@@ -891,10 +968,17 @@
 	}
 }
 
+
+.share-links a,
+.dark-skin .share-links a{
+		color: #ffffff;
+}
+
 .share-links{
 	overflow: hidden;
+	position: relative;
 
-	.fa{
+	.share-btn-icon{
 		@include font-size(15px);
 	}
 
@@ -903,18 +987,21 @@
 		margin: 2px;
 		height: 40px;
 		overflow: hidden;
-		color: #ffffff;
-		background: #444444;
 		position: relative;
 		transition: 0.3s;
 		border-radius: $base-border-radius;
 		width: 40px;
 
+		&,
+		&:before{
+			background-color: #444;
+		}
+
 		&.large-share-button{
 			width: auto;
 		}
 
-		.fa{
+		.share-btn-icon{
 			width: 40px;
 			height: 40px;
 			float: left;
@@ -948,7 +1035,7 @@
 		margin: 0;
 		border-radius: 0;
 
-		.fa{
+		.share-btn-icon{
 			display: inline-block;
 			float: none;
 			width: 100%;
@@ -958,7 +1045,48 @@
 
 .share-centered{
 	text-align: center;
-	position: relative;
+}
+
+.share-inverted{
+	text-align: right;
+}
+
+.share-rounded a{
+	border-radius: 100%;
+}
+
+.share-skew{
+	overflow: visible;
+
+	a{
+		padding-left: 10px;
+		opacity: 0.99;
+		background: transparent !important;
+		overflow: visible !important;
+
+		&:before{
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			z-index: -1;
+			transform: skew(-20deg) translateX(6px);
+		}
+	}
+}
+
+.share-pill{
+	a.large-share-button{
+		padding: 4px 15px;
+		border-radius: 200px;
+		height: auto;
+
+		span.social-text{
+			font-size: 12px;
+		}
+	}
 }
 
 .share-title{
@@ -969,7 +1097,7 @@
 	@include font-size(12px);
 	margin: 2px 0;
 
-	.fa{
+	.tie-icon-share{
 		margin-right: 5px;
 		@include font-size(14px);
 	}
@@ -991,7 +1119,7 @@
 		@include font-size(10px);
 	}
 
-	.fa {
+	.share-btn-icon {
 		width: 30px;
 		height: 30px;
 		line-height: 30px;
@@ -1000,63 +1128,121 @@
 
 .share-links{
 	a.facebook-share-btn{
-		background: $facebook-color;
+		&,
+		&:before{
+			background: $facebook-color;
+		}
 	}
 
 	a.twitter-share-btn{
-		background: $twitter-color;
+		&,
+		&:before{
+			background: $twitter-color;
+		}
 	}
 
 	a.linkedin-share-btn{
-		background: $linkedin-color;
+		&,
+		&:before{
+			background: $linkedin-color;
+		}
 	}
 
 	a.pinterest-share-btn{
-		background: $pinterest-color;
+		&,
+		&:before{
+			background: $pinterest-color;
+		}
 	}
 
 	a.reddit-share-btn{
-		background: $reddit-color;
+		&,
+		&:before{
+			background: $reddit-color;
+		}
 	}
 
 	a.tumblr-share-btn{
-		background: $tumblr-color;
+		&,
+		&:before{
+			background: $tumblr-color;
+		}
 	}
 
 	a.vk-share-btn{
-		background: $vk-color;
+		&,
+		&:before{
+			background: $vk-color;
+		}
 	}
 
 	a.odnoklassniki-share-btn{
-		background: $odnoklassniki-color;
+		&,
+		&:before{
+			background: $odnoklassniki-color;
+		}
 	}
 
 	a.pocket-share-btn{
-		background: $pocket-color;
+		&,
+		&:before{
+			background: $pocket-color;
+		}
 	}
 
 	a.skype-share-btn{
-		background: $skype-color;
+		&,
+		&:before{
+			background: $skype-color;
+		}
 	}
 
 	a.whatsapp-share-btn{
-		background: $whatsapp-color;
+		&,
+		&:before{
+			background: $whatsapp-color;
+		}
+	}
+
+	a.line-share-btn{
+		&,
+		&:before{
+			background: $line-color;
+		}
+
+		.tie-icon-line{
+			&:before{
+				margin: 0 -1px;
+			}
+		}
 	}
 
 	a.telegram-share-btn{
-		background: $telegram-color;
+		&,
+		&:before{
+			background: $telegram-color;
+		}
+	}
+
+	a.messenger-share-btn{
+		&,
+		&:before{
+			background: $messenger-color;
+		}
 	}
 
 	a.viber-share-btn{
-		background: $viber-color;
-
-		.fa{
-			transform: rotate(-45deg);
+		&,
+		&:before{
+			background: $viber-color;
 		}
 	}
 
 	a.email-share-btn{
-		background: #333333;
+		&,
+		&:before{
+			background: #333333;
+		}
 	}
 }
 
@@ -1073,19 +1259,31 @@
 }
 
 @include breakpoint(sm){
+	a.line-share-btn,
 	a.whatsapp-share-btn,
 	a.telegram-share-btn,
 	a.viber-share-btn{
-		display: none;
+		display: none !important;
 	}
 }
 
+@include breakpoint(sm){
+	a.messenger-mob-share-btn{
+		display: none !important;
+	}
+}
+
+@include breakpoint(max_min_sm){
+	a.messenger-desktop-share-btn{
+		display: none !important;
+	}
+}
 
 // next/prev posts
 .prev-next-post-nav{
 	overflow: hidden;
 
-	.fa{
+	.tie-media-icon{
 		float: left;
 		@include font-size(16px);
 		margin-right: 10px;
@@ -1097,7 +1295,7 @@
 		padding-left: 0;
 		float: left;
 
-		.icon:before{
+		.tie-media-icon:before{
 			content: "\f104";
 			letter-spacing: 5px;
 		}
@@ -1107,8 +1305,8 @@
 		padding-right: 0;
 		float: right;
 
-		.icon:before{
-			content: "\f105";
+		.tie-media-icon:before{
+			content: "\f106";
 			letter-spacing: -5px;
 		}
 	}
@@ -1141,7 +1339,7 @@
 			}
 		}
 
-		.icon{
+		.tie-media-icon{
 			width: 60px;
 			height: 60px;
 
@@ -1259,6 +1457,14 @@
 
 
 // comments
+#show-comments-section{
+	padding: 15px 25px;
+	font-size: 130%;
+	font-weight: bold;
+	width: 100%;
+	text-align: center;
+}
+
 .comment-list{
 	.comment{
 		border-bottom: $primary-border;
@@ -1288,7 +1494,7 @@
 			border-radius: 50%;
 			box-shadow: 0 0 8px #e0e7f1;
 			border: 2px solid #ffffff;
-			margin-right: 20px;
+			margin: 6px 20px 6px 6px;
 			float: left;
 		}
 
@@ -1384,6 +1590,12 @@
 	}
 }
 
+@include breakpoint(max_min_sm){
+	.magazine1 .compact-comments{
+		padding: 0 15px;
+	}
+}
+
 #add-comment-block{
 	margin-bottom: 0;
 
@@ -1461,6 +1673,7 @@
 
 	textarea{
 		vertical-align: top;
+		resize: none;
 	}
 
 	.form-submit{
@@ -1512,6 +1725,10 @@
 		right: auto;
 		left: -1px;
 		transform: translatex(-100%);
+	}
+
+	.has-first-big-post .post-widget-body{
+		clear: both;
 	}
 
 	.posts-list-big-first li{
@@ -1607,7 +1824,7 @@ div.fly-text-share {
 		width: 0;
 	}
 
-	a.fa{
+	a{
 		@include font-size(16px);
 		text-align: center;
 		padding: 8px 0 8px;
@@ -1615,15 +1832,15 @@ div.fly-text-share {
 		display: table-cell;
 		color: #999;
 
-		&.fa-facebook{
+		&.tie-icon-facebook{
 			color: $facebook-color;
 		}
 
-		&.fa-twitter{
+		&.tie-icon-twitter{
 			color: $twitter-color;
 		}
 
-		&.fa-linkedin{
+		&.tie-icon-linkedin{
 			color: $linkedin-color;
 		}
 
@@ -1676,10 +1893,6 @@ div.fly-text-share {
 			text-align: center;
 			padding: 10px 0;
 			margin: 0 30px 30px;
-
-			.fa{
-				@include font-size(12px);
-			}
 		}
 	}
 }
@@ -2016,12 +2229,12 @@ span.video-close-btn{
 				}
 			}
 		}
-
-		&:not(.video-is-sticky) .featured-area-inner{
-			width: 100% !important;
-			height: auto !important;
-		}
 	}
+}
+
+#the-sticky-video:not(.video-is-sticky) .featured-area-inner{
+	width: 100% !important;
+	height: auto !important;
 }
 
 
@@ -2217,32 +2430,6 @@ span.video-close-btn{
 			padding-top: 35px;
 		}
 
-		.mejs-play button,
-		.mejs-pause button,
-		.mejs-mute button,
-		.mejs-unmute button{
-			background: transparent !important;
-			font: normal normal normal 14px/1 FontAwesome;
-			color: #ffffff;
-
-			&:before{
-				content: "\f04b";
-				font-size: 120%;
-			}
-		}
-
-		.mejs-pause button:before{
-			content: "\f04c";
-		}
-
-		.mejs-unmute button:before{
-			content: "\f026";
-		}
-
-		.mejs-mute button:before{
-			content: "\f028";
-		}
-
 		div.mejs-time-rail{
 			padding-top: 32px;
 		}
@@ -2362,4 +2549,216 @@ span.video-close-btn{
 .stream-item-below-post,
 .stream-item-below-post-content {
 	margin: 30px auto;
+	clear: both;
+}
+
+// In Post Related
+#inline-related-post{
+	clear: both;
+
+	.the-subtitle{
+
+	}
+	ul{
+		padding: 0;
+
+		li{
+			list-style: none !important;
+			margin-top: 0;
+			margin-bottom: 15px;
+
+			.post-title{
+				font-size: 14px;
+				line-height: 1.4;
+				margin-bottom: 5px;
+			}
+
+			.post-thumb-overlay{
+				display: none;
+			}
+
+			.post-thumb{
+				margin: 0;
+			}
+
+			a:not(:hover){
+				color: #333;
+
+				.dark-skin &{
+					color: #eee;
+				}
+			}
+		}
+	}
+}
+
+
+// Post Meta as Column
+#post-extra-info{
+	display: none;
+}
+
+@include breakpoint(sm){
+	.post-meta-column{
+		#the-post{
+			.entry-content{
+				width: 75%;
+				width: calc( 100% - 170px );
+				float: right;
+			}
+		}
+
+		#single-post-meta{
+			display: none;
+		}
+
+		&.magazine2{
+			#post-extra-info{
+				padding-left: 0;
+				padding-right: 25px;
+			}
+		}
+
+		#post-extra-info{
+			display: block;
+			float: left;
+			width: 25%;
+			width: calc( 169px + 1px );
+			padding: 10px 0 20px 25px;
+
+			#single-post-meta{
+				display: block;
+				margin: 0 0 20px;
+				overflow: visible;
+				font-size: 14px;
+
+				.tie-alignright{
+					float: none;
+				}
+
+				.meta-item{
+					display: block;
+					float: none;
+					padding: 5px 0;
+					margin: 0;
+
+					&:not(.meta-author-wrapper){
+						padding-left: 8px;
+					}
+				}
+			}
+
+			#share-buttons-top{
+				padding: 0;
+				text-align: center;
+
+				a{
+					margin-right: 0;
+					margin-left: 0;
+
+					&.large-share-button{
+						width: 100%;
+					}
+				}
+
+				.equal-width{
+					width: 40px;
+					float: left;
+					width: 33.3333%;
+				}
+
+				.share-skew a{
+					width: calc(100% - 12px);
+					float: left !important;
+				}
+
+				.share-pill a{
+					padding-right: 2px;
+					padding-left: 5px;
+				}
+
+			}
+		}
+	}
+}
+
+// Auto Loaded Posts
+#tie-infinte-posts-iframes-wrapper{
+	width: 100%;
+	display: block;
+	clear: both;
+}
+
+#tie-infinte-posts-iframes{
+	margin-left: -15px;
+	margin-right: -15px;
+	width: calc(100% + 30px);
+}
+
+#tie-infinte-posts-loading{
+	position: relative;
+	height: 80px;
+	display: none;
+}
+
+//
+.tie-infinte-post-iframe{
+	display: block;
+	width: 1px;
+	min-width: 100%;
+	height: 0;
+	border: 0;
+	opacity: 0;
+	padding: 0;
+	margin: 50px 0 0;
+	transition: opacity 1s;
+	overflow: hidden;
+
+	&[style]{
+		opacity: 1;
+	}
+}
+
+.is-ajax-loaded-post{
+
+	//#content,
+	//.fullwidth-featured-area-wrapper,
+	//.fullwidth-entry-title-wrapper{
+		//padding-right: 0;
+		//padding-left: 0;
+	//}
+
+	.theiaStickySidebar{
+		transform: translateY(0) !important;
+	}
+
+	&.post-layout-8 {
+		#tie-container{
+			background-size: contain;
+
+			@include breakpoint(max_min_sm){
+				background-size: auto 600px;
+			}
+		}
+
+		.single-big-img{
+			max-height: 600px;
+		}
+
+		#breadcrumb{
+			padding-top: 20px;
+		}
+	}
+
+	.tie-parallax [id^="jarallax-container-"]{
+		> div,
+		> iframe{
+			max-height: 700px;
+		}
+	}
+}
+
+
+#wpd-bubble-wrapper{
+	z-index: 110;
 }

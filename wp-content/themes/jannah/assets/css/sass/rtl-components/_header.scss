@@ -9,6 +9,17 @@
 	float: left;
 }
 
+.header-layout-4{
+	#menu-components-wrap{
+		padding-right: 20px;
+		padding-left: 0;
+	}
+
+	.main-menu{
+		float: right;
+	}
+}
+
 @include breakpoint(md){
 	// Header menus arrows
 	.menu-item-has-children,
@@ -22,6 +33,11 @@
 			border-right-color: #ffffff;
 			border-left-color: transparent;
 		}
+	}
+
+	.main-menu .menu-sub-content .menu-item-has-children > a:before {
+		left: 5px;
+		right: auto;
 	}
 
 	#theme-header .menu > li.menu-item-has-children:not(.is-icon-only) > a,
@@ -175,6 +191,11 @@
 
 	// Components
 	.components {
+		.search-bar{
+			margin-right: 10px;
+			margin-left: 0;
+		}
+
 		#search-input {
 	    padding: 0 13px 0 35px;
 		}
@@ -283,6 +304,19 @@
 	}
 }
 
+.popup-login-icon{
+	&.has-title{
+		span{
+			float: right;
+		}
+
+		.login-title{
+			padding-left: 0;
+			padding-right: 4px;
+		}
+	}
+}
+
 .menu-tiny-label{
 	margin-left: auto;
 	margin-right: 3px;
@@ -337,7 +371,7 @@ ul.breaking-news-nav{
 
 
 @include breakpoint(md){
-	.header-layout-3 .stream-item-top-wrapper {
+	.header-layout-3.has-normal-width-logo .stream-item-top-wrapper {
 		&,
 		& img{
 	  	float: left;
@@ -346,11 +380,11 @@ ul.breaking-news-nav{
 }
 
 @include breakpoint(max_min_md){
-	#theme-header #logo {
-	    text-align: right;
+	#theme-header.has-normal-width-logo #logo {
+    text-align: right;
 	}
 
-	#mobile-menu-icon{
+	.mobile-header-components{
 		left: 15px;
 		right: auto;
 
@@ -386,8 +420,48 @@ ul.breaking-news-nav{
 			> ul,
 			> div{
 				padding-left: 0 !important;
-				padding-right: 25px !important;
+				padding-right: 15px !important;
 			}
 		}
+	}
+}
+
+
+#mobile-header-components-area_1 .components{
+	flex-direction: row-reverse;
+}
+
+#mobile-header-components-area_2 .components{
+	flex-direction: row;
+}
+
+.mobile-header-components .menu-text{
+	padding-left: 0;
+	padding-right: 5px;
+}
+
+#mobile-search{
+	.search-form{
+		&:after{
+			left: 10px;
+			right: auto;
+		}
+	}
+
+	.search-field{
+		padding-left: 45px;
+		padding-right: 20px;
+	}
+
+	.search-submit{
+		right: auto;
+		left: 5px;
+	}
+}
+
+@include breakpoint(max_min_md){
+	.logo-container,
+	.header-layout-1 .main-menu-wrapper{
+		flex-direction: row-reverse;
 	}
 }

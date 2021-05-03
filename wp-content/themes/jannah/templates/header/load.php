@@ -8,7 +8,7 @@
  * will need to copy the new files to your child theme to maintain compatibility.
  *
  * @author 		TieLabs
- * @version   2.1.0
+ * @version   5.0.0
  */
 
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly
@@ -19,7 +19,9 @@ if( ! apply_filters( 'TieLabs/is_header_active', true ) ){
 	return;
 }
 
-do_action( 'TieLabs/before_header' );
+$layout = tie_get_option( 'header_layout', 3 );
+
+do_action( 'TieLabs/before_header', $layout );
 
 // Rainbow Line
 if( tie_get_option( 'rainbow_header' ) ){
@@ -42,7 +44,7 @@ if( tie_get_option( 'rainbow_header' ) ){
 		}
 
 		// Header Content area
-		if( tie_get_option( 'header_layout', 3 ) != 1 ){
+		if( $layout != 1 && $layout != 4 ){
 			TIELABS_HELPER::get_template_part( 'templates/header/content' );
 		}
 
@@ -61,7 +63,7 @@ if( tie_get_option( 'rainbow_header' ) ){
 
 <?php
 
-	do_action( 'TieLabs/after_header' );
+	do_action( 'TieLabs/after_header', $layout );
 
 	// Get the main slider for the categories
 	TIELABS_HELPER::get_template_part('templates/category-slider');

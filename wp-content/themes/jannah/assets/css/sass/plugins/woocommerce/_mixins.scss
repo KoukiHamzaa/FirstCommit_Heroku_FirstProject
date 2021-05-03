@@ -6,8 +6,8 @@
 }
 
 @mixin iconbefore( $glyph: "\f019" ){
-	font-family: 'FontAwesome';
-	speak: none;
+	font-family: 'tiefonticon';
+	speak: never;
 	font-weight: normal;
 	font-variant: normal;
 	text-transform: none;
@@ -19,8 +19,8 @@
 }
 
 @mixin iconafter( $glyph: "\f019" ){
-	font-family: 'FontAwesome';
-	speak: none;
+	font-family: 'tiefonticon';
+	speak: never;
 	font-weight: normal;
 	font-variant: normal;
 	text-transform: none;
@@ -44,7 +44,7 @@
 		display: block;
 		content: "";
 		animation: spin 1s ease-in-out infinite;
-		font-family: 'FontAwesome';
+		font-family: tiefonticon;
 		content: "\f110";
 		line-height: 1;
 		text-align: center;

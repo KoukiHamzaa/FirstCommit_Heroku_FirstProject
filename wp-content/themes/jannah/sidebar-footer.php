@@ -5,9 +5,7 @@
  */
 
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly
-?>
 
-<?php
 
 if( tie_get_option( 'footer_widgets_'.$name ) ):
 

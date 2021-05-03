@@ -30,7 +30,10 @@ get_header(); ?>
 			// Get the layout template part
 			TIELABS_HELPER::get_template_part( 'templates/archives', '', array(
 				'layout'          => tie_get_option( 'blog_display', 'excerpt' ),
+				'excerpt'         => tie_get_option( 'blog_excerpt' ),
 				'excerpt_length'  => tie_get_option( 'blog_excerpt_length' ),
+				'read_more'       => tie_get_option( 'blog_read_more' ),
+				'read_more_text'  => tie_get_option( 'blog_read_more_text' ),
 			));
 
 			// Page Pagination

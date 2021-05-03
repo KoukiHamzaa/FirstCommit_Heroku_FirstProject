@@ -1,6 +1,6 @@
 <?php
 
-if( ! class_exists( 'TIE_ABOUT_AUTHOR_WIDGET' )){
+if( ! class_exists( 'TIE_ABOUT_AUTHOR_WIDGET' ) ) {
 
 	/**
 	 * Widget API: TIE_ABOUT_AUTHOR_WIDGET class
@@ -82,7 +82,7 @@ if( ! class_exists( 'TIE_ABOUT_AUTHOR_WIDGET' )){
 
 
 
-if( ! class_exists( 'TIE_AUTHOR_POSTS_WIDGET' )){
+if( ! class_exists( 'TIE_AUTHOR_POSTS_WIDGET' ) ) {
 
 	/**
 	 * Widget API: TIE_Author_Posts_Widget class
@@ -178,7 +178,7 @@ if( ! class_exists( 'TIE_AUTHOR_POSTS_WIDGET' )){
 
 
 
-if( ! class_exists( 'TIE_AUTHOR_CUSTOM_WIDGET' )){
+if( ! class_exists( 'TIE_AUTHOR_CUSTOM_WIDGET' ) ) {
 
 	/**
 	 * Widget API: TIE_AUTHOR_CUSTOM_WIDGET class
@@ -197,7 +197,7 @@ if( ! class_exists( 'TIE_AUTHOR_CUSTOM_WIDGET' )){
 		 */
 		public function widget( $args, $instance ){
 
-			if ( ! is_single() || ( is_single() && ! get_the_author_meta( 'author_widget_content' ))){
+			if ( ! is_single() || ( is_single() && ! get_the_author_meta( 'author_widget_content' )) ) {
 				return;
 			}
 

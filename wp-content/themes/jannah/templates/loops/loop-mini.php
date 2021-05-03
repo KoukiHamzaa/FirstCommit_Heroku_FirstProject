@@ -8,7 +8,7 @@
  * will need to copy the new files to your child theme to maintain compatibility.
  *
  * @author   TieLabs
- * @version  4.5.0
+ * @version  5.0.0
  */
 
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly
@@ -24,7 +24,7 @@ $no_thumb = ( ! has_post_thumbnail() || ! empty( $block['thumb_all'] )) ? 'no-sm
 	<?php
 
 		# Get the Post Meta info
-		if( ! empty( $block['post_meta'] )){
+		if( ! empty( $block['post_meta'] ) ) {
 			tie_the_post_meta( array( 'trending' => true, 'author' => false, 'comments' => false, 'review' => true ) );
 		}
 	?>
@@ -35,10 +35,13 @@ $no_thumb = ( ! has_post_thumbnail() || ! empty( $block['thumb_all'] )) ? 'no-sm
 
 		// Get the post thumbnail
 		if ( has_post_thumbnail() && empty( $block['thumb_all'] ) ){
-			tie_post_thumbnail( TIELABS_THEME_SLUG.'-image-small', false, false, true, $block['media_overlay'] );
+
+			$thumbnail_size = apply_filters( 'TieLabs/loop_thumbnail_size', TIELABS_THEME_SLUG.'-image-small', 'mini' );
+
+			tie_post_thumbnail( $thumbnail_size, false, false, true, $block['media_overlay'] );
 		}
 
-		if( ! empty( $block['excerpt'] )){ ?>
+		if( ! empty( $block['excerpt'] ) ) { ?>
 			<div class="post-details">
 				<p class="post-excerpt"><?php tie_the_excerpt( $block['excerpt_length'] ) ?></p>
 			</div>

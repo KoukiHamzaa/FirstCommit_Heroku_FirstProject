@@ -1,6 +1,6 @@
 <?php
 
-if( ! class_exists( 'TIE_ABOUT_WIDGET' )){
+if( ! class_exists( 'TIE_ABOUT_WIDGET' ) ) {
 
 	/**
 	 * Widget API: TIE_ABOUT_WIDGET class
@@ -28,22 +28,22 @@ if( ! class_exists( 'TIE_ABOUT_WIDGET' )){
 				$image_style = ' style="';
 
 				// Margin top
-				if( ! empty( $instance['margin_top'] )){
+				if( ! empty( $instance['margin_top'] ) ) {
 					$image_style .= 'margin-top: ' .str_replace( 'px', '', $instance['margin_top'] ). 'px; ';
 				}
 
 				// Margin bottom
-				if( ! empty( $instance['margin_bottom'] )){
+				if( ! empty( $instance['margin_bottom'] ) ) {
 					$image_style .= 'margin-bottom: ' .str_replace( 'px', '', $instance['margin_bottom'] ). 'px;';
 				}
 
 				// Width
-				if( ! empty( $instance['width'] )){
+				if( ! empty( $instance['width'] ) ) {
 					$image_style .= 'width: ' .str_replace( 'px', '', $instance['width'] ). 'px; ';
 				}
 
 				// Height
-				if( ! empty( $instance['height'] )){
+				if( ! empty( $instance['height'] ) ) {
 					$image_style .= 'height: ' .str_replace( 'px', '', $instance['height'] ). 'px;';
 				}
 
@@ -56,6 +56,8 @@ if( ! class_exists( 'TIE_ABOUT_WIDGET' )){
 
 			if( ! empty( $instance['img'] ) ){
 
+				$alt = ! empty( $instance['alt'] ) ? $instance['alt'] : $instance['title'];
+
 				// WPML
 				$instance['img'] = apply_filters( 'wpml_translate_single_string', $instance['img'], TIELABS_THEME_SLUG, 'widget_img_'.$this->id );
 
@@ -67,7 +69,7 @@ if( ! class_exists( 'TIE_ABOUT_WIDGET' )){
 					$src = 'src="'. $instance['img'] .'"';
 				}
 
-				$img = '<img alt="" '. $src.$image_style .' class="'. $img_class .'" width="280" height="47">';
+				$img = '<img alt="'. $alt .'" '. $src.$image_style .' class="'. $img_class .'" width="280" height="47">';
 			}
 
 			$text_code  = ! empty( $instance['text_code'] )  ? $instance['text_code'] : '';
@@ -120,6 +122,7 @@ if( ! class_exists( 'TIE_ABOUT_WIDGET' )){
 			$instance                  = $old_instance;
 			$instance['title']         = sanitize_text_field( $new_instance['title'] );
 			$instance['img']           = $new_instance['img'];
+			$instance['alt']           = $new_instance['alt'];
 			$instance['text_code']     = $new_instance['text_code'];
 			$instance['circle']        = ! empty( $new_instance['circle'] ) ? 'true' : 0;
 			$instance['center']        = ! empty( $new_instance['center'] ) ? 'true' : 0;
@@ -144,6 +147,7 @@ if( ! class_exists( 'TIE_ABOUT_WIDGET' )){
 
 			$title         = isset( $instance['title'] )         ? $instance['title']         : '';
 			$img           = isset( $instance['img'] )           ? $instance['img']           : '';
+			$alt           = isset( $instance['alt'] )           ? $instance['alt']           : '';
 			$text_code     = isset( $instance['text_code'] )     ? $instance['text_code']     : '';
 			$circle        = isset( $instance['circle'] )        ? $instance['circle']        : '';
 			$center        = isset( $instance['center'] )        ? $instance['center']        : '';
@@ -163,6 +167,11 @@ if( ! class_exists( 'TIE_ABOUT_WIDGET' )){
 			<p>
 				<label for="<?php echo esc_attr(  $this->get_field_id( 'img' ) ); ?>"><?php esc_html_e( 'Image URL', TIELABS_TEXTDOMAIN) ?></label>
 				<input id="<?php echo esc_attr(  $this->get_field_id( 'img' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'img' ) ); ?>" value="<?php echo esc_attr( $img ) ?>" class="widefat" type="text" />
+			</p>
+
+			<p>
+				<label for="<?php echo esc_attr(  $this->get_field_id( 'alt' ) ); ?>"><?php esc_html_e( 'Image Alt text', TIELABS_TEXTDOMAIN) ?></label>
+				<input id="<?php echo esc_attr(  $this->get_field_id( 'alt' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'alt' ) ); ?>" value="<?php echo esc_attr( $alt ) ?>" class="widefat" type="text" />
 			</p>
 
 			<p>

@@ -4,6 +4,7 @@
 	width: 100%;
 	height: 35px;
 	line-height: 35px;
+	display: block !important;
 }
 
 .breaking-title {
@@ -19,12 +20,12 @@
 		z-index: 1;
 	}
 
-	span.fa {
+	span.breaking-icon {
 		display: none;
 	}
 
 	@include breakpoint_max(600px){
-		span.fa {
+		span.breaking-icon {
 			display: inline-block;
 		}
 
@@ -155,7 +156,7 @@
 		height: 21px;
 		width: 21px;
 		display: block;
-		line-height: 19px;
+		line-height: 17px;
 		text-align: center;
 		border-radius: $base-border-radius;
 		border: $base-border;
@@ -170,7 +171,7 @@
 			opacity: 0.8;
 			display: inline-block;
 			content: "\f04c";
-			font-family: "Fontawesome";
+			font-family: tiefonticon;
 		}
 
 		&:hover{
@@ -191,12 +192,13 @@
 
 		&.jnt-next {
 			&:after{
-				content: "\f105";
+				content: "\f106";
 			}
 		}
 
 		.up-down-controls &:after{
 			transform: rotate(90deg);
+			margin-left: 5px;
 		}
 	}
 }

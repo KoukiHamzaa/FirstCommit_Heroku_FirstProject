@@ -8,7 +8,7 @@
  * will need to copy the new files to your child theme to maintain compatibility.
  *
  * @author 		TieLabs
- * @version   4.0.0
+ * @version   5.0.0
  */
 
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly
@@ -39,12 +39,12 @@ $live_search_data_skin = '';
 if( tie_get_option( "top-nav-components_search" ) && tie_get_option( "top-nav-components_live_search" ) ){
 	$live_search_skin      = tie_get_option( 'top_nav_dark' ) ? 'dark' : 'light';
 	$top_nav_class        .= ' live-search-parent';
-	$live_search_data_skin = 'data-skin="search-in-top-nav live-search-'. $live_search_skin .'" ';
+	$live_search_data_skin = 'data-skin="search-in-top-nav"';
 }
 
 ?>
 
-<nav id="top-nav" <?php echo ( $live_search_data_skin ); ?>class="<?php echo esc_attr( $top_nav_class ) ?>" aria-label="<?php esc_html_e( 'Secondary Navigation', TIELABS_TEXTDOMAIN ); ?>">
+<nav id="top-nav" <?php echo ( $live_search_data_skin ); ?> class="<?php echo esc_attr( $top_nav_class ) ?>" aria-label="<?php esc_html_e( 'Secondary Navigation', TIELABS_TEXTDOMAIN ); ?>">
 	<div class="container">
 		<div class="topbar-wrapper">
 
@@ -53,7 +53,7 @@ if( tie_get_option( "top-nav-components_search" ) && tie_get_option( "top-nav-co
 				if( tie_get_option( 'top_date' ) ){
 					$date_format = tie_get_option( 'todaydate_format', 'l ,  j  F Y' ); ?>
 
-					<div class="topbar-today-date fa-before">
+					<div class="topbar-today-date tie-icon">
 						<?php echo date_i18n( $date_format, current_time( 'timestamp' ) ); ?>
 					</div>
 					<?php
@@ -76,6 +76,7 @@ if( tie_get_option( "top-nav-components_search" ) && tie_get_option( "top-nav-co
 							'breaking_tag'    => tie_get_option( 'breaking_tag'    ),
 							'breaking_cat'    => tie_get_option( 'breaking_cat'    ),
 							'breaking_custom' => tie_get_option( 'breaking_custom' ),
+							'breaking_speed'  => tie_get_option( 'breaking_speed'  ),
 						));
 					}
 

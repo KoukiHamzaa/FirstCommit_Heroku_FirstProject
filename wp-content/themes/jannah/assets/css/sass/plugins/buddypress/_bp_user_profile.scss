@@ -244,7 +244,7 @@ body.no-js {
 			label{
 				display: flex;
 				align-items: center;
-				
+
 				&:not(:last-of-type){
 					margin-bottom: 15px;
 				}
@@ -253,7 +253,7 @@ body.no-js {
 			.field-visibility-text:before{
 				content: '\f0ac';
 				display: inline-block;
-				font: normal normal normal 14px/1 'FontAwesome';
+				font: normal normal normal 14px/1 tiefonticon;
 				font-size: inherit;
 				text-rendering: auto;
 				-webkit-font-smoothing: antialiased;

@@ -1,13 +1,3 @@
-.magazine1.bbpress.archive .entry-content {
-  padding-top: 30px;
-}
-
-@media (max-width: 767px) {
-  .magazine1.bbpress.archive .entry-content {
-    padding-top: 15px;
-  }
-}
-
 #bbpress-forums hr {
   margin: 0 0 24px 0;
 }
@@ -196,6 +186,8 @@ li.bbp-topic-freshness {
   padding: 0;
   margin: 12px auto 0 auto;
   float: none;
+  display: block;
+  border-radius: 50%;
 }
 
 #bbpress-forums div.bbp-forum-author a.bbp-author-name,
@@ -275,7 +267,7 @@ span.bbp-author-ip {
 .widget_display_forums .widget-title-icon:before,
 .widget_display_replies .widget-title-icon:before,
 .widget_display_topics .widget-title-icon:before {
-  content: "\f211";
+  content: "\f086";
 }
 
 .widget_display_stats .widget-title-icon:before {
@@ -667,7 +659,6 @@ td.bbp-topic-counts {
 }
 
 #bbpress-forums fieldset.bbp-form legend {
-  width: 100%;
   margin-bottom: 20px;
 }
 
@@ -1739,7 +1730,7 @@ body.rtl #bbpress-forums #bbp-user-body {
 
 .dark-skin #wp-link li,
 .dark-skin #wp-link .query-notice {
-  color: #aaaaaa;
+  color: #cccccc;
 }
 
 .dark-skin #bbpress-forums div.bbp-the-content-wrapper input[type=button] {

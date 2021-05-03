@@ -8,6 +8,23 @@
 		));
 
 
+$lock_settings = 'block';
+
+if( ! get_option( 'tie_token_'.TIELABS_THEME_ID ) ){
+
+	$lock_settings = 'none !important';
+
+	tie_build_theme_option(
+		array(
+			'text' => esc_html__( 'Verify your license to unlock this section.', TIELABS_TEXTDOMAIN ),
+			'type' => 'error',
+		));
+}
+
+echo '<div style="display:'. $lock_settings .'" >';
+
+
+
 	$headers_path   = TIELABS_TEMPLATE_URL. '/framework/admin/assets/images/headers';
 	$top_nav_class  = '';
 	$header_class   = '';
@@ -35,40 +52,49 @@
 		$header_class .= ' header-layout-'.tie_get_option( 'header_layout' );
 	}
 
+	if( tie_get_option( 'header_layout' ) == 4 ){
+		$header_class .= ' header-layout-1';
+	}
+
 	//Top Components
 	$top_components = '
 		<span class="top-nav-components-live_search">
 			<span class="header-top-nav-components-search1 tie-alert-circle top-nav-components_search_layout-options">
-				<img class="h-light-skin" src="'. esc_url( $headers_path ) .'/search-icon-light.png" alt="" />
-				<img class="h-dark-skin" src="'. esc_url( $headers_path ) .'/search-icon.png" alt="" />
+				<img loading="lazy" class="h-light-skin" src="'. esc_url( $headers_path ) .'/search-icon-light.png" alt="" />
+				<img loading="lazy" class="h-dark-skin" src="'. esc_url( $headers_path ) .'/search-icon.png" alt="" />
 			</span>
 			<span class="header-top-nav-components-search tie-alert-circle top-nav-components_search_layout-options">
-				<img class="h-light-skin" src="'. esc_url( $headers_path ) .'/search-light.png" alt="" />
-				<img class="h-dark-skin" src="'. esc_url( $headers_path ) .'/search.png" alt="" />
+				<img loading="lazy" class="h-light-skin" src="'. esc_url( $headers_path ) .'/search-light.png" alt="" />
+				<img loading="lazy" class="h-dark-skin" src="'. esc_url( $headers_path ) .'/search.png" alt="" />
 			</span>
+		</span>
+
+		<span class="header-top-nav-components-skin tie-alert-circle">
+			<img loading="lazy" class="h-light-skin" src="'. esc_url( $headers_path ) .'/skin-light.png" alt="" />
+			<img loading="lazy" class="h-dark-skin" src="'. esc_url( $headers_path ) .'/skin.png" alt="" />
 		</span>
 
 		<span class="header-top-nav-components-slide tie-alert-circle">
-			<img class="h-light-skin" src="'. esc_url( $headers_path ) .'/slide-light.png" alt="" />
-			<img class="h-dark-skin" src="'. esc_url( $headers_path ) .'/slide.png" alt="" />
+			<img loading="lazy" class="h-light-skin" src="'. esc_url( $headers_path ) .'/slide-light.png" alt="" />
+			<img loading="lazy" class="h-dark-skin" src="'. esc_url( $headers_path ) .'/slide.png" alt="" />
 		</span>
 
 		<span class="header-top-nav-components-login tie-alert-circle">
-			<img class="h-light-skin" src="'. esc_url( $headers_path ) .'/login-light.png" alt="" />
-			<img class="h-dark-skin" src="'. esc_url( $headers_path ) .'/login.png" alt="" />
+			<img loading="lazy" class="h-light-skin" src="'. esc_url( $headers_path ) .'/login-light.png" alt="" />
+			<img loading="lazy" class="h-dark-skin" src="'. esc_url( $headers_path ) .'/login.png" alt="" />
 		</span>
 
 		<span class="header-top-nav-components-random tie-alert-circle">
-			<img class="h-light-skin" src="'. esc_url( $headers_path ) .'/random-light.png" alt="" />
-			<img class="h-dark-skin" src="'. esc_url( $headers_path ) .'/random.png" alt="" />
+			<img loading="lazy" class="h-light-skin" src="'. esc_url( $headers_path ) .'/random-light.png" alt="" />
+			<img loading="lazy" class="h-dark-skin" src="'. esc_url( $headers_path ) .'/random.png" alt="" />
 		</span>
 	';
 
 	if ( TIELABS_WOOCOMMERCE_IS_ACTIVE ){
 		$top_components .= '
 			<span class="header-top-nav-components-cart tie-alert-circle">
-				<img class="h-light-skin" src="'. esc_url( $headers_path ) .'/cart-light.png" alt="" />
-				<img class="h-dark-skin" src="'. esc_url( $headers_path ) .'/cart.png" alt="" />
+				<img loading="lazy" class="h-light-skin" src="'. esc_url( $headers_path ) .'/cart-light.png" alt="" />
+				<img loading="lazy" class="h-dark-skin" src="'. esc_url( $headers_path ) .'/cart.png" alt="" />
 			</span>
 		';
 	}
@@ -76,8 +102,8 @@
 	if ( TIELABS_BUDDYPRESS_IS_ACTIVE ){
 		$top_components .= '
 			<span class="header-top-nav-components-bp_notifications tie-alert-circle">
-				<img class="h-light-skin" src="'. esc_url( $headers_path ) .'/bp_notifications-light.png" alt="" />
-				<img class="h-dark-skin" src="'. esc_url( $headers_path ) .'/bp_notifications.png" alt="" />
+				<img loading="lazy" class="h-light-skin" src="'. esc_url( $headers_path ) .'/bp_notifications-light.png" alt="" />
+				<img loading="lazy" class="h-dark-skin" src="'. esc_url( $headers_path ) .'/bp_notifications.png" alt="" />
 			</span>
 		';
 	}
@@ -85,15 +111,23 @@
 	$top_components .= '
 		<span class="top-nav-components-live_social">
 			<span class="header-top-nav-components-follow tie-alert-circle top-nav-components_social_layout-options">
-				<img class="h-light-skin" src="'. esc_url( $headers_path ) .'/follow-light.png" alt="" />
-				<img class="h-dark-skin" src="'. esc_url( $headers_path ) .'/follow.png" alt="" />
+				<img loading="lazy" class="h-light-skin" src="'. esc_url( $headers_path ) .'/follow-light.png" alt="" />
+				<img loading="lazy" class="h-dark-skin" src="'. esc_url( $headers_path ) .'/follow.png" alt="" />
 			</span>
 			<span class="header-top-nav-components-follow1 tie-alert-circle top-nav-components_social_layout-options">
-				<img class="h-light-skin" src="'. esc_url( $headers_path ) .'/follow-icons-light.png" alt="" />
-				<img class="h-dark-skin" src="'. esc_url( $headers_path ) .'/follow-icons.png" alt="" />
+				<img loading="lazy" class="h-light-skin" src="'. esc_url( $headers_path ) .'/follow-icons-light.png" alt="" />
+				<img loading="lazy" class="h-dark-skin" src="'. esc_url( $headers_path ) .'/follow-icons.png" alt="" />
 			</span>
 		</span>
 	';
+
+	$top_components .= '
+		<span class="header-top-nav-components-weather tie-alert-circle">
+			<img loading="lazy" class="h-light-skin" src="'. esc_url( $headers_path ) .'/weather-light.png" alt="" />
+			<img loading="lazy" class="h-dark-skin" src="'. esc_url( $headers_path ) .'/weather.png" alt="" />
+		</span>
+	';
+
 
 
 	//Main Nav Classes
@@ -135,13 +169,13 @@
 
 
 							<span id="top-nav-breaking-news" class="top-nav-area-1-options tie-alert-circle">
-								<img class="h-light-skin" src="<?php echo esc_url( $headers_path ) ?>/breaking-light.png" alt="" />
-								<img class="h-dark-skin" src="<?php echo esc_url( $headers_path ) ?>/breaking.png" alt="" />
+								<img loading="lazy" class="h-light-skin" src="<?php echo esc_url( $headers_path ) ?>/breaking-light.png" alt="" />
+								<img loading="lazy" class="h-dark-skin" src="<?php echo esc_url( $headers_path ) ?>/breaking.png" alt="" />
 							</span>
 
 							<span id="top-nav-menu-1" class="top-nav-area-1-options tie-alert-circle">
-								<img class="h-light-skin" src="<?php echo esc_url( $headers_path ) ?>/top-menu-light.png" alt="" />
-								<img class="h-dark-skin" src="<?php echo esc_url( $headers_path ) ?>/top-menu.png" alt="" />
+								<img loading="lazy" class="h-light-skin" src="<?php echo esc_url( $headers_path ) ?>/top-menu-light.png" alt="" />
+								<img loading="lazy" class="h-dark-skin" src="<?php echo esc_url( $headers_path ) ?>/top-menu.png" alt="" />
 							</span>
 
 							<span id="top-nav-components-1" class="components-icons top-nav-area-1-options">
@@ -151,8 +185,8 @@
 
 						<div class="tie-alignright">
 							<span id="top-nav-menu-2" class="top-nav-area-2-options tie-alert-circle">
-								<img class="h-light-skin" src="<?php echo esc_url( $headers_path ) ?>/top-menu-light.png" alt="" />
-								<img class="h-dark-skin" src="<?php echo esc_url( $headers_path ) ?>/top-menu.png" alt="" />
+								<img loading="lazy" class="h-light-skin" src="<?php echo esc_url( $headers_path ) ?>/top-menu-light.png" alt="" />
+								<img loading="lazy" class="h-dark-skin" src="<?php echo esc_url( $headers_path ) ?>/top-menu.png" alt="" />
 							</span>
 
 							<span id="top-nav-components-2" class="components-icons top-nav-area-2-options">
@@ -164,50 +198,56 @@
 				</div><!-- .top-bar-wrap -->
 
 				<div class="header-content">
-					<img class="header-top-logo" src="<?php echo esc_url( $headers_path ) ?>/header-logo.png" style="width:130px;" alt="" />
-					<img class="header-top-ads" src="<?php echo esc_url( $headers_path ) ?>/header-e3lan.png" style="width:500px;" alt="" />
+					<img loading="lazy" class="header-top-logo" src="<?php echo esc_url( $headers_path ) ?>/header-logo.png" style="width:130px;" alt="" />
+					<img loading="lazy" class="header-top-ads" src="<?php echo esc_url( $headers_path ) ?>/header-e3lan.png" style="width:500px;" alt="" />
 				</div><!-- .header-content -->
 
 				<div class="header-main-menu-wrap<?php echo esc_attr( $main_nav_class ) ?>">
 					<div class="header-main-menu">
 
-						<img class="header-top-logo" src="<?php echo esc_url( $headers_path ) ?>/header-logo.png" style="width:130px;" alt="" />
+						<img loading="lazy" class="header-top-logo" src="<?php echo esc_url( $headers_path ) ?>/header-logo.png" style="width:130px;" alt="" />
 
 						<div class="tie-alignleft">
-							<img class="h-dark-skin" src="<?php echo esc_url( $headers_path ) ?>/menu.png" height="40" alt="" />
-							<img class="h-light-skin" src="<?php echo esc_url( $headers_path ) ?>/menu-light.png" height="40" alt="" />
+							<img loading="lazy" class="h-dark-skin" src="<?php echo esc_url( $headers_path ) ?>/menu.png" height="40" alt="" />
+							<img loading="lazy" class="h-light-skin" src="<?php echo esc_url( $headers_path ) ?>/menu-light.png" height="40" alt="" />
 						</div><!-- .tie-alignleft /-->
 
 
 						<div id="main-nav-components" class="components-icons">
 							<span class="main-nav-components-live_search">
 								<span class="header-main-nav-components-search1 tie-alert-circle main-nav-components_search_layout-options">
-									<img class="h-light-skin" src="<?php echo esc_url( $headers_path ) ?>/search-icon-light.png" height="40" alt="" />
-									<img class="h-dark-skin" src="<?php echo esc_url( $headers_path ) ?>/search-icon.png" height="40" alt="" />
+									<img loading="lazy" class="h-light-skin" src="<?php echo esc_url( $headers_path ) ?>/search-icon-light.png" height="40" alt="" />
+									<img loading="lazy" class="h-dark-skin" src="<?php echo esc_url( $headers_path ) ?>/search-icon.png" height="40" alt="" />
 								</span>
 								<span class="header-main-nav-components-search tie-alert-circle main-nav-components_search_layout-options">
-									<img class="h-light-skin" src="<?php echo esc_url( $headers_path ) ?>/search-light.png" height="40" alt="" />
-									<img class="h-dark-skin" src="<?php echo esc_url( $headers_path ) ?>/search.png" height="40" alt="" />
+									<img loading="lazy" class="h-light-skin" src="<?php echo esc_url( $headers_path ) ?>/search-light.png" height="40" alt="" />
+									<img loading="lazy" class="h-dark-skin" src="<?php echo esc_url( $headers_path ) ?>/search.png" height="40" alt="" />
 								</span>
 							</span>
+
+							<span class="header-main-nav-components-skin tie-alert-circle">
+								<img loading="lazy" class="h-light-skin" src="<?php echo esc_url( $headers_path ) ?>/skin-light.png" height="40" alt="" />
+								<img loading="lazy" class="h-dark-skin" src="<?php echo esc_url( $headers_path ) ?>/skin.png" height="40" alt="" />
+							</span>
+
 							<span class="header-main-nav-components-slide tie-alert-circle">
-								<img class="h-light-skin" src="<?php echo esc_url( $headers_path ) ?>/slide-light.png" height="40" alt="" />
-								<img class="h-dark-skin" src="<?php echo esc_url( $headers_path ) ?>/slide.png" height="40" alt="" />
+								<img loading="lazy" class="h-light-skin" src="<?php echo esc_url( $headers_path ) ?>/slide-light.png" height="40" alt="" />
+								<img loading="lazy" class="h-dark-skin" src="<?php echo esc_url( $headers_path ) ?>/slide.png" height="40" alt="" />
 							</span>
 							<span class="header-main-nav-components-login tie-alert-circle">
-								<img class="h-light-skin" src="<?php echo esc_url( $headers_path ) ?>/login-light.png" height="40" alt="" />
-								<img class="h-dark-skin" src="<?php echo esc_url( $headers_path ) ?>/login.png" height="40" alt="" />
+								<img loading="lazy" class="h-light-skin" src="<?php echo esc_url( $headers_path ) ?>/login-light.png" height="40" alt="" />
+								<img loading="lazy" class="h-dark-skin" src="<?php echo esc_url( $headers_path ) ?>/login.png" height="40" alt="" />
 							</span>
 							<span class="header-main-nav-components-random tie-alert-circle">
-								<img class="h-light-skin" src="<?php echo esc_url( $headers_path ) ?>/random-light.png" height="40" alt="" />
-								<img class="h-dark-skin" src="<?php echo esc_url( $headers_path ) ?>/random.png" height="40" alt="" />
+								<img loading="lazy" class="h-light-skin" src="<?php echo esc_url( $headers_path ) ?>/random-light.png" height="40" alt="" />
+								<img loading="lazy" class="h-dark-skin" src="<?php echo esc_url( $headers_path ) ?>/random.png" height="40" alt="" />
 							</span>
 
 							<?php
 							if ( TIELABS_WOOCOMMERCE_IS_ACTIVE ){?>
 								<span class="header-main-nav-components-cart tie-alert-circle">
-									<img class="h-light-skin" src="<?php echo esc_url( $headers_path ) ?>/cart-light.png" height="40" alt="" />
-									<img class="h-dark-skin" src="<?php echo esc_url( $headers_path ) ?>/cart.png" height="40" alt="" />
+									<img loading="lazy" class="h-light-skin" src="<?php echo esc_url( $headers_path ) ?>/cart-light.png" height="40" alt="" />
+									<img loading="lazy" class="h-dark-skin" src="<?php echo esc_url( $headers_path ) ?>/cart.png" height="40" alt="" />
 								</span>
 								<?php
 							}
@@ -216,8 +256,8 @@
 							<?php
 							if ( TIELABS_BUDDYPRESS_IS_ACTIVE ){ ?>
 								<span class="header-main-nav-components-bp_notifications tie-alert-circle">
-									<img class="h-light-skin" src="<?php echo esc_url( $headers_path ) ?>/bp_notifications-light.png" height="40" alt="" />
-									<img class="h-dark-skin" src="<?php echo esc_url( $headers_path ) ?>/bp_notifications.png" height="40" alt="" />
+									<img loading="lazy" class="h-light-skin" src="<?php echo esc_url( $headers_path ) ?>/bp_notifications-light.png" height="40" alt="" />
+									<img loading="lazy" class="h-dark-skin" src="<?php echo esc_url( $headers_path ) ?>/bp_notifications.png" height="40" alt="" />
 								</span>
 								<?php
 							}
@@ -225,14 +265,22 @@
 
 							<span class="main-nav-components-live_social">
 								<span class="header-main-nav-components-follow tie-alert-circle main-nav-components_social_layout-options">
-									<img class="h-light-skin" src="<?php echo esc_url( $headers_path ) ?>/follow-light.png" height="40" alt="" />
-									<img class="h-dark-skin" src="<?php echo esc_url( $headers_path ) ?>/follow.png" height="40" alt="" />
+									<img loading="lazy" class="h-light-skin" src="<?php echo esc_url( $headers_path ) ?>/follow-light.png" height="40" alt="" />
+									<img loading="lazy" class="h-dark-skin" src="<?php echo esc_url( $headers_path ) ?>/follow.png" height="40" alt="" />
 								</span>
 								<span class="header-main-nav-components-follow1 tie-alert-circle main-nav-components_social_layout-options">
-									<img class="h-light-skin" src="<?php echo esc_url( $headers_path ) ?>/follow-icons-light.png" height="40" alt="" />
-									<img class="h-dark-skin" src="<?php echo esc_url( $headers_path ) ?>/follow-icons.png" height="40" alt="" />
+									<img loading="lazy" class="h-light-skin" src="<?php echo esc_url( $headers_path ) ?>/follow-icons-light.png" height="40" alt="" />
+									<img loading="lazy" class="h-dark-skin" src="<?php echo esc_url( $headers_path ) ?>/follow-icons.png" height="40" alt="" />
 								</span>
 							</span>
+
+
+							<span class="header-main-nav-components-weather tie-alert-circle">
+								<img loading="lazy" class="h-light-skin" src="<?php echo esc_url( $headers_path ) ?>/weather-light.png" height="40" alt="" />
+								<img loading="lazy" class="h-dark-skin" src="<?php echo esc_url( $headers_path ) ?>/weather.png" height="40" alt="" />
+							</span>
+
+
 						</div><!-- #main-nav-components-->
 
 					</div><!-- #main-nav-components-->
@@ -260,12 +308,31 @@
 			'toggle' => array(
 				'3' => '',
 				'2' => '',
-				'1' => '',),
+				'1' => '',
+			),
 			'options' => array(
 				'3' => esc_html__( 'Layout', TIELABS_TEXTDOMAIN ) .' #1',
 				'2'	=> esc_html__( 'Layout', TIELABS_TEXTDOMAIN ) .' #2',
 				'1' => esc_html__( 'Layout', TIELABS_TEXTDOMAIN ) .' #3',
+				'4' => esc_html__( 'Layout', TIELABS_TEXTDOMAIN ) .' #4',
 			)));
+
+
+		tie_build_theme_option(
+			array(
+				'name' => esc_html__( 'Stretch Header', TIELABS_TEXTDOMAIN ),
+				'id'   => 'stretch_header',
+				'type' => 'checkbox',
+				'hint' => esc_html__( 'Stretch the section to the full width of the page, supported if the site layout is Full-Width.', TIELABS_TEXTDOMAIN ),
+			));
+
+
+		tie_build_theme_option(
+			array(
+				'name' => esc_html__( 'Full-Width Logo', TIELABS_TEXTDOMAIN ),
+				'id'   => 'full_logo',
+				'type' => 'checkbox',
+			));
 	?>
 
 	<div class="tie-section-title tie-section-tabs header-settings-tabs">
@@ -327,7 +394,7 @@
 			));
 
 
-		echo '<div class="top-nav-areas-live-options">';
+		echo '<div class="top-nav-areas-live-options tie-two-columns-options">';
 
 		tie_build_theme_option(
 			array(
@@ -395,6 +462,14 @@
 					'slideUp'    => esc_html__( 'Sliding Up',    TIELABS_TEXTDOMAIN ),
 					'slideDown'  => esc_html__( 'Sliding Down',  TIELABS_TEXTDOMAIN ),
 			)));
+
+		tie_build_theme_option(
+			array(
+				'name'  =>  esc_html__( 'Speed in ms', TIELABS_TEXTDOMAIN ),
+				'id'    => 'breaking_speed',
+				'type'  => 'number',
+				'hint'  => sprintf( esc_html__( 'Default is: %s', TIELABS_TEXTDOMAIN ), 2000 ),
+			));
 
 		tie_build_theme_option(
 			array(
@@ -477,7 +552,7 @@
 					$breaking_custom 	= tie_get_option( 'breaking_custom' );
 					$custom_count 		= 0;
 
-					if( ! empty( $breaking_custom ) && is_array( $breaking_custom )){
+					if( ! empty( $breaking_custom ) && is_array( $breaking_custom ) ) {
 						foreach ( $breaking_custom as $custom_text ){
 							$custom_count++; ?>
 
@@ -700,7 +775,15 @@ function tie_header_area_options( $text_field, $area_name ){ ?>
 				'name'   => esc_html__( 'Log In', TIELABS_TEXTDOMAIN ),
 				'id'     => $area_name.'_login',
 				'type'   => 'checkbox',
-				'toggle' => ".header-$area_name-login",
+				'toggle' => ".header-$area_name-login, #$area_name"."_login_text-item",
+			));
+
+		tie_build_theme_option(
+			array(
+				'name' => esc_html__( 'Log In text', TIELABS_TEXTDOMAIN ),
+				'id'   => $area_name.'_login_text',
+				'type' => 'text',
+				'hint' => esc_html__( 'Text beside the icon, Leave this empty to disable.', TIELABS_TEXTDOMAIN ),
 			));
 
 		tie_build_theme_option(
@@ -709,6 +792,14 @@ function tie_header_area_options( $text_field, $area_name ){ ?>
 				'id'     => $area_name.'_random',
 				'type'   => 'checkbox',
 				'toggle' => ".header-$area_name-random",
+			));
+
+		tie_build_theme_option(
+			array(
+				'name'   => esc_html__( 'Light/Dark Skin Switcher', TIELABS_TEXTDOMAIN ),
+				'id'     => $area_name.'_skin',
+				'type'   => 'checkbox',
+				'toggle' => ".header-$area_name-skin",
 			));
 
 		if ( TIELABS_WOOCOMMERCE_IS_ACTIVE ){
@@ -770,7 +861,7 @@ function tie_header_area_options( $text_field, $area_name ){ ?>
 				'name'   => esc_html__( 'Weather', TIELABS_TEXTDOMAIN ),
 				'id'		 => $area_name.'_weather',
 				'type'   => "checkbox",
-				'toggle' => "#$area_name-weather",
+				'toggle' => ".header-$area_name-weather, #$area_name-weather",
 			));
 
 	?>
@@ -783,7 +874,7 @@ function tie_header_area_options( $text_field, $area_name ){ ?>
 
 				tie_build_theme_option(
 					array(
-						'text'   => esc_html__( 'You need to set the Weather API Key in the theme options page > API Keys.', TIELABS_TEXTDOMAIN ),
+						'text'   => esc_html__( 'You need to set the Weather API Key in the theme options page > Integrations.', TIELABS_TEXTDOMAIN ),
 						'type'   => 'error',
 					));
 			}
@@ -832,3 +923,6 @@ function tie_header_area_options( $text_field, $area_name ){ ?>
 	</div>
 <?php
 }
+
+
+echo '</div>'; // Settings locked

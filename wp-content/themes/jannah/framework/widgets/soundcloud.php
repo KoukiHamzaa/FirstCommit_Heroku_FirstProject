@@ -1,6 +1,6 @@
 <?php
 
-if( ! class_exists( 'TIE_SOUNDCLOUD_WIDGET' )){
+if( ! class_exists( 'TIE_SOUNDCLOUD_WIDGET' ) ) {
 
 	/**
 	 * Widget API: TIE_SOUNDCLOUD_WIDGET class

@@ -21,6 +21,7 @@ $b_args = array(
 	'excerpt'         => isset( $excerpt )         ? $excerpt         : true,
 	'excerpt_length'  => isset( $excerpt_length )  ? $excerpt_length  : true,
 	'read_more'       => isset( $read_more )       ? $read_more       : true,
+	'read_more_text'  => isset( $read_more_text )  ? $read_more_text  : false,
 	'media_overlay'   => isset( $media_overlay )   ? $media_overlay   : true,
 	'title_length'    => 0,
 	'is_full'         => ! TIELABS_HELPER::has_sidebar(),

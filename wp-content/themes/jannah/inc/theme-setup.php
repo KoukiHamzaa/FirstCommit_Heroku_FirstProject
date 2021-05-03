@@ -56,7 +56,7 @@ function jannah_theme_setup(){
 	 * This theme styles the visual editor to resemble the theme style,
 	 * specifically font, colors, and column width.
 	 */
-	if( ! tie_get_option( 'disable_editor_styles' ) ){
+	if( ! tie_get_option( 'disable_editor_styles' ) && is_admin() ){
 		add_editor_style( 'assets/css/editor-style.css' );
 	}
 
@@ -73,6 +73,7 @@ function jannah_theme_setup(){
 		'404-menu'    => esc_html__( '404 Page menu',     TIELABS_TEXTDOMAIN ),
 		'footer-menu' => esc_html__( 'Footer Navigation', TIELABS_TEXTDOMAIN ),
 	));
+
 }
 
 
@@ -123,8 +124,9 @@ function jannah_enqueue_IE_assets(){
 add_action( 'wp_enqueue_scripts', 'jannah_register_assets', 20 );
 function jannah_register_assets(){
 
+	//$ver = current_user_can( 'switch_themes' ) ? time() : TIELABS_DB_VERSION; // Always avoid browser cache for admins
+	$ver = apply_filters( 'TieLabs/enqueue_scripts/version', TIELABS_DB_VERSION );
 	$min = TIELABS_STYLES::is_minified();
-	$ver = current_user_can( 'switch_themes' ) ? time() : TIELABS_DB_VERSION; // Always avoid browser cache for admins
 
 	/**
 	 * Scripts
@@ -161,6 +163,7 @@ function jannah_register_assets(){
 	// Parallax
 	wp_register_script( 'tie-js-parallax', TIELABS_TEMPLATE_URL . '/assets/js/parallax.js', array( 'jquery', 'imagesloaded' ), $ver, true );
 
+
 	/**
 	 * Styles
 	 */
@@ -179,6 +182,9 @@ function jannah_register_assets(){
 	// Widgets
 	wp_register_style( 'tie-css-helpers', TIELABS_TEMPLATE_URL . '/assets/css/helpers'. $min .'.css', array(), $ver );
 
+	// Font Awesome 5.0
+	wp_register_style( 'tie-fontawesome5', TIELABS_TEMPLATE_URL . '/assets/css/fontawesome.css', array(), $ver );
+
 	// Print
 	wp_register_style( 'tie-css-print', TIELABS_TEMPLATE_URL . '/assets/css/print.css', array(), $ver, 'print' );
 
@@ -196,7 +202,7 @@ function jannah_register_assets(){
 		wp_register_script('tie-js-shortcodes',  TIELABS_TEMPLATE_URL . '/assets/js/shortcodes.js', array( 'tie-js-sliders' ), $ver, true );
 	}
 
-	// Prevent TieLabs shortcodes plugin from loading its js and Css files
+	// Prevent TieLabs shortcodes plugin from loading its JS and CSS files
 	add_filter( 'tie_plugin_shortcodes_enqueue_assets', '__return_false' );
 }
 
@@ -221,7 +227,6 @@ function jannah_enqueue_scripts(){
 	// Desktop only scripts
 	if( ! tie_is_mobile() ){
 
-		// Custom Scroller
 		wp_enqueue_script( 'tie-js-desktop' );
 
 		// Live search
@@ -229,6 +234,13 @@ function jannah_enqueue_scripts(){
 			wp_enqueue_script( 'tie-js-livesearch' );
 		}
 	}
+
+	// Mobile
+	// else{ // Always load the file even on desktop
+		if( tie_get_option( 'mobile_header_components_search') && tie_get_option( 'mobile_header_live_search') ){
+			wp_enqueue_script( 'tie-js-livesearch' );
+		}
+	//}
 
 	// Single pages with no builder
 	if( is_singular() && ! TIELABS_HELPER::has_builder() ){
@@ -254,6 +266,7 @@ function jannah_enqueue_styles(){
 	wp_enqueue_style( 'tie-css-styles' );
 	wp_enqueue_style( 'tie-css-widgets' );
 	wp_enqueue_style( 'tie-css-helpers' );
+	wp_enqueue_style( 'tie-fontawesome5' );
 	wp_enqueue_style( 'tie-css-ilightbox' );
 
 	if( TIELABS_EXTENSIONS_IS_ACTIVE ){
@@ -261,7 +274,7 @@ function jannah_enqueue_styles(){
 	}
 
 	// Single pages with no builder
-	if( is_singular() && ! TIELABS_HELPER::has_builder() ){
+	if( ( is_singular() && ! TIELABS_HELPER::has_builder() ) || ( TIELABS_BBPRESS_IS_ACTIVE && is_bbpress() ) ){
 
 		// Single page styling
 		wp_enqueue_style( 'tie-css-single' );
@@ -270,3 +283,111 @@ function jannah_enqueue_styles(){
 		wp_enqueue_style( 'tie-css-print' );
 	}
 }
+
+
+/**
+ * Demos
+ */
+ add_filter( 'TieLabs/Demo_Importer/demos_data', 'jannah_demo_importer_data' );
+ function jannah_demo_importer_data( $demos_data = false ){
+
+ 	if( ! empty( $demos_data ) || get_option( 'tie_token_'.TIELABS_THEME_ID ) ){
+ 		return $demos_data;
+ 	}
+
+ 	// --
+	$demos = array(
+		'demo'           => 'Main Demo',
+		'tech'           => 'Tech',
+		'sport'          => 'Sport',
+		'auto'           => 'Auto',
+		'creative'       => 'Creative',
+		'foods'          => 'Recipes & Tips',
+		'times'          => 'Times',
+		'photography'    => 'Photography',
+		'hotels'         => 'Hotels',
+		'health'         => 'Health',
+		'house'          => 'House',
+		'videos'         => 'Videos',
+		'videos-2'       => 'Videos 2',
+		'pets'           => 'Pets',
+		'travel'         => 'Travel',
+		'traveling'      => 'Traveling',
+		'science'        => 'Science',
+		'blog'           => 'Personal Blog',
+		'minimal-blog'   => 'Minimal Blog',
+		'city'           => 'City',
+		'school'         => 'school',
+		'games'          => 'Games',
+		'geo'            => 'Geo',
+		'cryptocurrency' => 'Cryptocurrency',
+		'salad-dash'     => 'Salad Dash',
+		'fitness'        => 'Fitness',
+	);
+
+	$demos_data = array();
+
+	foreach ( $demos as $slug => $name ) {
+		$demos_data[] = array(
+			'name' => $name,
+			'url'      => 'https://jannah.tielabs.com/'.$slug,
+			'img'      => TIELABS_TEMPLATE_URL ."/framework/admin/assets/images/demos-thumbnails/$slug.jpg",
+			'desc'     => '',
+			'xml'      => '-',
+			'settings' => '-',
+		);
+	}
+
+	return $demos_data;
+ }
+
+
+/**
+ * Plugins
+ */
+ add_filter( 'TieLabs/Plugins_Installer/data', 'jannah_plugins_installer_data' );
+ function jannah_plugins_installer_data( $plugins_data = false ){
+
+ 	if( ! empty( $plugins_data ) || get_option( 'tie_token_'.TIELABS_THEME_ID ) ){
+ 		return $plugins_data;
+ 	}
+
+	return array(
+		'taqyeem' => array(
+			'name'   => 'Taqyeem',
+			'slug'   => 'taqyeem-tie_sample',
+			'source' => '-',
+		),
+		'jannah-extensions' => array(
+			'name'   => 'Jannah Extensions',
+			'slug'   => 'jannah-extensions-tie_sample',
+			'source' => '-',
+		),
+		'arqam-lite' => array(
+			'name'   => 'Arqam Lite',
+			'slug'   => 'arqam-lite-tie_sample',
+			'source' => '-',
+		),
+		'jannah-switcher' => array(
+			'name'   => 'Jannah Switcher',
+			'slug'   => 'jannah-switcher-tie_sample',
+			'source' => '-',
+		),
+		'jannah-optimization' => array(
+			'name'   => 'Jannah Speed Optimization',
+			'slug'   => 'jannah-optimization-tie_sample',
+			'source' => '-',
+		),
+		'tielabs-instagram' => array(
+			'name'   => 'TieLabs Instagram Feed',
+			'slug'   => 'tielabs-instagram-tie_sample',
+			'source' => '-',
+		),
+		'jannah-autoload-posts' => array(
+			'name'   => 'Jannah Autoload Posts',
+			'slug'   => 'jannah-autoload-posts-tie_sample',
+			'source' => '-',
+		),
+	);
+
+ }

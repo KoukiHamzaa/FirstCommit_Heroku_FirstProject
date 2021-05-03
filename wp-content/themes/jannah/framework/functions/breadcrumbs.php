@@ -7,7 +7,7 @@
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
 
-if( ! function_exists( 'tie_breadcrumbs' )){
+if( ! function_exists( 'tie_breadcrumbs' ) ) {
 
 	add_action( 'TieLabs/before_archive_title', 'tie_breadcrumbs' );
 	add_action( 'TieLabs/before_entry_head',    'tie_breadcrumbs' );
@@ -22,14 +22,14 @@ if( ! function_exists( 'tie_breadcrumbs' )){
 		// breadcrumbs
 		$delimiter   = tie_get_option( 'breadcrumbs_delimiter' ) ? wp_kses_post( tie_get_option( 'breadcrumbs_delimiter' ) ) : '&#47;';
 		$delimiter   = '<em class="delimiter">'. $delimiter .'</em>';
-		$home_icon   = '<span class="fa fa-home" aria-hidden="true"></span>';
+		$home_icon   = '<span class="tie-icon-home" aria-hidden="true"></span>';
 		$home_text   = esc_html__( 'Home', TIELABS_TEXTDOMAIN );
 		$before      = '<span class="current">';
 		$after       = '</span>';
 		$breadcrumbs = array();
 
 		// bbPress breadcrumbs
-		if( TIELABS_BBPRESS_IS_ACTIVE && is_bbpress() && ( ! TIELABS_BUDDYPRESS_IS_ACTIVE || ( TIELABS_BUDDYPRESS_IS_ACTIVE && ! is_buddypress() ))){
+		if( TIELABS_BBPRESS_IS_ACTIVE && is_bbpress() && ( ! TIELABS_BUDDYPRESS_IS_ACTIVE || ( TIELABS_BUDDYPRESS_IS_ACTIVE && ! is_buddypress() )) ) {
 
 			add_filter( 'bbp_no_breadcrumb', '__return_false' );
 
@@ -281,7 +281,7 @@ if( ! function_exists( 'tie_breadcrumbs' )){
 					if( ! empty( $taxonomy_name ) ){
 						$custom_terms = get_the_terms( $post, $taxonomy_name );
 
-						if( ! empty( $custom_terms ) && ! is_wp_error( $custom_terms )){
+						if( ! empty( $custom_terms ) && ! is_wp_error( $custom_terms ) ) {
 
 							foreach ( $custom_terms as $term ){
 
@@ -317,28 +317,29 @@ if( ! function_exists( 'tie_breadcrumbs' )){
 
 					foreach( $breadcrumbs as $item ) {
 
-						$counter++;
+						if( ! empty( $item['name'] ) ){
+							$counter++;
 
-						if( ! empty( $item['url'] )){
-							$icon = ! empty( $item['icon'] ) ? $item['icon'] .' ' : '';
-							echo '<a href="'. esc_url( $item['url'] ) .'">'. $icon . $item['name'] .'</a>'. $delimiter;
+							if( ! empty( $item['url'] ) ) {
+								$icon = ! empty( $item['icon'] ) ? $item['icon'] .' ' : '';
+								echo '<a href="'. esc_url( $item['url'] ) .'">'. $icon . $item['name'] .'</a>'. $delimiter;
+							}
+							else{
+								echo ( $before . $item['name'] . $after );
+
+								global $wp;
+								$item['url'] = esc_url(home_url(add_query_arg(array(),$wp->request)));
+							}
+
+							$item_list_elements[] = array(
+								'@type'    => 'ListItem',
+								'position' => $counter,
+								'item'     => array(
+									'name' => str_replace( '<span class="tie-icon-home" aria-hidden="true"></span> ', '', $item['name'] ),
+									'@id'  => $item['url'],
+								)
+							);
 						}
-						else{
-							echo ( $before . $item['name'] . $after );
-
-							global $wp;
-							$item['url'] = esc_url(home_url(add_query_arg(array(),$wp->request)));
-						}
-
-						$item_list_elements[] = array(
-							'@type'    => 'ListItem',
-							'position' => $counter,
-							'item'     => array(
-								'name' => str_replace( '<span class="fa fa-home" aria-hidden="true"></span> ', '', $item['name']),
-								'@id'  => $item['url'],
-							)
-						);
-
 					}
 
 				echo '</nav>';

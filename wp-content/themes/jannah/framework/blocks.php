@@ -1,7 +1,7 @@
 <?php
 /**
  * Page builder blocks
- *
+ * @version  5.0.0
  */
 
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly
@@ -30,6 +30,12 @@ if( ! empty( $sections ) && is_array( $sections ) ){
 
 	do_action( 'TieLabs/Builder/before' );
 
+	if( tie_get_postdata( 'tie_builder_breadcrumbs' ) ){
+		echo '<div id="page-builder-breadcrumbs" class="container">';
+			tie_breadcrumbs();
+		echo '</div>';
+	}
+
 	// check if the do not duplicate option is enabled
 	$is_do_not_dublicate = tie_get_postdata( 'tie_do_not_dublicate' ) ? true : false;
 
@@ -46,6 +52,7 @@ if( ! empty( $sections ) && is_array( $sections ) ){
 			'title_style'        => '',
 			'title_icon'         => '',
 			'title_color'        => '',
+			'stretch_section'    => '',
 			'section_width'      => '',
 			'custom_class'       => '',
 			'dark_skin'          => '',
@@ -75,11 +82,13 @@ if( ! empty( $sections ) && is_array( $sections ) ){
 		$block_count      = 0;
 		$is_tag_open      = false;
 		$count_half_box   = 0;
+		$is_first_section = false;
 
 		// Section Number
 		$section_number++;
 
 		if( $section_number == 1 ){
+			$is_first_section = true;
 			$classes[] = 'is-first-section';
 		}
 
@@ -115,11 +124,11 @@ if( ! empty( $sections ) && is_array( $sections ) ){
 					</div><!-- .main-content-row /-->
 				</div><!-- .container /-->';
 
-			if( $section_settings['section_width'] && ! empty( $section['blocks'] ) && is_array( $section['blocks'] )){
+			if( $section_settings['section_width'] && ! empty( $section['blocks'] ) && is_array( $section['blocks'] ) ) {
 				 $blocks = $section['blocks'];
 				 $first_block = array_values( $blocks );
 				 $first_block = array_shift( $first_block );
-				 if( ! empty( $first_block['style'] ) && ( $first_block['style'] == 'slider_1' || $first_block['style'] == 'slider_2' || $first_block['style'] == 'slider_3' || $first_block['style'] == 'slider_4' )){
+				 if( ! empty( $first_block['style'] ) && ( $first_block['style'] == 'slider_1' || $first_block['style'] == 'slider_2' || $first_block['style'] == 'slider_3' || $first_block['style'] == 'slider_4' ) ) {
 					 $classes[] = 'first-block-is-full-width';
 				 }
 			}
@@ -194,6 +203,11 @@ if( ! empty( $sections ) && is_array( $sections ) ){
 
 		$outer_class .= $section_bg_class;
 
+		// Section Stretch
+		if( $section_settings['stretch_section'] ){
+			$outer_class .= ' is-stretch-section';
+		}
+
 		// Section Title Class
 		if( $section_settings['section_title'] && $section_settings['title'] ){
 			$outer_class .= ' has-title';
@@ -209,6 +223,8 @@ if( ! empty( $sections ) && is_array( $sections ) ){
 			$outer_class .= ' '.$section_settings['custom_class'];
 		}
 
+		// Before Section action
+		do_action( 'TieLabs/Builder/before_section', $section );
 	?>
 
 <div id="<?php echo esc_attr( $section_id ) ?>" class="section-wrapper container<?php echo esc_attr( $outer_class ) ?>">
@@ -227,7 +243,7 @@ if( ! empty( $sections ) && is_array( $sections ) ){
 			$title  = '';
 
 			if( $section_settings['title_icon'] ){
-				$title .= '<span class="fa '. $section_settings['title_icon'] .'"></span>';
+				$title .= '<span class="the-section-icon '. $section_settings['title_icon'] .'"></span>';
 			}
 
 			if( $section_settings['title'] ){
@@ -257,9 +273,12 @@ if( ! empty( $sections ) && is_array( $sections ) ){
 		echo ( $before_content );
 
 		// Get the Blocks
-		if( ! empty( $section['blocks'] ) && is_array( $section['blocks'] )){
+		if( ! empty( $section['blocks'] ) && is_array( $section['blocks'] ) ) {
 
 			foreach( $section['blocks'] as $block ){
+
+				// Before Block Action
+				do_action( 'TieLabs/Builder/before_block', $block );
 
 				/**
 				 * Reset variables
@@ -278,52 +297,76 @@ if( ! empty( $sections ) && is_array( $sections ) ){
 				 * Default Block settings
 				 */
 				$block = wp_parse_args( $block, array(
-					'style'            => 'default',
-					'cat'              => '',
-					'title'            => '',
-					'icon'             => '',
-					'order'            => 'latest',
-					'woo_cats'         => '',
-					'id'               => '',
-					'tags'             => '',
-					'exclude_posts'    => '',
-					'custom_slider'    => '',
-					'number'           => 5 ,
-					'offset'           => '',
-					'pagi'             => '',
-					'color'            => '',
-					'dark'             => '',
-					'title_length'     => '',
-					'excerpt'          => '',
-					'excerpt_length'   => '',
-					'thumb_first'      => '',
-					'thumb_small'      => '',
-					'thumb_all'        => '',
-					'more'             => '',
-					'post_meta'        => '',
-					'media_overlay'    => '',
-					'read_more'        => '',
-					'filters'          => '',
-					'custom_content'   => '',
-					'ad_img'           => '',
-					'ad_url'           => '',
-					'ad_alt'           => '',
-					'ad_target'        => '',
-					'ad_nofollow'      => '',
-					'ad_code'          => '',
-					'colored_mask'     => '',
-					'gradiant_overlay' => '',
-					'animate_auto'     => '',
-					'slider_speed'     => '',
-					'posts_category'   => '',
-					'posts_review'     => '',
-					'videos_list_data' => '',
-					'breaking_effect'  => '',
-					'breaking_arrows'  => '',
-					'lsslider'         => '',
-					'revslider'        => '',
-					'boxid'            => '',
+					'style'               => 'default',
+					'cat'                 => '',
+					'title'               => '',
+					'icon'                => '',
+					'url'                 => '',
+					'order'               => 'latest',
+					'woo_cats'            => '',
+					'source'              => '',
+					'id'                  => '',
+					'tags'                => '',
+					'exclude_posts'       => '',
+					'custom_slider'       => '',
+					'number'              => 5 ,
+					'offset'              => '',
+					'pagi'                => '',
+					'color'               => '',
+					'dark'                => '',
+					'title_length'        => '',
+					'excerpt'             => '',
+					'excerpt_length'      => '',
+					'thumb_first'         => '',
+					'thumb_small'         => '',
+					'thumb_all'           => '',
+					'more'                => '',
+					'post_meta'           => '',
+					'media_overlay'       => '',
+					'read_more'           => '',
+					'read_more_text'      => '',
+					'filters'             => '',
+					'custom_content'      => '',
+					'ad_img'              => '',
+					'ad_url'              => '',
+					'ad_alt'              => '',
+					'ad_target'           => '',
+					'ad_nofollow'         => '',
+					'ad_code'             => '',
+					'colored_mask'        => '',
+					'gradiant_overlay'    => '',
+					'animate_auto'        => '',
+					'slider_speed'        => '',
+					'posts_category'      => '',
+					'posts_review'        => '',
+					'videos_list_data'    => '',
+					'breaking_effect'     => '',
+					'breaking_arrows'     => '',
+					'lsslider'            => '',
+					'revslider'           => '',
+					'boxid'               => '',
+					'background_position' => '',
 				));
+
+
+				// Version 4 Compatability
+				if( empty( $block['source'] ) ) {
+					$block['source'] = ! empty( $block['tags'] ) ? 'tags' : 'id';
+				}
+
+				// Custom Post Type support
+				/*
+				if( $block['source'] != 'id' ){
+					unset( $block['id'] );
+				}
+				if( $block['source'] != 'tags' ){
+					unset( $block['tags'] );
+				}
+				*/
+
+				//echo '<pre>';
+				//var_dump( $block );
+				//echo '</pre>';
 
 
 				/**
@@ -369,49 +412,61 @@ if( ! empty( $sections ) && is_array( $sections ) ){
 						$is_tag_open = true;
 					}
 
-					$query_type = 'cat';
 
+					// Source
 					if( ! empty( $block['custom_slider'] ) ){
 						$query_type = 'custom';
 					}
-					elseif( ! empty( $block['tags'] )){
-						$query_type = 'tags';
+					else{
+
+						if( $block['source'] == 'tags' ){
+							$query_type = 'tags';
+						}
+						else{
+							$query_type = 'cat';
+						}
 					}
+
 
 					TIELABS_HELPER::get_template_part( 'templates/featured', '', array(
 						'slider_settings' => array(
-							'slider'           => $slider,
-							'featured_posts'   => true,
-							'featured_auto'    => $block['animate_auto'],
-							'slider_speed'     => $block['slider_speed'],
-							'lsslider'         => $block['lsslider'],
-							'revslider'        => $block['revslider'],
-							'title_length'     => $block['title_length'],
-							'excerpt_length'   => $block['excerpt_length'],
-							'show_date'        => $block['post_meta'],
-							'show_excerpt'     => $block['excerpt'],
-							'show_category'    => $block['posts_category'],
-							'show_reviews'     => $block['posts_review'],
-							'query_type'       => $query_type,
-							'custom_slider'    => $block['custom_slider'],
-							'posts_number'     => $block['number'],
-							'query_tags'       => $block['tags'],
-							'query_cats'       => $block['id'],
-							'exclude_posts'    => $block['exclude_posts'],
-							'offset'           => $block['offset'],
-							'order'            => $block['order'],
-							'colored_mask'     => $block['colored_mask'],
-							'gradiant_overlay' => $block['gradiant_overlay'],
-							'media_overlay'    => $block['media_overlay'],
-							'bg_color'         => false,
-							'bg_image'         => false,
-							'bg_parallax'      => false,
-							'playlist_title'   => $block['title'],
-							'videos_data'      => $block['videos_list_data'],
-							'slider_id'        => $block['boxid'],
-							'dark_skin'        => $block['dark'],
-							'color'            => $block['color'],
-							'is_first_slider'  => $is_first_slider,
+							'title'               => $block['title'],
+							'icon'                => $block['icon'],
+							'url'                 => $block['url'],
+							'slider'              => $slider,
+							'featured_posts'      => true,
+							'featured_auto'       => $block['animate_auto'],
+							'slider_speed'        => $block['slider_speed'],
+							'lsslider'            => $block['lsslider'],
+							'revslider'           => $block['revslider'],
+							'title_length'        => $block['title_length'],
+							'excerpt_length'      => $block['excerpt_length'],
+							'show_date'           => $block['post_meta'],
+							'show_excerpt'        => $block['excerpt'],
+							'show_category'       => $block['posts_category'],
+							'show_reviews'        => $block['posts_review'],
+							'query_type'          => $query_type,
+							'custom_slider'       => $block['custom_slider'],
+							'posts_number'        => $block['number'],
+							'query_tags'          => $block['tags'],
+							'query_cats'          => $block['id'],
+							'exclude_posts'       => $block['exclude_posts'],
+							'offset'              => $block['offset'],
+							'order'               => $block['order'],
+							'colored_mask'        => $block['colored_mask'],
+							'gradiant_overlay'    => $block['gradiant_overlay'],
+							'media_overlay'       => $block['media_overlay'],
+							'bg_color'            => false,
+							'bg_image'            => false,
+							'bg_parallax'         => false,
+							'playlist_title'      => $block['title'],
+							'videos_data'         => $block['videos_list_data'],
+							'slider_id'           => $block['boxid'],
+							'dark_skin'           => $block['dark'],
+							'color'               => $block['color'],
+							'background_position' => $block['background_position'],
+							'is_first_section'    => $is_first_section,
+							'is_first_slider'     => $is_first_slider,
 						)
 					));
 				}
@@ -748,15 +803,26 @@ if( ! empty( $sections ) && is_array( $sections ) ){
 						$block_class .= ' media-overlay';
 					}
 
-					// Custom Color Class
-					if( ! empty( $block['color'] ) ){
-						$block_class .= ' has-custom-color';
-					}
-
 					// Custom Excerpt Length
 					if( empty( $block['excerpt_length'] ) ){
 						$block['excerpt_length'] = $excerpt_length;
 					}
+
+					// Doesn't support custom colors
+					if( $block['style'] != 'ad_50' && $block['style'] != 'ad' ){
+
+						// Custom Color Class
+						if( ! empty( $block['color'] ) ){
+							$block_class .= ' has-custom-color';
+						}
+
+						// Custom Bg Color Class
+						if( ! empty( $block['bgcolor'] ) && empty( $block['content_only'] ) ){
+							$block_class .= ' has-custom-bg-color';
+						}
+					}
+
+
 
 					// Classes for the 50% blocks
 					if( $block['style'] == '2c' || $block['style'] == 'ad_50' || $block['style'] == 'code_50' ){
@@ -784,12 +850,21 @@ if( ! empty( $sections ) && is_array( $sections ) ){
 					// Get the block query
 					$block = apply_filters( 'TieLabs/Builder/Block/args', $block );
 
-					$block_query = tie_query( $block );
+					$query_args = $block;
+
+					// --
+					// To avoid SQL_CALC_FOUND_ROWS quries we request the number +1 and use it to detect if there is more pages
+					if( ! empty( $query_args['pagi'] ) && $block['pagi'] != 'numeric' ){
+						unset( $query_args['pagi'] );
+						if( ! empty( $query_args['number'] ) ){
+							$query_args['number'] = $query_args['number'] + 1;
+						}
+					}
+
+					//--
+					$block_query = tie_query( $query_args );
 
 					$pagination_data = ! empty( $block['pagi'] ) ? ' data-current="1"' : '';
-
-					// Before Block Action
-					do_action( 'TieLabs/Builder/before_block' );
 
 					?>
 
@@ -904,10 +979,10 @@ if( ! empty( $sections ) && is_array( $sections ) ){
 							if( ! empty( $block['ad_img'] ) ){
 
 								$ad_image = $block['ad_img'];
-								$target 	= empty( $block['ad_target'] ) ? ''   : esc_attr( ' target="_blank"' );
-								$nofollow = empty( $block['ad_nofollow'] ) ? '' : esc_attr( ' rel="nofollow noopener"'  );
+								$target   = empty( $block['ad_target'] )   ? '' : ' target="_blank"';
+								$nofollow = empty( $block['ad_nofollow'] ) ? '' : ' rel="nofollow noopener"';
+								$alt      = empty( $block['ad_alt'] )      ? '' : esc_attr( $block['ad_alt'] );
 								$url      = apply_filters( 'TieLabs/ads_url', empty( $block['ad_url'] ) ? '' : esc_url( $block['ad_url'] ) );
-								$alt 		  = empty( $block['ad_alt'] ) ? '' : esc_attr( $block['ad_alt'] );
 
 								echo "<a href=\"$url\" title=\"$alt\"$target$nofollow>";
 								echo apply_filters( "TieLabs/block/ad_image", "<img src=\"$ad_image\" alt=\"$alt\" width=\"728\" height=\"90\">", $ad_image ) ;
@@ -943,6 +1018,17 @@ if( ! empty( $sections ) && is_array( $sections ) ){
 
 								// Get the custom content code and apply the content filters
 								if( ! empty( $block['custom_content'] ) ){
+
+									// Fix the_content issue with Elementor
+									if( defined( 'ELEMENTOR_PLUGIN_BASE' ) ){
+										if( apply_filters( 'TieLabs/Builder/disable_elementor', true ) ){
+											$is_built_with_elementor = \Elementor\Plugin::$instance->db->is_built_with_elementor( get_the_ID() );
+											if( $is_built_with_elementor ){
+												\Elementor\Plugin::$instance->frontend->remove_content_filter();
+											}
+										}
+									}
+
 									echo '
 										<div class="entry clearfix">'. apply_filters( 'the_content', $block['custom_content'] ) . '</div>
 									';
@@ -989,6 +1075,10 @@ if( ! empty( $sections ) && is_array( $sections ) ){
 										$block_query->the_post();
 										$count++;
 
+										if( $count > $block['number'] ){
+											break;
+										}
+
 										$b_args = array(
 											'block' => $block,
 											'count' => $count,
@@ -1013,23 +1103,63 @@ if( ! empty( $sections ) && is_array( $sections ) ){
 
 						<?php
 
-							$max_page = ! empty( $block_query->query_vars['new_max_num_pages'] ) ? $block_query->query_vars['new_max_num_pages'] : $block_query->max_num_pages;
+							// Pagination is active
+							if ( ! empty( $block['pagi'] ) ){
 
-							if ( ! empty( $block['pagi'] ) && $max_page > 1 ){
+								// Need to check if there is at least on more page
+								$show_pagination = false;
 
-								// Numeric Pagination
+								// Non Ajax Request
 								if( $block['pagi'] == 'numeric' ){
-									TIELABS_PAGINATION::show( array( 'query' => $block_query, 'type' => 'numeric' ) );
+									$max_page = ! empty( $block_query->query_vars['new_max_num_pages'] ) ? $block_query->query_vars['new_max_num_pages'] : $block_query->max_num_pages;
+									$show_pagination = ( $max_page > 1 ) ? true : false;
+								}
+								// Ajax Request
+								elseif( ! empty( $block_query->posts ) && is_array( $block_query->posts ) ){
+									if( count( $block_query->posts ) > $block['number'] ){
+										$show_pagination = true;
+									}
 								}
 
-								// Show more button Pagination
-								elseif( $block['pagi'] == 'show-more' ){
-									echo'<a class="block-pagination next-posts show-more-button" data-text="'. esc_html__( 'Show More', TIELABS_TEXTDOMAIN ) .'">'. esc_html__( 'Show More', TIELABS_TEXTDOMAIN ) .'</a>';
-								}
+								//--
+								if ( $show_pagination ){
 
-								// Load more button Pagination
-								elseif( $block['pagi'] == 'load-more' ){
-									echo '<a class="block-pagination next-posts show-more-button load-more-button" data-text="'. esc_html__( 'Load More', TIELABS_TEXTDOMAIN ) .'">'. esc_html__( 'Load More', TIELABS_TEXTDOMAIN ) .'</a>';
+									// Numeric Pagination
+									if( $block['pagi'] == 'numeric' ){
+										TIELABS_PAGINATION::show( array( 'query' => $block_query, 'type' => 'numeric' ) );
+									}
+
+									// Show more button Pagination
+									elseif( $block['pagi'] == 'show-more' ){
+										echo'<a class="block-pagination next-posts show-more-button" data-text="'. esc_html__( 'Show More', TIELABS_TEXTDOMAIN ) .'">'. esc_html__( 'Show More', TIELABS_TEXTDOMAIN ) .'</a>';
+									}
+
+									// Load more button Pagination
+									elseif( $block['pagi'] == 'load-more' ){
+										echo '<a class="block-pagination next-posts show-more-button load-more-button" data-text="'. esc_html__( 'Load More', TIELABS_TEXTDOMAIN ) .'">'. esc_html__( 'Load More', TIELABS_TEXTDOMAIN ) .'</a>';
+									}
+
+									// Next and Prev buttons Pagination
+									elseif( $block['pagi'] == 'next-prev-buttons' ){
+										echo '
+											<div class="pages-nav">
+												<div class="pages-numbers pages-standard">
+													<span class="first-page first-last-pages">
+														<a class="block-pagination prev-posts pagination-disabled" href="#">
+															<span class="pagination-icon" aria-hidden="true"></span>
+															'. esc_html__( 'Previous', TIELABS_TEXTDOMAIN ) .'
+														</a>
+													</span>
+													<span class="last-page first-last-pages">
+														<a class="block-pagination next-posts" href="#">
+															<span class="pagination-icon" aria-hidden="true"></span>
+															'. esc_html__( 'Next', TIELABS_TEXTDOMAIN ) .'
+														</a>
+													</span>
+												</div>
+											</div>
+										';
+									}
 								}
 							}
 						?>
@@ -1073,6 +1203,9 @@ if( ! empty( $sections ) && is_array( $sections ) ){
 					if( empty( $js_block['media_overlay'] ) ){
 						$js_block['media_overlay'] = '';
 					}
+					if( empty( $js_block['read_more_text'] ) ){
+						$js_block['read_more_text'] = '';
+					}
 
 					?>
 
@@ -1104,7 +1237,7 @@ if( ! empty( $sections ) && is_array( $sections ) ){
 						$sidebar = tie_get_option( 'sidebar_page' );
 
 						// Default sidebar if there is no a custom sidebar
-						if( empty( $sidebar ) || ( ! empty( $sidebar ) && ! TIELABS_HELPER::is_sidebar_registered( $sidebar ) )){
+						if( empty( $sidebar ) || ( ! empty( $sidebar ) && ! TIELABS_HELPER::is_sidebar_registered( $sidebar ) ) ) {
 							 $sidebar = 'primary-widget-area';
 						}
 					}
@@ -1119,7 +1252,7 @@ if( ! empty( $sections ) && is_array( $sections ) ){
 
 					$sidebar_class = 'sidebar tie-col-md-4 tie-col-xs-12 normal-side';
 
-					if( ! empty( $section_settings['sticky_sidebar'] )){
+					if( ! empty( $section_settings['sticky_sidebar'] ) ) {
 						$sidebar_class .= ' is-sticky';
 					}
 				?>

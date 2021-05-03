@@ -1,5 +1,5 @@
 /*!
- * tiesticky.js v1.2.0 Sticky Navigation Menu with default stikcy and when scrolling upwards behaviors.
+ * tiesticky.js v1.2.1 Sticky Navigation Menu with default stikcy and when scrolling upwards behaviors.
  * Copyright (c) 2017 TieLabs
  * License: MIT
  * Based on: headroom.js v0.9.3 | URL: http://wicky.nillia.ms/headroom.js
@@ -41,12 +41,12 @@
   //////////////
   // Data API //
   //////////////
-
+  /*
   $('[data-tiesticky]').each(function() {
     var $this = $(this);
     $this.tiesticky($this.data());
   });
-
+  */
 }(window.jQuery));
 
 

@@ -1,3 +1,4 @@
+/*! Ajax Autocomplete for jQuery */
 /**
 *  Ajax Autocomplete for jQuery, version v1.2.24
 *  (c) 2015 Tomas Kirda
@@ -13,7 +14,7 @@
  * Prevent the library from creating the DIV wrapper and replace it by hardcoded dic in the theme files | Performance
  *
  *
- * Last Visit: Sep 16, 2019
+ * Last Visit: Jul 15, 2020
  */
 
 (function (factory) {
@@ -312,14 +313,14 @@
 
 		//By TieLabs
 
-			if( that.el.closest('#pop-up-live-search').length > 0 ){
-				var w = that.el.closest('#pop-up-live-search').outerWidth();
+			if( that.el.closest('.pop-up-live-search').length > 0 ){
+				var w = that.el.closest('.pop-up-live-search').outerWidth();
 
 				// We need to get the position of the FIXED parent element
-				var parentOffset = jQuery('#tie-popup-search-wrap').offset();
+				var parentOffset = jQuery('.tie-popup-search-wrap').offset();
 
 			  var styles = { 'top': offset.top - parentOffset.top, 'left': offset.left };
-			  styles.maxWidth = (w - 30)+'px';
+			  styles.maxWidth = w+'px'; //(w - 30)+'px';
 			}
 			else if( that.el.closest('.tie-alignleft').length > 0 ){
 
@@ -345,8 +346,28 @@
 			}
 
 			var parent_elem = that.el.closest( '.live-search-parent' );
-			var skin = parent_elem.data( 'skin' );
-			$container.addClass( skin );
+			var skin = parent_elem.data('skin');
+
+			if( skin == 'search-in-main-nav' ){
+				if( jQuery('#theme-header').hasClass('main-nav-dark') ){
+					skin = skin + ' live-search-dark';
+				}
+				else{
+					skin = skin + ' live-search-light';
+				}
+			}
+
+			else if( skin == 'search-in-top-nav' ){
+				if( jQuery('#theme-header').hasClass('top-nav-dark') ){
+					skin = skin + ' live-search-dark';
+				}
+				else{
+					skin = skin + ' live-search-light';
+				}
+			}
+
+			$container.attr( 'class', skin );
+
 		//------
 
 

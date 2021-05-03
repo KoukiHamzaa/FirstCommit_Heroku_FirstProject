@@ -192,7 +192,7 @@
 	}
 }
 
-@include breakpoint(md){
+@media (min-width: 670px) {
 	.full-width .big-posts-box{
 		.posts-items {
 			li{
@@ -218,7 +218,7 @@
 		}
 
 		&.media-overlay{
-			.icon{
+			.tie-media-icon{
 				right: 15px;
 				left: auto;
 			}
@@ -229,7 +229,7 @@
 			    left: auto;
 				}
 
-				.icon{
+				.tie-media-icon{
 					right: 63px;
 					left: auto;
 				}
@@ -276,13 +276,13 @@
 .miscellaneous-box{
 	@include breakpoint_max(670px){
 		li:first-child {
-			.icon{
+			.tie-media-icon{
 				right: 10px;
 				left: auto;
 			}
 
 			&.is-trending{
-				.icon{
+				.tie-media-icon{
 					right: 50px;
 					left: auto;
 				}

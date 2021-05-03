@@ -55,12 +55,14 @@ if( ! class_exists( 'TIELABS_NOTICES' ) ){
 					wp_enqueue_script( 'wp-pointer' );
 				}
 
-				add_action( 'admin_notices', array( $this, 'happy_new_year' ),    105 );
-				add_action( 'admin_notices', array( $this, 'new_update' ),        105 );
-				add_action( 'admin_notices', array( $this, 'rate_theme' ),        105 );
-				add_action( 'admin_notices', array( $this, 'theme_translation' ), 105 );
-				add_action( 'admin_notices', array( $this, 'new_milestone' ),     105 );
-				add_action( 'admin_notices', array( $this, 'happy_anniversary' ), 105 );
+				add_action( 'admin_notices', array( $this, 'happy_new_year' ),       105 );
+				add_action( 'admin_notices', array( $this, 'new_update' ),           105 );
+				add_action( 'admin_notices', array( $this, 'rate_theme' ),           105 );
+				add_action( 'admin_notices', array( $this, 'new_milestone' ),        105 );
+				add_action( 'admin_notices', array( $this, 'happy_anniversary' ),    105 );
+				add_action( 'admin_notices', array( $this, 'rate_theme_version_5' ), 115 );
+
+				add_action( 'TieLabs/Dashboard_tab/before_news', array( $this, 'theme_translation' ), 105 );
 			}
 
 			do_action( 'tie_admin_notices' );
@@ -190,13 +192,26 @@ if( ! class_exists( 'TIELABS_NOTICES' ) ){
 
 
 		/**
-		 * Rate the Theme
+		 * Rate V5
 		 */
-		function rate_theme(){
+		function rate_theme_version_5(){
 
-			$notice_id = 'tie_install_date_'. TIELABS_THEME_ID;
+			/*$install_date = get_option( 'tie_install_date_'. TIELABS_THEME_ID );
 
-			if ( self::is_dismissed( $notice_id ) || tie_is_theme_rated() || self::is_hooked_popup() ){
+			if( empty( $install_date ) || $install_date > 1597328527 ){ // If the install date is after 13 Aug
+				return false;
+			}
+			*/
+
+			$notice_id = 'tie_bigupdate_date_'. TIELABS_THEME_ID;
+
+			if ( self::is_dismissed( $notice_id ) || self::is_hooked_popup() ){
+				return false;
+			}
+
+			$the_rate = tie_get_latest_theme_data( 'rating' );
+
+			if( empty( $the_rate ) || $the_rate > 3 ){ // Check the user rate first
 				return false;
 			}
 
@@ -205,28 +220,107 @@ if( ! class_exists( 'TIELABS_NOTICES' ) ){
 			}
 			else{
 
-				if( ( time() - get_option( $notice_id ) ) < ( 2 * MONTH_IN_SECONDS ) ){
+				if( ( time() - get_option( $notice_id ) ) < ( 2 * DAY_IN_SECONDS ) ){
 					return false;
 				}
 
-				$notice_content  = '<h4>'. sprintf( esc_html__( 'Like %s?', TIELABS_TEXTDOMAIN ), apply_filters( 'TieLabs/theme_name', 'TieLabs' ) ) .'</h4>';
-				$notice_content .= sprintf(
-					esc_html__( 'We\'ve noticed you\'ve been using %1$s for some time now; we hope you love it! We\'d be thrilled if you could %2$sgive us a 5* rating on themeforest.net!%4$s If you are experiencing issues, please %3$sopen a support ticket%4$s and we\'ll do our best to help you out.', TIELABS_TEXTDOMAIN ),
-					apply_filters( 'TieLabs/theme_name', 'TieLabs' ),
-					'<a href="'. tie_get_purchase_link( array( 'utm_medium' => 'rate-popup' ) ) .'" target="_blank">',
-					'<a href="'. apply_filters( 'TieLabs/External/open_ticket', '' ) .'" target="_blank">',
-					'</a>'
-				);
+				$notice_content  = '<h4 style="color: #9200c6; font-size: 26px;">'. esc_html__( 'Biggest Update Ever', TIELABS_TEXTDOMAIN ) .'</h4>';
+				$notice_content .= '<p style="font-size: 16px; margin-bottom: 10px;">'. esc_html__( 'We want to provide you with a great experience which is why we want to hear from you. Your feedback helps us bring you more of the features you love and the improvements you expect.', TIELABS_TEXTDOMAIN ) .'</p>';
+				$notice_content .= '<p style="font-size: 16px; margin-bottom: 25px;">'. esc_html__( 'Thank you in advance for your collaboration. We really appreciate your time!', TIELABS_TEXTDOMAIN ) .'</p>';
+				$notice_content .= '<a href="'. tie_get_purchase_link( array( 'utm_medium' => 'rate-v5' ) ) .'" target="_blank" style="background-color: #9200c6; border:none; font-size: 20px; margin: 0 10%; width: 80%; text-align:center;" class="button button-primary button-hero">'. esc_html__( 'Leave a Review on ThemeForest', TIELABS_TEXTDOMAIN ) .'</a>';
 
 				echo '<div id="tie-page-overlay" class="is-notice-dismissible" data-id="'. $notice_id .'" style="bottom: 0; opacity: 0.8;"></div>';
 
 				self::message( array(
 					'notice_id' => $notice_id,
-					'title'     => '&#x2b50;',
+					'title'     => '<img style="max-width: 300px;" src="'. TIELABS_TEMPLATE_URL .'/framework/admin/assets/images/jannah-5.png" />',
 					'message'   => $notice_content,
 					'class'     => 'sucess tie-popup-block tie-popup-window tie-notice-popup tie-yay',
 				));
 			}
+		}
+
+
+		/**
+		 * Rate the Theme
+		 */
+		function rate_theme(){
+
+			$install_date = get_option( 'tie_install_date_'. TIELABS_THEME_ID );
+
+			if( empty( $install_date ) || $install_date > 1598832000 ){ // If the install date is after 31 Aug
+
+				$notice_id = 'tie_install_date_'. TIELABS_THEME_ID;
+
+				if ( self::is_dismissed( $notice_id ) || tie_is_theme_rated() || self::is_hooked_popup() ){
+					return false;
+				}
+
+				if( ! get_option( $notice_id ) ){
+					update_option( $notice_id, time(), false );
+				}
+				else{
+
+					if( ( time() - get_option( $notice_id ) ) < ( 10 * DAY_IN_SECONDS ) ){
+						return false;
+					}
+
+					$notice_content  = '<h4>'. sprintf( esc_html__( 'Like %s?', TIELABS_TEXTDOMAIN ), apply_filters( 'TieLabs/theme_name', 'TieLabs' ) ) .'</h4>';
+					$notice_content .= sprintf(
+						esc_html__( 'We\'ve noticed you\'ve been using %1$s for some time now; we hope you love it! We\'d be thrilled if you could %2$sgive us a 5* rating on themeforest.net!%4$s If you are experiencing issues, please %3$sopen a support ticket%4$s and we\'ll do our best to help you out.', TIELABS_TEXTDOMAIN ),
+						apply_filters( 'TieLabs/theme_name', 'TieLabs' ),
+						'<a href="'. tie_get_purchase_link( array( 'utm_medium' => 'rate-popup' ) ) .'" target="_blank">',
+						'<a href="'. apply_filters( 'TieLabs/External/open_ticket', '' ) .'" target="_blank">',
+						'</a>'
+					);
+
+					echo '<div id="tie-page-overlay" class="is-notice-dismissible" data-id="'. $notice_id .'" style="bottom: 0; opacity: 0.8;"></div>';
+
+					self::message( array(
+						'notice_id' => $notice_id,
+						'title'     => '&#x2b50;',
+						'message'   => $notice_content,
+						'class'     => 'sucess tie-popup-block tie-popup-window tie-notice-popup tie-yay',
+					));
+				}
+
+			}
+
+			// An Update
+			else{
+
+				$install_date = 'tie_install_date_'. TIELABS_THEME_ID;
+				$notice_id    = $install_date . '-1';
+
+				if ( self::is_dismissed( $notice_id ) || tie_is_theme_rated() || self::is_hooked_popup() ){
+					return false;
+				}
+
+				if( ! get_option( $install_date ) ){
+					update_option( $install_date, time(), false );
+				}
+				else{
+
+					if( ( time() - get_option( $install_date ) ) < ( 5 * DAY_IN_SECONDS ) ){
+						return false;
+					}
+
+					$notice_content  = '<h4 style="color: #9200c6; font-size: 26px;">'. esc_html__( 'Biggest Update Ever', TIELABS_TEXTDOMAIN ) .'</h4>';
+					$notice_content .= '<p style="font-size: 16px; margin-bottom: 10px;">'. esc_html__( 'Jannah 5 contains more than 130 new features and improvements, We hope you love it, We\'d be thrilled if you could rate Jannah 5 stars &#x2b50;&#x2b50;&#x2b50;&#x2b50;&#x2b50; on ThemeForest.', TIELABS_TEXTDOMAIN ) .'</p>';
+					$notice_content .= '<p style="font-size: 16px; margin-bottom: 25px;">'. esc_html__( 'Thank you in advance, We really appreciate your time!', TIELABS_TEXTDOMAIN ) .' &#x1F60A;</p>';
+					$notice_content .= '<a href="'. tie_get_purchase_link( array( 'utm_medium' => 'rate-v5-new' ) ) .'" target="_blank" style="background-color: #9200c6; border:none; font-size: 20px; margin: 0 10%; width: 80%; text-align:center;" class="button button-primary button-hero">'. esc_html__( 'Leave a Review on ThemeForest', TIELABS_TEXTDOMAIN ) .'</a>';
+
+					echo '<div id="tie-page-overlay" class="is-notice-dismissible" data-id="'. $notice_id .'" style="bottom: 0; opacity: 0.8;"></div>';
+
+					self::message( array(
+						'notice_id' => $notice_id,
+						'title'     => '<img style="max-width: 300px;" src="'. TIELABS_TEMPLATE_URL .'/framework/admin/assets/images/jannah-5.png" />',
+						'message'   => $notice_content,
+						'class'     => 'sucess tie-popup-block tie-popup-window tie-notice-popup tie-yay',
+					));
+				}
+			}
+
 		}
 
 
@@ -243,15 +337,15 @@ if( ! class_exists( 'TIELABS_NOTICES' ) ){
 				return false;
 			}
 
-			// Show the Message after 3 days of installing the theme
-			if( get_option( 'tie_install_date_'. TIELABS_THEME_ID ) && ( time() - get_option( 'tie_install_date_'. TIELABS_THEME_ID) ) < ( 3 * DAY_IN_SECONDS ) ){
+			// Show the Message after 5 days of installing the theme
+			if( get_option( 'tie_install_date_'. TIELABS_THEME_ID ) && ( time() - get_option( 'tie_install_date_'. TIELABS_THEME_ID) ) < ( 5 * DAY_IN_SECONDS ) ){
 				return false;
 			}
 
 			$remote_languages  = tie_get_latest_theme_data( 'translations' );
 			$translation_meter = ! empty( $remote_languages[ $locale ] ) ? str_replace( '%', '', $remote_languages[ $locale ] ) : 0;
 
-			if( empty( $remote_languages ) || $translation_meter > 95 || self::is_dismissed( $notice_id ) ){
+			if( empty( $remote_languages ) || $translation_meter > 90 || self::is_dismissed( $notice_id ) ){
 				return false;
 			}
 
@@ -311,6 +405,13 @@ if( ! class_exists( 'TIELABS_NOTICES' ) ){
 				$changelog       = array_filter( explode( PHP_EOL, $changelog ),  'strlen' );
 				$notice_content  = '<h4>'. esc_html__( 'YAY, New Features', TIELABS_TEXTDOMAIN ) .'</h4>';
 				$notice_content .= '<ul><li><span class="dashicons dashicons-yes"></span> '. implode( '</li><li> <span class="dashicons dashicons-yes"></span> ', $changelog ) . '</li></ul>';
+				$notice_content .= '
+					<div class="tie-message-hint">
+						<strong>'. esc_html__( 'IMPORTANT', TIELABS_TEXTDOMAIN ) .'</strong><br />'.
+						esc_html__( "After updating, Clear the site's cache, CDN cache and your browser's cache.", TIELABS_TEXTDOMAIN ) .'
+						<a href="https://tielabs.com/go/jannah-clear-cache" target="_blank">'. esc_html__( 'How to Clear Cache', TIELABS_TEXTDOMAIN ) .'</a>
+					</div>
+				';
 
 				// If the Customer already rated the theme and the rate is > 3 hide the rate button
 				if( ! tie_is_theme_rated() ){
@@ -477,7 +578,7 @@ if( ! class_exists( 'TIELABS_NOTICES' ) ){
 
 			$customer_since = tie_get_latest_theme_data( 'customer_since' );
 
-			if( ! empty( $customer_since )){
+			if( ! empty( $customer_since ) ) {
 				$customer_month = date( 'n', strtotime( $customer_since ) );
 				$customer_year  = date( 'y', strtotime( $customer_since ) );
 				$current_month  = date( 'n' );
@@ -513,7 +614,7 @@ if( ! class_exists( 'TIELABS_NOTICES' ) ){
 		 */
 		function live_message(){
 
-			if( ! current_user_can( 'manage_options' ) ){
+			if( ! current_user_can( 'manage_options' ) || ! apply_filters( 'TieLabs/Notices/Live', true ) ){
 				return false;
 			}
 
@@ -523,6 +624,11 @@ if( ! class_exists( 'TIELABS_NOTICES' ) ){
 			if( ! empty( $data ) && is_array( $data ) && ! empty( $data['notice_id'] ) && ! self::is_dismissed( $data['notice_id'] ) ){
 
 				if( self::is_hooked() ){
+					return false;
+				}
+
+				// Function Exists
+				if( ! empty( $data['function'] ) && function_exists( $data['function'] ) ){
 					return false;
 				}
 
@@ -537,7 +643,7 @@ if( ! class_exists( 'TIELABS_NOTICES' ) ){
 				}
 
 				// Start date
-				if( ! empty( $data['start_date'] )){
+				if( ! empty( $data['start_date'] ) ) {
 					$start_date = strtotime( $data['start_date'] );
 
 					if( $start_date > $today ){
@@ -546,7 +652,7 @@ if( ! class_exists( 'TIELABS_NOTICES' ) ){
 				}
 
 				// Expire date
-				if( ! empty( $data['expire_date'] )){
+				if( ! empty( $data['expire_date'] ) ) {
 					$expire_date = strtotime( $data['expire_date'] );
 
 					if( $expire_date <= $today ){

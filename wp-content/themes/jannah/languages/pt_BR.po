@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: VERSION\n"
-"POT-Creation-Date: 2018-09-20 10:49+0000\n"
-"PO-Revision-Date: 2018-09-20 14:54+0400\n"
+"POT-Creation-Date: 2020-09-02 06:26+0000\n"
+"PO-Revision-Date: 2020-09-02 09:32+0300\n"
 "Language-Team: LANGUAGE TEAM <EMAIL@ADDRESS>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -10,7 +10,587 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Last-Translator: \n"
-"X-Generator: Poedit 2.1.1\n"
+"X-Generator: Poedit 2.3\n"
+
+msgid "- Select a Taxonomy -"
+msgstr "Selecionar uma Taxonomia"
+
+msgid "- Select a Term -"
+msgstr "Selecionar um Termo"
+
+msgid "Alphabetically"
+msgstr "Ordem Alfabética"
+
+msgid "Footer Description"
+msgstr "Descrição do Rodapé"
+
+msgid "Footer Description Title"
+msgstr "Título da Descrição do Rodapé"
+
+msgid "Logo Inverted Image"
+msgstr "Imagem invertida do logotipo"
+
+msgid "Logo width"
+msgstr "Largura do logotipo"
+
+msgid "Logo height"
+msgstr "Altura do logotipo"
+
+msgid "Subtitle"
+msgstr "Subtítulo"
+
+msgid "Hide page elemnts"
+msgstr "Esconda os elementos da página"
+
+msgid "Hide the featured image"
+msgstr "Esconder imagem em destaque"
+
+msgid "Display Breadcrumbs"
+msgstr "Mostrar Breadcrumbs"
+
+msgid "Disable All Ads"
+msgstr "Desabilitar todos os Anúncios"
+
+msgid "Above Post Ad"
+msgstr "Anúncio acima do post"
+
+msgid "Below Post Ad"
+msgstr "Anúncio abaixo do post"
+
+msgid "Above Content Ad"
+msgstr "Anúncio acima do conteúdo"
+
+msgid "Below Content Ad"
+msgstr "Anúncio abaixo do conteúdo"
+
+msgid "Select Image"
+msgstr "Selecione a imagem"
+
+msgid "Select another image"
+msgstr "Selecione outra imagem"
+
+msgid "Letter Spacing"
+msgstr "Espaçamento entre Letras"
+
+msgid "View affected templates"
+msgstr "Ver modelos afetados"
+
+msgid "Your child theme contains outdated copies of some template files. These files may need updating to ensure they are compatible with the current version of the theme."
+msgstr "Seu tema filho contém cópias desatualizadas de alguns arquivos de modelo. Esses arquivos podem precisar de atualização para garantir que sejam compatíveis com a versão atual do tema."
+
+msgid "Child Theme Templates"
+msgstr "Modelos do tema filho"
+
+msgid "Overrides"
+msgstr "Substituições"
+
+#, php-format
+msgid "%1$s version %2$s is out of date. The core version is %3$s"
+msgstr "%1$s versão %2$s está ultrapassada. A versão atual é %3$s"
+
+msgid "Renew"
+msgstr "Renovar"
+
+msgid "404 Page"
+msgstr "Página não encontrada 404"
+
+msgid "Integrations"
+msgstr "Integrações"
+
+msgid "Images"
+msgstr "Imagens"
+
+msgid "White Label"
+msgstr "Rótulo Branco"
+
+#, php-format
+msgid "Proudly Hosted by %s"
+msgstr "Orgulhosamente hospedado por% s"
+
+msgid "Section Layout"
+msgstr "Seção de Layout"
+
+msgid "Stretch Section"
+msgstr "Seção Estendida"
+
+msgid "Stretch the section to the full width of the page, supported if the site layout is Full-Width."
+msgstr "Estique a seção até a largura total da página, compatível se o layout do site for largura total."
+
+msgid "Full Width Background Section"
+msgstr "Largura total do fundo da seção"
+
+msgid "Posts Source"
+msgstr "Origem das postagens"
+
+msgid "AJAX"
+msgstr "AJAX"
+
+msgid "Next/Previous Buttons"
+msgstr "Botões Próximo / Anterior"
+
+msgid "Next/Previous Arrows Beside Title"
+msgstr "Setas seguinte / anterior ao lado do título"
+
+msgid "You need to set the YouTube API Key in the theme options page > Integrations."
+msgstr "Você precisa configurar a chave de API do Youtube na página \"opções do tema\" > integrações"
+
+msgid "Secondary Color"
+msgstr "Cor Secundária"
+
+msgid "Featured Image Position"
+msgstr "Posição da imagem em destaque"
+
+msgid "Left Top"
+msgstr "Esquerda Superior"
+
+msgid "Left Center"
+msgstr "Esquerda Central"
+
+msgid "Left Bottom"
+msgstr "Esquerda Inferior"
+
+msgid "Right Top"
+msgstr "Direita Superior"
+
+msgid "Right Center"
+msgstr "Direita Central"
+
+msgid "Right Bottom"
+msgstr "Direita Inferior"
+
+msgid "Center Top"
+msgstr "Central Superior"
+
+msgid "Center Center"
+msgstr "Central Central"
+
+msgid "Center Bottom"
+msgstr "Central Inferior"
+
+msgid "The content in the editor above will be ignored."
+msgstr "O conteúdo no editor acima será ignorado."
+
+msgid "Enable the TieLabs Builder"
+msgstr "Habilite o Construtor TieLabs"
+
+msgid "Disable the TieLabs Builder"
+msgstr "Desabilite o Construtor TieLabs"
+
+msgid "Beta"
+msgstr "Beta"
+
+msgid "Skype"
+msgstr "Skype"
+
+msgid "Messenger"
+msgstr "Messenger"
+
+msgid "Line"
+msgstr "Line"
+
+msgid "AMP Menu"
+msgstr "Menu AMP"
+
+msgid "Menu Position"
+msgstr "Posição do Menu"
+
+msgid "Author name"
+msgstr "Nome do Autor"
+
+msgid "Published date"
+msgstr "Data de Publicação"
+
+msgid "Below Header"
+msgstr "Abaixo do Cabeçalho"
+
+msgid "Above Footer"
+msgstr "Acima do Rodapé"
+
+msgid "Rounded"
+msgstr "Arredondada"
+
+msgid "Sliders Settings"
+msgstr "Configurações dos Carretéis"
+
+msgid "Default Featured Image Position"
+msgstr "Posição padrão da imagem em Destaque"
+
+msgid "Welcome back!"
+msgstr "Bem vindo de Volta"
+
+msgid "News"
+msgstr "Notícias"
+
+msgid "Below Comments Ad"
+msgstr "Anúncio abaixo dos Comentários"
+
+msgid "Category Pages: Below the slider"
+msgstr "Páginas de Categoria: Abaixo do carretel"
+
+msgid "Category Pages: Above the title"
+msgstr "Páginas de Categoria: Acima do título"
+
+msgid "Category Pages: Below the title"
+msgstr "Páginas de Categoria: Abaixo do título"
+
+msgid "Category Pages: Below Posts"
+msgstr "Páginas de Categoria: Abaixo das postagens"
+
+msgid "Category Pages: Below Pagination"
+msgstr "Páginas de Categoria: Abaixo da paginação"
+
+msgid "Ad Image Width"
+msgstr "Largura da imagem do Anúncio"
+
+msgid "Ad Image Height"
+msgstr "Altura da imagem do Anúncio"
+
+#, php-format
+msgid "You need to install the %s plugin to use this feature."
+msgstr "Você precisa instalar o plugin %s para usar este recurso"
+
+msgid "Follow Us Button style"
+msgstr "Estilo dos botão das Redes Sociais"
+
+msgid "Body Code"
+msgstr "Body Code"
+
+msgid "Will add after opening the &lt;body&gt; tag."
+msgstr "Será adicionado após abrir a tag &lt;body&gt;."
+
+msgid "Stretch Header"
+msgstr "Cabeçalho Esticado"
+
+msgid "Full-Width Logo"
+msgstr "Logotipo com Largura Total"
+
+msgid "​Secondary Nav Settings"
+msgstr "Configurações da Barra de Navegação Secundária"
+
+msgid "​Secondary Nav Components"
+msgstr "Componentes da Barra de Navegação Secundária"
+
+msgid "Log In text"
+msgstr "Texto do Login"
+
+msgid "Text beside the icon, Leave this empty to disable."
+msgstr "Texto ao lado do ícone, deixe em branco para desativar."
+
+msgid "Light/Dark Skin Switcher"
+msgstr "Alternar modo Claro/Escuro"
+
+msgid "You need to set the Weather API Key in the theme options page > Integrations."
+msgstr "Você precisa definir a chave da API do tempo na página de opções do tema> Integrações."
+
+msgid "Images Settings"
+msgstr "Configurações de Imagens"
+
+msgid "GIF Featured Image"
+msgstr "GIF em destaque"
+
+msgid "Default Featured Image"
+msgstr "Imagem em Destaque Padrão"
+
+msgid "The Default Image"
+msgstr "A Imagem Padrão"
+
+msgid "Verify your license to unlock this section."
+msgstr "Verifique sua licença para destravar esta seção."
+
+msgid "Instagram Account"
+msgstr "Conta do Instagram"
+
+msgid "Connect your Instagram account"
+msgstr "Conecte com sua conta do Instagram"
+
+msgid "Connect another account"
+msgstr "Conecte com outra conta"
+
+msgid "Refresh Access Token"
+msgstr "Atualizar token de acesso"
+
+msgid "Google Maps"
+msgstr "Google Maps"
+
+msgid "Google Maps API Key"
+msgstr "Chave de API do Google Maps"
+
+msgid "Used for the Map post format."
+msgstr "Usado para o formato de postagem do mapa."
+
+msgid "YouTube API Key"
+msgstr "Chave de API do Youtube"
+
+msgid "Used for the Videos Playlist Block."
+msgstr "Usado para o bloco da lista de reprodução de vídeos."
+
+msgid "OpenWeather API Key"
+msgstr "Chave da API OpenWeather"
+
+msgid "Sidebar Column Width"
+msgstr "Largura da Coluna da Barra Lateral"
+
+msgid "Logo Position"
+msgstr "Posição do Logotipo"
+
+msgid "Logo Width"
+msgstr "Largura do Logotipo"
+
+msgid "Sticky Header behavior"
+msgstr "Comportamento do Sticky Header"
+
+msgid "Mobile Header Buttons"
+msgstr "Botões do Cabeçalho de Dispositivos Móveis"
+
+msgid "Display the buttons below the logo"
+msgstr "Mostrar os botões abaixo do logotipo"
+
+msgid "Menu Button"
+msgstr "Botão do Menu"
+
+#, php-format
+msgid "Icon %s"
+msgstr "Ícone %s"
+
+msgid "Search Position"
+msgstr "Posição de Pesquisa"
+
+msgid "Sidebars on Mobile"
+msgstr "Barras laterais no Celular"
+
+msgid "Display sidebars before the content"
+msgstr "Mostrar barra lateral antes do conteúdo"
+
+msgid "Hide Read More Buttons"
+msgstr "Esconda o botão Leia Mais"
+
+msgid "Hide Inline Related posts"
+msgstr "Ocultar postagens relacionadas embutidas"
+
+msgid "404 Page Settings"
+msgstr "Configurações da página 404"
+
+msgid "Image above the main title"
+msgstr "Imagem acima do título principal"
+
+msgid "Enable Search"
+msgstr "Ativar Busca"
+
+msgid "Enable Menu"
+msgstr "Ativar Menu"
+
+msgid "You can set the menu in the Menus page."
+msgstr "Você pode definir o menu na página Menus."
+
+msgid "Texts"
+msgstr "Textos"
+
+msgid "You can change the texts from the Translations section."
+msgstr "Você pode alterar os textos na seção Traduções."
+
+msgid "Meta Description Tag"
+msgstr "Etiqueta de Meta Descrição"
+
+msgid "Tags List Layout"
+msgstr "Layout da Lista de Etiquetas"
+
+msgid "Modern"
+msgstr "Moderno"
+
+msgid "Post meta area Layout"
+msgstr "Layout da meta área de postagem"
+
+msgid "Column"
+msgstr "Coluna"
+
+msgid "Last Updated"
+msgstr "Última Atualização"
+
+msgid "Inline Related Posts"
+msgstr "Postagens relacionadas em linha"
+
+msgid "Number of paragraphs before"
+msgstr "Número de parágrafos antes"
+
+msgid "Auto Load Posts"
+msgstr "Postagens auto-carregáveis"
+
+msgid "Buttons Position"
+msgstr "Posição dos Botões"
+
+msgid "Inverted"
+msgstr "Invertido"
+
+msgid "Sticky Share Buttons"
+msgstr "Botões de compartilhamento fixos"
+
+msgid "Image Icon"
+msgstr "Ícone da Imagem"
+
+msgid "Widgets Title text color"
+msgstr "Cor do texto do título dos widgets"
+
+msgid "Numbers"
+msgstr "Números"
+
+msgid "General Secondary Texts"
+msgstr "Textos Secundários Gerais"
+
+msgid "Page Builder"
+msgstr "Construtor de Página"
+
+msgid "Sections Titles: Big Style"
+msgstr "Títulos das seções: grande estilo"
+
+msgid "Archive page"
+msgstr "Página de Arquivo"
+
+msgid "Main Title"
+msgstr "Título Principal"
+
+msgid "Secondary Title"
+msgstr "Título Secundário"
+
+msgid "Comment content"
+msgstr "Conteúdo do comentário"
+
+msgid "Theme Name"
+msgstr "Nome do Tema"
+
+msgid "Theme Options Page Logo"
+msgstr "Logotipo da página de opções de tema"
+
+msgid "Disable Help Links"
+msgstr "Desativar links de ajuda"
+
+msgid "Enable help links from control panel and meta options."
+msgstr "Habilite links de ajuda do painel de controle e opções meta."
+
+msgid "WordPress Login page"
+msgstr "Página de login do WordPress"
+
+msgid "Previous"
+msgstr "Anterior"
+
+msgid "Next"
+msgstr "Próximo"
+
+msgid "Verify your license to use this feature."
+msgstr "Verifique sua licença para usar este recurso."
+
+msgid "Edit menu item"
+msgstr "Editar item do menu"
+
+msgid "Edit"
+msgstr "Editar"
+
+msgid "Open link in a new tab"
+msgstr "Abra o link numa nova guia"
+
+msgid "You need to set the Location."
+msgstr "Você precisa definir a Localização"
+
+#, php-format
+msgid "Photo of %s"
+msgstr "Foto de %s"
+
+msgid "and"
+msgstr "e"
+
+msgctxt "plugin A *and* plugin B"
+msgid "and"
+msgstr "e"
+
+msgid "Last Updated:"
+msgstr "Última Atualização"
+
+msgid "Blocks and Archives"
+msgstr "Blocos e Arquivos"
+
+msgid "Login Section"
+msgstr "Seção de Login"
+
+msgid "Widgets"
+msgstr "Widgets"
+
+msgid "Checkout"
+msgstr "Saída"
+
+#, php-format
+msgid "Show %s comments"
+msgstr "Mostrar %s comentários"
+
+msgid "Show one comment"
+msgstr "Mostre um comentário"
+
+msgid "Leave a Reply"
+msgstr "Deixe uma resposta"
+
+msgid "Follow on Twitter"
+msgstr "Siga no Twitter"
+
+msgid "Send an email"
+msgstr "Mande um e-mail"
+
+msgid "Subtotal:"
+msgstr "Subtotal:"
+
+msgid "Account Name"
+msgstr "Nome da Conta"
+
+msgid "Avatar Image"
+msgstr "Imagem do Avatar"
+
+msgid "Bio"
+msgstr "Biografia"
+
+msgid "Next/Previous Arrows"
+msgstr "Setas Próximo/Anterior"
+
+msgid "Pagination:"
+msgstr "Paginação"
+
+msgid "Enter the required account info."
+msgstr "Preencha as informações de conta solicitadas"
+
+msgid "Follow me"
+msgstr "Siga me"
+
+msgid "Avatar size (px)"
+msgstr "Tamanho do avatar (px)"
+
+msgid "Circle"
+msgstr "Círculo"
+
+msgid "Show the total followers number?"
+msgstr "Mostrar o número total de seguidores?"
+
+msgid "Text before the total number"
+msgstr "Texto antes do número total"
+
+msgid "Text after the total number"
+msgstr "Texto depois do número total"
+
+msgid "Position"
+msgstr "Posição"
+
+msgid "Before the counters."
+msgstr "Antes do contadores"
+
+msgid "After the counters."
+msgstr "Depois dos contadores"
+
+msgid "Visitor's Location?"
+msgstr "Localização do Visitante"
+
+msgid "Style and Layout"
+msgstr "Estilo e Layout"
+
+msgid "​Secondary Nav Menu"
+msgstr "Menu Secundário de Navegação"
+
+msgid "Follow us"
+msgstr "Siga-nos"
 
 msgid "404 :("
 msgstr "404 :("
@@ -27,6 +607,15 @@ msgstr "%s Comentários"
 
 msgid "One Comment"
 msgstr "Um Comentário"
+
+msgid "- Select a Slider -"
+msgstr "Selecionar um Carretel"
+
+msgid "- Select a Category -"
+msgstr "Selecione uma Categoria"
+
+msgid "- Select a Menu -"
+msgstr "Selecione um Menu"
 
 msgid "Default"
 msgstr "Padrão"
@@ -47,7 +636,7 @@ msgid "Available Widgets"
 msgstr "Widges disponíveis"
 
 msgid "Deactivate"
-msgstr "Desativado"
+msgstr "Desativar"
 
 msgid "Drag widgets from here to a sidebar on the right to activate them. Drag widgets back here to deactivate them and delete their settings."
 msgstr "Arraste os widgets daqui para uma barra lateral à direita para ativá-los. Arraste os widgets de volta para desativá-los e excluir suas configurações."
@@ -230,7 +819,7 @@ msgid "A Refined Seattle Restaurant, Hold the Table Linens"
 msgstr "Um refinado restaurante de Seattle, mantenha a mesa de linho"
 
 msgid "Business"
-msgstr "Negócio"
+msgstr "Negócios"
 
 msgid "December home sales rebound? Here is the secret"
 msgstr "Dezembro de vendas de casas rebote? Aqui é o segredo"
@@ -324,7 +913,7 @@ msgstr "Siga-nos no %1$sTwitter%3$s ou %2$sFacebook%3$s."
 
 #, php-format
 msgid "Like %s?"
-msgstr "Like %s?"
+msgstr "Curtida %s"
 
 #, php-format
 msgid "We've noticed you've been using %1$s for some time now; we hope you love it! We'd be thrilled if you could %2$sgive us a 5* rating on themeforest.net!%4$s If you are experiencing issues, please %3$sopen a support ticket%4$s and we'll do our best to help you out."
@@ -459,6 +1048,9 @@ msgstr "Como traduzir o tema"
 msgid "Category Layout"
 msgstr "Layout da Categoria"
 
+msgid "Posts Settings"
+msgstr "Configurações das Postagens"
+
 msgid "Posts Layout"
 msgstr "Layout dos posts"
 
@@ -512,6 +1104,9 @@ msgstr "Carregar mais"
 
 msgid "Infinite Scroll"
 msgstr "Rolagem infinita"
+
+msgid "Media Icon"
+msgstr "Ícone de meios de comunicação"
 
 msgid "Media Icon Overlay"
 msgstr "Ícone de mídia sobreposto"
@@ -748,6 +1343,12 @@ msgstr "Deixe em branco para usar o valor padrão."
 msgid "Logo Margin Bottom"
 msgstr "Margem Inferior do Logo"
 
+msgid "Custom Logo URL"
+msgstr "URL do Logotipo Customizado"
+
+msgid "Leave it empty to use the Site URL."
+msgstr "Deixa em branco para usar a URL do Site"
+
 msgid "Custom Menu"
 msgstr "Menu customizado"
 
@@ -831,6 +1432,9 @@ msgstr "Configurações"
 
 msgid "Front Page"
 msgstr "Página frontal"
+
+msgid "TieLabs Builder"
+msgstr "Construtor TieLabs"
 
 msgid "Enter sub title here"
 msgstr "Colocar o subtítulo aqui"
@@ -921,13 +1525,13 @@ msgid "Map"
 msgstr "Mapa"
 
 msgid "Embed Code"
-msgstr "Embed Code"
+msgstr "Embed"
 
 msgid "Self Hosted Video"
 msgstr "Vídeo com hospedagem local"
 
 msgid "Video URL"
-msgstr "Video URL"
+msgstr "URL do Vídeo"
 
 msgid "supports : YouTube, Vimeo, Viddler, Qik, Hulu, FunnyOrDie, DailyMotion, WordPress.tv and blip.tv"
 msgstr "suporta : YouTube, Vimeo, Viddler, Qik, Hulu, FunnyOrDie, DailyMotion, WordPress.tv e blip.tv"
@@ -987,13 +1591,13 @@ msgid "Next/Prev posts"
 msgstr "Postagens Próxima/Anterior"
 
 msgid "Newsletter"
-msgstr "Newsletter"
+msgstr "Novidades por E-mail"
 
 msgid "Related Posts"
 msgstr "Postagens relacionadas"
 
 msgid "Fly Check Also Box"
-msgstr "Fly Check Also Box"
+msgstr "Caixa de seleção voar também"
 
 msgid "Hide Above Post Ad"
 msgstr "ocultar post do anúncio Acima"
@@ -1011,7 +1615,7 @@ msgid "Hide Above Content Ad"
 msgstr "Ocultar conteúdo do anúncio acima"
 
 msgid "Custom Above Content Ad"
-msgstr "Custom Above Content Ad"
+msgstr "Anúncio personalizado abaixo do conteúdo"
 
 msgid "Hide Below Content Ad"
 msgstr "Ocultar abaixo do anúncio de conteúdo"
@@ -1835,10 +2439,10 @@ msgid "Tumblr"
 msgstr "Tumblr"
 
 msgid "VKontakte"
-msgstr "VKontakte"
+msgstr "VK"
 
 msgid "Odnoklassniki"
-msgstr "Odnoklassniki"
+msgstr "OK"
 
 msgid "Pocket"
 msgstr "Pocket"
@@ -1915,6 +2519,9 @@ msgstr "Ativar AMP"
 
 msgid "Post Settings"
 msgstr "Configurações do post"
+
+msgid "Categories and Tags"
+msgstr "Categorias e Etiquetas"
 
 msgid "Facebook APP ID"
 msgstr "Facebook APP ID"
@@ -2143,6 +2750,9 @@ msgstr "Entre posts em arquivos #%s"
 
 msgid "Number of posts before the Ad"
 msgstr "Número de postagens antes do anúncio"
+
+msgid "Number of paragraphs before the Ad"
+msgstr "Número de parágrafos antes do anúncio"
 
 msgid "Ad Title"
 msgstr "Título do anúncio"
@@ -2562,7 +3172,7 @@ msgid "Hide Header Breaking News"
 msgstr "Hide Header Breaking News"
 
 msgid "Hide all sidebars"
-msgstr "Esconder todas as sidebars"
+msgstr "Esconder todas as sidebars\n"
 
 msgid "Hide Instagram Media Above Footer"
 msgstr "Ocultar mídia do Instagram acima do rodapé"
@@ -3309,6 +3919,12 @@ msgstr "Não é possível acessar a imagem do seu servidor, envie a campanha da 
 msgid "Campaign has been sent"
 msgstr "Campanha foi enviada"
 
+msgid "Can not find the user!"
+msgstr "Usuário não encontrado!"
+
+msgid "Something went wrong!"
+msgstr "Alguma coisa deu errado!"
+
 msgid "All"
 msgstr "Tudo"
 
@@ -3461,6 +4077,9 @@ msgstr "Hmidade:"
 
 msgid "wind:"
 msgstr "Vento:"
+
+msgid "Clear Sky"
+msgstr "Céu Limpo"
 
 #, php-format
 msgid "Search Results for: %s"
@@ -3652,6 +4271,9 @@ msgstr "Se inscrever"
 msgid "Related Articles"
 msgstr "Artigos relacionados"
 
+msgid "Read Next"
+msgstr "Ler o Próximo"
+
 msgid "Videos"
 msgstr "Videos"
 
@@ -3840,7 +4462,7 @@ msgid "Demo data has been successfully uninstalled"
 msgstr "Arquivos demo foram desinstalados"
 
 msgid "Importing demo data (post, pages, images, theme settings, ...) is the easiest way to setup your theme. It will allow you to quickly edit everything instead of creating content from scratch. When you import the data, the following things might happen:"
-msgstr "A importação de dados de demonstração (post, páginas, imagens, configurações de tema, ...) é a maneira mais fácil de configurar seu tema. Ele permitirá editar rapidamente tudo em vez de criar conteúdo do zero. Quando você importa os dados, as seguintes coisas podem acontecer:"
+msgstr "A importação de dados de demonstração (post, páginas, imagens, configurações de tema, ...) é a maneira mais fácil de configurar seu tema. Ele permitirá editar rapidamente tudo em vez de criar conteúdo do zero. Quando você importa os dados, as seguintes coisas podem acontecer:\n"
 
 msgid "No existing posts, pages, categories, images, custom post types or any other data will be deleted or modified."
 msgstr "Nenhuma postagem, página, categoria, imagem, tipo de postagem personalizada ou qualquer outro dado existente será excluído ou modificado."
@@ -4167,10 +4789,6 @@ msgstr "Por favor, contate o autor do plugin e peça que o forneça segundo as d
 msgid "The remote plugin package consists of more than one file, but the files are not packaged in a folder."
 msgstr "O pacote de plugin remoto consiste em mais de um arquivo, mas os arquivos não estão na pasta do pacote."
 
-msgctxt "plugin A *and* plugin B"
-msgid "and"
-msgstr "e"
-
 #, php-format
 msgid "TGMPA v%s"
 msgstr "TGMPA v%s"
@@ -4473,6 +5091,9 @@ msgstr "Página do Google+"
 msgid "Follow us on Google+"
 msgstr "Siga-nos no Google+"
 
+msgid "Show the Bio and counters?"
+msgstr "Mostrar a Biografia e os contadores?"
+
 msgid "Go to the InstaNow Settings page to connect your account to the Instagram API."
 msgstr "Vá para a página Configurações do InstaNow para conectar sua conta à API do Instagram."
 
@@ -4550,6 +5171,12 @@ msgstr "Postagens mais comentadas"
 
 msgid "Most Viewed"
 msgstr "Mais visto"
+
+msgid "Disable the Recent tab?"
+msgstr "Desabilitar a aba recente?"
+
+msgid "Disable the Comments tab?"
+msgstr "Desabilitar a aba de Comentários?"
 
 msgid "Text or HTML"
 msgstr "Texto ou HTML"

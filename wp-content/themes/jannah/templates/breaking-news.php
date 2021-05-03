@@ -43,6 +43,10 @@ if( ! empty( $breaking_arrows ) ){
 	$breaking_class[] = 'controls-is-active';
 }
 
+if( ! empty( $breaking_speed ) ){
+	$breaking_attr[]  = 'data-speed="'. $breaking_speed .'"';
+}
+
 $breaking_class = join( ' ', array_filter( apply_filters( 'TieLabs/Breaking_news/class', $breaking_class ) ) );
 $breaking_attr  = join( ' ', array_filter( apply_filters( 'TieLabs/Breaking_news/attr',  $breaking_attr  ) ) );
 
@@ -59,7 +63,7 @@ wp_enqueue_script( 'tie-js-breaking' );
 <div class="<?php echo esc_attr( $breaking_class ) ?>">
 
 	<span class="breaking-title">
-		<span class="fa fa-bolt" aria-hidden="true"></span>
+		<span class="tie-icon-bolt breaking-icon" aria-hidden="true"></span>
 		<span class="breaking-title-text"><?php echo ! empty( $breaking_title ) ? $breaking_title : esc_html__( 'Breaking News', TIELABS_TEXTDOMAIN ); ?></span>
 	</span>
 
@@ -70,14 +74,14 @@ wp_enqueue_script( 'tie-js-breaking' );
 			if( $breaking_type != 'custom' ){
 
 				// Get the Cached data
-				if ( $type == 'header' && tie_get_option( 'jso_cache' ) && ( false !== ( $cached_data = get_transient( $cache_key )) ) && ! ( defined( 'WP_CACHE' ) && WP_CACHE ) ){
-					if( isset( $cached_data['breaking-news'] )){
+				if ( $type == 'header' && tie_get_option( 'jso_cache' ) /*&& ! ( defined( 'WP_CACHE' ) && WP_CACHE ) */ && ( false !== ( $cached_data = get_transient( $cache_key )) ) ){
+					if( isset( $cached_data['breaking-news'] ) ) {
 						$cached_breaking_news = $cached_data['breaking-news'];
 					}
 				}
 
 				// It wasn't there, so render the Breaking news and save it as a transient
-				if( empty( $cached_breaking_news )){
+				if( empty( $cached_breaking_news ) ) {
 
 					ob_start();
 
@@ -118,7 +122,7 @@ wp_enqueue_script( 'tie-js-breaking' );
 
 					$cached_breaking_news = ob_get_clean();
 
-					if( $type == 'header' ){
+					if( $type == 'header' && tie_get_option( 'jso_cache' ) /*&& ! ( defined( 'WP_CACHE' ) && WP_CACHE ) */ ){
 						$GLOBALS[ $cache_key ]['breaking-news'] = $cached_breaking_news;
 					}
 				}

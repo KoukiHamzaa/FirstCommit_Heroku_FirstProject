@@ -153,7 +153,10 @@ function tie_debug_log( $message = '', $force = false ) {
 		}
 
 		$tie_logs->log_to_file( $message );
+	}
 
+	else{
+		error_log( print_r( $message, true ) );
 	}
 }
 

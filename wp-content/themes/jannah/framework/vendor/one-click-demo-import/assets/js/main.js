@@ -54,7 +54,7 @@ jQuery( function ( $ ) {
 	function ajaxCall( data ) {
 		$.ajax({
 			method:     'POST',
-			url:        ocdi.ajax_url,
+			url:        ajaxurl,
 			data:       data,
 			contentType: false,
 			processData: false,

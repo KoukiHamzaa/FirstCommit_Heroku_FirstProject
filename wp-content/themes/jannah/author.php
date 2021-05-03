@@ -33,7 +33,10 @@ get_header(); ?>
 			// Get the layout template part
 			TIELABS_HELPER::get_template_part( 'templates/archives', '', array(
 				'layout'          => tie_get_option( 'author_layout', 'excerpt' ),
+				'excerpt'         => tie_get_option( 'author_excerpt' ),
 				'excerpt_length'  => tie_get_option( 'author_excerpt_length' ),
+				'read_more'       => tie_get_option( 'author_read_more' ),
+				'read_more_text'  => tie_get_option( 'author_read_more_text' ),
 			));
 
 			// Page Pagination

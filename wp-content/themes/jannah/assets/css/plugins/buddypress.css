@@ -473,7 +473,7 @@ body.groups .bp-dir-hori-nav:not(.bp-vertical-navs) .main-navs:not(.dir-navs) #o
     font-size: 15px;
   }
   #group-create-tabs:not(.tabbed-links) li:not(:last-child):after {
-    font-family: 'fontawesome';
+    font-family: tiefonticon;
     content: '\f178';
     margin: 0 10px;
     color: #d6d6d6;
@@ -1762,7 +1762,7 @@ header.buddypress-header-outer .entry-header h1 {
 
 .buddypress-wrap .activity-list .load-more .spinner,
 .buddypress-wrap .activity-list .load-newest .spinner {
-  width: 3.1em;
+  width: 3.101em;
 }
 
 .buddypress-wrap .activity-list .load-more .spinner > div,
@@ -3246,14 +3246,14 @@ body.no-js #buddypress .js-self-profile-button {
   padding: 2px 8px;
   margin-left: 8px;
   letter-spacing: .03em;
-  background-color: #aaaaaa;
+  background-color: #cccccc;
   border-radius: 2px;
   text-decoration: none !important;
   transition: background 0.3s;
 }
 
 .buddypress-wrap .profile.edit .editfield .field-visibility-settings-header .visibility-toggle-link:hover {
-  background-color: #919191;
+  background-color: #b3b3b3;
 }
 
 .buddypress-wrap .bp-help-text {
@@ -3298,7 +3298,7 @@ body.no-js .buddypress-wrap .field-visibility-settings {
 .buddypress-wrap .field-visibility-settings .radio .field-visibility-text:before {
   content: '\f0ac';
   display: inline-block;
-  font: normal normal normal 14px/1 'FontAwesome';
+  font: normal normal normal 14px/1 tiefonticon;
   font-size: inherit;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
@@ -4486,15 +4486,20 @@ body.no-js .buddypress #messages-bulk-management #select-all-messages {
   word-wrap: normal !important;
 }
 
-.clearfix:before, .clearfix:after {
-  content: " ";
-  display: table;
+/*
+.clearfix {
+
+	&:before,
+	&:after {
+		content: " ";
+		display: table;
+	}
 }
 
 .clearfix:after {
-  clear: both;
+	clear: both;
 }
-
+*/
 .center-vert {
   display: -ms-flexbox;
   display: -webkit-flex;

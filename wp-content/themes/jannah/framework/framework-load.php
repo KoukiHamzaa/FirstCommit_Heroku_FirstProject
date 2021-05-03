@@ -23,6 +23,7 @@ require TIELABS_TEMPLATE_PATH . '/framework/classes/class-tielabs-logging.php';
 require TIELABS_TEMPLATE_PATH . '/framework/functions/general-functions.php';
 require TIELABS_TEMPLATE_PATH . '/framework/functions/media-functions.php';
 require TIELABS_TEMPLATE_PATH . '/framework/functions/post-functions.php';
+require TIELABS_TEMPLATE_PATH . '/framework/functions/mobile-functions.php';
 require TIELABS_TEMPLATE_PATH . '/framework/functions/breadcrumbs.php';
 require TIELABS_TEMPLATE_PATH . '/framework/functions/formatting.php';
 require TIELABS_TEMPLATE_PATH . '/framework/functions/post-actions.php';
@@ -35,16 +36,14 @@ require TIELABS_TEMPLATE_PATH . '/framework/classes/class-tielabs-filters.php';
 require TIELABS_TEMPLATE_PATH . '/framework/classes/class-tielabs-advertisment.php';
 require TIELABS_TEMPLATE_PATH . '/framework/classes/class-tielabs-ajax.php';
 require TIELABS_TEMPLATE_PATH . '/framework/classes/class-tielabs-foxpush.php';
-require TIELABS_TEMPLATE_PATH . '/framework/classes/class-tielabs-styles-footer.php';
 require TIELABS_TEMPLATE_PATH . '/framework/classes/class-tielabs-postviews.php';
 require TIELABS_TEMPLATE_PATH . '/framework/classes/class-tielabs-mega-menu.php';
-require TIELABS_TEMPLATE_PATH . '/framework/classes/class-tielabs-videos-list.php';
+require TIELABS_TEMPLATE_PATH . '/framework/classes/class-tielabs-videos.php';
 require TIELABS_TEMPLATE_PATH . '/framework/classes/class-tielabs-pagination.php';
 require TIELABS_TEMPLATE_PATH . '/framework/classes/class-tielabs-opengraph.php';
 require TIELABS_TEMPLATE_PATH . '/framework/classes/class-tielabs-wp-helper.php';
 require TIELABS_TEMPLATE_PATH . '/framework/classes/class-tielabs-styles.php';
 require TIELABS_TEMPLATE_PATH . '/framework/classes/class-tielabs-weather.php';
-require TIELABS_TEMPLATE_PATH . '/framework/classes/class-tielabs-instagram.php';
 
 /**
  * Mobile Detector
@@ -120,6 +119,13 @@ require TIELABS_TEMPLATE_PATH . '/framework/plugins/class-tielabs-jetpack.php';
  */
 require TIELABS_TEMPLATE_PATH . '/framework/plugins/class-tielabs-taqyeem.php';
 
+/**
+ * TieLabs Instagram
+ *
+ * By: TieLabs
+ */
+require TIELABS_TEMPLATE_PATH . '/framework/plugins/class-tielabs-instagram.php';
+
  /**
   * Instant Articles for WP
   *
@@ -127,6 +133,12 @@ require TIELABS_TEMPLATE_PATH . '/framework/plugins/class-tielabs-taqyeem.php';
   * https://wordpress.org/plugins/fb-instant-articles/
   */
 require TIELABS_TEMPLATE_PATH . '/framework/plugins/class-tielabs-fbinstant-articles.php';
+
+ /**
+  * AppBear
+  *
+  */
+//require TIELABS_TEMPLATE_PATH . '/framework/plugins/class-appbear-endpoints.php';
 
  /**
   * Cryptocurrency All-in-One

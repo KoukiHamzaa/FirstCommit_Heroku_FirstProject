@@ -8,7 +8,7 @@
  * will need to copy the new files to your child theme to maintain compatibility.
  *
  * @author   TieLabs
- * @version  4.5.0
+ * @version  5.0.0
  */
 
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly
@@ -17,10 +17,13 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 if( $count == 1 ) :
 
 	$background = '';
-	$thumbnail  = tie_thumb_src_bg( TIELABS_THEME_SLUG.'-image-post' );
+
+	$thumbnail_size = apply_filters( 'TieLabs/loop_thumbnail_size', TIELABS_THEME_SLUG.'-image-post', 'big-thumb' );
+
+	$thumbnail  = tie_thumb_src( $thumbnail_size );
 
 	if( ! empty( $thumbnail ) ){
-		$background = tie_get_option( 'lazy_load' ) ? 'data-lazy-bg="'. esc_attr( tie_thumb_src( TIELABS_THEME_SLUG.'-image-post' ) ) .'"' : 'style="'. esc_attr( tie_thumb_src_bg( TIELABS_THEME_SLUG.'-image-grid' ) ) .'"';
+		$background = tie_get_option( 'lazy_load' ) ? 'data-lazy-bg="'. esc_attr( $thumbnail ) .'"' : 'style="'. esc_attr( tie_thumb_src_bg( $thumbnail_size ) ) .'"';
 	}
 
 	?>
@@ -46,7 +49,7 @@ if( $count == 1 ) :
 					<?php
 
 						// Get the Post Meta info
-						if( ! empty( $block['post_meta'] )){
+						if( ! empty( $block['post_meta'] ) ) {
 							tie_the_post_meta( '', '<div class="thumb-meta">', '</div>' );
 						}
 					?>
@@ -77,7 +80,7 @@ if( $count == 1 ) :
 			<?php
 
 				// Get the Post Meta info
-				if( ! empty( $block['post_meta'] )){
+				if( ! empty( $block['post_meta'] ) ) {
 					tie_the_post_meta( array( 'trending' => true,'author' => false, 'comments' => false, 'views' => false, 'review' => true ) );
 				}
 			?>

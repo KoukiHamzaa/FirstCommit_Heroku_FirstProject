@@ -1,6 +1,6 @@
 <?php
 
-if( ! class_exists( 'TIE_NEWSLETTER_WIDGET' )){
+if( ! class_exists( 'TIE_NEWSLETTER_WIDGET' ) ) {
 
 	/**
 	 * Widget API: TIE_NEWSLETTER_WIDGET class
@@ -40,8 +40,8 @@ if( ! class_exists( 'TIE_NEWSLETTER_WIDGET' )){
 				<?php
 
 					// Show Icon
-					if( ! empty( $instance['show_icon'] )){ ?>
-						<span class="fa fa-envelope newsletter-icon" aria-hidden="true"></span>
+					if( ! empty( $instance['show_icon'] ) ) { ?>
+						<span class="tie-icon-envelope newsletter-icon" aria-hidden="true"></span>
 						<?php
 					}
 
@@ -53,7 +53,7 @@ if( ! class_exists( 'TIE_NEWSLETTER_WIDGET' )){
 						<?php
 					}
 
-					if( ! empty( $instance['feedburner'] )){ ?>
+					if( ! empty( $instance['feedburner'] ) ) { ?>
 
 						<form action="https://feedburner.google.com/fb/a/mailverify" method="post" class="subscribe-form" target="popupwindow" onsubmit="window.open('https://feedburner.google.com/fb/a/mailverify?uri=<?php echo esc_attr( $instance['feedburner'] ); ?>', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true">
 							<label class="screen-reader-text" for="email"><?php esc_html_e( 'Enter your Email address', TIELABS_TEXTDOMAIN ); ?></label>
@@ -65,7 +65,7 @@ if( ! class_exists( 'TIE_NEWSLETTER_WIDGET' )){
 						<?php
 					}
 
-					elseif( ! empty( $instance['mailchimp'] )){ ?>
+					elseif( ! empty( $instance['mailchimp'] ) ) { ?>
 						<div id="mc_embed_signup-<?php echo esc_attr( $args['widget_id'] ) ?>">
 							<form action="<?php echo esc_attr( $instance['mailchimp'] ) ?>" method="post" id="mc-embedded-subscribe-form-<?php echo esc_attr( $args['widget_id'] ) ?>" name="mc-embedded-subscribe-form" class="subscribe-form validate" target="_blank" novalidate>
 									<div class="mc-field-group">

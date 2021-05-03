@@ -20,7 +20,7 @@ get_header(); ?>
 
 					the_archive_title( '<h1 class="page-title">', '</h1>' );
 
-					if( tie_get_option( 'tag_desc' )){
+					if( tie_get_option( 'tag_desc' ) ) {
 						the_archive_description( '<div class="taxonomy-description entry">', '</div>' );
 					}
 
@@ -33,8 +33,11 @@ get_header(); ?>
 
 			// Get the layout template part
 			TIELABS_HELPER::get_template_part( 'templates/archives', '', array(
-				'layout'         => tie_get_option( 'tag_layout', 'excerpt' ),
-				'excerpt_length' => tie_get_option( 'tag_excerpt_length' ),
+				'layout'          => tie_get_option( 'tag_layout', 'excerpt' ),
+				'excerpt'         => tie_get_option( 'tag_excerpt' ),
+				'excerpt_length'  => tie_get_option( 'tag_excerpt_length' ),
+				'read_more'       => tie_get_option( 'tag_read_more' ),
+				'read_more_text'  => tie_get_option( 'tag_read_more_text' ),
 			));
 
 			// Page navigation

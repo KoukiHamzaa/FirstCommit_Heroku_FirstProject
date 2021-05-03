@@ -1,6 +1,6 @@
 <?php
 
-if( ! class_exists( 'TIE_LATEST_TWEET_WIDGET' )){
+if( ! class_exists( 'TIE_LATEST_TWEET_WIDGET' ) ) {
 
 	/**
 	 * Widget API: TIE_LATEST_TWEET_WIDGET class
@@ -46,7 +46,7 @@ if( ! class_exists( 'TIE_LATEST_TWEET_WIDGET' )){
 				$token        = get_option( 'tie_TwitterToken'.$widget_id );
 				$twitter_data = get_transient( 'list_tweets'.$widget_id );
 
-				if( empty( $twitter_data )){
+				if( empty( $twitter_data ) ) {
 
 					if( empty( $token ) ){
 
@@ -92,7 +92,7 @@ if( ! class_exists( 'TIE_LATEST_TWEET_WIDGET' )){
 
 					$response = wp_remote_get( $api_url, $args );
 
-					if ( is_wp_error( $response )){
+					if ( is_wp_error( $response ) ) {
 
 						tie_debug_log( $response->get_error_message(), true );
 					}
@@ -107,7 +107,7 @@ if( ! class_exists( 'TIE_LATEST_TWEET_WIDGET' )){
 					$i=0;
 
 					# Enqueue the Sliders Js file
-					if( ! empty( $instance['slider'] )){
+					if( ! empty( $instance['slider'] ) ) {
 						wp_enqueue_script( 'tie-js-sliders' );
 					}
 
@@ -135,7 +135,7 @@ if( ! class_exists( 'TIE_LATEST_TWEET_WIDGET' )){
 
 							<li class="slide">
 								<div class="twitter-icon-wrap">
-									<span class="fa fa-twitter" aria-hidden="true"></span>
+									<span class="tie-icon-twitter" aria-hidden="true"></span>
 								</div>
 								<div class="tweetaya-body">
 									<p><?php echo ( $tweet ); ?></p>

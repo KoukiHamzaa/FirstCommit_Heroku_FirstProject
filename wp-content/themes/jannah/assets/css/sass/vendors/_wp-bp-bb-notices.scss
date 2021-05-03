@@ -35,7 +35,7 @@
     position: absolute;
     left: 10px;
     top: 10px;
-    font-family: "FontAwesome";
+    font-family: tiefonticon;
     content: "\f00c";
     @include font-size(14px);
     width: 30px;
@@ -72,7 +72,7 @@
   background-color: $danger_color;
 
   &:before {
-    content: "\f00d";
+    content: "\e117";
   }
 }
 

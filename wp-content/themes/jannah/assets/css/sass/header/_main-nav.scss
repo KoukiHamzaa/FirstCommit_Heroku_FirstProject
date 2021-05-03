@@ -22,6 +22,7 @@
 	position: relative;
 }
 
+
 @include breakpoint(md){
 
 	// header menus [Main menu, Top menu] ------------------------
@@ -64,7 +65,6 @@
 				}
 
 				ul{
-					padding-top: 0;
 					top: 0;
 					left: 100%;
 				}
@@ -131,7 +131,7 @@
 							display: none;
 						}
 
-						.fa{
+						.tie-menu-icon{
 							font-size: 160%;
 							transform: translateY(15%);
 						}
@@ -144,27 +144,32 @@
 				z-index: 1;
 			}
 
-			.sub-menu .fa,
-			.mega-recent-featured-list .fa,
-			.mega-link-column .fa,
-			.mega-cat-more-links .fa{
+			.sub-menu .tie-menu-icon,
+			.mega-recent-featured-list .tie-menu-icon,
+			.mega-link-column .tie-menu-icon,
+			.mega-cat-more-links .tie-menu-icon{
 				width: 20px;
 			}
 		}
 
 		.menu-sub-content{
 			display: none;
-			padding: 0;
-			width: 200px;
+			padding: 15px;
+			width: 230px;
 			position: absolute;
 			box-shadow: 0 2px 2px rgba(0, 0, 0, 0.15);
 
 			a{
 				width: 200px;
 			}
+
+			.menu-item-has-children{
+				> a:before{
+					right: 5px;
+				}
+			}
 		}
 
-		// display sub-meus on hover while page loading
 		ul{
 			li:hover > .menu-sub-content,
 			li[aria-expanded="true"] > ul,
@@ -202,10 +207,6 @@
 	// Main Nav Components ---------------------------------------
 	nav.main-nav{
 		.components{
-			> li > a:not(.follow-btn){
-				width: 35px;
-			}
-
 			> li:hover > a{
 				color: $brand-color;
 			}
@@ -336,8 +337,224 @@
 		}
 	}
 
+}
 
-	// Sticky Menu -----------------------------------------------
+
+// Header menus arrows ---------------------------------------
+@include breakpoint(md){
+	.menu-item-has-children,
+	.mega-menu{
+		> a:before{
+			content: '';
+			position: absolute;
+			right: 12px;
+			margin-top: 2px;
+			@include center(y);
+			width: 0;
+			height: 0;
+			border: 4px solid transparent;
+			border-top: 4px solid #ffffff;
+			transition: border 0.15s;
+		}
+
+		.menu-item-has-children > a:before{
+			border: 4px solid transparent;
+			border-left-color: #ffffff;
+		}
+	}
+
+	.menu > .menu-item-has-children:not(.is-icon-only) > a,
+	.menu .mega-menu:not(.is-icon-only) > a{
+		padding-right: 25px;
+	}
+
+	// Main menu arrow
+	.main-menu .menu > li.tie-current-menu > a:before,
+	.main-menu .menu > li:hover > a:before {
+	  border-top-color: $bright;
+	}
+
+	.main-nav-light{
+		.main-nav .menu-item-has-children,
+		.mega-menu {
+			> a:before {
+				border-top-color: $base-color;
+			}
+
+			.menu-item-has-children > a:before {
+				border-top-color: transparent;
+				border-left-color: $base-color;
+			}
+
+			li:hover > a:before{
+				border-left-color: $brand-color;
+			}
+		}
+	}
+
+	// Top menu arrow
+	.top-nav-dark{
+		.top-menu .menu-item-has-children {
+			> a:before{
+				border-top-color: $dark-base-color;
+			}
+
+			.menu-item-has-children > a:before{
+				border-left-color: $dark-base-color;
+				border-top-color: transparent;
+			}
+		}
+	}
+}
+
+
+//Boxed Main Menu ----------------------------------------------
+@include breakpoint(md){
+	.main-nav-boxed{
+		.main-nav{
+			border-width: 0;
+		}
+
+		.main-menu-wrapper{
+			float: left;
+			width: 100%;
+
+			.search-bar{
+				border-right-width: 0;
+			}
+		}
+
+		&.main-nav-light{
+			.main-menu-wrapper{
+				border-width: 1px;
+				background-color: #ffffff;
+
+				.dark-skin &{
+					border-width: 0;
+				}
+			}
+
+			.fixed-nav .main-menu-wrapper{
+				border-color: transparent;
+			}
+		}
+	}
+
+	// borders between topNav and MainNav
+	.main-nav-above.top-nav-above #main-nav:not(.fixed-nav){
+		top: -1px;
+	}
+
+	.main-nav-below.top-nav-below #main-nav:not(.fixed-nav){
+		bottom: -1px;
+	}
+
+	.dark-skin .main-nav-below.top-nav-above #main-nav{
+		border-width: 0;
+	}
+
+	.dark-skin .main-nav-below.top-nav-below-main-nav #main-nav{
+		border-top-width: 0;
+	}
+}
+
+// Main Nav Boxed transparent background in stikcy mode
+.main-nav-boxed .main-nav:not(.fixed-nav),
+.main-nav-boxed .fixed-nav .main-menu-wrapper,
+.theme-header:not(.main-nav-boxed) .fixed-nav .main-menu-wrapper{
+  background: transparent !important;
+}
+
+
+// Header Layout #1
+@include breakpoint(md){
+	.header-layout-1.main-nav-below.top-nav-above{
+		.main-nav{
+			margin-top: -1px;
+		}
+
+		.top-nav{
+			border-top-width: 0;
+		}
+
+		.breaking-title{
+			top: 0;
+			margin-bottom: -1px;
+		}
+	}
+}
+
+.header-layout-1.main-nav-below.top-nav-below-main-nav {
+	.main-nav-wrapper{
+		z-index: 9;
+	}
+
+	.main-nav{
+		margin-bottom: -1px;
+		bottom: 0;
+		border-top-width: 0;
+	}
+
+	@include breakpoint(md){
+		.top-nav{
+			margin-top: -1px;
+		}
+	}
+}
+
+.header-layout-1.has-shadow:not(.top-nav-below) .main-nav{
+	border-bottom: 0 !important;
+}
+
+#theme-header.header-layout-1 > div:only-child nav{
+	border-width: 0 !important;
+}
+
+// Padding of the First level itmes in responsive from 992px to 1100px.
+@include breakpoint_min_max($screen-md,1100px){
+	.main-nav .menu > li{
+		&:not(.is-icon-only) > a{
+			padding-left: 7px;
+			padding-right: 7px;
+
+			&:before{
+				display: none;
+			}
+		}
+
+		&.is-icon-only > a{
+			padding-left: 15px;
+			padding-right: 15px;
+		}
+	}
+}
+
+// Tiny Label
+.menu-tiny-label{
+	font-size: 10px;
+	border-radius: 10px;
+	padding: 2px 7px 3px;
+	margin-left: 3px;
+	line-height: 1;
+	position: relative;
+	top: -1px;
+
+  &.menu-tiny-circle{
+   	border-radius: 100%;
+  }
+}
+
+
+// hide stikcy logo in responsive
+@include breakpoint(max_min_md){
+	#sticky-logo{
+		display: none;
+	}
+}
+
+// Sticky Menu -----------------------------------------------
+@include breakpoint(md){
+
 	#sticky-logo{
 		overflow: hidden;
 		float: left;
@@ -389,12 +606,6 @@
 	}
 }
 
-// hide stikcy logo in responsive
-@include breakpoint(max_min_md){
-	#sticky-logo{
-		display: none;
-	}
-}
 
 //Desktip Sitcky Main Menu ----------------------------------------------
 .theme-header{
@@ -512,144 +723,6 @@
 	}
 }
 
-
-//Boxed Main Menu ----------------------------------------------
-@include breakpoint(md){
-	.main-nav-boxed{
-		.main-nav{
-			border-width: 0;
-		}
-
-		.main-menu-wrapper{
-			float: left;
-			width: 100%;
-
-			.search-bar{
-				border-right-width: 0;
-			}
-		}
-
-		&.main-nav-light{
-			.main-menu-wrapper{
-				border-width: 1px;
-				background-color: #ffffff;
-
-				.dark-skin &{
-					border-width: 0;
-				}
-			}
-
-			.fixed-nav .main-menu-wrapper{
-				border-color: transparent;
-			}
-		}
-	}
-
-	// borders between topNav and MainNav
-	.main-nav-above.top-nav-above #main-nav:not(.fixed-nav){
-		top: -1px;
-	}
-
-	.main-nav-below.top-nav-below #main-nav:not(.fixed-nav){
-		bottom: -1px;
-	}
-
-	.dark-skin .main-nav-below.top-nav-above #main-nav{
-		border-width: 0;
-	}
-
-	.dark-skin .main-nav-below.top-nav-below-main-nav #main-nav{
-		border-top-width: 0;
-	}
-}
-
-// Main Nav Boxed transparent background in stikcy mode
-.main-nav-boxed .main-nav:not(.fixed-nav),
-.main-nav-boxed .fixed-nav .main-menu-wrapper,
-.theme-header:not(.main-nav-boxed) .fixed-nav .main-menu-wrapper{
-  background-color: transparent !important;
-}
-
-
-// Header Layout #1
-@include breakpoint(md){
-	.header-layout-1.main-nav-below.top-nav-above{
-		.main-nav{
-			margin-top: -1px;
-		}
-
-		.top-nav{
-			border-top-width: 0;
-		}
-
-		.breaking-title{
-			top: 0;
-			margin-bottom: -1px;
-		}
-	}
-}
-
-.header-layout-1.main-nav-below.top-nav-below-main-nav {
-	.main-nav-wrapper{
-		z-index: 9;
-	}
-
-	.main-nav{
-		margin-bottom: -1px;
-		bottom: 0;
-		border-top-width: 0;
-	}
-
-	@include breakpoint(md){
-		.top-nav{
-			margin-top: -1px;
-		}
-	}
-}
-
-.header-layout-1.has-shadow:not(.top-nav-below) .main-nav{
-	border-bottom: 0 !important;
-}
-
-#theme-header.header-layout-1 > div:only-child nav{
-	border-width: 0 !important;
-}
-
-// Padding of the First level itmes in responsive from 992px to 1100px.
-@include breakpoint_min_max($screen-md,1100px){
-	.main-nav .menu > li{
-		&:not(.is-icon-only) > a{
-			padding-left: 7px;
-			padding-right: 7px;
-
-			&:before{
-				display: none;
-			}
-		}
-
-		&.is-icon-only > a{
-			padding-left: 15px;
-			padding-right: 15px;
-		}
-	}
-}
-
-// Tiny Label
-.menu-tiny-label{
-	font-size: 10px;
-	border-radius: 10px;
-	padding: 2px 7px 3px;
-	margin-left: 3px;
-	line-height: 1;
-	position: relative;
-	top: -1px;
-
-  &.menu-tiny-circle{
-   	border-radius: 100%;
-  }
-}
-
-
 // Mobile main nav --------------------------------------
 @include breakpoint(max_min_md){
 	#tie-wrapper header#theme-header{
@@ -660,7 +733,7 @@
 	.logo-container,
 	.header-layout-1 .main-nav{
 		border-width: 0;
-		box-shadow: 0 4px 2px -2px rgba(0,0,0,0.1);
+		box-shadow: 0 3px 7px 0 rgba(0,0,0,0.1);
 	}
 
 	.header-layout-1.top-nav-below .main-nav:not(.fixed-nav){
